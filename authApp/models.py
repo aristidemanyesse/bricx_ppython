@@ -1,3 +1,4 @@
+from organisationApp.models import Agence
 from django.db import models
 from coreApp.models import BaseModel, MyCodeException
 from django.contrib.auth.models import User
@@ -11,6 +12,8 @@ class Utilisateur(User, BaseModel):
     telephone          = models.CharField(max_length = 255, null = True, blank=True)
     adresse            = models.CharField(max_length = 255, null = True, blank=True)
     is_never_connected = models.BooleanField(default = True)
+    is_allowed = models.BooleanField(default = True)
+	agence = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
 
     def __str__(self):
         return self.first_name+" "+self.last_name
