@@ -15,10 +15,16 @@ class Agence(BaseModel):
     compte = models.ForeignKey(Compte, on_delete = models.CASCADE, related_name="agence_compte")
 
 
-
-
 class AccesAgence(BaseModel):
     agence = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
     utilisateur = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_acces")
+
+
+class Role(BaseModel):
+    name   = models.CharField(max_length = 255)
+
+class RoleUtilisateur(BaseModel):
+    role = models.ForeignKey(Role, on_delete = models.CASCADE, related_name="role_acces")
+    utilisateur = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_role")
 
 

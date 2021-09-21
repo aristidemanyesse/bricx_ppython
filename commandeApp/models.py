@@ -23,6 +23,8 @@ class Vehicule(BaseModel):
     marque          = models.CharField(max_length = 255, null = True, blank=True)
     etat            = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 
 
+
+
 class ZoneLivraison(BaseModel):
     name   = models.CharField(max_length = 255)
     agence = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_zone")
@@ -100,6 +102,21 @@ class LigneLivraison(BaseModel):
 
 
 
+class AchatStock(BaseModel):
+    reference             = models.CharField(max_length = 255)
+    agence                = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_achatstock")
+    montant               = models.IntegerField(default = 0)
+    avance                = models.IntegerField(default = 0)    
+    reste                 = models.IntegerField(default = 0)    
+    operation             = models.ForeignKey(Chauffeur, on_delete = models.CASCADE, related_name="operation_achatstock")
+    fournisseur           = models.ForeignKey(Vehicule, on_delete = models.CASCADE, related_name="fournisseur_achatstock")
+    etat                  = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 
+    utilisateur           = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_achatstock")
+    utilisateur_reception = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_reception_achatstock")
+    comment               = models.TextField(default="");
+    datelivraison         = models.DateTimeField(null = True, blank=True)
+
+
 class LigneAchatStock(BaseModel):
     achatstock    = models.ForeignKey(AchatStock, on_delete = models.CASCADE, related_name="achatstock_ligne")
     brique        = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_ligneachatstock")
@@ -107,6 +124,14 @@ class LigneAchatStock(BaseModel):
     quantite_recu = models.IntegerField(default = 0)
     price         = models.IntegerField(default = 0)
 
+
+class Tricycle(BaseModel):
+    livraison = models.ForeignKey(Livraison, on_delete = models.CASCADE, related_name="livraison_tricycle")
+    montant   = models.IntegerField(default = 0)
+    fullname  = models.CharField(max_length = 255)
+    adresse   = models.CharField(max_length = 255, null = True, blank=True)
+    contact   = models.CharField(max_length = 255, null = True, blank=True)
+    etat      = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 
 
 
 class Fournisseur(BaseModel):
@@ -156,3 +181,12 @@ class PrixZoneLivraison(BaseModel):
     brique = models.ForeignKey(Brique,  null = True, blank=True, on_delete = models.CASCADE, related_name="brique_zoneprix") 
     price  = models.CharField(max_length = 255)
 
+
+
+class Tricycle(BaseModel):
+    livraison = models.ForeignKey(Livraison, on_delete = models.CASCADE, related_name="livraison_tricycle")
+    montant   = models.IntegerField(default = 0)
+    fullname  = models.CharField(max_length = 255)
+    adresse   = models.CharField(max_length = 255, null = True, blank=True)
+    contact   = models.CharField(max_length = 255, null = True, blank=True)
+    etat      = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 

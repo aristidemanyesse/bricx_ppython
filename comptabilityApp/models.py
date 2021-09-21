@@ -1,5 +1,5 @@
 from authApp.models import Utilisateur
-from commandeApp.models import Approvisionnement, Client, Commande
+from commandeApp.models import Approvisionnement, Client, Commande, Tricycle
 from organisationApp.models import Agence
 from coreApp.models import BaseModel, Etat
 from django.db import models
@@ -96,3 +96,14 @@ class PayementTricycle(BaseModel):
     utilisateur = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_payetricycle")
     comment     = models.TextField(default="")
     structure   = models.CharField(default="", max_length = 255)
+
+
+
+class Transfertfond(BaseModel):
+    reference          = models.CharField(max_length = 255)
+    montant            = models.IntegerField(default=0, max_length = 255, null = True, blank=True)
+    compte_source      = models.ForeignKey(Compte,  null = True, blank=True, on_delete = models.CASCADE, related_name="compte_source_transfert")
+    compte_destination = models.ForeignKey(Compte,  null = True, blank=True, on_delete = models.CASCADE, related_name="compte_destination_transfert")
+    comment            = models.TextField(default="")
+    etat               = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE)
+    utilisateur        = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_transfertfond")

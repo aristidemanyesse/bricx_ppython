@@ -1,3 +1,4 @@
+from commandeApp.models import Client
 from authApp.models import Utilisateur
 from organisationApp.models import Agence
 from coreApp.models import BaseModel, Etat
@@ -98,7 +99,7 @@ class PerteBrique(BaseModel):
     agence      = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
     brique      = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
     utilisateur = models.ForeignKey(Utilisateur,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_acces")
-    etat        = models.ForeignKey(Etat, on_delete = models.CASCADE, related_name="agence_acces")
+    etat        = models.ForeignKey(Etat, on_delete = models.CASCADE)
     quantite    = models.IntegerField(default=0)
     comment     = models.IntegerField(default=0)
 
@@ -109,6 +110,14 @@ class LignePerteBrique(BaseModel):
     quantite = models.IntegerField(default=0)
 
 
+
+class TransfertStock(BaseModel):
+    reference          = models.CharField(max_length = 255)
+    agence             = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
+    groupecommande_old = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
+    groupecommande_new = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
+    utilisateur        = models.ForeignKey(Utilisateur,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_acces")
+    client             = models.ForeignKey(Client, on_delete = models.CASCADE, related_name="agence_acces")
 
 
 class LigneTransfertStock(BaseModel):
