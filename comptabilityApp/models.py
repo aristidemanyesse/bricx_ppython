@@ -1,3 +1,4 @@
+from commandeApp.models import Approvisionnement
 from organisationApp.models import Agence
 from coreApp.models import BaseModel
 from django.db import models
@@ -20,6 +21,24 @@ class TypeOperationCaisse(BaseModel):
 
 class TypeMouvement(BaseModel):
     name           = models.CharField(max_length = 255)
+
+
+
+class Reglement(BaseModel):
+    reference         = models.CharField(max_length = 255, null = True, blank=True)
+    mouvement = models.ForeignKey(Mouvement,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_acces")
+    montant  = models.IntegerField(default=0, max_length = 255, null = True, blank=True)
+    agence = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
+    mode = models.ForeignKey(ModePayement,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_acces")
+    commande = models.ForeignKey(Commande,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_acces")
+    approvisionnement = models.ForeignKey(Approvisionnement,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_acces")
+    etat = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_acces")
+    client = models.ForeignKey(Client, on_delete = models.CASCADE, related_name="agence_acces")
+    utilisateur = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_acces")
+    comment  = models.CharField(default=0, max_length = 255, null = True, blank=True)
+    structure  = models.CharField(default=0, max_length = 255, null = True, blank=True)
+    recouvrement = models.BooleanField(default=False)
+    image = models.ImageField()
 
 
 class Mouvement(BaseModel):
