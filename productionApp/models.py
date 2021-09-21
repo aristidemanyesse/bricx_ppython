@@ -65,8 +65,8 @@ class ExigenceProduction(BaseModel):
 
 
 class LigneExigenceProduction(BaseModel):
-    exigence  = models.ForeignKey(ExigenceProduction, on_delete = models.CASCADE, related_name="agence_acces")
-    ressource = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="agence_acces")
+    exigence  = models.ForeignKey(ExigenceProduction, on_delete = models.CASCADE, related_name="exigence_ligne")
+    ressource = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_exigenceligne")
     quantite  = models.IntegerField(default = 0)
 
 
@@ -88,17 +88,17 @@ class PerteRessource(BaseModel):
     type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="type_perte")
     agence      = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_perteressource")
     ressource   = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_perte")
-    utilisateur = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_perte")
+    utilisateur = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_perteressource")
     etat        = models.ForeignKey(Etat, on_delete = models.CASCADE)
     quantite    = models.IntegerField(default=0)
     comment     = models.IntegerField(default=0)
 
 
 class PerteBrique(BaseModel):
-    type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="agence_acces")
-    agence      = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
-    brique      = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
-    utilisateur = models.ForeignKey(Utilisateur,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_acces")
+    type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="type_perte")
+    agence      = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_perte")
+    brique      = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_perte")
+    utilisateur = models.ForeignKey(Utilisateur,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_pertebrique")
     etat        = models.ForeignKey(Etat, on_delete = models.CASCADE)
     quantite    = models.IntegerField(default=0)
     comment     = models.IntegerField(default=0)
