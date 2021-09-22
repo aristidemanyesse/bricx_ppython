@@ -1,6 +1,5 @@
-from authApp.models import Utilisateur
+from organisationApp.models import Employe
 from commandeApp.models import Approvisionnement, Client, Commande, Tricycle
-from organisationApp.models import Agence
 from coreApp.models import BaseModel, Etat
 from django.db import models
 
@@ -42,10 +41,10 @@ class Mouvement(BaseModel):
     reference = models.CharField(max_length = 255, null = True, blank=True)
     montant   = models.IntegerField(default=0, max_length = 255, null = True, blank=True)
     type      = models.ForeignKey(TypeMouvement,  null = True, blank=True, on_delete = models.CASCADE, related_name="type_mouvement")
-    mode      = models.ForeignKey(ModePayement,  null = True, blank=True, on_delete = models.CASCADE, related_name="modepayement_mouvement")
     etat      = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE)
     compte    = models.ForeignKey(Compte,  null = True, blank=True, on_delete = models.CASCADE, related_name="compte_mouvement")
     comment   = models.CharField(default=0, max_length = 255, null = True, blank=True)
+    mode      = models.ForeignKey(ModePayement,  null = True, blank=True, on_delete = models.CASCADE, related_name="modepayement_mouvement")
     structure = models.CharField(default=0, max_length = 255, null = True, blank=True)
     numero    = models.CharField(default=0, max_length = 255, null = True, blank=True)
 
@@ -55,16 +54,12 @@ class Mouvement(BaseModel):
 class Reglement(BaseModel):
     reference         = models.CharField(max_length = 255, null = True, blank=True)
     mouvement         = models.ForeignKey(Mouvement,  null = True, blank=True, on_delete = models.CASCADE, related_name="mouvement_reglement")
-    montant           = models.IntegerField(default=0, max_length = 255, null = True, blank=True)
-    agence            = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_reference")
-    mode              = models.ForeignKey(ModePayement,  null = True, blank=True, on_delete = models.CASCADE, related_name="modepaye_reglement")
     commande          = models.ForeignKey(Commande,  null = True, blank=True, on_delete = models.CASCADE, related_name="commande_reglement")
     approvisionnement = models.ForeignKey(Approvisionnement,  null = True, blank=True, on_delete = models.CASCADE, related_name="approvisionnement_reglement")
     etat              = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE)
     client            = models.ForeignKey(Client, on_delete = models.CASCADE, related_name="client_reglement")
-    utilisateur       = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_reglement")
+    employe       = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_reglement")
     comment           = models.CharField(default=0, max_length = 255, null = True, blank=True)
-    structure         = models.CharField(default=0, max_length = 255, null = True, blank=True)
     recouvrement      = models.BooleanField(default=False)
     image             = models.ImageField()
 
@@ -72,14 +67,10 @@ class Reglement(BaseModel):
 
 class Operation(BaseModel):
     reference        = models.CharField(max_length = 255, null = True, blank=True)
-    montant          = models.IntegerField(default=0)
     category         = models.ForeignKey(CategoryOperation,  null = True, blank=True, on_delete = models.CASCADE, related_name="category_operation")
     mouvement        = models.ForeignKey(Mouvement,  null = True, blank=True, on_delete = models.CASCADE, related_name="mouvement_operation")
-    mode             = models.ForeignKey(ModePayement,  null = True, blank=True, on_delete = models.CASCADE, related_name="modepaye_operation")
-    structure        = models.CharField(default="", max_length = 255)
     etat             = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE)
-    agence           = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_operation")
-    utilisateur      = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_operation")
+    employe      = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_operation")
     comment          = models.TextField(default="")
     date_approbation = models.DateTimeField(null = True, blank=True)
 
@@ -87,15 +78,11 @@ class Operation(BaseModel):
 
 class PayementTricycle(BaseModel):
     reference   = models.CharField(max_length = 255)
-    montant     = models.IntegerField(default=0, max_length = 255, null = True, blank=True)
     mouvement   = models.ForeignKey(Mouvement,  null = True, blank=True, on_delete = models.CASCADE, related_name="mouvement_payetricycle")
-    mode        = models.ForeignKey(ModePayement,  null = True, blank=True, on_delete = models.CASCADE, related_name="modepaye_payetricycle")
     etat        = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE)
-    agence      = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_payetricycle")
     tricycle    = models.ForeignKey(Tricycle, on_delete = models.CASCADE, related_name="tricycle_paye")
-    utilisateur = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_payetricycle")
+    employe = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_payetricycle")
     comment     = models.TextField(default="")
-    structure   = models.CharField(default="", max_length = 255)
 
 
 
@@ -106,4 +93,4 @@ class Transfertfond(BaseModel):
     compte_destination = models.ForeignKey(Compte,  null = True, blank=True, on_delete = models.CASCADE, related_name="compte_destination_transfert")
     comment            = models.TextField(default="")
     etat               = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE)
-    utilisateur        = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_transfertfond")
+    employe        = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_transfertfond")

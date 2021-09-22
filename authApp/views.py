@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from authApp.models import Utilisateur
+from authApp.models import Employe
 from django.contrib.auth import authenticate
 # Create your views here.
 

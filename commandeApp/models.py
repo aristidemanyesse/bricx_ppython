@@ -1,7 +1,6 @@
 from comptabilityApp.models import Reglement
 from productionApp.models import Brique, Ressource
-from authApp.models import Utilisateur
-from organisationApp.models import Agence
+from organisationApp.models import Agence, Employe
 from coreApp.models import BaseModel, Etat
 from django.db import models
 
@@ -58,7 +57,7 @@ class Commande(BaseModel):
     avance             = models.IntegerField(default = 0)
     taux_tva           = models.IntegerField(default = 0)
     tva                = models.IntegerField(default = 0)
-    utilisateur        = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_commande")
+    employe        = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_commande")
     etat               = models.ForeignKey(Etat, on_delete = models.CASCADE) 
     comment            = models.TextField(default="");
 
@@ -81,7 +80,7 @@ class Livraison(BaseModel):
     agence                 = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_livraison")
     zonelivraison          = models.ForeignKey(ZoneLivraison, on_delete = models.CASCADE, related_name="zone_livraison")
     lieu                   = models.CharField(max_length = 255)
-    utilisateur            = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_livraison")
+    employe            = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_livraison")
     chauffeur              = models.ForeignKey(Chauffeur, on_delete = models.CASCADE, related_name="chauffeur_livraison")
     vehicule               = models.ForeignKey(Vehicule, on_delete = models.CASCADE, related_name="vehicule_livraison")
     etat                   = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 
@@ -111,8 +110,8 @@ class AchatStock(BaseModel):
     operation             = models.ForeignKey(Chauffeur, on_delete = models.CASCADE, related_name="operation_achatstock")
     fournisseur           = models.ForeignKey(Vehicule, on_delete = models.CASCADE, related_name="fournisseur_achatstock")
     etat                  = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 
-    utilisateur           = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_achatstock")
-    utilisateur_reception = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_reception_achatstock")
+    employe           = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_achatstock")
+    employe_reception = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_reception_achatstock")
     comment               = models.TextField(default="");
     datelivraison         = models.DateTimeField(null = True, blank=True)
 
@@ -157,8 +156,8 @@ class Approvisionnement(BaseModel):
     reglement             = models.ForeignKey(Reglement,  null = True, blank=True, on_delete = models.CASCADE, related_name="reglement_approvisionnement")
     fournisseur           = models.ForeignKey(Fournisseur,  null = True, blank=True, on_delete = models.CASCADE, related_name="fournisseur_approvisionnement");
     agence                = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_approvisionnement")
-    utilisateur           = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_approvisionnement")
-    utilisateur_reception = models.ForeignKey(Utilisateur,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_reception_approvisionnement")
+    employe           = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_approvisionnement")
+    employe_reception = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_reception_approvisionnement")
     etat                  = models.ForeignKey(Etat, on_delete = models.CASCADE) 
     comment               = models.TextField(default="");
     datelivraison         = models.DateTimeField(null = True, blank=True,);

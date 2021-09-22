@@ -1,5 +1,5 @@
 from commandeApp.models import Client
-from authApp.models import Utilisateur
+from authApp.models import Employe
 from organisationApp.models import Agence
 from coreApp.models import BaseModel, Etat
 from django.db import models
@@ -28,8 +28,8 @@ class Ressource(BaseModel):
 class Production(BaseModel):
     reference             = models.CharField(max_length = 255)
     agence                = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_production")
-    utilisateur           = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_production")
-    utilisateur_rangement = models.ForeignKey(Utilisateur,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_rangement_production")
+    employe           = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_production")
+    employe_rangement = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_rangement_production")
     date                  = models.DateField(null = True, blank=True,)
     date_rangement        = models.DateTimeField(null = True, blank=True)
     etat                  = models.ForeignKey(Etat, on_delete = models.CASCADE)
@@ -49,7 +49,7 @@ class LigneProduction(BaseModel):
 class ConsommationJour(BaseModel):
     date        = models.DateField(default="")
     comment     = models.TextField(default="")
-    utilisateur = models.ForeignKey(Utilisateur,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_consommationjour")
+    employe = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_consommationjour")
 
 
 class LigneConsommation(BaseModel):
@@ -88,7 +88,7 @@ class PerteRessource(BaseModel):
     type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="type_perte")
     agence      = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_perteressource")
     ressource   = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_perte")
-    utilisateur = models.ForeignKey(Utilisateur, on_delete = models.CASCADE, related_name="utilisateur_perteressource")
+    employe = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_perteressource")
     etat        = models.ForeignKey(Etat, on_delete = models.CASCADE)
     quantite    = models.IntegerField(default=0)
     comment     = models.IntegerField(default=0)
@@ -98,7 +98,7 @@ class PerteBrique(BaseModel):
     type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="type_perte")
     agence      = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_perte")
     brique      = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_perte")
-    utilisateur = models.ForeignKey(Utilisateur,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_pertebrique")
+    employe = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_pertebrique")
     etat        = models.ForeignKey(Etat, on_delete = models.CASCADE)
     quantite    = models.IntegerField(default=0)
     comment     = models.IntegerField(default=0)
@@ -116,7 +116,7 @@ class TransfertStock(BaseModel):
     agence             = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
     groupecommande_old = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
     groupecommande_new = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
-    utilisateur        = models.ForeignKey(Utilisateur,  null = True, blank=True, on_delete = models.CASCADE, related_name="utilisateur_acces")
+    employe        = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_acces")
     client             = models.ForeignKey(Client, on_delete = models.CASCADE, related_name="agence_acces")
 
 

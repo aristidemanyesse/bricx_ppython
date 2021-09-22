@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Utilisateur',
+            name='Employe',
             fields=[
                 ('user_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='auth.user')),
                 ('deleted', models.BooleanField(default=False)),
@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(max_length=254)),
                 ('finished_at', models.DateTimeField(default='')),
                 ('is_validate', models.BooleanField(default=False)),
-                ('utilisateur', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='utilisateur_forgotpassword', to='authApp.utilisateur')),
+                ('employe', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='employe_forgotpassword', to='authApp.employe')),
             ],
             options={
                 'abstract': False,
