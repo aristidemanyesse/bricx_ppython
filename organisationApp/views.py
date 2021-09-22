@@ -23,4 +23,4 @@ def forgetpassword(request):
 
 
 def logout(request):
-    return render(request, "login.html")
+    return redirect("auth/", permanent=True)

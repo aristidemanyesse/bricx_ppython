@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
 
+    'authApp',
     'coreApp',
     'organisationApp',
     'productionApp',
@@ -58,10 +59,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'coreApp.middleware.CheckIfUserIsConnected'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
-APPEND_SLASH=False
 
 
 ROOT_URLCONF = 'settings.urls'
