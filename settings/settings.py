@@ -43,7 +43,10 @@ INSTALLED_APPS = [
 
     'coreApp',
     'authApp',
+    'commandeApp',
+    'comptabilityApp',
     'organisationApp',
+    'productionApp',
 ]
 
 MIDDLEWARE = [
