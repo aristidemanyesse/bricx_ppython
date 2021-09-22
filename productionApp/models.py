@@ -1,4 +1,3 @@
-from commandeApp.models import Client
 from authApp.models import Employe
 from organisationApp.models import Agence
 from coreApp.models import BaseModel, Etat
@@ -117,7 +116,6 @@ class TransfertStock(BaseModel):
     groupecommande_old = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
     groupecommande_new = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
     employe        = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_acces")
-    client             = models.ForeignKey(Client, on_delete = models.CASCADE, related_name="agence_acces")
 
 
 class LigneTransfertStock(BaseModel):
