@@ -42,10 +42,11 @@ INSTALLED_APPS = [
     "rest_framework",
 
     'coreApp',
-    'commandeApp',
-    'comptabilityApp',
     'organisationApp',
     'productionApp',
+    'commandeApp',
+    'approvisionnementApp',
+    'comptabilityApp',
 ]
 
 MIDDLEWARE = [

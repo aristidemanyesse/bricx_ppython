@@ -1,4 +1,3 @@
-from comptabilityApp.models import Reglement
 from productionApp.models import Brique, Ressource
 from organisationApp.models import Agence, Employe
 from coreApp.models import BaseModel, Etat
@@ -15,7 +14,7 @@ class TypeClient(BaseModel):
 class Client(BaseModel):
     fullname        = models.CharField(max_length = 255)
     adresse         = models.CharField(max_length = 255, null = True, blank=True)
-    email           = models.CharField(max_length = 255, null = True, blank=True)
+    email            = models.EmailField(max_length = 255, null = True, blank=True)
     contact         = models.CharField(max_length = 255, null = True, blank=True)
     agence          = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="client_agence")
     type            = models.ForeignKey(TypeClient, on_delete = models.CASCADE, related_name="type_client")
@@ -34,7 +33,7 @@ class Vehicule(BaseModel):
     immatriculation = models.CharField(max_length = 255)
     modele          = models.CharField(max_length = 255, null = True, blank=True)
     marque          = models.CharField(max_length = 255, null = True, blank=True)
-    etat            = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 
+    etat            = models.ForeignKey(Etat,  on_delete = models.CASCADE) 
 
 
 
@@ -79,14 +78,14 @@ class LigneCommande(BaseModel):
 
 class Livraison(BaseModel):
     reference              = models.CharField(max_length = 255)
-    groupecommande         = models.ForeignKey(GroupeCommande,  null = True, blank=True, on_delete = models.CASCADE, related_name="groupecommande_livraison")
+    groupecommande         = models.ForeignKey(GroupeCommande, on_delete = models.CASCADE, related_name="groupecommande_livraison")
     agence                 = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_livraison")
     zonelivraison          = models.ForeignKey(ZoneLivraison, on_delete = models.CASCADE, related_name="zone_livraison")
     lieu                   = models.CharField(max_length = 255)
     employe                = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_livraison")
     chauffeur              = models.ForeignKey(Chauffeur, on_delete = models.CASCADE, related_name="chauffeur_livraison")
     vehicule               = models.ForeignKey(Vehicule, on_delete = models.CASCADE, related_name="vehicule_livraison")
-    etat                   = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 
+    etat                   = models.ForeignKey(Etat,  on_delete = models.CASCADE) 
     comment                = models.TextField(default="");
     datelivraison          = models.DateTimeField(null = True, blank=True)
 
@@ -104,8 +103,8 @@ class LigneLivraison(BaseModel):
 
 
 class PrixZoneLivraison(BaseModel):
-    zone   = models.ForeignKey(ZoneLivraison,  null = True, blank=True, on_delete = models.CASCADE, related_name="zone_prix") 
-    brique = models.ForeignKey(Brique,  null = True, blank=True, on_delete = models.CASCADE, related_name="brique_zoneprix") 
+    zone   = models.ForeignKey(ZoneLivraison, on_delete = models.CASCADE, related_name="zone_prix") 
+    brique = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_zoneprix") 
     price  = models.CharField(max_length = 255)
 
 
@@ -116,4 +115,4 @@ class Tricycle(BaseModel):
     fullname  = models.CharField(max_length = 255)
     adresse   = models.CharField(max_length = 255, null = True, blank=True)
     contact   = models.CharField(max_length = 255, null = True, blank=True)
-    etat      = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 
+    etat      = models.ForeignKey(Etat,  on_delete = models.CASCADE) 

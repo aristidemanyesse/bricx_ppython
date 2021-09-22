@@ -1,0 +1,33 @@
+
+
+# supprimer toutes les migrations du projet (etre dans le dossier courant du projet )
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+find . -path "*/migrations/*.pyc"  -delete
+
+
+# Demarrer un cluster single node cockroachdb en local
+cockroach start-single-node \
+--insecure \
+--store=node1 \
+--listen-addr=localhost:26257 \
+--http-addr=localhost:8888 \
+--background
+
+# créer un reseau e pont pour les cluster dans docker
+docker network create -d bridge roachnet
+
+# en docker
+docker run -d \
+--name=jmdb \
+--hostname=jmdb \
+--net=roachnet \
+-p 26257:26257 -p 8080:8080  \
+-v "${PWD}/cockroach-data/jmdb:/cockroach/cockroach-data"  \
+cockroachdb/cockroach:v21.1.6 start-single-node \
+--insecure \
+
+--join=roach1,roach2,roach3
+
+
+# shell sql cockroachdb
+cockroach sql --insecure --host=localhost:26257

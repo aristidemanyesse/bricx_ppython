@@ -1,5 +1,4 @@
-from authApp.models import Employe
-from organisationApp.models import Agence
+from organisationApp.models import Agence, Employe
 from coreApp.models import BaseModel, Etat
 from django.db import models
 
@@ -84,7 +83,7 @@ class InitialRessourceAgence(BaseModel):
 
 
 class PerteRessource(BaseModel):
-    type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="type_perte")
+    type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="type_perteressource")
     agence      = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_perteressource")
     ressource   = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_perte")
     employe = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_perteressource")
@@ -94,10 +93,10 @@ class PerteRessource(BaseModel):
 
 
 class PerteBrique(BaseModel):
-    type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="type_perte")
+    type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="type_pertebrique")
     agence      = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_perte")
     brique      = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_perte")
-    employe = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_pertebrique")
+    employe = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_pertebrique")
     etat        = models.ForeignKey(Etat, on_delete = models.CASCADE)
     quantite    = models.IntegerField(default=0)
     comment     = models.IntegerField(default=0)
@@ -112,10 +111,10 @@ class LignePerteBrique(BaseModel):
 
 class TransfertStock(BaseModel):
     reference          = models.CharField(max_length = 255)
-    agence             = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
-    groupecommande_old = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
-    groupecommande_new = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="agence_acces")
-    employe        = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_acces")
+    agence             = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_transfertstock")
+    groupecommande_old = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="old_groupecommande_transfertstock")
+    groupecommande_new = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="new_groupecommande_transfertstock")
+    employe        = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_transfertstock")
 
 
 class LigneTransfertStock(BaseModel):

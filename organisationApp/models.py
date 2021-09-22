@@ -10,7 +10,6 @@ from django.dispatch import receiver
 class Agence(BaseModel):
     name   = models.CharField(max_length = 255)
     lieu   = models.CharField(max_length = 255, null = True, blank=True)
-    compte = models.ForeignKey("Compte", on_delete = models.CASCADE, related_name="agence_compte")
 
 
 class Employe(User, BaseModel):
@@ -18,7 +17,7 @@ class Employe(User, BaseModel):
     adresse            = models.CharField(max_length = 255, null = True, blank=True)
     is_never_connected = models.BooleanField(default = True)
     is_allowed         = models.BooleanField(default = True)
-    agence             = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
+    agence             = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_employe")
 
     def __str__(self):
         return self.first_name+" "+self.last_name

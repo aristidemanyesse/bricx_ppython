@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
-from authApp.models import Employe
+from organisationApp.models import Employe
 from django.contrib.auth import authenticate
 # Create your views here.
 

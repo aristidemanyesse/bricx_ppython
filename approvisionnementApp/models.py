@@ -25,7 +25,7 @@ class AchatStock(BaseModel):
     avance            = models.IntegerField(default = 0)    
     reste             = models.IntegerField(default = 0)    
     fournisseur       = models.ForeignKey(Fournisseur, on_delete = models.CASCADE, related_name="fournisseur_achatstock")
-    etat              = models.ForeignKey(Etat,  null = True, blank=True, on_delete = models.CASCADE) 
+    etat              = models.ForeignKey(Etat,  on_delete = models.CASCADE) 
     employe           = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_achatstock")
     employe_reception = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_reception_achatstock")
     comment           = models.TextField(default="");
@@ -48,7 +48,7 @@ class Approvisionnement(BaseModel):
     avance             = models.IntegerField(default = 0)
     reste              = models.IntegerField(default = 0)
     transport          = models.IntegerField(default = 0)
-    fournisseur        = models.ForeignKey(Fournisseur,  null = True, blank=True, on_delete = models.CASCADE, related_name="fournisseur_approvisionnement");
+    fournisseur        = models.ForeignKey(Fournisseur, on_delete = models.CASCADE, related_name="fournisseur_approvisionnement");
     agence             = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_approvisionnement")
     employe            = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_approvisionnement")
     employe_reception  = models.ForeignKey(Employe,  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_reception_approvisionnement")

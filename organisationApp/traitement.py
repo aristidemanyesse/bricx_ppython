@@ -1,16 +1,16 @@
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from authApp.models import Employe
+from organisationApp.models import Employe
 from django.contrib.auth import authenticate, login
 from django.http import  JsonResponse
-from appengine_utilities import sessions
+# import webapp2
+# from webapp2_extras import sessions
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 # Create your views here.
 
-session = sessions.Session()
 
 def connexion(request):
     if request.method == "POST":
@@ -20,7 +20,6 @@ def connexion(request):
             try:
                 profile = Employe.objects.get(id = user.id)
                 if profile.is_never_connected:
-                    session["temp_user"] = user.id
                     return JsonResponse({"status":True, "new":True})
                 return JsonResponse({"status":True})
             except Exception as e:
@@ -36,7 +35,7 @@ def first_user(request):
     if len(datas["password"]) >= 8:
         if datas["password1"] == datas["password"]:
             try:
-                user = Employe.objects.get(id = session["temp_user"])
+                user = Employe.objects.get(id = "")
                 user.username = datas["login"]
                 user.set_password(datas["password"])
                 user.is_nerver_connected = False
