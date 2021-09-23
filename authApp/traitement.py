@@ -12,13 +12,17 @@ from rest_framework.response import Response
 
 def connexion(request):
     if request.method == "POST":
+        request.session["test"] = "jbdkjhbvfd"
         datas = request.POST
         user = authenticate(request, username=datas["login"], password=datas["password"])
         if user is not None:
             try:
                 profile = Employe.objects.get(id = user.id)
+                request.session["user_id"] = profile.id
+                print(profile.id)
+                print("rfgobigesuvfdusvbfudisovbioufdfvbudsbvudsbvfdus")
                 if profile.is_never_connected:
-                    return JsonResponse({"status":True, "new":True, "id":profile.id})
+                    return JsonResponse({"status":True, "new":True})
                 return JsonResponse({"status":True})
             except Exception as e:
                 print("-----------------------------------", e)
@@ -30,10 +34,11 @@ def connexion(request):
 
 def first_user(request):
     datas = request.POST
+    print("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",request.session.keys())
     if len(datas["password"]) >= 4:
         if datas["password1"] == datas["password"]:
             try:
-                user = Employe.objects.get(id = datas["id"])
+                user = Employe.objects.get(id = request.session["user_id"])
                 user.username = datas["login"]
                 user.set_password(datas["password"])
                 user.is_nerver_connected = False
