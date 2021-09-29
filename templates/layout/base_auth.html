@@ -1,0 +1,22 @@
+{% extends "./base.html" %}    
+{% load static %}      
+
+{% block main%}
+<body class="" style="background-size: 100%; background-image:url('{% static 'authApp/fond.jpg' %}') ">
+    <div style="margin-top: 5%;"></div>
+    <div class="loginColumns animated fadeInDown" style="z-index: 100000">
+
+        {% block body %}
+
+        {% endblock body %}
+
+        <hr />
+        <div class="row text-white">
+            <div class="col-md-6"> &copy; DEVARIS 21, tous droits reservés</div>
+            <div class="col-md-6 text-right">
+              <small>© 2019 - {% now "Y" %}</small>
+          </div>
+      </div>
+  </div>
+</body>
+{% endblock main%}

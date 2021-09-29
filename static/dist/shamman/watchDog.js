@@ -1,17 +1,17 @@
 
 $(function(){
-	$(document).idleTimer(13 * 60 * 1000);
+	$(document).idleTimer(10 * 60 * 1000);
 	$(document).on("idle.idleTimer", function(event, elem, obj){
-		window.location.href = "../../main/access/locked";
+		window.location.href = "/auth/session/";
 	});
 
 	$("a#btn-deconnexion").click(function(event) {
 		alerty.confirm("Voulez-vous vraiment vous deconnecter ???", {
 			title: "Deconnexion",
 			cancelLabel : "Non",
-			okLabel : "OUI, me deconnecter",
+			okLabel : "Oui, me deconnecter !",
 		}, function(){
-			window.location.href = "../../main/access/logout";
+			window.location.href = "/auth/disconnect/";
 		})
 	});
 

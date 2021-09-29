@@ -1,0 +1,12 @@
+{% load static %}
+
+
+<div class="footer hidden-print">
+	<div class="float-right">
+		Copyright &copy; 2019 - {% now "Y" %} | <strong>DEVARIS 21</strong>.
+	</div>
+	<div>
+		<strong class="text-uppercase"><img style="width: 20px" src="{% static 'request.societe.logo' %}"> {{request.societe.socialreason}}
+		</strong> | <span class="<?= ($nbdays > 7)?"":"clignote" ?>"><?= start0($nbdays) ?> jours restants</span>
+	</div>
+</div>

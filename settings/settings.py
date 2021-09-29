@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'commandeApp',
     'approvisionnementApp',
     'comptabilityApp',
+    'paramApp',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'paramApp.middleware.InjectParamsDataMiddleware'
 ]
 
 ROOT_URLCONF = 'settings.urls'
@@ -142,7 +145,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOW_ALL_ORIGINS = True
-SESSION_ENGINE = "django.contrib.sessions.backends.db"
-SESSION_SAVE_EVERY_REQUEST=True
-SESSION_EXPIRE_AT_BROWSER_CLOSE=True
-SESSION_COOKIE_DOMAIN = "localhost"
+
+
+LOGIN_URL = "/auth/"
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'   # Engine (default)
+SESSION_COOKIE_NAME = "sessionid"                       #  Session's cookie is saved on the browser, namely: sessionId = random string (default)
+SESSION_COOKIE_PATH = "/"                               #  Session's cookie saved path (default)
+SESSION_COOKIE_DOMAIN = None                             #  Session's cookie saved domain (default)
+SESSION_COOKIE_SECURE = False                            #  Whether HTTPS is transferred for cookies (default)
+SESSION_COOKIE_HTTPONLY = True                           #  Whether the session's cookie only supports HTTP transmission (default)
+SESSION_COOKIE_AGE = 1209600                             #  Session's cookie failure date (2 weeks) (default)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False                  #  Whether to close your browser makes the session expire (default)
+SESSION_SAVE_EVERY_REQUEST = True  

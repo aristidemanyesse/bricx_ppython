@@ -26,18 +26,18 @@
             </li>
 
             <?php 
-            $groupes__ = Home\GROUPECOMMANDE::encours();
-            $prospections__ = Home\PROSPECTION::findBy(["etat_id ="=>Home\ETAT::ENCOURS, "typeprospection_id ="=>Home\TYPEPROSPECTION::PROSPECTION]);;
-            $ventecaves__ = Home\PROSPECTION::findBy(["etat_id ="=>Home\ETAT::ENCOURS, "typeprospection_id ="=>Home\TYPEPROSPECTION::VENTECAVE]);
-            $livraisons__ = Home\PROSPECTION::findBy(["etat_id ="=>Home\ETAT::ENCOURS, "typeprospection_id ="=>Home\TYPEPROSPECTION::LIVRAISON]);
-            $approvisionnements__ = Home\APPROVISIONNEMENT::encours();
+                $groupes__ = Home\GROUPECOMMANDE::encours();
+                $prospections__ = Home\PROSPECTION::findBy(["etat_id ="=>Home\ETAT::ENCOURS, "typeprospection_id ="=>Home\TYPEPROSPECTION::PROSPECTION]);;
+                $ventecaves__ = Home\PROSPECTION::findBy(["etat_id ="=>Home\ETAT::ENCOURS, "typeprospection_id ="=>Home\TYPEPROSPECTION::VENTECAVE]);
+                $livraisons__ = Home\PROSPECTION::findBy(["etat_id ="=>Home\ETAT::ENCOURS, "typeprospection_id ="=>Home\TYPEPROSPECTION::LIVRAISON]);
+                $approvisionnements__ = Home\APPROVISIONNEMENT::encours();
 
             ?>
             <ul class="nav metismenu" id="side-menu">
                 <li class="" id="dashboard">
                     <a href="<?= $this->url($this->section, "master", "dashboard") ?>"><i class="fa fa-tachometer"></i> <span class="nav-label">Tableau de bord</span></a>
                 </li>
-                <li class="" id="clients">
+                b        <li class="" id="clients">
                     <a href="<?= $this->url($this->section, "master", "clients") ?>"><i class="fa fa-users"></i> <span class="nav-label">Liste des clients</span></a>
                 </li>
                 <li class="" id="commerciaux">
@@ -50,37 +50,37 @@
 
 
                 <?php if ($employe->isAutoriser("ventes")) { ?>
-                    <li class="" id="ventedirecte">
-                        <a href="<?= $this->url($this->section, "ventes", "ventedirecte") ?>"><i class="fa fa-arrow-right"></i> <span class="nav-label">Ventes directes</span> </a>
-                    </li>
-                    <li class="" id="prospections">
-                        <a href="<?= $this->url($this->section, "ventes", "prospections") ?>"><i class="fa fa-archive"></i> <span class="nav-label">Les Prospections</span> <?php if (count($prospections__) > 0) { ?> <span class="label label-warning float-right"><?= count($prospections__) ?></span> <?php } ?></a>
-                    </li>
-                    <li class="" id="ventecave">
-                        <a href="<?= $this->url($this->section, "ventes", "ventecave") ?>"><i class="fa fa-home"></i> <span class="nav-label">Ventes en cave</span> <?php if (count($ventecaves__) > 0) { ?> <span class="label label-warning float-right"><?= count($ventecaves__) ?></span> <?php } ?></a>
-                    </li>
-                    <li class="" id="commandes">
-                        <a href="<?= $this->url($this->section, "ventes", "commandes") ?>"><i class="fa fa-handshake-o"></i> <span class="nav-label">Commandes de clients</span> <?php if (count($groupes__) > 0) { ?> <span class="label label-warning float-right"><?= count($groupes__) ?></span> <?php } ?></a>
-                    </li>
-                    <li class="" id="livraisons">
-                        <a href="<?= $this->url($this->section, "ventes", "livraisons") ?>"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> <?php if (count($livraisons__) > 0) { ?> <span class="label label-warning float-right"><?= count($livraisons__) ?></span> <?php } ?></a>
-                    </li>
+                <li class="" id="ventedirecte">
+                    <a href="<?= $this->url($this->section, "ventes", "ventedirecte") ?>"><i class="fa fa-arrow-right"></i> <span class="nav-label">Ventes directes</span> </a>
+                </li>
+                <li class="" id="prospections">
+                    <a href="<?= $this->url($this->section, "ventes", "prospections") ?>"><i class="fa fa-archive"></i> <span class="nav-label">Les Prospections</span> <?php if (count($prospections__) > 0) { ?> <span class="label label-warning float-right"><?= count($prospections__) ?></span> <?php } ?></a>
+                </li>
+                <li class="" id="ventecave">
+                    <a href="<?= $this->url($this->section, "ventes", "ventecave") ?>"><i class="fa fa-home"></i> <span class="nav-label">Ventes en cave</span> <?php if (count($ventecaves__) > 0) { ?> <span class="label label-warning float-right"><?= count($ventecaves__) ?></span> <?php } ?></a>
+                </li>
+                <li class="" id="commandes">
+                    <a href="<?= $this->url($this->section, "ventes", "commandes") ?>"><i class="fa fa-handshake-o"></i> <span class="nav-label">Commandes de clients</span> <?php if (count($groupes__) > 0) { ?> <span class="label label-warning float-right"><?= count($groupes__) ?></span> <?php } ?></a>
+                </li>
+                <li class="" id="livraisons">
+                    <a href="<?= $this->url($this->section, "ventes", "livraisons") ?>"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> <?php if (count($livraisons__) > 0) { ?> <span class="label label-warning float-right"><?= count($livraisons__) ?></span> <?php } ?></a>
+                </li>
 
 
-                    <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
+                <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
-                    <li class="" id="boutiques">
-                        <a href="<?= $this->url($this->section, "production", "boutiques", Home\AGENCE::PRINCIPAL) ?>"><i class="fa fa-home"></i> <span class="nav-label">Les boutiques</span></a>
-                    </li>
-                    <li class="" id="entrepots">
-                        <a href="<?= $this->url($this->section, "production", "entrepots", Home\AGENCE::PRINCIPAL) ?>"><i class="fa fa-home"></i> <span class="nav-label">Les Entrepôts</span></a>
-                    </li>
-                    <li class="" id="miseenboutique">
-                        <a href="<?= $this->url($this->section, "production", "miseenboutique") ?>"><i class="fa fa-reply"></i> <span class="nav-label">Mise en boutique</span></a>
-                    </li>
-                    <li class="" id="ressources">
-                        <a href="<?= $this->url($this->section, "production", "ressources", "$datea@$dateb") ?>"><i class="fa fa-cubes"></i> <span class="nav-label">Les stocks</span></a>
-                    </li>
+                <li class="" id="boutiques">
+                    <a href="<?= $this->url($this->section, "production", "boutiques", Home\AGENCE::PRINCIPAL) ?>"><i class="fa fa-home"></i> <span class="nav-label">Les boutiques</span></a>
+                </li>
+                <li class="" id="entrepots">
+                    <a href="<?= $this->url($this->section, "production", "entrepots", Home\AGENCE::PRINCIPAL) ?>"><i class="fa fa-home"></i> <span class="nav-label">Les Entrepôts</span></a>
+                </li>
+                <li class="" id="miseenboutique">
+                    <a href="<?= $this->url($this->section, "production", "miseenboutique") ?>"><i class="fa fa-reply"></i> <span class="nav-label">Mise en boutique</span></a>
+                </li>
+                <li class="" id="ressources">
+                    <a href="<?= $this->url($this->section, "production", "ressources", "$datea@$dateb") ?>"><i class="fa fa-cubes"></i> <span class="nav-label">Les stocks</span></a>
+                </li>
                 <?php } ?>
 
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
@@ -115,10 +115,10 @@
                     </li>
                     <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
-                <?php } ?>
+                    <?php } ?>
 
 
-                <?php if ($employe->isAutoriser("parametres")) { ?>
+                    <?php if ($employe->isAutoriser("parametres")) { ?>
                     <li class="" id="configuration">
                         <a href="<?= $this->url($this->section, "parametres", "configuration") ?>"><i class="fa fa-gears"></i> <span class="nav-label">Configuration</span></a>
                     </li>
@@ -128,17 +128,52 @@
                 <li class="" id="abonnement">
                     <a href="<?= $this->url($this->section, "parametres", "abonnement") ?>"><i class="fa fa-star"></i> <span class="nav-label">Abonnement</span> <span class="label label-danger float-right"></span></a>
                 </li> -->
-            <?php } ?>
+                <?php } ?>
+
+            </ul>
 
         </ul>
 
-    </ul>
-
-</div>
+    </div>
 </nav>
 
 <style type="text/css">
-    li.dropdown-divider{
-       !important;
-   }
+li.dropdown-divider{
+ !important;
+}
 </style>
+
+
+
+<script>
+    $(function(){
+
+        // selecteur item de page
+        var section = "<?= $this->getSection() ?>"
+        var modul = "<?= $this->getModule() ?>"
+        var url = "<?= $this->getPage() ?>"
+
+        if (url == "clients" || url == "client") {
+            url = "clients";
+        }
+
+        $("nav ul.metismenu li").removeClass('active');
+        $("nav ul.metismenu li").each(function(index, el) {
+            if ($(this).attr("id") == url){
+                $(this).addClass("active")
+                $(this).parent("ul").addClass("in");
+                $(this).parent("ul").parent("li.groupe").addClass("active");
+            }
+        });
+
+
+        $("a.onglets").each(function(){
+            if ($(this).attr("id") == "onglet-"+section) {
+                $("a.onglets").removeClass("active btn-warning")
+                $("a.onglets").addClass("btn-white");
+                $(this).addClass("active btn-warning").removeClass("btn-white");
+            }
+        })
+
+    });
+</script>

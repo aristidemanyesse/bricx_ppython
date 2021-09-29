@@ -1,14 +1,16 @@
 
 from django.urls import path
 from . import views 
-from . import traitement 
+from . import ajax 
 
 urlpatterns = [
     path('', views.login),
     path('login/', views.login, name="login"),
-    path('session/', views.session, name="session"),
-    path('traitement/login/', traitement.connexion),
-    path('traitement/first_user/', traitement.first_user),
-
+    path('locked/', views.locked, name="locked"),
     path('forgetpassword/', views.forgetpassword, name="forgetpassword"),
+
+
+    path('ajax/login/', ajax.connexion),
+    path('ajax/first_user/', ajax.first_user),
+
 ]

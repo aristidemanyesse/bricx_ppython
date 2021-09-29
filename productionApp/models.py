@@ -11,14 +11,14 @@ class TypePerte(BaseModel):
 
 class Brique(BaseModel):
     name      = models.CharField(max_length = 255)
-    is_active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
     comment   = models.TextField(default="")
     image     = models.ImageField()
 
 
 class Ressource(BaseModel):
     name      = models.CharField(max_length = 255)
-    is_active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
     comment   = models.TextField(default="")
     image     = models.ImageField()
 
