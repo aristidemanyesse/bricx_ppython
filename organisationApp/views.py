@@ -7,20 +7,6 @@ from django.contrib.auth import authenticate
 # Create your views here.
 
 
-def login(request):
+def dashboard(request, id):
     if request.method == "GET":
-        return render(request, "pages/login.html")
-        
-
-def reconnect(request):
-    return render(request, "pages/login.html")
-
-
-
-def forgetpassword(request):
-    return render(request, "pages/forgetpassword.html")
-
-
-
-def logout(request):
-    return redirect("auth/", permanent=True)
+        return render(request, "organisation/pages/dashboard.html")

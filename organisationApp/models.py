@@ -23,17 +23,6 @@ class Employe(User, BaseModel):
         return self.first_name+" "+self.last_name
 
 
-class AccesAgence(BaseModel):
-    agence = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_acces")
-    employe = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_acces")
-
-
-class Role(BaseModel):
-    name   = models.CharField(max_length = 255)
-
-class RoleEmploye(BaseModel):
-    role = models.ForeignKey(Role, on_delete = models.CASCADE, related_name="role_acces")
-    employe = models.ForeignKey(Employe, on_delete = models.CASCADE, related_name="employe_role")
 
 
 

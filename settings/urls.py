@@ -26,7 +26,7 @@ urlpatterns = [
     path('', home),
     path('home/', include('coreApp.urls')),
     path('auth/', include('authApp.urls')),
-    # path('order/', include('authApp.urls')),
+    path('agence/<uuid:id>/', include('organisationApp.urls')),
     # path('appro/', include('authApp.urls')),
     # path('production/', include('authApp.urls')),
     # path('compta/', include('authApp.urls')),

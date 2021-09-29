@@ -1,12 +1,12 @@
 {% load static %}
-
+{% load humanize %}
 
 <div class="footer hidden-print">
 	<div class="float-right">
 		Copyright &copy; 2019 - {% now "Y" %} | <strong>DEVARIS 21</strong>.
 	</div>
 	<div>
-		<strong class="text-uppercase"><img style="width: 20px" src="{% static 'request.societe.logo' %}"> {{request.societe.socialreason}}
-		</strong> | <span class="<?= ($nbdays > 7)?"":"clignote" ?>"><?= start0($nbdays) ?> jours restants</span>
+		<strong class="text-uppercase"><img style="height: 25px; width: 25px; margin-right: 10px" class="img-circle" src="{% static request.societe.logo %}"> {{request.societe.socialreason}}
+		</strong> | <span class=""> expires {{ request.mycompte.expiration | naturaltime }} </span>
 	</div>
 </div>
