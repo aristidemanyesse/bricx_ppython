@@ -4,22 +4,19 @@
             Loader.start()
             name = $(this).attr('classname');
             reload = $(this).attr('reload');
-            url = "../../composants/dist/shamman/traitement.php";
+            url = "http://127.0.0.1:9000/core/ajax/save/";
             var formdata = new FormData($(this)[0]);
-            formdata.append('action', "save-formShamman");
-            formdata.append('classname', name);
+            formdata.append('modelform', name);
             $.post({url:url, data:formdata, contentType:false, processData:false}, function(data){
                 if (data.status) {
                     if (reload == "false") {
-                        Alerter.success('Réussite', data.message);
                         Loader.stop();
+                        Alerter.success('Réussite', data.message);
                         $(".modal").modal('hide');
+                    }else if (!!data.url) {
+                        window.location.href = data.url;
                     }else{
-                        if(name == "client") {
-                            window.location.href = data.url;
-                        }else{
-                            window.location.reload();                            
-                        }
+                        window.location.reload();
                     }
                 }else{
                     Alerter.error('Erreur !', data.message);

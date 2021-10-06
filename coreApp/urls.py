@@ -1,8 +1,9 @@
 
 from django.urls import path
-from . import views 
+from . import ajax
 
+app_name = "core"
 urlpatterns = [
-    path('', views.home),
-    path('home/', views.home, name="home"),
+    path('ajax/save/', ajax.save, name="save"),
+
 ]

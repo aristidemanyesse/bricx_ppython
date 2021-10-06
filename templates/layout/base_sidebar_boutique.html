@@ -2,7 +2,24 @@
 {% load static %}      
 
 {% block main %}
-    <body>
-        <h1>Hello world</h1>
-    </body>
+<body class="fixed-sidebar">
+  <div id="wrapper">
+
+    {% include  "./partials/sidebar_boutique.html"%}
+
+    <div id="page-wrapper" class="gray-bg">
+
+      {% include  "./partials/header.html"%}
+
+      {% block wrapper %}
+
+      <h1>Hello world</h1>
+      {% endblock wrapper %}
+
+      {% include  "./partials/footer.html"%}
+
+    </div>
+
+  </div>
+</body>
 {% endblock main %}

@@ -24,3 +24,19 @@ def forgetpassword(request):
 def disconnect(request):
     logout(request)
     return redirect("/auth/")
+
+
+
+
+###################################################################################################
+
+def handler404(request, exception):
+    return render(request, 'acces/pages/404.html')
+
+
+def handler400(request, exception):
+    return render(request, 'acces/pages/400.html')
+
+
+def handler500(request):
+    return render(request, 'acces/pages/500.html')

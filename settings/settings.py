@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-yg7m(0489_ofj6z#%tr)!h#7=hbz4!dgr$fq1g=4g!vagw!jlf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -45,10 +45,13 @@ INSTALLED_APPS = [
 
     'authApp',
     'coreApp',
+    'clientApp',
     'organisationApp',
     'productionApp',
     'commandeApp',
+    'livraisonApp',
     'approvisionnementApp',
+    'ficheApp',
     'comptabilityApp',
     'paramApp',
 ]
@@ -63,7 +66,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
-    'paramApp.middleware.InjectMyAppDataMiddleware'
+    'paramApp.middleware.InjectMyAppDataMiddleware',
+    'organisationApp.middleware.InjectAgenceMiddleware'
 ]
 
 ROOT_URLCONF = 'settings.urls'
@@ -92,8 +96,16 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bricx',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    },
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'dba.sqlite3',
     }
 }
 

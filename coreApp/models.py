@@ -1,4 +1,4 @@
-from django.contrib.gis.db import models
+from django.db import models
 import uuid
 
 # Create your models here.
@@ -12,13 +12,26 @@ class BaseModel(models.Model):
     def __str__(self):
         return self.name
 
+
+    def encours(self):
+        etat = Etat.objects.get(etiquette = Etat.ENCOURS)
+        return Super().objects.filter(etat = etat)
+
     class Meta:
         abstract = True
 
 
+
 class Etat(models.Model):
+    ANNULE  = 401
+    EN_COURS = "EN_COURS"
+    TERMINE = 403
+
     name = models.CharField(max_length= 255)
-    classe = models.CharField(max_length= 255)
+    etiquette = models.CharField(max_length= 255)
+    classe = models.CharField(max_length= 255, null=True, blank=True)
+
+
 
 
 class MyCodeException:

@@ -18,17 +18,26 @@ from django.shortcuts import redirect
 from django.urls import path
 from django.urls.conf import include
 
+from organisationApp import views as orga
 
 def home(request):
     return redirect("auth/login")
 
 urlpatterns = [
     path('', home),
-    path('home/', include('coreApp.urls')),
     path('auth/', include('authApp.urls')),
-    path('agence/<uuid:id>/', include('organisationApp.urls')),
-    # path('appro/', include('authApp.urls')),
-    # path('production/', include('authApp.urls')),
-    # path('compta/', include('authApp.urls')),
+    path('core/', include('coreApp.urls')),
+    path('home/', include('organisationApp.urls')),
+
+    path('boutique/', include('organisationApp.urls_boutique')),
+    path('fabrique/', include('organisationApp.urls_fabrique')),
+
+
+    path('fiches/', include('ficheApp.urls')),
     path('admin/', admin.site.urls),
 ]
+
+
+handler404 = 'authApp.views.handler404'
+handler400 = 'authApp.views.handler400'
+handler500 = 'authApp.views.handler500'

@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.gis.db import models
 # Create your models here.
 
 
@@ -17,7 +16,7 @@ class MyApp(models.Model):
     fax                   = models.CharField(max_length = 255)
     postale               = models.CharField(max_length = 255)
     devise                = models.CharField(max_length = 255)
-    logo          = models.ImageField(upload_to = "storage/images/params/", max_length=255)
+    logo          = models.ImageField(upload_to = "storage/images/params/", max_length=255, null=True, blank=True)
 
     allow_waiting_payment = models.BooleanField(default=True)
     tva                   = models.BooleanField(default=True)
