@@ -1,0 +1,17 @@
+{% extends "./base.html" %}    
+{% load static %}      
+
+{% block main %}
+<body class="gray-bg">
+    <div class="container text-center " style="padding-top: 7%;">
+        
+        {% block content  %}
+        
+        {% endblock content %}
+    </div>
+
+    {% include  "./partials/footer.html"%}
+
+</body>
+
+{% endblock main%}

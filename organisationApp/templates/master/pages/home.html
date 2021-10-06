@@ -1,0 +1,161 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+
+{% block body %} 
+
+
+<div class="animated container-fluid fadeInRightBig">
+
+    <br><br>
+    <div class=" border-bottom white-bg dashboard-header">
+        <div class="row ">
+            <div class="col-lg-4 col-md-12">
+                <div class="text-center" style="margin-top: 6%;">
+                    <img src="{% static request.societe.logo %}" class="img-circle logo" alt=""><br><br>
+                    <h2 class="text-uppercase">{{request.societe.socialreason}}</h2><br>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 border-md-left">
+                <div class="row text-center">
+                    <div class="col-sm-6 border-left border-bottom">
+                        <div class="p-lg">
+                            <i class="fa fa-bank fa-4x text-green"></i>
+                            <h1 class="m-xs">{{nb_agences}}</h1>
+                            <h4 class="no-margins text-uppercase gras">Fabrique{{ agences |pluralize }}</h4>
+                            <small>{{request.societe.socialreason}}</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 border-left border-bottom">
+                        <div class="p-lg">
+                            <i class="fa fa-cube fa-4x text-orange"></i>
+                            <h1 class="m-xs">{{nb_briques}}</h1>
+                            <h4 class="no-margins text-uppercase gras">Brique{{ briques |pluralize }}</h4>
+                            <small>{{request.societe.socialreason}}</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 border-left">
+                        <div class="p-lg">
+                            <i class="fa fa-users fa-4x text-green"></i>
+                            <h1 class="m-xs">{{nb_clients}}</h1>
+                            <h4 class="no-margins text-uppercase gras">CLient{{ clients|pluralize }}</h4>
+                            <small>{{request.societe.socialreason}}</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 border-left">
+                        <div class="p-lg">
+                            <i class="fa fa-male fa-4x text-green"></i>
+                            <h1 class="m-xs">{{nb_users}}</h1>
+                            <h4 class="no-margins text-uppercase gras">Utilisateur{{ users|pluralize }}</h4>
+                            <small>{{request.societe.socialreason}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+
+    <div class="row justify-content-center">
+
+        {% if perms.paramApp.fabrique and request.agence != None %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <a href="{% url 'fabrique:home' %}">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-7">
+                                <h5 class="text-uppercase">A la fabrique</h5>
+                                <h4 class="no-margins text-dark">Production</h4>
+                            </div>
+                            <div class="col-5 text-right">
+                                <i class="fa fa-hospital-o fa-4x text-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+
+        {% if perms.paramApp.boutique and request.agence != None %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <a href="{% url 'boutique:home' %}">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-7">
+                                <h5 class="text-uppercase">A la boutique</h5>
+                                <h4 class="no-margins text-dark">Vente</h4>
+                            </div>
+                            <div class="col-5 text-right">
+                                <i class="fa fa-pied-piper-alt fa-4x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+
+
+        {% if perms.paramApp.manager %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <a href="">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-7">
+                                <h5 class="text-uppercase">Manager</h5>
+                                <h4 class="no-margins text-dark">Supervision</h4>
+                            </div>
+                            <div class="col-5 text-right">
+                                <i class="fa fa-pied-piper-alt fa-4x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+
+
+        {% if perms.paramApp.configuration %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <a href="">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-7">
+                                <h5 class="text-uppercase">Configuration</h5>
+                                <h4 class="no-margins text-dark">paramétrage</h4>
+                            </div>
+                            <div class="col-5 text-right">
+                                <i class="fa fa-gears fa-4x text-danger" style="color: #ddd"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+<h1 class="logo-name text-center" style=" font-size: 5rem; letter-spacing: 45px; margin: 2% !important; padding: 0% !important; color: #aaa ">BRICX</h1>
+
+
+{% endblock body %} 
+
+
+
+{% block style %}
+<style>
+.logo{
+    width: 250px;
+    height: 250px;
+    border: 15px solid #f2f2f2;
+}
+</style>
+{% endblock style %}

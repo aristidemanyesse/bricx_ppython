@@ -1,0 +1,9 @@
+<select class="select2" name="type" style="width: 100%;">
+    {% for item in instances %}
+        {% if item.id == obj.id %}
+            <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+        {% else %}
+            <option value="{{ item.id }}" >{{ item.name }}</option>
+        {% endif %}
+    {% endfor %}
+</select>

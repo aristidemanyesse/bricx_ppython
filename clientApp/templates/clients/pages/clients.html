@@ -1,0 +1,61 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+
+{% block wrapper %} 
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-md-7">
+        <h2>Liste des clients</h2>
+        <button data-toggle="modal" data-target="#modal-client" class="btn btn-primary dim"><i class="fa fa-plus"></i> Ajouter un client</button>
+    </div>
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="widget style1 lazur-bg">
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <span> Tous les clients </span>
+                            <h2 class="font-bold">{{ clients | length }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="widget style1 yellow-bg">
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <span> Ajoutés cette semaine</span>
+                            <h2 class="font-bold"><?= start0(count(Home\CLIENT::getSemaine()))  ?></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    {% if clients|length > 0 %}
+    <div class="row">
+        {% for client in clients %}
+        <div class="col-lg-3 col-md-4 col-sm-6 clients">
+            <div class="contact-box ">
+                <a href="{% url 'boutique:client' client.id %}">
+                    <h3 class=""><strong>{{ client.name }}</strong></h3>
+                    <address>
+                        <i class="fa fa-home"></i>&nbsp; {{ client.type.name }}<br>
+                        <i class="fa fa-map-marker"></i>&nbsp;{{ client.adresse }}<br>
+                    </address>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    {% include 'extra/empty.html' %}
+    {% endif %}
+</div>
+
+{% include '../modals/client.html' %}
+
+{% endblock wrapper %} 
+
