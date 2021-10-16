@@ -39,7 +39,7 @@
         {% for client in clients %}
         <div class="col-lg-3 col-md-4 col-sm-6 clients">
             <div class="contact-box ">
-                <a href="{% url 'boutique:client' client.id %}">
+                <a href="{% url 'boutique:clients:client' client.id %}">
                     <h3 class=""><strong>{{ client.name }}</strong></h3>
                     <address>
                         <i class="fa fa-home"></i>&nbsp; {{ client.type.name }}<br>

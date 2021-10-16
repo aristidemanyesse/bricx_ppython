@@ -1,25 +1,20 @@
 from django.db import models
-import approvisionnementApp.models as appro_models
-import commandeApp.models as commande_models
-import livraisonApp.models as livraison_models
-import productionApp.models as production_models
-import organisationApp.models as organisation_models
-import clientApp.models as client_models
-import coreApp.models as core_models
-import comptabilityApp.models as comptability_models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from comptabilityApp.models import Compte
+
+from coreApp.models import BaseModel
 
 
 
 
-class Agence(core_models.BaseModel):
+class Agence(BaseModel):
     name   = models.CharField(max_length = 255)
     lieu   = models.CharField(max_length = 255, null = True, blank=True)
 
 
-class Employe(User, core_models.BaseModel):
+class Employe(User, BaseModel):
     telephone          = models.CharField(max_length = 255, null = True, blank=True)
     adresse            = models.CharField(max_length = 255, null = True, blank=True)
     is_never_connected = models.BooleanField(default = True)
@@ -36,6 +31,16 @@ class Employe(User, core_models.BaseModel):
 
 ######################################################################################################
 ##### SIGNAUX
+
+
+@receiver(post_save, sender = Agence)
+def post_save_agence(sender, instance, created, **kwargs):
+    if created:
+        Compte.objects.create(
+            name = "Compte de "+instance.name,
+            agence = instance,
+            initial_amount = 0
+        )
 
 
 

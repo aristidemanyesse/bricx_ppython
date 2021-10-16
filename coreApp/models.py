@@ -18,20 +18,22 @@ class BaseModel(models.Model):
         return Super().objects.filter(etat = etat)
 
     class Meta:
+        ordering = ['-created_at']
         abstract = True
 
 
 
 class Etat(models.Model):
-    ANNULE  = 401
-    EN_COURS = "EN_COURS"
-    TERMINE = 403
+    ANNULE   = "0"
+    EN_COURS = "1"
+    TERMINE  = "2"
 
     name = models.CharField(max_length= 255)
     etiquette = models.CharField(max_length= 255)
     classe = models.CharField(max_length= 255, null=True, blank=True)
 
-
+    def __str__(self):
+        return self.name
 
 
 class MyCodeException:

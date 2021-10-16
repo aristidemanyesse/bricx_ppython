@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from commandeApp.models import PrixZoneLivraison
+from commandeApp.models import PrixZoneLivraison, Commande
+from comptabilityApp.models import Mouvement
 
 # Create your views here.
 def prixparzone(request, id):
@@ -10,3 +11,23 @@ def prixparzone(request, id):
                 "prixparzones" : zone.zone_prix.filter(),
             }
         return render(request, "fiches/pages/prixparzone.html", context)
+
+
+
+def commande(request, id):
+    if request.method == "GET":
+        zone = get_object_or_404(Commande, pk = id)
+        context = {
+                "zone" : zone,
+            }
+        return render(request, "fiches/pages/commande.html", context)
+
+
+
+def boncaisse(request, id):
+    if request.method == "GET":
+        zone = get_object_or_404(Mouvement, pk = id)
+        context = {
+                "zone" : zone,
+            }
+        return render(request, "fiches/pages/boncaisse.html", context)

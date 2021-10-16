@@ -1,0 +1,114 @@
+{% load static %}
+{% load humanize %}
+{% load myfilters %}
+<div class="modal inmodal fade" id="infos-groupecommande-{{ item.groupe.id }}" style="z-index: -25009">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="ibox-content">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <div class="row">
+                        <div class="col-sm-5">
+                          <div class="row">
+                            <div class="col-3">
+                                <img style="width: 120%" src="{% static 'societe.logo' }}">
+                            </div>
+                            <div class="col-9">
+                                <h5 class="gras text-uppercase text-orange">{{ societe.name }}</h5>
+                                <h5 class="mp0">{{ societe.postale }}</h5>
+                                <h5 class="mp0">Tél: {{ societe.contact }}</h5>
+                                <h5 class="mp0">Email: {{ societe.email }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7 text-right">
+                      <h2 class="title text-uppercase gras">Fiche de commande</h2>
+                      <h3 class="text-uppercase">{{ item.groupe.client.name}} // <span style="font-weight: normal;"><{{ item.groupe.client.type.name}}</span></h3>
+                        <h5>{{ item.groupe.client.contact}} // {{ item.groupe.client.email }}</h5>
+                    </div>
+                </div><hr>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th colspan="3"></th>
+                            {% for brique in item.groupe.all_briques %}
+                            <th class="text-center" style="padding: 2px">
+                                <img style="height: 20px" >
+                                <span class="small">{{ brique.name }}</span>
+                            </th>
+                            {% endfor %}
+                            <th ></th>
+                            <th class="text-center">RESTE A PAYER</th>
+                            <th class="text-center">OPTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in item.sort_lignes %}
+                        <tr>
+                          <td data-toggle="tooltip" title="Annuler / Supprimer">
+                            <i class="fa fa-trash fa-2x d-block text-red cursor" onclick="annulerCommande({{ element.id }})"></i> 
+                        </td>
+                        <td>
+                            <h5 class="text-uppercase mp0">Commande N°{{element.reference}}</h5>
+                            <small>{{element.created_at | naturaltime }}</small>
+                        </td>
+                        <td data-toggle="tooltip" title="imprimer le bon decommande">
+                            <a target="_blank" href="{% url 'fiches:commande' element.id }">
+                                <i class="d-block fa fa-file-text fa-2x"></i>
+                            </a>                               
+                        </td>
+
+                        {% for brique in item.groupe.all_briques %}
+                        <td>
+                            <h3 class="text-green text-center"> {{ element.all_briques|dict_value:brique | start0 }}</h3>
+                        </td>
+                        {% endfor %}
+
+                        <td style="width: 50px"></td>
+                        <td class="text-center">
+                            <h3 class="text-danger">{{ element.reste_a_payer| intcomma }} {{ request.societe.devise }} </h3>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-info btn-xs dim" data-toggle="modal" data-target="#modal-reglerCommande<?= $ligne->id  ?>" data-dismiss="modal"><i class="fa fa-list"></i> </button>
+                            {% if element.reste_a_payer > 0 %}
+                                <button class="btn btn-danger btn-xs dim" data-toggle="modal" data-target="#modal-reglerCommande<?= $ligne->id  ?>" data-dismiss="modal"><i class="fa fa-money"></i> Regler le reste</button>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                    <tr style="height: 20px;"></tr>
+
+                    <tr>
+                        <td colspan="3"><h2 class="text-uppercase text-right">Reste à livrer : </h2></td>
+                        {% for brique in item.groupe.all_briques %}
+                        <td widtd="90" class="text-center">
+                                <h2 class="gras">{{ item.groupe.all_briques|dict_value:brique | start0 }}</h2>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table><br><hr>
+
+            <div class="row text-center" style="font-size: 12px">
+                <div class="col-md">
+                    <button class="btn btn-primary dim" onclick="fairenewcommande('{{item.groupe.id}}')"><i class="fa fa-cart-plus"></i> Nouvelle commande</button>
+                </div>
+
+                {% if .item.groupe.etat.etiquette == Etat.EN_COURS %}
+                <div class=" col-md">
+                    <button class="btn btn-default dim" onclick="changement('{{item.groupe.id}}')"><i class="fa fa-refresh"></i> Changement de produits </button>
+                </div>
+                <div class=" col-md">
+                    <button class="btn btn-warning dim" onclick="newlivraison('{{item.groupe.id}}')"><i class="fa fa-truck"></i> Faire livraison aujourd'hui</button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>

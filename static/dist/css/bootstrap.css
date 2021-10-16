@@ -5457,7 +5457,15 @@ button.close {
   .modal-lg {
     max-width: 800px;
   }
+
+  .modal-xxl {
+    max-width: 1100px;
+  }
 }
+
+  .modal-xxl {
+    max-width: 1100px;
+  }
 
 .tooltip {
   position: absolute;

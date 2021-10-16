@@ -18,16 +18,15 @@
 						<div class="tab-content" style="min-height: 300px;">
 
 
-
-							<?php if ($employe->isAutoriser("ventes")) { ?>
-
 							<div id="tab-1" class="tab-pane active"><br>
+								{% if perms.commandeApp.add_commande %}
 								<div class="row container-fluid">
-									<button type="button" <?= (count($encours) > 0)?" onclick='newcommande()' ": "data-toggle=modal data-target='#modal-newcommande'" ?>  class="btn btn-primary btn-sm dim float-right"><i class="fa fa-plus"></i> Nouvelle commande </button>
+									<button type="button" data-toggle=modal data-target='#modal-newcommande' class="btn btn-primary btn-sm dim float-right"><i class="fa fa-plus"></i> Nouvelle commande </button>
 								</div>
+								{% endif %}
 								<div class="">
 									<div class="ibox-content">
-										<?php if (count($groupes + $encours) > 0) { ?>
+										{% if datas|length > 0 %}
 										<table class="footable table table-stripped toggle-arrow-tiny">
 											<thead>
 												<tr>
@@ -39,70 +38,27 @@
 												</tr>
 											</thead>
 											<tbody>
-												<?php foreach ($encours as $key => $groupe) {
-													$groupe->actualise(); 
-													$datas = $groupe->fourni("commande", ["etat_id != "=>Home\ETAT::ANNULEE]);
-													$datas1 = $groupe->fourni("livraison", ["etat_id > "=>Home\ETAT::ANNULEE, "etat_id < "=>Home\ETAT::VALIDEE]);
-													$com = end($datas);
-												?>
+												{% for item in datas %}
 												<tr style="border-bottom: 2px solid black">
 													<td class="project-status">
-														<span class="label label-<?= $groupe->etat->class ?>"><?= $groupe->etat->name() ?></span>
+														<span class="label label-{{ item.groupe.etat.classe }}">{{ item.groupe.etat.name }}</span>
 													</td>
 													<td>
-														<small class="text-uppercase gras">Commande (<?= count($groupe->fourni("commande")) ?>)</small><br>
-														<small><?= depuis($groupe->created) ?></small>
-														<?php if (count($datas1) > 0) { ?>
-														<p class="text-blue">(<?= count($datas1) ?>) livraison(s) en cours pour cette commande</p>
-														<?php } ?>
+														<small class="text-uppercase gras">Commande ({{ item.commandes | length}})</small><br>
+														<small>{{ item.groupe.created_at|naturalday}}</small>
+														{% if item.livraisons_encours|length > 0 %}
+														<p class="text-blue">{{ item.livraisons_encours | length }} livraison{{ item.livraisons_encours|pluralize }} en cours pour cette commande</p>
+														{% endif %}
 													</td>
-													<td>le <?= datecourt($com->datelivraison) ?></td>
+													<td>{{ item.groupe.datelivraison | naturalday }}</td>
 													<td>
-														<h5 class="gras text-orange"><?= money($groupe->resteAPayer()) ?> {{ request.societe.devise }}</h5>
+														<h5 class="gras text-orange">{{ item.groupe.reste_a_payer | intcomma }} {{ request.societe.devise }}</h5>
 													</td>                                                            
 													<td>
-														<div class="social-action dropdown" style="margin-top: 0%">
-															<button data-toggle="dropdown" onclick="session('commande-encours', <?= $groupe->id ?>)" class="dropdown-toggle btn-white cursor">Options</button>
-															<ul class="dropdown-menu">
-																<li class="text-orange" onclick="newlivraison(<?= $groupe->id  ?>)"><a style="padding: 3px" href="#"><i class="fa fa-truck"></i> Faire une livraison</a></li>
-																<li class="text-green" onclick="fairenewcommande(<?= $groupe->id ?>)"><a style="padding: 3px" href="#"><i class="fa fa-plus"></i> Lui ajouter commande</a></li>
-																<li class="" onclick="changement(<?= $groupe->id ?>)"><a style="padding: 3px" href="#"><i class="fa fa-history"></i> convertir les produits</a></li>
-																<li class="border"></li>
-																<li class="text-green" onclick="fichecommande(<?= $groupe->id  ?>)"><a style="padding: 3px" href="#"><i class="fa fa-eye"></i> Voir les détails</a></li>
-															</ul>
-														</div>
+														{% include 'commande/extra/option_commande.html' with groupe=item.groupe %}
 													</td>
 												</tr>
-												<?php  } ?>
-
-												<tr />
-
-												<?php foreach ($groupes as $key => $groupe) {
-													$groupe->actualise(); 
-												?>
-												<tr style="border-bottom: 2px solid black">
-													<td class="project-status">
-														<span class="label label-<?= $groupe->etat->class ?>"><?= $groupe->etat->name() ?></span>
-													</td>
-													<td>
-														<small class="text-uppercase gras">Commande (<?= count($groupe->fourni("commande")) ?>)</small><br>
-														<small><?= depuis($groupe->created) ?></small>
-													</td>
-													<td>...........</td>
-													<td>
-														<h5 class="gras text-orange"><?= money($groupe->resteAPayer()) ?> {{ request.societe.devise }}</h5>
-													</td>
-													<td>
-														<div class="social-action dropdown" style="margin-top: 0%">
-															<button data-toggle="dropdown" onclick="session('commande-encours', <?= $groupe->id ?>)" class="dropdown-toggle btn-white cursor">Options</button>
-															<ul class="dropdown-menu">
-																<li class="text-green" onclick="fairenewcommande(<?= $groupe->id ?>)"><a style="padding: 3px" href="#"><i class="fa fa-plus"></i> Lui ajouter commande</a></li>
-																<li class="text-green" onclick="fichecommande(<?= $groupe->id  ?>)"><a style="padding: 3px" href="#"><i class="fa fa-eye"></i> Voir les détails</a></li>
-															</ul>
-														</div>
-													</td>
-												</tr>
-												<?php  } ?>
+												{% endfor %}
 											</tbody>
 											<tfoot>
 												<tr>
@@ -112,9 +68,10 @@
 												</tr>
 											</tfoot>
 										</table>
-										<?php }else{ ?>
-										<h1 style="margin-top: 30% auto;" class="text-center text-muted aucun"><i class="fa fa-folder-open-o fa-3x"></i> <br> Aucune commande en cours pour le moment !</h1>
-										<?php } ?>
+										
+										{% else %}
+										{% include 'extra/empty.html' %}
+										{% endif %}
 
 									</div>
 								</div>
@@ -187,22 +144,33 @@
 
 								<div class="m-b-lg">
 									<span>Acompte actuel du client</span><br>
-									<h2 class="font-bold d-inline">{{client.acompte_initial | intcomma}} {{ request.societe.devise }}</h2> 
-									<button data-toggle="modal" data-target="#modal-acompte" class="cursor simple_tag pull-right"><i class="fa fa-plus"></i> Crediter acompte</button><br><br>
+									<h1 class="font-bold d-inline">{{client.acompte_actuel | intcomma}} {{ request.societe.devise }}</h1><br><br>
 
-									<?php if ($client->acompte > 0) { ?>
-									<button type="button" data-toggle="modal" data-target="#modal-rembourser" class="btn btn-danger dim btn-block"><i
-										class="fa fa-minus"></i> Rembourser le client
-									</button>
-									<?php } ?>
+									<div class="row">
+										<div class="col-6">
+											<button type="button" data-toggle="modal" data-target="#modal-crediter" class="btn btn-info dim btn-block btn-xs"><i
+												class="fa fa-plus"></i> Créditer
+											</button>
+										</div>
+										{% if client.acompte_actuel > 0 %}
+										<div class="col-6">
+											<button type="button" data-toggle="modal" data-target="#modal-rembourser" class="btn btn-danger dim btn-block btn-xs"><i
+												class="fa fa-minus"></i> Rembourser
+											</button>
+										</div>
+										{% endif %}
+									</div>
 
 									<hr>
 
 									<span>Dette actuelle du client</span><br>
-									<h2 class="font-bold d-inline text-red"><?= money($client->resteAPayer()) ?> {{ request.societe.devise }}</h2> 
-									<?php if ($client->resteAPayer() > 0) { ?>
-									<button onclick="reglerToutesDettes(<?= $client->id ?>)" class="btn btn-xs dim btn-outline-danger pull-right"><i class="fa fa-money"></i> Régler toutes les dettes</button>
-									<?php } ?>                   
+									<h1 class="font-bold d-inline text-red">{{client.dette_totale | intcomma}} {{ request.societe.devise }}</h1> <br><br>
+									
+									{% if client.dette_totale > 0 %}
+									<button type="button" onclick="reglerToutesDettes()" class="btn btn-danger dim btn-block"><i
+										class="fa fa-money"></i> Régler toute la dette
+									</button>
+									{% endif %}                 
 
 								</div>
 
@@ -216,7 +184,18 @@
 	</div>
 
 
-	{% include '../modals/client.html' with element=client %}
+	{% block script %}
+	<script>
+		{% include './client.js' %}
+	</script>
+	{% endblock %}
 
+	{% include '../modals/client.html' with element=client %}
+	{% include '../modals/crediter.html' with items=modepayements %}
+	{% include '../modals/rembourser.html' with items=modepayements %}
+
+	{% for item in datas %}
+	{% include 'commande/modals/commande_infos.html' with item=item societe=request.societe %}
+	{% endfor %} 
 
 	{% endblock wrapper %} 

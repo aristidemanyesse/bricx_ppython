@@ -2,23 +2,24 @@ from django.db import models
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 import datetime, pytz
-import productionApp.models as production_models
-import organisationApp.models as organisation_models
-import clientApp.models as client_models
-import coreApp.models as core_models
-import comptabilityApp.models as comptability_models
+from django.db.models import Sum, Avg
+
+from coreApp.models import BaseModel, Etat
+from productionApp.models import Brique
+from livraisonApp.models import LigneLivraison
+from comptabilityApp.models import ReglementCommande
 # Create your models here.
 
 
-class ZoneLivraison(core_models.BaseModel):
+class ZoneLivraison(BaseModel):
     name   = models.CharField(max_length = 255)
-    agence = models.ForeignKey(organisation_models.Agence, on_delete = models.CASCADE, related_name="agence_zone")
+    agence = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_zone")
 
 
 
-class PrixZoneLivraison(core_models.BaseModel):
+class PrixZoneLivraison(BaseModel):
     zone   = models.ForeignKey(ZoneLivraison, on_delete = models.CASCADE, related_name="zone_prix") 
-    brique = models.ForeignKey(production_models.Brique, on_delete = models.CASCADE, related_name="brique_zoneprix") 
+    brique = models.ForeignKey("productionApp.Brique", on_delete = models.CASCADE, related_name="brique_zoneprix") 
     price  = models.IntegerField(default=0)
 
     def __str__(self):
@@ -27,17 +28,34 @@ class PrixZoneLivraison(core_models.BaseModel):
 
 
 
-class GroupeCommande(core_models.BaseModel):
-    client = models.ForeignKey(client_models.Client, on_delete = models.CASCADE, related_name="client_groupecommande")
-    agence = models.ForeignKey(organisation_models.Agence, on_delete = models.CASCADE, related_name="agence_groupecommande")
-    etat   = models.ForeignKey(core_models.Etat, on_delete = models.CASCADE)
+class GroupeCommande(BaseModel):
+    client = models.ForeignKey("clientApp.Client", on_delete = models.CASCADE, related_name="client_groupecommande")
+    agence = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_groupecommande")
+    etat   = models.ForeignKey("coreApp.Etat", on_delete = models.CASCADE)
     datelivraison      = models.DateTimeField(null = True, blank=True,)
+
+
+    def reste(self, brique):
+        annule = Etat.objects.get(etiquette = Etat.ANNULE)
+        commades = LigneCommande.objects.filter(commande__groupecommande = self, commande__deleted = False, brique = brique).aggregate(Sum("quantite"))
+        livraisons = LigneLivraison.objects.filter(livraison__groupecommande = self, brique = brique).exclude(livraison__etat__etiquette = Etat.ANNULE).aggregate(Sum("quantite"))
+        return (commades["quantite__sum"] or 0) - (livraisons["quantite__sum"] or 0)
+
 
     def reste_a_payer(self):
         total = 0
-        for commande in self.commande_groupecommande.filter(etat__etiquette = core_models.Etat.EN_COURS):
+        for commande in self.commande_groupecommande.filter(deleted = False):
             total += commande.reste_a_payer()
         return total
+
+
+    def all_briques(self):
+        briques = {}
+        for brique in Brique.objects.filter(active = True, deleted = False):
+            count =  self.reste(brique)
+            if count > 0:
+                briques[brique] = count
+        return briques
 
 
     def __str__(self):
@@ -46,18 +64,17 @@ class GroupeCommande(core_models.BaseModel):
 
 
 
-class Commande(core_models.BaseModel):
+class Commande(BaseModel):
     reference          = models.CharField(max_length = 255)
     groupecommande     = models.ForeignKey(GroupeCommande, on_delete = models.CASCADE, related_name="commande_groupecommande")
-    agence             = models.ForeignKey(organisation_models.Agence, on_delete = models.CASCADE, related_name="agence_commande")
+    agence             = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_commande")
     zonelivraison      = models.ForeignKey(ZoneLivraison, on_delete = models.CASCADE, related_name="zone_commande")
     lieu               = models.CharField(max_length = 255)
     montant            = models.IntegerField(default = 0)
     avance             = models.IntegerField(default = 0)
     taux_tva           = models.IntegerField(default = 0)
     tva                = models.IntegerField(default = 0)
-    employe            = models.ForeignKey(organisation_models.Employe, on_delete = models.CASCADE, related_name="employe_commande")
-    etat               = models.ForeignKey(core_models.Etat, on_delete = models.CASCADE) 
+    employe            = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_commande")
     comment            = models.TextField(default="");
 
     datelivraison      = models.DateTimeField(null = True, blank=True,)
@@ -65,9 +82,17 @@ class Commande(core_models.BaseModel):
     detteFournisseur   = models.IntegerField(default = 0)
 
     def reste_a_payer(self):
-        data = comptability_models.ReglementCommande.objects.filter().aggregate(Sum("montant"))
-        return self.montant - data["montant__sum"] or 0
+        data = ReglementCommande.objects.filter(commande = self).aggregate(Sum("reglement__mouvement__montant"))
+        return self.montant - (data["reglement__mouvement__montant__sum"] or 0)
     
+
+    def all_briques(self):
+        briques = {}
+        for brique in Brique.objects.filter(active = True, deleted = False):
+            ligne = LigneCommande.objects.filter(commande = self, commande__deleted = False, brique = brique).first()
+            briques[brique] = ligne.quantite if ligne != None else 0
+        return briques
+
 
 
     def __str__(self):
@@ -75,14 +100,18 @@ class Commande(core_models.BaseModel):
 
 
 
-class LigneCommande(core_models.BaseModel):
+
+
+
+class LigneCommande(BaseModel):
     commande = models.ForeignKey(Commande, on_delete = models.CASCADE, related_name="commande_ligne")
-    brique   = models.ForeignKey(production_models.Brique, on_delete = models.CASCADE, related_name="brique_lignecommande")
+    brique   = models.ForeignKey("productionApp.Brique", on_delete = models.CASCADE, related_name="brique_lignecommande")
     quantite = models.IntegerField(default = 0)
     price    = models.IntegerField(default = 0)
 
 
-
+    def __str__(self):
+        return str(self.quantite) + " " +self.brique.name+" à " +str(self.price)
 
 
 
@@ -94,7 +123,7 @@ class LigneCommande(core_models.BaseModel):
 @receiver(post_save, sender = ZoneLivraison)
 def post_save_zone_livraison(sender, instance, created, **kwargs):
     if created:
-        for brique in production_models.Brique.objects.filter(deleted = False):
+        for brique in "productionApp.Brique".objects.filter(deleted = False):
             PrixZoneLivraison.objects.create(
                 brique = brique,
                 zone = instance,
@@ -102,7 +131,7 @@ def post_save_zone_livraison(sender, instance, created, **kwargs):
             )
 
 
-@receiver(post_save, sender = production_models.Brique)
+@receiver(post_save, sender = "productionApp.Brique")
 def post_save_brique(sender, instance, created, **kwargs):
     if created:
         for zone in ZoneLivraison.objects.filter(deleted = False):

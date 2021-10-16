@@ -1,6 +1,7 @@
 {% extends "layout/base_sidebar_boutique.html" %} 
 {% load static %} 
 {% load humanize %} 
+{% load myfilters %}
 
 {% block wrapper %} 
 
@@ -15,68 +16,53 @@
 </div>
 
 <div class="wrapper wrapper-content">
- <div class="row">
-    <?php foreach ($encours as $key => $commande) {
-        $commande->actualise();
-        $datas = $commande->fourni("commande");
-        $datas1 = $commande->fourni("livraison", ["etat_id > "=>Home\ETAT::ANNULEE, "etat_id < "=>Home\ETAT::VALIDEE]);
-        $client = $commande->client;
-        $com = end($datas); ?>
+   <div class="row">
 
-        {% for item in datas %}
-        <div class="col-md-4 col-sm-6">
-            <div class="social-feed-box">
-                <div class="float-right social-action dropdown">
-                    <button data-toggle="dropdown" onclick="session('commande-encours', {{ item.groupe.id }})" class="dropdown-toggle btn-white cursor">Options</button>
-                    <ul class="dropdown-menu">
-                        <li class="text-orange" onclick="newlivraison({{ item.groupe.id }})"><a style="padding: 3px" href="#"><i class="fa fa-truck"></i> Faire une livraison</a></li>
-                        <li class="text-green" onclick="fairenewcommande({{ item.groupe.id }})"><a style="padding: 3px" href="#"><i class="fa fa-plus"></i> Lui ajouter commande</a></li>
-                        <li class="" onclick="changement({{ item.groupe.id }})"><a style="padding: 3px" href="#"><i class="fa fa-history"></i> convertir les produits</a></li>
-                        <li class="border"></li>
-                        <li class="text-green" onclick="fichecommande({{ item.groupe.id }})"><a style="padding: 3px" href="#"><i class="fa fa-eye"></i> Voir les détails</a></li>
-                    </ul>
-                </div>
-                <div class="social-avatar">
-                    <a href="" class="float-left">
-                        <img alt="image" src="{% static request.societe.logo %}">
-                    </a>
-                    <div class="media-body">
-                        <a class="text-capitalize text-dark gras" href="{% url 'boutique:clients:client' item.groupe.client.id  %}">{{ item.groupe.client.name }} (<?= count($datas) ?>)</a>
-                        <small class="text-muted">Livraison prévue pour le {{ item.groupe.datelivraison }}</small><br>
-                    </div>
-                </div>
-                <div class="social-footer">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <?php foreach ($produits as $key => $produit){ 
-                                   $reste = $commande->reste($produit->id);
-                                   if ($reste > 0) { ?>
-                                   <th class="text-center small gras"><?= $produit->name() ?></th>
-                                   <?php }
-                                   } ?>
-                               </tr>
-                           </thead>
-                           <tbody>
-                            <tr>
-                                <?php foreach ($produits as $key => $produit) {
-                                    $reste = $commande->reste($produit->id);
-                                    if ($reste > 0) { ?>
-                                    <td class="text-center "><?= start0($reste) ?></td>
-                                    <?php   } 
-                                    } ?>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+{% if datas|length > 0 %}
+    {% for item in datas %}
+    <div class="col-md-4 col-sm-6">
+        <div class="social-feed-box">
+            <div class="float-right">
+                <{% include 'commande/extra/option_commande.html' with groupe=item.groupe %}
+            </div>
+            <div class="social-avatar">
+                <a href="" class="float-left">
+                    <img alt="image" src="{% static request.societe.logo %}">
+                </a>
+                <div class="media-body">
+                    <a class="text-capitalize text-dark gras" href="{% url 'boutique:clients:client' item.groupe.client.id  %}">{{ item.groupe.client.name }} ({{ item.commandes | length}})</a>
+                    <small class="text-muted">Livraison prévue pour le {{ item.groupe.datelivraison }}</small><br>
                 </div>
             </div>
-            {% endfor %}
+            <div class="social-footer">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            {% for key in item.briques %}
+                            <th class="text-center small gras">{{ key }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% for key in item.briques %}
+                            <th class="text-center ">{{ item.briques | dict_value:key }}</th>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-
     </div>
+    {% endfor %}
+    {% else %}
+    {% include 'extra/empty.html' %}
+    {% endif %}
+</div>
+
+
+</div>
 
 
 
-    {% endblock wrapper %} 
+{% endblock wrapper %} 

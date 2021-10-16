@@ -1,23 +1,8 @@
 
 $(function(){
 
-    voirPrixParZone = function(){    
-        Loader.start();    
-        var  url = "../../webapp/boutique/elements/templates/traitement.php";
-        $.post(url, {action:"voirPrixParZone"}, (data)=>{
-            $("body #modal-prixparzone").remove();
-            $("body").append(data);
-            $("body #modal-prixparzone").modal("show");
-            $("select.select2").select2();
-            Loader.stop();    
-        },"html");
-    }
-
-
-
-	// Initialisation des plugins
-	$("select.select2").select2();
-
+    // Initialisation des plugins
+    $("select.select2").select2();
 
     $('.i-checks').iCheck({
         checkboxClass: 'icheckbox_square-green',
@@ -31,6 +16,20 @@ $(function(){
         }
     });
 
+
+    //bouton principal de deconnexion
+    $("a#btn-deconnexion").click(function(event) {
+        alerty.confirm("Voulez-vous vraiment vous deconnecter ???", {
+            title: "Deconnexion",
+            cancelLabel : "Non",
+            okLabel : "Oui, me deconnecter !",
+        }, function(){
+            window.location.href = "/auth/disconnect/";
+        })
+    });
+
+
+    //filtre de la barre generale de recherche
     $("#top-search").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("table.table-mise tr:not(.no)").filter(function() {
@@ -39,40 +38,59 @@ $(function(){
     });
 
 
-
-    $("input[type=checkbox]").change(function(event) {
-        if ($(this).is(":checked")) {
-            $(this).parent("label").css("color", "orangered");
+    //selection du mode de payement
+    $("div.modepayement_facultatif").hide();
+    $("body").on("change", "select[name=modepayement]", function(event) {
+        if($(this).attr("id") >= 2){
+            $("div.modepayement_facultatif").show()
         }else{
-            $(this).parent("label").css("color", "#888");
+            $("div.modepayement_facultatif").hide()
+        }
+
+        if($(this).attr("id") != 2){
+            $("div.no_modepayement_facultatif").show()
+        }else{
+            $("div.no_modepayement_facultatif").hide()
         }
     });
-    $("input[type=radio]").change(function(event) {
-      name = $(this).attr("name")
-      $("input[name="+name+"]").parent("label").css("color", "#888");
-      $(this).parent("label").css("color", "orangered");
-  });
-
-	//
-	$('body').on("click", "button.btn_image", function(event) {
-		$(this).prev("input[type=file]").trigger('click');
-	});
-	$('body').on("change", ".modal input[type=file]", function(e) {
-		var src = URL.createObjectURL(e.target.files[0])
-		$(this).prev("img.logo").attr('src', src);
-	});
 
 
-	$(".btn_modal").click(function(event) {
-		$("div.modal form").trigger('reset')
-		$("div.modal input[type=hidden][name=id]").val('')
-		$("div.modal .unmodified").show();
-	});
+    //Watchdog de deconnexion
+    $(document).idleTimer(10 * 60 * 1000);
+    $(document).on("idle.idleTimer", function(event, elem, obj){
+        window.location.href = "/auth/locked/";
+    });
 
 
-    modal = function(modal){
-        $(modal).modal("show")
+
+
+    // selecteur des onglets item de page
+    var section = "<?= $this->getSection() ?>"
+    var modul = "<?= $this->getModule() ?>"
+    var url = "<?= $this->getPage() ?>"
+
+    if (url == "clients" || url == "client") {
+        url = "clients";
     }
+
+    $("nav ul.metismenu li").removeClass('active');
+    $("nav ul.metismenu li").each(function(index, el) {
+        if ($(this).attr("id") == url){
+            $(this).addClass("active")
+            $(this).parent("ul").addClass("in");
+            $(this).parent("ul").parent("li.groupe").addClass("active");
+        }
+    });
+
+    $("a.onglets").each(function(){
+        if ($(this).attr("id") == "onglet-"+section) {
+            $("a.onglets").removeClass("active btn-warning")
+            $("a.onglets").addClass("btn-white");
+            $(this).addClass("active btn-warning").removeClass("btn-white");
+        }
+    })
+
+
 
 
 
@@ -100,62 +118,6 @@ $(function(){
         $("i#print").click()
     }
 
-
-
-    //mettre en session par ajax
-    session = function(name, value){
-    	var url = "../../composants/dist/shamman/traitement.php";
-    	$.post(url, {action:"session", name:name, value:value}, (data)=>{
-            return data;
-        });
-    }
-
-    //mettre en session par ajax
-    unsetSession = function(name){
-        var url = "../../composants/dist/shamman/traitement.php";
-        $.post(url, {action:"unsetSession", name:name}, (data)=>{
-            return data;
-        });
-    }
-
-    //mettre en session par ajax
-    getSession = function(name){
-    	var url = "../../composants/dist/shamman/traitement.php";
-    	$.post(url, {action:"getSession", name:name}, (data)=>{
-            return data;
-        });
-    }
-
-
-
-    //concatener a 0
-    concate0 = function(nom){
-    	if (nom < 10) {
-    		return "0"+nom;
-    	}else{
-    		return nom;
-    	}
-    }
-
-    //Format date
-    formatDate = function(ladate){
-    	if (ladate == null) {
-    		ladate = new Date(ladate);
-    	}
-    	if (moment(ladate).isValid()) {
-    		val = moment(ladate);
-    		newdate = val.year()+"-"+concate0(val.month()+1)+"-"+concate0(val.date())+" "+concate0(val.hour())+":"+concate0(val.minute())+":"+concate0(val.second());
-    		return newdate;
-    	}else{
-    		return ladate = new Date();
-    	}
-    }
-
-    $("input[uppercase]").keyup(function(){
-    	$(this).val($(this).val().toUpperCase());
-    })
-
-    $("input[required]").prev("label").append(" &nbsp;<span style='color:red'>*</span>")
 
 
 

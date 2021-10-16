@@ -10,17 +10,20 @@ import datetime
 def commandes(request):
     datas = []
     for groupe in GroupeCommande.objects.filter(etat__etiquette = Etat.EN_COURS):
+
         datas.append({
                 "groupe":groupe,
                 "commandes": groupe.commande_groupecommande.filter(etat__etiquette = Etat.EN_COURS),
-                "livraisons": groupe.groupecommande_livraison.filter(etat__etiquette = Etat.EN_COURS)
+                "livraisons": groupe.groupecommande_livraison.filter(etat__etiquette = Etat.EN_COURS),
+                "briques" : groupe.all_briques()
             })
         
     context = {
-        "datas" : datas
+        "datas" : datas,
+        "briques" : Brique.objects.filter(active = True, deleted = False)
     }
-    print(context)
     return render(request, "commande/pages/commandes.html", context)
+
 
 
 
