@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from comptabilityApp.models import ModePayement
+from livraisonApp.models import Chauffeur, ModeLivraison, Vehicule
 from productionApp.models import Brique
 from commandeApp.models import Conversion, ZoneLivraison, PrixZoneLivraison
 from commandeApp.models import GroupeCommande
@@ -26,16 +27,17 @@ def commandes(request):
             "livraisons_encours": groupe.groupecommande_livraison.filter(deleted = False, etat__etiquette = Etat.EN_COURS),
             "sort_lignes": mylist,
             "briques" : groupe.all_briques()
-
         })
         
     context = {
         "datas" : datas,
         "briques" : Brique.objects.filter(active = True, deleted = False),
         'commandes' : GroupeCommande.objects.filter(etat__etiquette = Etat.EN_COURS),
-
+        "chauffeurs": Chauffeur.objects.filter(deleted = False),
+        "vehicules": Vehicule.objects.filter(deleted = False),
         "modepayements": ModePayement.objects.filter(deleted = False),
         "zonelivraisons": ZoneLivraison.objects.filter(deleted = False),
+        "modelivraisons": ModeLivraison.objects.filter(deleted = False),
     }
     return render(request, "commande/pages/commandes.html", context)
 

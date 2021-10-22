@@ -34,19 +34,16 @@ class GroupeCommande(BaseModel):
     etat   = models.ForeignKey("coreApp.Etat", on_delete = models.CASCADE)
     datelivraison      = models.DateTimeField(null = True, blank=True,)
 
-
     def reste(self, brique):
         commades = LigneCommande.objects.filter(commande__groupecommande = self, commande__deleted = False, brique = brique).aggregate(Sum("quantite"))
         livraisons = LigneLivraison.objects.filter(livraison__groupecommande = self, brique = brique).exclude(livraison__etat__etiquette = Etat.ANNULE).aggregate(Sum("quantite"))
         return (commades["quantite__sum"] or 0) - (livraisons["quantite__sum"] or 0)
-
 
     def reste_a_payer(self):
         total = 0
         for commande in self.commande_groupecommande.filter(deleted = False):
             total += commande.reste_a_payer()
         return total
-
 
     def all_briques(self):
         briques = {}
@@ -56,6 +53,11 @@ class GroupeCommande(BaseModel):
                 briques[brique] = count
         return briques
 
+    def get_zones(self):
+        tab = []
+        for commande in self.commande_groupecommande.filter(deleted = False):
+            if commande.zone not in tab : tab.append(commande.zone)
+        return tab
 
     def __str__(self):
         return "Groupe de commande de "+self.client.name

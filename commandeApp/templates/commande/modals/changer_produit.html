@@ -37,9 +37,9 @@
                                                 <h4 class="mp0 text-uppercase">{{ brique.name }}</h4>
                                                 <small>{{ brique.comment }}</small>
                                             </td>
-                                            <td><h3 class="gras text-center">{{item.groupe.all_briques|dict_value:brique | start0 }}</h3></td>
+                                            <td><h3 class="gras text-center">{{item.briques|dict_value:brique | start0 }}</h3></td>
                                             <td><h3 class="gras">=></h3></td>
-                                            <td width="105"><input type="number" number class="form-control text-center gras" value="{{item.groupe.all_briques|dict_value:brique|default_if_none:0}}" max="{{item.groupe.all_briques|dict_value:brique|default_if_none:0}}"></td>
+                                            <td width="105"><input type="number" number class="form-control text-center gras" value="{{item.briques|dict_value:brique|default_if_none:0}}" max="{{item.briques|dict_value:brique|default_if_none:0}}"></td>
                                         </tr>
                                     {% endfor %}
                             </tbody>

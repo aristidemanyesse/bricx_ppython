@@ -12,8 +12,9 @@ class InjectMyAppDataMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
+        return response
 
-    def process_view(request):
+    def process_view(self, request, view_func, view_args, view_kwargs):
         request.etat = Etat
         if "date1" not in request.session:
             request.session["date1"] = str(datetime.datetime.now().date())

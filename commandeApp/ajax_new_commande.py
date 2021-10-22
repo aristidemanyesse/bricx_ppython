@@ -139,6 +139,7 @@ def valider_commande(request):
                 montant = total,
                 tva = request.session["tva"],
                 datelivraison = datas["datelivraison"],
+                comment = datas["comment"],
                 lieu = datas["lieu"],
                 zone = ZoneLivraison.objects.get(pk = datas["zone"])
             )

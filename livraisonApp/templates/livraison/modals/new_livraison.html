@@ -1,0 +1,143 @@
+{% load static %}
+{% load myfilters %}
+{% load humanize %}
+
+<div class="modal inmodal fade" id="modal-livraison-{{ item.groupe.id }}" >
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Nouveau bon de livraison</h4>
+            <small class="font-bold">Renseigner ces champs pour enregistrer la livraison</small>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5 class="text-uppercase">Les produits de la livraison</h5>
+                    </div>
+                    <div class="ibox-content"><br>
+                        <div class="table-responsive">
+                            <table class="table  table-striped">
+                                <tbody class="livraison">
+                                    {% for brique in item.briques %}
+                                    <tr class="border-0 border-bottom " data-id="{{ brique.id }}">
+                                        <td><i class="fa fa-close text-red cursor" onclick="delete_ligne('{{ brique.id }}')" style="font-size: 18px;"></i></td>
+                                        <td >
+                                            <img style="width: 40px" src="{% static brique.image %}">
+                                        </td>
+                                        <td class="text-left">
+                                            <h4 class="mp0 text-uppercase">{{ brique.name }}</h4>
+                                            <small>{{ brique.comment }}</small>
+                                        </td>
+                                        <td width="105">
+                                            <label>Qté à livrer / {{item.briques|dict_value:brique | start0 }}</label>
+                                            <input type="number" name="livree" number class="form-control text-center gras" value="{{item.briques|dict_value:brique}}" min=0 max="{{item.briques|dict_value:brique}}">
+                                        </td>
+                                        <td width="100">
+                                            <label>Surplus</label>
+                                            <input type="number" number name="surplus" class="form-control text-center gras text-blue" min=0 value="0">
+                                        </td>
+                                        <td width="130">
+                                            <label>Perte chargement</label>
+                                            <input type="number" number name="perte" class="form-control text-center gras text-danger" min=0 value="0">
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="ibox"  style="background-color: #eee">
+                    <div class="ibox-title" style="padding-right: 2%; padding-left: 3%; ">
+                        <h5 class="text-uppercase">Finaliser la livraison</h5>
+                    </div>
+                    <div class="ibox-content"  style="background-color: #fafafa">
+                        <form class="formLivraison">
+                            <div>
+                                <label>zone de livraison <span style="color: red">*</span> </label>
+                                <div class="input-group">
+                                    <div class="form-group">
+                                        {% include 'extra/select.html' with name='zone' instances=item.groupe.get_zones  %}   
+                                    </div>
+                                </div>
+                            </div><br>
+                            <div>
+                                <label>Lieu de livraison <span style="color: red">*</span> </label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span><input type="text" name="lieu" class="form-control" required>
+                                </div>
+                            </div><br>
+
+                            <div>
+                                <label>Moyen de livraison <span style="color: red">*</span> </label>
+                                <div class="form-group">
+                                    {% include 'extra/select.html' with name='modelivraison' instances=modelivraisons  %}   
+                                </div>
+                            </div><br>
+
+                            <div class="chauffeur">
+                                <div>
+                                    <label>Véhicule de la livraison <span style="color: red">*</span> </label>
+                                    <div class="form-group">
+                                        {% include 'extra/select.html' with name='vehicule' instances=vehicules  %}   
+                                    </div>
+                                </div><br>
+    
+                                <div>
+                                    <label>Chauffeur de la livraison <span style="color: red">*</span> </label>             
+                                    <div class="form-group">
+                                        {% include 'extra/select.html' with name='chauffeur' instances=chauffeurs  %}   
+                                    </div>
+                                </div><br>
+
+                                <div >
+                                    <label><input class="i-checks cursor" type="checkbox" name="chargement" checked > Chargement par nos manoeuvres</label><br>
+                                    <label><input class="i-checks cursor" type="checkbox" name="dechargement" checked > Déchargement par nos manoeuvres</label>
+                                </div>
+                            </div>
+
+
+                            <div class="tricycle">
+                                <div>
+                                    <label>Nom du tricycle<span style="color: red">*</span> </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span><input type="text" name="nom_tricycle" class="form-control" >
+                                    </div>
+                                </div><br>
+                                <div>
+                                    <label>Contact du tricycle<span style="color: red">*</span> </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span><input type="text" name="contact_tricycle" class="form-control" >
+                                    </div>
+                                </div><br>
+                                <div>
+                                    <label>Montant à payer au chauffeur tricycle<span style="color: red">*</span> </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-money"></i></span><input type="text" name="paye_tricycle" class="form-control" value="0" min="0" >
+                                    </div>
+                                </div>
+                            </div><br>
+
+                            <input type="hidden" name="client_id" value="<?= $groupecommande->client_id ?>">
+
+                        </form>
+                        <hr/>
+                        <button class="btn btn-primary btn-block dim"><i class="fa fa-check"></i> Valider la livraison</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+

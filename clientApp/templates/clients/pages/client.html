@@ -193,6 +193,7 @@
 
 	{% for item in datas %}
 		{% include 'commande/modals/commande_infos.html' with item=item %}
+		{% include 'livraison/modals/new_livraison.html' with item=item %}
 		{% include 'commande/modals/changer_produit.html' with item=item briques=briques %}
 		{% for commande in item.commandes %}
 			{% include 'commande/modals/regler_commande.html' with commande=commande modes=modepayements %}
