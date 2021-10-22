@@ -1,0 +1,20 @@
+{% load static %}
+{% load humanize %}
+
+
+<tr class="border-0 border-bottom"  data-id="{{brique.id}}">
+	<td><i class="fa fa-close text-red cursor" onclick="delete_ligne('{{brique.id}}')" style="font-size: 18px;"></i></td>
+	<td >
+		<img style="width: 40px" src="{% static brique.image %}">
+	</td>
+	<td class="text-left">
+		<h4 class="mp0 text-uppercase">{{ brique.name }}</h4>
+		<small>{{ brique.comment }}</small>
+	</td>
+	<td><h5 class="price" >{{ pz.price | intcomma }} {{ request.societe.devise }}</h5></td>
+	<td><h4>X</h4></td>
+	<td width="100">
+		<input type="number" class="form-control text-center gras" value="{{ qte }}" style="padding: 3px">
+	</td>
+	<td class="text-right"><h4 class="" style="font-weight: normal;">{{ price | intcomma }} {{ request.societe.devise }}</h4></td>
+</tr>

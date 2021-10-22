@@ -1,0 +1,52 @@
+{% load humanize %}
+
+<div class="modal inmodal fade" id="modal-versements-commande-{{ commande.id }}">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Versements pour la commande</h4>
+            </div>
+            <div class="modal-body">
+                {% if reglements|length > 0 %}
+                    {% for reglement in reglements %}
+                    <a href="{% url 'fiches:boncaisse' reglement.mouvement.id %}" class="text-dark">
+                        <div class="contact-box mp5">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <h4>{{ reglement.mouvement.created_at | date:"d F Y à H:i:s" }}</h4>
+                                    <h5 class="text-muted">Payement par {{ reglement.mouvement.mode.name }}</h5>
+                                </div>
+                                <div class="col-sm-5 text-right">
+                                    <h3>{{ reglement.mouvement.montant | intcomma }} {{request.societe.devise }}</h3>
+                                    <h5 class="text-danger">Restait à payer : {{ reglement.restait | intcomma }} {{request.societe.devise }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="text-center div-divider">
+                        <p class="mp0 divider"></p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                {% include 'extra/empty.html' %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .divider {
+        height:30px;
+        width: 3px;
+        background-color: grey; 
+        display:inline-block;
+    }
+    .div-divider:last-child {
+        display: none; 
+    }
+</style>

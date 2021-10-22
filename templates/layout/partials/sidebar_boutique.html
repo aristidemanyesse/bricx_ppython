@@ -1,4 +1,5 @@
 {% load static %}
+{% load myfilters %}
 {% load humanize %}
 
 
@@ -10,7 +11,7 @@
                 <div class="dropdown profile-element">                        
                     <div class="row">
                         <div class="col-3">
-                            <img alt="image de profil" class="rounded-circle"  style="width: 35px" src="{% static request.user.avatar %}"/>
+                            <img alt="image de profil" class="rounded-circle"  style="width: 35px; height: 35px" src="{% static request.user.employe.avatar %}"/>
                         </div>
                         <div class="col-9">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -18,7 +19,7 @@
                                 <span class="text-muted text-xs block">{{ request.societe.socialreason }}</span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="{% url 'locked' %}">Vérouiller la session</a></li>
+                                <li><a class="dropdown-item" href="{% url 'auth:locked' %}">Vérouiller la session</a></li>
                                 <li><a class="dropdown-item" href="#" id="btn-deconnexion" >Déconnexion</a></li>
                             </ul>
                         </div>
@@ -29,12 +30,6 @@
                 </div>
             </li>
 
-            <?php 
-                $groupes__ = Home\GROUPECOMMANDE::encours();
-                $livraisons__ = $agence->fourni("livraison", ["agence_id ="=>$agence->id, "etat_id ="=>Home\ETAT::ENCOURS]);
-                $tricycles__ = $agence->fourni("tricycle", ["etat_id !="=>Home\ETAT::VALIDEE], [], ["created"=>"DESC"]);
-
-            ?>
             <ul class="nav metismenu" id="side-menu">
                 <li class="" id="dashboard">
                     <a href="<?= $this->url($this->section, "master", "dashboard") ?>"><i class="fa fa-tachometer"></i> <span class="nav-label">Tableau de bord</span></a>
@@ -50,8 +45,8 @@
                     <a href="<?= $this->url($this->section, "production", "stock") ?>"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de briques</span></a>
                 </li>
 
-                <li class="" id="transfertstock">
-                    <a href="<?= $this->url($this->section, "production", "transfertstock") ?>"><i class="fa fa-refresh"></i> <span class="nav-label">Conversions de briques </span> </a>
+                <li class="" id="conversion">
+                    <a href="{% url 'boutique:commandes:conversions' %}"><i class="fa fa-refresh"></i> <span class="nav-label">Conversions de briques </span> </a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
                 <?php } ?>
@@ -59,10 +54,10 @@
 
                 <?php if ($employe->isAutoriser("ventes")) { ?>
                 <li class="" id="commandes">
-                    <a href="{% url 'boutique:commandes:commandes' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Commandes de clients</span> <?php if (count($groupes__) > 0) { ?> <span class="label label-warning float-right"><?= count($groupes__) ?></span> <?php } ?></a>
+                    <a href="{% url 'boutique:commandes:commandes' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Commandes de clients</span> <span class="label label-warning float-right">{{ request.commandes | length |start0}}</span></a>
                 </li>
                 <li class="" id="livraisons">
-                    <a href="<?= $this->url($this->section, "ventes", "livraisons") ?>"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> <?php if (count($livraisons__) > 0) { ?> <span class="label label-warning float-right"><?= count($livraisons__) ?></span> <?php } ?></a>
+                    <a href="<?= $this->url($this->section, "ventes", "livraisons") ?>"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> <span class="label label-warning float-right">{{ request.livraisons | length |start0}}</span> </a>
                 </li>
                 <li class="">
                     <a href="{% url 'boutique:commandes:prixparzone' %}"><i class="fa fa-list"></i> <span class="nav-label">Voir les prix par zone</span></a>
@@ -81,7 +76,7 @@
 
                 <?php if ($employe->isAutoriser("caisse")) { ?>
                 <li class="" id="tricycle">
-                    <a href="<?= $this->url($this->section, "caisse", "tricycle") ?>"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> <?php if (count($tricycles__) > 0) { ?> <span class="label label-warning float-right"><?= count($tricycles__) ?></span> <?php } ?></a>
+                    <a href="<?= $this->url($this->section, "caisse", "tricycle") ?>"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> <span class="label label-warning float-right">{{ request.tricycles | length |start0}}</span> </a>
                 </li>
                 <li class="" id="caisse">
                     <a href="<?= $this->url($this->section, "caisse", "caisse") ?>"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>

@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from commandeApp.models import PrixZoneLivraison, Commande
+from django.shortcuts import get_object_or_404, render
+from commandeApp.models import Conversion, PrixZoneLivraison, Commande, ZoneLivraison
 from comptabilityApp.models import Mouvement
 
 # Create your views here.
@@ -21,6 +21,15 @@ def commande(request, id):
                 "zone" : zone,
             }
         return render(request, "fiches/pages/commande.html", context)
+
+
+def conversion(request, id):
+    if request.method == "GET":
+        converson = get_object_or_404(Conversion, pk = id)
+        context = {
+                "conversion" : conversion,
+            }
+        return render(request, "fiches/pages/conversion.html", context)
 
 
 

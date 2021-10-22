@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from authApp.models import ForgotPassword
 from organisationApp.models import Employe
 from django.contrib.auth import authenticate, login
 from django.http import  JsonResponse
@@ -25,6 +26,26 @@ def connexion(request):
                 return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
         else:
             return JsonResponse({"status":False, "message":"Login et/ou mot de passe incorrect !"})
+
+
+
+def unlocked(request):
+    if request.method == "POST":
+        datas = request.POST
+        user = authenticate(request, username=datas["username"], password=datas["password"])
+        if user is not None:
+            try:
+                login(request, user)
+                url = request.session['last_url']
+                if 'locked' in request.session:
+                    del request.session['locked']
+                    del request.session['last_url']
+                return JsonResponse({"status":True, "url":url})
+            except Exception as e:
+                print("-----------------------------------", e)
+                return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
+        else:
+            return JsonResponse({"status":False, "message":"Mot de passe incorrect !"})
 
 
 
@@ -60,7 +81,42 @@ def first_user(request):
 
 
 def forgetpassword(request):
-    return render(request, "pages/forgetpassword.html")
+    if request.method == "POST":
+        datas = request.POST
+        try :
+            user = User.objects.get(email = datas["email"])
+            ForgotPassword.objects.create(
+                    email = datas["email"]
+                )
+            return JsonResponse({"status":True, "url":"/auth/reset/"})
+        except Exception as e:
+            print(e)
+            return JsonResponse({"status":False, "message":"Désolé, cette adresse email n'est pas connu par le ssytème !"})
+
+
+
+
+def reset(request):
+    if request.method == "POST":
+        datas = request.POST
+        if datas["password"] == datas["confirm"]:
+            try :
+                fp = ForgotPassword.objects.get(pk = id, is_validate = False)
+                if fp.finished_at >= datetime.datetime.now():
+                    user = User.objects.get(email = fp.email)
+                    user.set_password(datas["password"])
+                    user.save()
+
+                    fp.is_validate = True
+                    fp.save()
+                    return JsonResponse({"status":True, "url":"/auth/login/"})
+                else:
+                    return JsonResponse({"status":False, "message":"La période pour changer le mot de passe avec ce mail a expiré, veuillez recommencer la procédure !"})
+            except Exception as e:
+                print(e)
+                return JsonResponse({"status":False, "message":"Une erreur s'est produite lors del'opération, veuillez recommencer !"})
+        else:
+            return JsonResponse({"status":False, "message":"Les mots de passe ne correspondent pas !"})
 
 
 

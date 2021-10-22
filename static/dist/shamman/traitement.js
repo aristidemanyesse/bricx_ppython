@@ -2,11 +2,11 @@
 
         $("body").on("submit", "form.formShamman", function(event) {
             Loader.start()
-            name = $(this).attr('classname');
+            form = $(this).attr('classname');
             reload = $(this).attr('reload');
-            url = "http://127.0.0.1:9000/core/ajax/save/";
+            url = "/core/ajax/save/";
             var formdata = new FormData($(this)[0]);
-            formdata.append('modelform', name);
+            formdata.append('modelform', form);
             $.post({url:url, data:formdata, contentType:false, processData:false}, function(data){
                 if (data.status) {
                     if (reload == "false") {
@@ -24,6 +24,15 @@
             }, 'json')
             return false;
         });
+
+
+
+        filtrer = function(){
+            Loader.start()
+            session("date1", $("#formFiltrer input[name=date1]").val())
+            session("date2", $("#formFiltrer input[name=date2]").val())
+            //window.location.reload();
+        }
 
 
         enable = function(table, id){
@@ -302,10 +311,5 @@
         }
 
 
-        filtrer = function(){
-            Loader.start()
-            session("date1", $("#formFiltrer input[name=date1]").val())
-            session("date2", $("#formFiltrer input[name=date2]").val())
-            window.location.reload();
-        }
+
     })

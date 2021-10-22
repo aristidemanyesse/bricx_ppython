@@ -1,5 +1,6 @@
 {% extends "layout/base_sidebar_boutique.html" %} 
 {% load static %} 
+{% load myfilters %} 
 
 {% block wrapper %} 
 
@@ -15,7 +16,7 @@
                     <div class="row">
                         <div class="col-12 text-right">
                             <span> Tous les clients </span>
-                            <h2 class="font-bold">{{ clients | length }}</h2>
+                            <h2 class="font-bold">{{ clients | length | start0 }}</h2>
                         </div>
                     </div>
                 </div>
@@ -25,7 +26,7 @@
                     <div class="row">
                         <div class="col-12 text-right">
                             <span> Ajoutés cette semaine</span>
-                            <h2 class="font-bold"><?= start0(count(Home\CLIENT::getSemaine()))  ?></h2>
+                            <h2 class="font-bold">{{ clients_semaine | length | start0 }}</h2>
                         </div>
                     </div>
                 </div>

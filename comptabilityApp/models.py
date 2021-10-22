@@ -50,7 +50,8 @@ class ModePayement(BaseModel):
     name      = models.CharField(max_length = 255)
     etiquette = models.CharField(max_length = 255)
     etat      = models.ForeignKey("coreApp.Etat", on_delete = models.CASCADE)
-
+    class Meta:
+        ordering = ['etiquette']
 
 class Compte(BaseModel):
     name           = models.CharField(max_length = 255)
@@ -83,12 +84,13 @@ class Mouvement(BaseModel):
 class ReglementApprovisionnement(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement_appro")
     approvisionnement = models.ForeignKey("approvisionnementApp.Approvisionnement", on_delete = models.CASCADE, related_name="approvisionnement_reglement")
-
+    restait  = models.IntegerField(default=0)
 
 
 class ReglementCommande(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement_commande")
     commande  = models.ForeignKey("commandeApp.Commande", on_delete = models.CASCADE, related_name="commande_reglement")
+    restait  = models.IntegerField(default=0)
 
     def __str__(self):
         return self.reglement.reference
@@ -106,11 +108,12 @@ class CompteClient(BaseModel):
 class ReglementAchatStock(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement_achatstock")
     achatstock = models.ForeignKey("approvisionnementApp.AchatStock", on_delete = models.CASCADE, related_name="achatstock_reglement")
-
+    restait  = models.IntegerField(default=0)
 
 class ReglementTricycle(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement")
     tricycle = models.ForeignKey("livraisonApp.Tricycle", on_delete = models.CASCADE, related_name="tricycle_reglement")
+    restait  = models.IntegerField(default=0)
 
 
 class Operation(BaseModel):
@@ -144,10 +147,26 @@ def pre_save_mouvement(sender, instance, **kwargs):
         if instance._state.adding:
             instance.reference = uuid.uuid4()
             instance.etat = instance.mode.etat
-    else:   #verifie si l'invité n'a pas deja un compte
+    else:   
+        #verifie si l'invité n'a pas deja un compte
         raise Exception(MyCodeException.INCORRECT_MONTANT)
     
 
+
+@receiver(pre_save, sender = ReglementCommande)
+def pre_save_reglement_commande(sender, instance, **kwargs):
+    if instance._state.adding:
+        instance.restait = instance.commande.reste_a_payer() - instance.mouvement.montant
+
+
+@receiver(post_save, sender = ReglementCommande)
+def post_save_reglement_commande(sender, instance, created, **kwargs):
+    if created:
+        if instance.mouvement.mode.etiquette == ModePayement.PRELEVEMENT:
+            CompteClient.objects.create(
+                client = instance.commande.groupecommande.client,
+                mouvement = instance.mouvement
+            )
 
 
 

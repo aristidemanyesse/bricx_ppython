@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
 from commandeApp.models import Commande
 from organisationApp.models import Employe
 from django.http import  JsonResponse
@@ -26,9 +27,8 @@ def crediter(request):
                 )
         else:
             return JsonResponse(res)
-
-    return JsonResponse({"status":True, "url" : "TODO" })
-
+            
+    return JsonResponse({"status":True, "url" : reverse("fiches:boncaisse", args=[res.id]) })
 
 
 
@@ -57,7 +57,8 @@ def rembourser(request):
             else:
                 return JsonResponse(res)
 
-        return JsonResponse({"status":True, "url" : "TODO" })
+        return JsonResponse({"status":True, "url" : reverse("fiches:boncaisse", args=[res.id]) })
+
     except Exception as e:
         print("-++++++++++++++++++++++++++++++", e)
 
@@ -113,7 +114,6 @@ def regler_toutes_dettes(request):
                         return JsonResponse(res)
 
                 acompte = client.acompte_actuel()
-                print("-++++++++++++++++++++++++++++++", acompte)
                 dette = client.dette_totale()
 
         return JsonResponse({"status":True})

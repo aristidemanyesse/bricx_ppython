@@ -1,0 +1,115 @@
+{% load static %}
+
+<div class="modal inmodal fade" id="modal-newcommande" >
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Nouvelle commande de briques</h4>
+                <small class="font-bold">Renseigner ces champs pour enregistrer la commande</small>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5 class="text-uppercase">Les produits de la commande</h5>
+                        </div>
+                        <div class="ibox-content"><br>
+                            <div class="table-responsive">
+                                <table class="table  table-striped">
+                                    <tbody class="new_commande">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="text-center">
+                                {% for brique in briques %}
+                                <button class="btn btn-white dim newproduit btn-sm" data-id="{{ brique.id }}" >{{ brique.name }}</button>
+                                {% endfor %}
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 ">
+                    <div class="ibox"  style="background-color: #eee">
+                        <div class="ibox-title" style="padding-right: 2%; padding-left: 3%; ">
+                            <h5 class="text-uppercase">Finaliser la commande</h5>
+                        </div>
+                        <div class="ibox-content"  style="background-color: #fafafa">
+                            <form id="formCommande">
+                                <div>
+                                    <label>zone de livraison <span style="color: red">*</span> </label>
+                                    <div class="form-group">
+                                        {% include 'extra/select.html' with name='zone' instances=zones  %}   
+                                    </div>
+                                </div><br>
+                                <div>
+                                    <label>Date prévue pour livraison <span style="color: red">*</span> </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="date" name="datelivraison" value="{% now 'Y-m-d' %}" class="form-control">
+                                    </div>
+                                </div><br>
+                                <div>
+                                    <label>Lieu exact de livraison <span style="color: red">*</span> </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                        <input type="text" name="lieu" class="form-control" required>
+                                    </div>
+                                </div><br>
+                                <div>
+                                    <label>Mode de payement <span style="color: red">*</span> </label> 
+                                    <div class="form-group">
+                                        {% include 'extra/select.html' with name='modepayement' instances=modes  %}   
+                                    </div>
+                                </div><br>
+                                <div class="no_modepayement_facultatif">
+                                    <div>
+                                        <label>Montant avancé<span style="color: red">*</span> </label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-money"></i></span><input type="text" value="0" min="0" name="avance" class="form-control">
+                                        </div>
+                                    </div>
+                                </div><br>
+                                <div class="modepayement_facultatif">
+                                    <div>
+                                        <label>Structure d'encaissement<span style="color: red">*</span> </label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-bank"></i></span><input type="text" name="structure" class="form-control">
+                                        </div>
+                                    </div><br>
+                                    <div>
+                                        <label>N° numero dédié<span style="color: red">*</span> </label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-pencil"></i></span><input type="text" name="numero" class="form-control">
+                                        </div>
+                                    </div>
+                                </div><br>
+                                <div>
+                                    <label>Ajouter une note </label>
+                                    <textarea class="form-control" rows="4" name="comment"></textarea>
+                                </div>
+
+                            </form><br>
+                            <h3><span>Montant brut</span> <span class="pull-right montant">0 {{request.societe.devise}} </span></h3>
+                            <h5><span>TVA ({{request.societe.tva}} %)</span> <span class="pull-right tva">0 {{request.societe.devise}} </span></h5>
+
+                            <h3><span>Avance</span> <span class="pull-right avance">0 {{request.societe.devise}} </span></h3><br>
+                            <h2 class="font-bold"><span>Reste</span> <span class="pull-right total">0 {{request.societe.devise}} </span></h2>
+                            <hr/>
+                            <button onclick="valider_commande()" class="btn btn-primary btn-block dim"><i class="fa fa-check"></i> Valider la commande</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

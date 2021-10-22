@@ -17,12 +17,14 @@ class Brique(BaseModel):
     name      = models.CharField(max_length = 255)
     active = models.BooleanField(default=True)
     comment   = models.TextField(default="", null = True, blank=True)
+    alert_stock         = models.IntegerField(default=10)
     image     = models.ImageField(max_length = 255, upload_to = "storage/images/briques/", default="", null = True, blank=True)
 
 
 class Ressource(BaseModel):
     name      = models.CharField(max_length = 255)
     active = models.BooleanField(default=True)
+    alert_stock         = models.IntegerField(default=10)
     comment   = models.TextField(default="", null = True, blank=True)
     image     = models.ImageField(max_length = 255, upload_to = "storage/images/ressources/", default="", null = True, blank=True)
 
@@ -111,21 +113,6 @@ class LignePerteBrique(BaseModel):
     brique   = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_perteligne")
     quantite = models.IntegerField(default=0)
 
-
-
-class TransfertStock(BaseModel):
-    reference          = models.CharField(max_length = 255)
-    agence             = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_transfertstock")
-    groupecommande_old = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="old_groupecommande_transfertstock")
-    groupecommande_new = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="new_groupecommande_transfertstock")
-    employe        = models.ForeignKey("organisationApp.Employe",  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_transfertstock")
-
-
-class LigneTransfertStock(BaseModel):
-    transfert      = models.ForeignKey(TransfertStock, on_delete = models.CASCADE, related_name="transfert_ligne")
-    brique         = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_transfertligne")
-    quantite_avant = models.IntegerField(default=0)
-    quantite_apres = models.IntegerField(default=0)
 
 
 class PayeBrique(BaseModel):

@@ -14,7 +14,6 @@ class ForgotPassword(BaseModel):
     email       = models.EmailField(null = False, blank = False)
     finished_at = models.DateTimeField(default = "")
     is_validate = models.BooleanField(default = False)
-    employe     = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, blank = True, null = True, related_name="employe_forgotpassword")
 
     def __str__(self):
         return self.email
@@ -32,3 +31,16 @@ class AccesAgence(BaseModel):
 ######################################################################################################
 ##### SIGNAUX
 
+
+
+@receiver(pre_save, sender = ForgotPassword)
+def pre_save_forgetpassword(sender, instance, **kwargs):
+    if instance._state.adding:
+        instance.finished_at = datetime.datetime.now(x) + datetime.timedelta(hours=4)
+
+
+
+@receiver(post_save, sender = ForgotPassword)
+def post_save_forgetpassword(sender, instance, **kwargs):
+    pass
+    #TODO: faire un envoi de mail

@@ -13,6 +13,8 @@ def iso_to_date(date_iso):
 
 @register.filter('start0')
 def start0(number):
+    if number is None:
+        return "00"
     if 0 <= number <= 9 :
         return "0"+str(number)
     return number
@@ -35,6 +37,13 @@ def get_value_from_dict(dict_data, key):
     if key:
         return dict_data.get(key)
     return ""
+
+
+
+@register.filter
+def multiply(value, arg):
+    return value * arg
+
 
 
 @register.inclusion_tag('djutils/sort_th.html', takes_context=True)

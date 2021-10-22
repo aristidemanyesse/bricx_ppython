@@ -6,7 +6,7 @@
 
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-md-8">
 			<div class="ibox">
 				<div class="ibox-content">
 					<p></p>
@@ -21,7 +21,7 @@
 							<div id="tab-1" class="tab-pane active"><br>
 								{% if perms.commandeApp.add_commande %}
 								<div class="row container-fluid">
-									<button type="button" data-toggle=modal data-target='#modal-newcommande' class="btn btn-primary btn-sm dim float-right"><i class="fa fa-plus"></i> Nouvelle commande </button>
+									<button type="button" data-toggle=modal data-target='#modal-newcommande' class="btn btn-primary btn-sm dim float-right" onclick="delete_session('groupecommande_id')"><i class="fa fa-plus"></i> Nouvelle commande </button>
 								</div>
 								{% endif %}
 								<div class="">
@@ -55,7 +55,7 @@
 														<h5 class="gras text-orange">{{ item.groupe.reste_a_payer | intcomma }} {{ request.societe.devise }}</h5>
 													</td>                                                            
 													<td>
-														{% include 'commande/extra/option_commande.html' with groupe=item.groupe %}
+														<button data-toggle="modal" data-target="#infos-groupecommande-{{item.groupe.id}}" class="btn-white cursor" onclick="session('groupecommande_id', '{{item.groupe.id}}')"  >Options</button>
 													</td>
 												</tr>
 												{% endfor %}
@@ -118,7 +118,7 @@
 				</div>
 			</div>
 
-			<div class="col-sm-4">
+			<div class="col-md-4">
 				<div class="ibox selected">
 
 					<div class="ibox-content">
@@ -184,18 +184,30 @@
 	</div>
 
 
-	{% block script %}
-	<script>
-		{% include './client.js' %}
-	</script>
-	{% endblock %}
-
 	{% include '../modals/client.html' with element=client %}
 	{% include '../modals/crediter.html' with items=modepayements %}
 	{% include '../modals/rembourser.html' with items=modepayements %}
 
+	{% include 'commande/modals/new_commande.html' with modes=modepayements zones=zonelivraisons briques=briques %}
+
+
 	{% for item in datas %}
-	{% include 'commande/modals/commande_infos.html' with item=item societe=request.societe %}
+		{% include 'commande/modals/commande_infos.html' with item=item %}
+		{% include 'commande/modals/changer_produit.html' with item=item briques=briques %}
+		{% for commande in item.commandes %}
+			{% include 'commande/modals/regler_commande.html' with commande=commande modes=modepayements %}
+			{% include 'commande/modals/liste_versement.html' with reglements=commande.commande_reglement.all %}
+		{% endfor %} 
 	{% endfor %} 
 
+
+
+
 	{% endblock wrapper %} 
+
+	{% block script %}
+	<script>
+		{% include "./client.js" %}
+		{% include 'commande/modals/new_commande.js' %}
+	</script>
+	{% endblock %}

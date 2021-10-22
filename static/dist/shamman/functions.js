@@ -7,22 +7,19 @@ $(function(){
     }
 
 
-
     //mettre en session par ajax
     session = function(name, value){
-    	var url = "../../composants/dist/shamman/traitement.php";
-    	$.post(url, {action:"session", name:name, value:value}, (data)=>{
-            return data;
-        });
+    	var url = "../../../core/ajax/session/";
+    	$.post(url, {name:name, value:value});
     }
 
-    //mettre en session par ajax
-    unsetSession = function(name){
-        var url = "../../composants/dist/shamman/traitement.php";
-        $.post(url, {action:"unsetSession", name:name}, (data)=>{
-            return data;
-        });
+    //supprimer en session par ajax
+    delete_session = function(name){
+    	var url = "../../../core/ajax/delete_session/";
+        $.post(url, {name:name});
     }
+
+
 
     //mettre en session par ajax
     getSession = function(name){

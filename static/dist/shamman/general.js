@@ -41,18 +41,35 @@ $(function(){
     //selection du mode de payement
     $("div.modepayement_facultatif").hide();
     $("body").on("change", "select[name=modepayement]", function(event) {
-        if($(this).attr("id") >= 2){
+        val = $(this).val();
+        option = $(this).find("option[value="+val+"]") 
+        if(option.attr("id") > 2){
             $("div.modepayement_facultatif").show()
         }else{
             $("div.modepayement_facultatif").hide()
         }
 
-        if($(this).attr("id") != 2){
+        if(option.attr("id") != 1){
             $("div.no_modepayement_facultatif").show()
         }else{
             $("div.no_modepayement_facultatif").hide()
         }
     });
+
+
+
+    //superposition de modals
+    $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+    $(document).on('hidden.bs.modal', '.modal', function () {
+        $('.modal:visible').length && $(document.body).addClass('modal-open');
+    });
+
 
 
     //Watchdog de deconnexion

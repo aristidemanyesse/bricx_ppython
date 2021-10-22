@@ -12,19 +12,28 @@
 
     <div class=" text-center text-white">
         <div class="m-b-md">
-            <img alt="image" style="width: 100px" class="rounded-circle circle-border" src="<?= $this->stockage("images", "employes", $employe->image) ?>">
+            <img alt="image" style="width: 120px; height: 120px" class="rounded-circle circle-border" src="{% static request.user.employe.avatar %}">
         </div>
-        <h1><?= $employe->name()  ?></h1>
+        <h1>{{ request.user.get_full_name }}</h1>
         <p>Votre session a été vérouillée pour inactivité.<br>
         Veuillez renseigner votre mot de passe pour retourner à l'application !</p>
 
-        <form class="m-t offset-4 col-md-4" role="form" id="lockedForm" method="POST">
-            <div class="form-group ">
-                <input type="password" name="password" class="form-control" placeholder="Votre mot de passe" required>
-            </div><br>
-            <a href="{% url 'login' %}" class="btn btn-xs btn-outline btn-rounded"><i class="fa fa-arrow-left"></i> Nouvelle connexion</a>
-            <button style="margin-left: 10%; " type="submit" class="btn btn-primary dim"><i class="fa fa-check"></i> Dévérouiller</button>
-        </form>
+        <div class="row justify-content-center">
+            <form class="m-t col-md-6" role="form" id="lockedForm" method="POST">
+                <div class="form-group ">
+                    <input type="password" name="password" class="form-control" placeholder="Votre mot de passe" required>
+                </div><br>
+                <input type="hidden" name="username" value="{{ request.user.username }}">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="{% url 'auth:login' %}" class="btn btn-default btn-rounded text-muted"><i class="fa fa-arrow-left"></i> Nouvelle connexion</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary dim"><i class="fa fa-check"></i> Dévérouiller</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

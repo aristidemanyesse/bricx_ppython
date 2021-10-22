@@ -1,5 +1,7 @@
 from django.db import models
 import uuid
+from django.db.models.signals import pre_save, post_save
+from django.dispatch.dispatcher import receiver
 
 # Create your models here.
 class BaseModel(models.Model):
@@ -12,7 +14,6 @@ class BaseModel(models.Model):
     def __str__(self):
         return self.name
 
-
     def encours(self):
         etat = Etat.objects.get(etiquette = Etat.ENCOURS)
         return Super().objects.filter(etat = etat)
@@ -24,9 +25,9 @@ class BaseModel(models.Model):
 
 
 class Etat(models.Model):
-    ANNULE   = "0"
-    EN_COURS = "1"
-    TERMINE  = "2"
+    ANNULE   = 0
+    EN_COURS = 1
+    TERMINE  = 2
 
     name = models.CharField(max_length= 255)
     etiquette = models.CharField(max_length= 255)
@@ -61,3 +62,13 @@ class MyCodeException:
 
     class Meta:
         abstract = True
+
+
+
+################################################################################################
+
+
+@receiver(pre_save, sender = BaseModel)
+def pre_save(sender, instance, **kwargs):
+    if "reference" in instance:
+        instance.reference = uuid.uuid4()

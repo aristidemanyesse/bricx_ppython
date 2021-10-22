@@ -55,3 +55,27 @@ $.ajax({
     alert(data);
   }
 });
+
+
+def check_user_active(get_response):
+    def middleware(request):
+        response = get_response(request)
+        if not request.path == "confirm":
+            try:
+                print(Cliente.objects.get(usuario_id=request.user.id))
+            except Cliente.DoesNotExist:
+                return redirect('confirm')
+        return response
+    return middleware
+
+
+
+
+from django.urls import reverse
+
+reverse('app1.view.view1')
+If you want to find out URL and redirect to it, use redirect
+
+from django.urls import redirect 
+
+redirect('app1.view.view1')

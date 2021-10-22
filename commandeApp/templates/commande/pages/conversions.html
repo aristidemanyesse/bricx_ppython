@@ -1,0 +1,112 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+{% load humanize %} 
+{% load myfilters %}
+
+{% block wrapper %} 
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-9">
+        <h2 class="text-uppercase text-blue gras">Les conversions de produits</h2>
+        <div class="container">
+        </div>
+    </div>
+    <div class="col-sm-3 text-right">
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Toutes les conversions de produits survenues dans cette agence</h5>
+            <div class="ibox-tools">
+             {% include 'extra/filter_form.html' %}
+        </div>
+    </div>
+    <div class="ibox-content">
+            {% if conversions|length > 0 %}
+            <table class="footable table table-stripped toggle-arrow-tiny">
+                <thead>
+                    <tr>
+                        <th data-toggle="true">Status</th>
+                        <th>Agence</th>
+                        <th>Client</th>
+                        <th data-hide="all">Produits</th>
+                        <th>Effectué par</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for conversion in conversions %}
+                    <tr style="border-bottom: 2px solid black">
+                        <td>
+                            <span class="text-uppercase gras">Conversion N°{{ conversion.reference }}</span><br>
+                            <small>{{ conversion.comment }}</small>
+                        </td>
+                        <td>
+                            <h6 class="text-uppercase text-muted mp0"> {{ conversion.agence.name }}</h6>
+                            <small>effectué {{ conversion.created_at | naturaltime }}</small>
+                        </td>
+                        <td>
+                            <h5 class="text-uppercase">{{ conversion.groupecommande_new.client.name }}</h5>
+                        </td>
+                        <td class="border-right">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="no">
+                                        <th></th>
+                                        {% for ligne in conversion.conversion_ligne.all %}
+                                        <th class="text-center" style="padding: 2px">
+                                            <img style="height: 20px" src="{% static brique.image %}" >
+                                            <span class="small">{{ ligne.brique.name }}</span>
+                                        </th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="no">
+                                        <td><h4 class="mp0">Qté avant conversion: </h4></td>
+                                        {% for ligne in conversion.conversion_ligne.all %}
+                                        <td class="text-center">{{ ligne.quantite_avant | start0 }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr class="no">
+                                        <td><h4 class="mp0">Qté après conversion: </h4></td>
+                                            {% for ligne in conversion.conversion_ligne.all %}
+                                            <td class="text-center gras">{{ ligne.quantite_apres | start0 }}</td>
+                                            {% endfor %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                         <td>
+                            <h5 class="text-uppercase">{{ conversion.employe.get_full_name }}</h5>
+                        </td>
+                        <td>
+                            <a href="{% url 'fiches:conversion' conversion.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
+                          
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <ul class="pagination float-right"></ul>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            {% else %}
+    {% include 'extra/empty.html' %}
+    {% endif %}
+
+    </div>
+</div>
+</div>
+
+{% endblock wrapper %} 
+
+
+

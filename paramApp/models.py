@@ -19,11 +19,10 @@ class MyApp(models.Model):
     logo          = models.ImageField(upload_to = "storage/images/params/", max_length=255, null=True, blank=True)
 
     allow_waiting_payment = models.BooleanField(default=True)
-    tva                   = models.BooleanField(default=True)
+    tva                   = models.IntegerField(default=True)
 
-    seuil_credit          = models.BooleanField(default=True)
+    seuil_credit          = models.IntegerField(default=True)
     production_auto       = models.BooleanField(default=True)
-    rupture_stock         = models.BooleanField(default=True)
 
     class Meta:
         permissions = [

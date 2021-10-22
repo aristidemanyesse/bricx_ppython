@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
+    'paramApp.middleware.LockoutMiddleware',
     'paramApp.middleware.InjectMyAppDataMiddleware',
     'organisationApp.middleware.InjectAgenceMiddleware'
 ]

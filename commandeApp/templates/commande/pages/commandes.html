@@ -20,15 +20,12 @@
 
 {% if datas|length > 0 %}
     {% for item in datas %}
-    <div class="col-md-4 col-sm-6">
+    <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="social-feed-box">
-            <div class="float-right">
-                <{% include 'commande/extra/option_commande.html' with groupe=item.groupe %}
+            <div class="float-right mp5">
+                <button data-toggle="modal" data-target="#infos-groupecommande-{{item.groupe.id}}" class="btn-white cursor float-right" onclick="session('groupecommande_id', '{{item.groupe.id}}')"  ><i class="fa fa-eye"></i></button>
             </div>
             <div class="social-avatar">
-                <a href="" class="float-left">
-                    <img alt="image" src="{% static request.societe.logo %}">
-                </a>
                 <div class="media-body">
                     <a class="text-capitalize text-dark gras" href="{% url 'boutique:clients:client' item.groupe.client.id  %}">{{ item.groupe.client.name }} ({{ item.commandes | length}})</a>
                     <small class="text-muted">Livraison prévue pour le {{ item.groupe.datelivraison }}</small><br>
@@ -46,7 +43,7 @@
                     <tbody>
                         <tr>
                             {% for key in item.briques %}
-                            <th class="text-center ">{{ item.briques | dict_value:key }}</th>
+                            <th class="text-center ">{{ item.briques | dict_value:key | start0 }}</th>
                             {% endfor %}
                         </tr>
                     </tbody>
@@ -61,8 +58,24 @@
 </div>
 
 
+
+{% for item in datas %}
+{% include 'commande/modals/commande_infos.html' with item=item %}
+{% include 'commande/modals/changer_produit.html' with item=item briques=briques %}
+{% for commande in item.commandes %}
+    {% include 'commande/modals/regler_commande.html' with commande=commande modes=modepayements %}
+    {% include 'commande/modals/liste_versement.html' with reglements=commande.commande_reglement.all %}
+{% endfor %} 
+{% endfor %} 
+
+
 </div>
 
-
-
 {% endblock wrapper %} 
+
+
+{% block script %}
+<script>
+    {% include 'commande/modals/new_commande.js' %}
+</script>
+{% endblock %}
