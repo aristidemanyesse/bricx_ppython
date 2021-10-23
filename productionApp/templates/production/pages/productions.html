@@ -1,0 +1,137 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block wrapper %} 
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-9">
+        <h2 class="text-uppercase text-blue gras">Productions & rangements</h2>
+    </div>
+    <div class="col-sm-3">
+        <button style="margin-top: 5%" data-toggle="modal" data-target="#modal-production" class="btn btn-success pull-right dim"><i class="fa fa-plus"></i> Production du jour</button>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Toutes les productions non rangées</h5>
+            <div class="ibox-tools">
+                {% include 'extra/filter_form.html' %}
+            </div>
+        </div>
+        <div class="ibox-content">
+            {% if productions|length > 0 %}
+            <table class="footable table table-stripped toggle-arrow-tiny">
+                <thead>
+                    <tr>
+                        <th data-toggle="true">Status</th>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Enregistré par</th>
+                        <th data-hide="all"></th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for production in productions %}
+                    <tr style="border-bottom: 2px solid black">
+                        <td class="project-status">
+                            <span class="label label-{{ production.etat.classe }}">{{ production.etat.name }}</span>
+                        </td>
+                        <td>
+                            {% if production.etat.etiquette|add:'0' == request.etat.EN_COURS|add:'0' %}
+                            <h5 class="text-uppercase">Production non rangé</h5>
+                            {% else %}
+                            <h5 class="text-uppercase">Production déjà rangé</h5>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <h5 class="text-uppercase">{{ production.date | naturalday }}</h5>
+                        </td>
+                        <td>
+                            <h5 class="text-uppercase">{{ production.employe.name }}</h5>
+                        </td>
+                        <td class="border-right">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        {% for ligne in production.production_ligne.all %} 
+                                        <th class="text-center">{{ ligne.brique.name }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><h4 class="mp0 text-muted">Produite : </h4></td>
+                                        {% for ligne in production.production_ligne.all %}
+                                        <th class="text-center " style="color: #ccc">{{ ligne.quantite |start0 }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                    {% if production.etat.etiquette|add:'0' != request.etat.EN_COURS|add:'0' %}
+                                    <tr>
+                                        <td><h4 class="mp0">Rangées : </h4></td>
+                                        {% for ligne in production.production_ligne.all %}
+                                        <th class="text-center">{{ ligne.quantite|sub:ligne.perte |start0 }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr>
+                                        <td><h4 class="mp0 text-red">Perte : </h4></td>
+                                        {% for ligne in production.production_ligne.all %}
+                                        <th class="text-center text-red">{{ ligne.perte|start0 }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <a href="{% url 'fiches:production' production.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
+                        </td>
+                        <td>
+                            {% if production.etat.etiquette|add:'0' == request.etat.EN_COURS|add:'0' %}
+                            <button data-toggle="modal" data-target="#modal-rangement-{{ production.id }}" class="btn btn-white btn-xs"><i class="fa fa-plus"></i> Faire le rangement </button>
+                            <button onclick="annuler('production', '{{ production.id }}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr />
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <ul class="pagination float-right"></ul>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            {% else %}
+            {% include 'extra/empty.html' %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% include 'production/modals/production.html' %}
+
+{% for production in productions %}
+{% if production.etat.etiquette|add:'0' == request.etat.EN_COURS|add:'0' %}
+{% include 'production/modals/rangement.html' with production=production %}
+{% endif %}
+{% endfor %}
+
+
+?>
+{% endblock wrapper %} 
+
+{% block script %} 
+<script>
+    {% include '../modals/production.js' %}
+</script>
+{% endblock %} 

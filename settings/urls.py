@@ -28,10 +28,11 @@ urlpatterns = [
     path('auth/', include('authApp.urls')),
     path('core/', include('coreApp.urls')),
     path('home/', include('organisationApp.urls')),
-    path('fiches/', include('ficheApp.urls')),
 
     path('boutique/', include('organisationApp.urls_boutique')),
     path('fabrique/', include('organisationApp.urls_fabrique')),
+
+    path('production/', include('productionApp.urls')),
 
 
     path('fiches/', include('ficheApp.urls')),

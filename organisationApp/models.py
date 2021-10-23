@@ -25,7 +25,8 @@ class Employe(User, BaseModel):
     def __str__(self):
         return self.first_name+" "+self.last_name
 
-
+    def name(self):
+        return self.first_name+" "+self.last_name
 
 
 

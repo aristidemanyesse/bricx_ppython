@@ -6,18 +6,14 @@ import sqlparse
 register = template.Library()
 
 
-@register.filter('iso_to_date')
-def iso_to_date(date_iso):
-    return date_utils.iso_to_date(date_iso)
-
 
 @register.filter('start0')
 def start0(number):
-    if number is None:
-        return "00"
-    if 0 <= number <= 9 :
-        return "0"+str(number)
-    return number
+    if number is not None:
+        if 0 <= int(number) <= 9 :
+            return "0"+str(number)
+        return number
+    return "00"
 
 
 @register.filter('pretty_json')
@@ -31,11 +27,8 @@ def pretty_json(json_text):
 
 @register.filter('dict_value')
 def get_value_from_dict(dict_data, key):
-    """
-    usage example {{ your_dict|dict_data:your_key }}
-    """
     if key:
-        return dict_data.get(key)
+        return dict_data.get(str(key))
     return ""
 
 
@@ -43,6 +36,11 @@ def get_value_from_dict(dict_data, key):
 @register.filter
 def multiply(value, arg):
     return value * arg
+
+
+@register.filter
+def sub(value, arg):
+    return value - arg
 
 
 

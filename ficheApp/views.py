@@ -32,6 +32,14 @@ def conversion(request, id):
         return render(request, "fiches/pages/conversion.html", context)
 
 
+def production(request, id):
+    if request.method == "GET":
+        converson = get_object_or_404(Production, pk = id)
+        context = {
+                "production" : production,
+            }
+        return render(request, "fiches/pages/production.html", context)
+
 
 def boncaisse(request, id):
     if request.method == "GET":

@@ -42,7 +42,7 @@
 
                 <?php if ($employe->isAutoriser("production")) { ?>
                 <li class="" id="stock">
-                    <a href="<?= $this->url($this->section, "production", "stock") ?>"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de briques</span></a>
+                    <a href="{% url 'production:stock_brique' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de briques</span></a>
                 </li>
 
                 <li class="" id="conversion">
