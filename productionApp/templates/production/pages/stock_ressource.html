@@ -1,0 +1,87 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block wrapper %} 
+<div class="ibox">
+    <div class="ibox-title">
+        <h5 class="text-uppercase">Stock de ressources</h5>
+        <div class="ibox-tools">
+             <button style="margin-top: -3%;" type="button" data-toggle=modal data-target='#modal-perteressource' class="btn btn-danger btn-xs dim"><i class="fa fa-trash"></i> Enregistrer une perte </button>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="row text-center">
+            {% for ressource in ressources.keys %}
+            <div class="col-sm-4 col-md-3 col-lg-2 border-left border-bottom">
+                <div class="p-xs">
+                    <i class="fa fa-cube fa-2x text-dark"></i>
+                    <div class="{% if ressources|dict_value:ressource <= ressource.alert_stock %} clignote {% endif %}">
+                        <h5 class="m-xs gras ">{{ressources|dict_value:ressource | start0 }} unités</h5>
+                        <h6 class="no-margins text-uppercase gras">{{ressources|dict_value:ressource|multiply:ressource.estimation|intcomma }} {{ request.societe.devise }}</h6>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class=" animated fadeInRightBig">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5 class="float-left text-uppercase">Historiques du {{debut}} au {{fin}}</h5>
+                <div class="ibox-tools">
+                    {% include 'extra/filter_form.html' %}
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" class="border-none"></th>
+                            {% for ressource in ressources %}
+                                <th class="text-center"><small class="gras">{{ ressource.name }}</small></th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for date in dates.keys %}
+                        <tr style="cursor: help">
+                            <td class="gras ">{{ date }}</td>
+                            {% for ressource in ressources %}
+                                <td class="cursor myPopover text-center"
+                                data-toggle="popover"
+                                data-placement="right"
+                                title="<small><b>{{ ressource.name }}</b> | {{ date }}</small>"
+                                data-trigger="hover"
+                                data-html="true"
+                                data-content="
+                                <span>Production du jour : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'production'|start0 }}</b></span><br>
+                                <span>Stock acheté : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'achat'|start0 }}</b></span><br>
+                                <span>livraison du jour : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'livree'|start0 }}</b></span><br>
+                                <span class='text-red'>Perte Livraison: <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'perteL'|start0 }}</b></span><br>
+                                <span class='text-red'>Perte Rangement: <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'perteR'|start0 }}</b></span><br>
+                                <span class='text-red'>Autre Perte : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'perteA'|start0 }}</b></span>
+                                <hr style='margin:1.5%'>
+                                <span>En stock de clôture : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'stock'|start0 }}</b></span><br> <span>">
+                                    {{ dates|dict_value:date|dict_value:ressource|dict_value:'stock'|start0 }}
+                                </td>
+                                {% endfor %}
+                        </tr>
+                        {% endfor %}
+                        <tr style="height: 18px;"></tr>
+                    </tbody>
+                </table> 
+            </div>
+
+        </div>
+    </div>
+
+        {% include "../modals/perte_ressource.html" %}
+</div>
+
+{% endblock wrapper %} 

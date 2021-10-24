@@ -13,13 +13,13 @@
     </div>
     <div class="ibox-content">
         <div class="row text-center">
-            {% for brique in briques %}
+            {% for brique in briques.keys %}
             <div class="col-sm-4 col-md-3 col-lg-2 border-left border-bottom">
                 <div class="p-xs">
                     <i class="fa fa-cube fa-2x text-dark"></i>
-                    <div class="{% if brique.stock >= brique.alert_stock %} clignote {% endif %}">
-                        <h5 class="m-xs gras ">{{brique.stock | start0 }} unités</h5>
-                        <h6 class="no-margins text-uppercase gras">{{brique.stock|multiply:brique.estimation }}</h6>
+                    <div class="{% if briques|dict_value:brique <= brique.alert_stock %} clignote {% endif %}">
+                        <h5 class="m-xs gras ">{{briques|dict_value:brique | start0 }} unités</h5>
+                        <h6 class="no-margins text-uppercase gras">{{briques|dict_value:brique|multiply:brique.estimation|intcomma }} {{ request.societe.devise }}</h6>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
     <div class=" animated fadeInRightBig">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5 class="float-left text-uppercase">Historiques du <?= datecourt($date1) ?> au <?= datecourt($date2) ?></h5>
+                <h5 class="float-left text-uppercase">Historiques du {{debut}} au {{fin}}</h5>
                 <div class="ibox-tools">
                     {% include 'extra/filter_form.html' %}
                 </div>
@@ -43,49 +43,36 @@
                     <thead>
                         <tr>
                             <th rowspan="2" class="border-none"></th>
-                            <?php foreach ($produits as $key => $produit) {  ?>
-                                <th class="text-center"><small class="gras"><?= $produit->name() ?></small></th>
-                            <?php } ?>
+                            {% for brique in briques %}
+                                <th class="text-center"><small class="gras">{{ brique.name }}</small></th>
+                            {% endfor %}
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                        $index = $date1;
-                        while ($index <= $date2) { ?>
-                            <tr>
-                                <td class="gras "><?= datecourt($index) ?></td>
-                                <?php foreach ($produits as $key => $produit) {
-                                    $stock = $produit->enAgence(Home\PARAMS::DATE_DEFAULT, $index, $agence->id);
-                                    $production = $produit->production($index, $index, $agence->id);
-                                    $achat = $produit->achat($index, $index, $agence->id);
-                                    $livree = $produit->livraison($index, $index, $agence->id);
-                                    $perteL = $produit->perteLivraison($index, $index, $agence->id);
-                                    $perteR = $produit->perteRangement($index, $index, $agence->id);
-                                    $perteA = $produit->perteAutre($index, $index, $agence->id);
-                                    ?>
-                                    <td class="cursor myPopover text-center"
-                                    data-toggle="popover"
-                                    data-placement="right"
-                                    title="<small><b><?= $produit->name() ?></b> | <?= datecourt($index) ?></small>"
-                                    data-trigger="hover"
-                                    data-html="true"
-                                    data-content="
-                                    <span>Production du jour : <b><?= round($production, 2) ?> </b></span><br>
-                                    <span>Stock acheté : <b><?= round($achat, 2) ?> </b></span><br>
-                                    <span>livraison du jour : <b><?= round($livree, 2) ?> </b></span><br>
-                                    <span class='text-red'>Perte Livraison: <b><?= round($perteL, 2) ?> </b></span><br>
-                                    <span class='text-red'>Perte Rangement: <b><?= round($perteR, 2) ?> </b></span><br>
-                                    <span class='text-red'>Autre Perte : <b><?= round($perteA, 2) ?> </b></span>
-                                    <hr style='margin:1.5%'>
-                                    <span>En stock à ce jour : <b><?= round($stock, 2) ?> </b></span><br> <span>">
-                                        <?= round($stock, 2) ?> 
-                                    </td>
-                                <?php } ?>
-                            </tr>
-                            <?php
-                            $index = dateAjoute1($index, 1);
-                        }
-                        ?>
+                        {% for date in dates.keys %}
+                        <tr style="cursor: help">
+                            <td class="gras ">{{ date }}</td>
+                            {% for brique in briques %}
+                                <td class="cursor myPopover text-center"
+                                data-toggle="popover"
+                                data-placement="right"
+                                title="<small><b>{{ brique.name }}</b> | {{ date }}</small>"
+                                data-trigger="hover"
+                                data-html="true"
+                                data-content="
+                                <span>Production du jour : <b>{{ dates|dict_value:date|dict_value:brique|dict_value:'production'|start0 }}</b></span><br>
+                                <span>Stock acheté : <b>{{ dates|dict_value:date|dict_value:brique|dict_value:'achat'|start0 }}</b></span><br>
+                                <span>livraison du jour : <b>{{ dates|dict_value:date|dict_value:brique|dict_value:'livree'|start0 }}</b></span><br>
+                                <span class='text-red'>Perte Livraison: <b>{{ dates|dict_value:date|dict_value:brique|dict_value:'perteL'|start0 }}</b></span><br>
+                                <span class='text-red'>Perte Rangement: <b>{{ dates|dict_value:date|dict_value:brique|dict_value:'perteR'|start0 }}</b></span><br>
+                                <span class='text-red'>Autre Perte : <b>{{ dates|dict_value:date|dict_value:brique|dict_value:'perteA'|start0 }}</b></span>
+                                <hr style='margin:1.5%'>
+                                <span>En stock de clôture : <b>{{ dates|dict_value:date|dict_value:brique|dict_value:'stock'|start0 }}</b></span><br> <span>">
+                                    {{ dates|dict_value:date|dict_value:brique|dict_value:'stock'|start0 }}
+                                </td>
+                                {% endfor %}
+                        </tr>
+                        {% endfor %}
                         <tr style="height: 18px;"></tr>
                     </tbody>
                 </table> 
@@ -94,8 +81,7 @@
         </div>
     </div>
 
-    <?php include($this->rootPath("webapp/entrepot/elements/templates/footer.php")); ?>
-
+        {% include "../modals/perte_produit.html" %}
 </div>
 
 {% endblock wrapper %} 

@@ -8,7 +8,6 @@ from coreApp.models import BaseModel
 
 
 
-
 class Agence(BaseModel):
     name   = models.CharField(max_length = 255)
     lieu   = models.CharField(max_length = 255, null = True, blank=True)

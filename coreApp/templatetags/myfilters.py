@@ -9,11 +9,12 @@ register = template.Library()
 
 @register.filter('start0')
 def start0(number):
-    if number is not None:
+    try:
         if 0 <= int(number) <= 9 :
             return "0"+str(number)
         return number
-    return "00"
+    except :
+        return "00"
 
 
 @register.filter('pretty_json')
@@ -28,15 +29,21 @@ def pretty_json(json_text):
 @register.filter('dict_value')
 def get_value_from_dict(dict_data, key):
     if key:
-        return dict_data.get(str(key))
+        try:
+            return dict_data[key]
+        except :
+            return dict_data[str(key)]
     return ""
 
 
 
 @register.filter
 def multiply(value, arg):
-    return value * arg
-
+    try:
+        return int(value) * int(arg)
+    except :
+        return value
+        
 
 @register.filter
 def sub(value, arg):

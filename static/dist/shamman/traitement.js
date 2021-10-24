@@ -31,7 +31,7 @@
             Loader.start()
             session("date1", $("#formFiltrer input[name=date1]").val())
             session("date2", $("#formFiltrer input[name=date2]").val())
-            //window.location.reload();
+            window.location.reload();
         }
 
 

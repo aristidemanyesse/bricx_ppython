@@ -9,6 +9,7 @@ import coreApp.tools as tools
 
 from clientApp.forms import *
 from commandeApp.forms import *
+from productionApp.forms import *
 from comptabilityApp.forms import *
 
 
@@ -46,7 +47,7 @@ def save(request):
    
         except Exception as e:
             print("erreur save :", e)
-            return JsonResponse({"status":False, "message":"Erreur lors du processus. Veuillez recommencer !"})
+            return JsonResponse({"status":False, "message":"Erreur lors du processus. Veuillez recommencer : "+str(e)})
 
 
 

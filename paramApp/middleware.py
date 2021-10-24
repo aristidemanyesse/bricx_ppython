@@ -17,8 +17,8 @@ class InjectMyAppDataMiddleware:
     def process_view(self, request, view_func, view_args, view_kwargs):
         request.etat = Etat
         if "date1" not in request.session:
-            request.session["date1"] = str(datetime.datetime.now().date())
-            request.session["date2"] = str((datetime.datetime.now() + datetime.timedelta(days=3)).date())
+            request.session["date1"] = str((datetime.datetime.now() - datetime.timedelta(days=2)).date())
+            request.session["date2"] = str((datetime.datetime.now() + datetime.timedelta(days=1)).date())
 
         if not request.path_info.startswith('/admin/'):
 

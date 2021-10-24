@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Brique, Production, Ressource, LigneProduction, LigneConsommation
+from .models import Brique, Production, Ressource, LigneProduction, LigneConsommation, TypePerte
 import datetime
 # Create your views here.
 
@@ -33,7 +33,38 @@ def productions(request):
 
 def stock_brique(request):
 	if request.method == "GET":
+		dates = {}
+
+		date = datetime.date.fromisoformat(request.session["date1"])
+		debut = date
+		fin = datetime.date.fromisoformat(request.session["date2"])
+	
+		while date < fin:
+			date_ = date + datetime.timedelta(days = 1)
+			datas = {}
+			for brique in Brique.objects.filter(deleted = False, active=True):
+				datas[brique] = {
+					"stock"     : brique.stock(request.agence, date_), 
+					"production": brique.production(request.agence, date, date_), 
+					"achat"     : brique.achat(request.agence, date, date_), 
+					"livree"    : brique.livraison(request.agence, date, date_), 
+					"perteR"    : brique.perte_rangement(request.agence, date, date_), 
+					"perteL"    : brique.perte_livraison(request.agence, date, date_), 
+					"perteA"     : brique.perte_autre(request.agence, date, date_), 
+				}
+			print("------------------------------", date)
+			dates[date] = datas
+			date += datetime.timedelta(days=1)
+
+		datas = {}
+		for brique in Brique.objects.filter(deleted = False, active=True):
+			datas[brique] = brique.stock(request.agence)
+
 		context = {
-			"briques" : Brique.objects.filter(deleted = False, active=True)
+			"dates" : dates,
+			"debut" : debut,
+			"fin" : fin,
+			"briques" : datas,
+			"types" : TypePerte.objects.filter(deleted = False)
 		}
 		return render(request, "production/pages/stock_brique.html", context)
