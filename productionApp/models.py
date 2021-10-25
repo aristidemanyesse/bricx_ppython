@@ -104,17 +104,41 @@ class Brique(BaseModel):
         return self.perte_chargement(agence, debut, fin) + self.perte_dechargement(agence, debut, fin)
 
 
+    def estimation(self, quantite, ressource):
+        return 100
 
-    def estimation(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
-        fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        return 1000
 
     def exigence(self, quantite, ressource):
-        return 2    
+        try:
+            exigence = self.brique_exigenceproduction.get()
+            ligne = LigneExigenceProduction.objects.get(exigence = exigence, ressource = ressource)
+            if int(quantite) > 0:
+                return (quantite * ligne.quantite) / exigence.quantite;
+            return 0
+        except:
+            return 0
 
-    def cout(self, type, quantite):
-        return 20     
+
+    def cout(self, type, quantite, isferie = False):
+        try:
+            if quantite >= 0:
+                if isferie:
+                    paye = self.brique_paye.get()
+                else:
+                    paye = self.brique_payeferie.get()
+
+                if type == "production":
+                    price = paye.price
+                elif type == "rangement":
+                    price = paye.price_rangement
+                elif type == "livraison":
+                    price = paye.priprice_livraisonce
+                    
+                return quantite * price;
+            return 0  
+        except:
+            return 0  
+
 
 class Ressource(BaseModel):
     name      = models.CharField(max_length = 255)
@@ -127,26 +151,31 @@ class Ressource(BaseModel):
     
     def stock(self, agence, fin=None):
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        return self.attente(agence, fin) + self.livrable(agence, fin)
+        initial = self.ressource_initialagence.filter(deleted = False, agence = agence).aggregate(Sum('quantite'))
+        return (initial["quantite__sum"] or 0) + self.achat(agence, None, fin) - self.consommation(agence, None, fin) - self.perte(agence, None, fin)
 
     def consommation(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
         print(debut, fin)
-        res = self.brique_ligneproduction.filter(deleted = False, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
+        res = self.ressource_ligneconsommation.filter(deleted = False, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
-    def approvisionnement(self, agence, debut=None, fin=None):
+    def achat(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_ligneachat.filter(deleted = False, livraison__created_at__range = (debut, fin)).exclude(livraison__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
+        res = self.ressource_ligneapprovisionnement.filter(deleted = False, approvisionnement__created_at__range = (debut, fin), approvisionnement__etat__etiquette = Etat.TERMINE).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
     def perte(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_perte.filter(deleted = False, created_at__range = (debut, fin)).aggregate(Sum('quantite'))
+        res = self.ressource_perte.filter(deleted = False, created_at__range = (debut, fin)).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
+
+
+    def estimation(self, quantite, ressource):
+        return 100
 
 
 class Production(BaseModel):
@@ -221,10 +250,10 @@ class PerteRessource(BaseModel):
     ressource   = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_perte")
     employe = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_perteressource")
     quantite    = models.IntegerField(default=0)
-    comment     = models.TextField(default="")
+    comment     = models.TextField(default="",  null = True, blank=True)
 
     def __str__(self):
-        return str(self.quantite) + " perte de " +self.brique.name
+        return " perte de " + str(self.quantite) + " " +self.ressource.unite +" de " +self.ressource.name
 
 class PerteBrique(BaseModel):
     type        = models.ForeignKey(TypePerte, on_delete = models.CASCADE, related_name="type_pertebrique")
@@ -232,16 +261,10 @@ class PerteBrique(BaseModel):
     brique      = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_perte")
     employe = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_pertebrique")
     quantite    = models.IntegerField(default=0)
-    comment     = models.TextField(default="")
+    comment     = models.TextField(default="",  null = True, blank=True)
 
     def __str__(self):
         return str(self.quantite) + " perte de " +self.brique.name
-
-class LignePerteBrique(BaseModel):
-    perte    = models.ForeignKey(PerteBrique, on_delete = models.CASCADE, related_name="perte_ligne")
-    brique   = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_perteligne")
-    quantite = models.IntegerField(default=0)
-
 
 
 class PayeBrique(BaseModel):
@@ -352,3 +375,8 @@ def pre_save_perte_brique(sender, instance, **kwargs):
             raise Exception("Vous ne pouvez déclarer de perte au délà du stock disponible")
 
 
+@receiver(pre_save, sender = PerteRessource)
+def pre_save_perte_ressource(sender, instance, **kwargs):
+    if instance._state.adding:
+        if instance.ressource.stock(instance.agence) < instance.quantite:
+            raise Exception("Vous ne pouvez déclarer de perte au délà du stock disponible")

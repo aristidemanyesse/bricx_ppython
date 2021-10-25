@@ -267,7 +267,7 @@
         }
 
 
-        delete_suppression = function(table, id){
+        supprimer = function(table, id){
             url = "../../composants/dist/shamman/traitement.php";
             alerty.confirm("Voulez-vous vraiment supprimer cet element ?", {
                 title: "Suppression",

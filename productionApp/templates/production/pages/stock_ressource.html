@@ -60,12 +60,9 @@
                                 data-trigger="hover"
                                 data-html="true"
                                 data-content="
-                                <span>Production du jour : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'production'|start0 }}</b></span><br>
+                                <span>Consommation du jour : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'consommee'|start0 }}</b></span><br>
                                 <span>Stock acheté : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'achat'|start0 }}</b></span><br>
-                                <span>livraison du jour : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'livree'|start0 }}</b></span><br>
-                                <span class='text-red'>Perte Livraison: <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'perteL'|start0 }}</b></span><br>
-                                <span class='text-red'>Perte Rangement: <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'perteR'|start0 }}</b></span><br>
-                                <span class='text-red'>Autre Perte : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'perteA'|start0 }}</b></span>
+                                <span class='text-red'>Perte : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'perte'|start0 }}</b></span>
                                 <hr style='margin:1.5%'>
                                 <span>En stock de clôture : <b>{{ dates|dict_value:date|dict_value:ressource|dict_value:'stock'|start0 }}</b></span><br> <span>">
                                     {{ dates|dict_value:date|dict_value:ressource|dict_value:'stock'|start0 }}

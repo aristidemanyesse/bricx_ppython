@@ -77,7 +77,7 @@ class Mouvement(BaseModel):
     mode      = models.ForeignKey(ModePayement,  null = True, blank=True, on_delete = models.CASCADE, related_name="modepayement_mouvement")
     structure = models.CharField(default=0, max_length = 255, null = True, blank=True)
     numero    = models.CharField(default=0, max_length = 255, null = True, blank=True)
-    comment   = models.TextField(default="")
+    comment   = models.TextField(default="",  null = True, blank=True)
 
 
 
@@ -133,7 +133,7 @@ class Transfertfond(BaseModel):
     compte_destination = models.ForeignKey(Compte,  null = True, blank=True, on_delete = models.CASCADE, related_name="compte_destination_transfert")
     etat               = models.ForeignKey("coreApp.Etat",  null = True, blank=True, on_delete = models.CASCADE)
     employe            = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_transfertfond")
-    comment            = models.TextField(default="")
+    comment            = models.TextField(default="",  null = True, blank=True)
 
 
 

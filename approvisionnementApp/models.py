@@ -12,7 +12,7 @@ class Fournisseur(BaseModel):
     adresse         = models.CharField(max_length = 255, null = True, blank=True)
     email           = models.CharField(max_length = 255, null = True, blank=True)
     contact         = models.CharField(max_length = 255, null = True, blank=True)
-    description     = models.TextField(default="")
+    description     = models.TextField(default="",  null = True, blank=True)
     acompte_initial = models.IntegerField(default=0)
     dette_initial   = models.IntegerField(default=0)
     seuil_credit    = models.IntegerField(default=0)
@@ -28,7 +28,7 @@ class AchatStock(BaseModel):
     etat              = models.ForeignKey("coreApp.Etat",  on_delete = models.CASCADE) 
     employe           = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_achatstock")
     employe_reception = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_reception_achatstock")
-    comment           = models.TextField(default="");
+    comment           = models.TextField(default="",  null = True, blank=True);
     datelivraison     = models.DateTimeField(null = True, blank=True)
 
 
@@ -53,7 +53,7 @@ class Approvisionnement(BaseModel):
     employe            = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_approvisionnement")
     employe_reception  = models.ForeignKey("organisationApp.Employe",  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_reception_approvisionnement")
     etat               = models.ForeignKey("coreApp.Etat", on_delete = models.CASCADE) 
-    comment            = models.TextField(default="");
+    comment            = models.TextField(default="",  null = True, blank=True);
     datelivraison      = models.DateTimeField(null = True, blank=True,);
 
     acompteFournisseur = models.IntegerField(default = 0)

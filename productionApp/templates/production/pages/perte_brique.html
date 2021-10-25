@@ -1,0 +1,79 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block wrapper %} 
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-9">
+        <h2 class="text-uppercase text-red gras">Les pertes de briques</h2>
+        <div class="container">
+        </div>
+    </div>
+    <div class="col-sm-3 text-right">
+        <button style="margin-top: 5%;" type="button" data-toggle=modal data-target='#modal-perteproduit' class="btn btn-danger btn-xs dim"><i class="fa fa-trash"></i> Enregistrer une perte </button>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Toutes les pertes survenues dans cette agence</h5>
+            <div class="ibox-tools">
+                {% include 'extra/filter_form.html' %}
+            </div>
+        </div>
+        <div class="ibox-content">
+            {% if pertes|length > 0 %}
+            <table class="footable table table-stripped toggle-arrow-tiny">
+                <thead>
+                    <tr>
+                        <th>Brique</th>
+                        <th>Qté</th>
+                        <th>Agence</th>
+                        <th>Enregistré par</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for perte in pertes %}
+                    <tr style="border-bottom: 2px solid black">
+                        <td>
+                            <b>{{ perte.brique.name }}</b><br>
+                            <small>{{ perte.comment }}</small>
+                        </td>
+                        <td>{{ perte.quantite }}</td>
+                        <td>
+                            <h6 class="text-uppercase text-muted gras" style="margin: 0">{{ perte.agence.name }}</h6>
+                            <small>Emise {{ perte.created_at|naturaltime }}</small>
+                        </td>
+                        <td><i class="fa fa-user"></i> {{ perte.employe.name }}</td>
+                        <td>
+                            <button onclick="supprimer('PerteBrique', '{{ perte.id }}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <ul class="pagination float-right"></ul>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            {% else %}
+            {% include 'extra/empty.html' %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% include "../modals/perte_produit.html" with briques=briques types=types %}
+</div>
+
+{% endblock wrapper %} 

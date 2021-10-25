@@ -10,6 +10,9 @@ app_name = "production"
 urlpatterns = [
     path('productions', views.productions, name="productions"),  
     path('stock_brique', views.stock_brique, name="stock_brique"),  
+    path('stock_ressource', views.stock_ressource, name="stock_ressource"),  
+    path('perte_ressource', views.perte_ressource, name="perte_ressource"),  
+    path('perte_brique', views.perte_brique, name="perte_brique"),  
 
 
     path('ajax/calcul_production/', ajax.calcul_production, name="calcul_production"), 

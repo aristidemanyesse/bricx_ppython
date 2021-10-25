@@ -42,7 +42,7 @@
                     <a href="{% url 'production:stock_brique' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de briques</span></a>
                 </li>
                 <li class="" id="ressources">
-                    <a href="<?= $this->url($this->section, "stock", "ressources") ?>"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de ressources </span></a>
+                    <a href="{% url 'production:stock_ressource' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de ressources </span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #aaa; "></li>
 
@@ -86,8 +86,8 @@
                 <li >
                     <a href="#"><i class="fa fa-trash"></i> <span class="nav-label">Les pertes</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li id="perteproduits"><a href="<?= $this->url($this->section, "production", "perteproduits") ?>">Perte de briques</a></li>
-                        <li id="perteressources"><a href="<?= $this->url($this->section, "production", "perteressources") ?>">Perte de ressources</a></li>
+                        <li id="perteproduits"><a href="{% url 'production:perte_brique' %}">Perte de briques</a></li>
+                        <li id="perteressources"><a href="{% url 'production:perte_ressource' %}">Perte de ressources</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-divider"></li>

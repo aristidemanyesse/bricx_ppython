@@ -52,7 +52,7 @@ def new_production(request):
 
         test = True;
         for ligne in productionday.production_ligneconsommation.all():
-            if tab[str(ligne.ressource.id)] > (ligne.ressource.stock() + ligne.quantite) :
+            if tab[str(ligne.ressource.id)] > (ligne.ressource.stock(request.agence) + ligne.quantite) :
                 test = False
                 break
             

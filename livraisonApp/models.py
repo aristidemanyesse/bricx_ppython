@@ -50,7 +50,7 @@ class Livraison(BaseModel):
     chauffeur      = models.ForeignKey(Chauffeur, on_delete = models.CASCADE, null=True, blank=True, related_name="chauffeur_livraison")
     vehicule       = models.ForeignKey(Vehicule, on_delete = models.CASCADE, null=True, blank=True, related_name="vehicule_livraison")
     etat           = models.ForeignKey("coreApp.Etat",  on_delete = models.CASCADE) 
-    comment        = models.TextField(default="");
+    comment        = models.TextField(default="",  null = True, blank=True);
 
     datelivraison          = models.DateTimeField(null = True, blank=True)
     nom_receptionniste     = models.CharField(max_length = 255, default="")

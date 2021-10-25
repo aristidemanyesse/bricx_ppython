@@ -76,7 +76,7 @@ class Commande(BaseModel):
     taux_tva       = models.IntegerField(default = 0)
     tva            = models.IntegerField(default = 0)
     employe        = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_commande")
-    comment        = models.TextField(default="");
+    comment        = models.TextField(default="",  null = True, blank=True);
 
     datelivraison  = models.DateTimeField(null = True, blank=True,)
     acompte_client = models.IntegerField(default = 0)
