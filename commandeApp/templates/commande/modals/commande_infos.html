@@ -46,6 +46,7 @@
                         </thead>
                         <tbody>
                             {% for element in item.sort_lignes %}
+                            {% if element.tipe == "commande" %}
                             <tr>
                               <td data-toggle="tooltip" title="Supprimer la commande">
                                 <i class="fa fa-trash fa-2x d-block text-red cursor" onclick="delete_element('commande', '{{ element.id }}')"></i> 
@@ -56,13 +57,13 @@
                             </td>
                             <td data-toggle="tooltip" title="imprimer le bon de commande">
                                 <a target="_blank" href="{% url 'fiches:commande' element.id %}">
-                                    <i class="d-block fa fa-file-text fa-2x"></i>
+                                    <i class="d-block fa fa-file-text fa-2x text-orange"></i>
                                 </a>                               
                             </td>
     
                             {% for brique in item.briques %}
                             <td>
-                                <h3 class="text-green text-center"> {{ element.all_briques|dict_value:brique | start0 }}</h3>
+                                <h3 class="text-orange text-center"> {{ element.all_briques|dict_value:brique | start0 }}</h3>
                             </td>
                             {% endfor %}
     
@@ -72,11 +73,45 @@
                             <td class="text-center">
                                 <button class="btn btn-info btn-xs dim" title="Voir la liste des versements pour cette commande" data-toggle="modal" data-target="#modal-versements-commande-{{ element.id }}"><i class="fa fa-list"></i> </button>
                                 {% if element.reste_a_payer > 0 %}
-                                    <button class="btn btn-danger btn-xs dim" data-toggle="modal" data-target="#modal-regler-commande-{{ element.id }}"><i class="fa fa-money"></i> Regler le reste</button>
+                                <button class="btn btn-danger btn-xs dim" data-toggle="modal" data-target="#modal-regler-commande-{{ element.id }}"><i class="fa fa-money"></i> Regler le reste</button>
                                 {% endif %}
                             </td>
                         </tr>
-    
+                        
+                        {% else %}
+                        
+                        <tr>
+                            <td data-toggle="tooltip" >
+                                {% if element.etat.etiquette|add:0 == request.etat.EN_COURS|add:0 %}
+                                <i title="Annuler la livraison" class="fa fa-close fa-2x d-block text-red cursor" onclick="delete_element('commande', '{{ element.id }}')"></i> 
+                                {% endif %}
+                            </td>
+                            <td>
+                              <h5 class="text-uppercase mp0">Livraison N°{{element.reference}}</h5>
+                              <small>{{element.created_at | naturaltime }}</small>
+                            </td>
+                          <td data-toggle="tooltip" title="imprimer le bon de livraison">
+                              <a target="_blank" href="{% url 'fiches:livraison' element.id %}">
+                                  <i class="d-block fa fa-file-text fa-2x text-green"></i>
+                                </a>                               
+                            </td>
+                            
+                            {% for brique in item.briques %}
+                            <td>
+                                <h3 class="text-green text-center"> {{ element.all_briques|dict_value:brique | start0 }}</h3>
+                            </td>
+                            {% endfor %}
+  
+                          <td class="text-center">
+                              <h3 class="text-danger"></h3>
+                          </td>
+                          <td class="text-center">
+                              
+                          </td>
+                      </tr>
+
+                        {% endif %}
+
                         {% endfor %}
     
                         <tr style="height: 20px;"></tr>

@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from commandeApp.models import Conversion, PrixZoneLivraison, Commande, ZoneLivraison
 from comptabilityApp.models import Mouvement
+from livraisonApp.models import Livraison
 
 # Create your views here.
 def prixparzone(request, id):
@@ -21,6 +22,16 @@ def commande(request, id):
                 "zone" : zone,
             }
         return render(request, "fiches/pages/commande.html", context)
+
+
+
+def livraison(request, id):
+    if request.method == "GET":
+        livraison = get_object_or_404(Livraison, pk = id)
+        context = {
+                "livraison" : livraison,
+            }
+        return render(request, "fiches/pages/livraison.html", context)
 
 
 def conversion(request, id):

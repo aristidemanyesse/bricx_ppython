@@ -32,7 +32,10 @@ def get_value_from_dict(dict_data, key):
         try:
             return dict_data[key]
         except :
-            return dict_data[str(key)]
+            try:
+                return dict_data[str(key)]
+            except :
+                return ""
     return ""
 
 

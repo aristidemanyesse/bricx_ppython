@@ -2,7 +2,7 @@ $(function () {
 
     //nouvelle commande
     $("body").on("click", "button.newproduit", function (event) {
-        var url = "../../commandes/ajax_new_commande/new_produit/";
+        var url = "/boutique/commandes/ajax_new_commande/new_produit/";
         var id = $(this).attr("data-id");
         var zone = $("select[name=zone]").val();
         $.post(url, { id: id, zone: zone }, (data) => {
@@ -14,7 +14,7 @@ $(function () {
 
 
     delete_ligne = function (id) {
-        var url = "../../commandes/ajax_new_commande/delete_ligne/";
+        var url = "/boutique/commandes/ajax_new_commande/delete_ligne/";
         $.post(url, { id: id }, (data) => {
             $("tbody.new_commande tr[data-id =" + id + "]").hide(400).remove();
             $("button[data-id =" + id + "]").show(200);
@@ -25,7 +25,7 @@ $(function () {
 
 
     actualise = function () {
-        var url = "../../commandes/ajax_new_commande/actualise/";
+        var url = "/boutique/commandes/ajax_new_commande/actualise/";
         var formdata = new FormData($("#formCommande")[0]);
         var tableau = new Array();
         $("#modal-newcommande .new_commande tr").each(function (index, el) {
@@ -40,7 +40,7 @@ $(function () {
         $.post({ url: url, data: formdata, contentType: false, processData: false }, function (data) {
             $("#modal-newcommande tbody.new_commande").html(data);
 
-            $.post({ url: "../../commandes/ajax_new_commande/total/", data: formdata, contentType: false, processData: false }, function (data) {
+            $.post({ url: "/boutique/commandes/ajax_new_commande/total/", data: formdata, contentType: false, processData: false }, function (data) {
                 $("#modal-newcommande .tva").html(data.tva);
                 $("#modal-newcommande .montant").html(data.montant);
                 $("#modal-newcommande .avance").html(data.avance);
@@ -75,7 +75,7 @@ $(function () {
             okLabel: "OUI, valider",
         }, function () {
             Loader.start();
-            var url = "../../commandes/ajax_new_commande/valider_commande/";
+            var url = "/boutique/commandes/ajax_new_commande/valider_commande/";
             $.post({ url: url, data: formdata, contentType: false, processData: false }, function (data) {
                 if (data.status) {
                     window.open(data.url, "_blank");
@@ -91,7 +91,7 @@ $(function () {
 
     $(".formReglerCommande").submit(function (event) {
         $this = $(this);
-        var url = "../../commandes/ajax_new_commande/regler_commande/";
+        var url = "/boutique/commandes/ajax_new_commande/regler_commande/";
         alerty.confirm("Voulez-vous vraiment valider le payement ?", {
             title: "Recouvrement de la commande",
             cancelLabel: "Non",
@@ -130,7 +130,7 @@ $(function () {
             okLabel: "OUI, changer",
         }, function () {
             Loader.start();
-            var url = "../../commandes/ajax_new_commande/changer_produit/";
+            var url = "/boutique/commandes/ajax_new_commande/changer_produit/";
             $.post({ url: url, data: formdata, contentType: false, processData: false }, function (data) {
                 if (data.status) {
                     window.location.reload();

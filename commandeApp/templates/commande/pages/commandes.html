@@ -58,10 +58,18 @@
 </div>
 
 
+{% include 'clients/modals/client.html' with element=client %}
+{% include 'clients/modals/crediter.html' with items=modepayements %}
+{% include 'clients/modals/rembourser.html' with items=modepayements %}
+
+{% include 'commande/modals/new_commande.html' with modes=modepayements zones=zonelivraisons briques=briques %}
+
+
 
 {% for item in datas %}
 {% include 'commande/modals/commande_infos.html' with item=item %}
 {% include 'commande/modals/changer_produit.html' with item=item briques=briques %}
+{% include 'livraison/modals/new_livraison.html' with item=item %}
 {% for commande in item.commandes %}
     {% include 'commande/modals/regler_commande.html' with commande=commande modes=modepayements %}
     {% include 'commande/modals/liste_versement.html' with reglements=commande.commande_reglement.all %}
@@ -76,6 +84,8 @@
 
 {% block script %}
 <script>
+    {% include "clients/pages/client.js" %}
     {% include 'commande/modals/new_commande.js' %}
+    {% include 'livraison/modals/livraison.js' %}
 </script>
 {% endblock %}

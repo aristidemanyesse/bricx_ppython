@@ -23,7 +23,7 @@
                                 <tbody class="livraison">
                                     {% for brique in item.briques %}
                                     <tr class="border-0 border-bottom " data-id="{{ brique.id }}">
-                                        <td><i class="fa fa-close text-red cursor" onclick="delete_ligne('{{ brique.id }}')" style="font-size: 18px;"></i></td>
+                                        <td><i class="fa fa-close text-red cursor" onclick="clear_ligne('{{ brique.id }}')" style="font-size: 18px;"></i></td>
                                         <td >
                                             <img style="width: 40px" src="{% static brique.image %}">
                                         </td>
@@ -31,7 +31,7 @@
                                             <h4 class="mp0 text-uppercase">{{ brique.name }}</h4>
                                             <small>{{ brique.comment }}</small>
                                         </td>
-                                        <td width="105">
+                                        <td width="135">
                                             <label>Qté à livrer / {{item.briques|dict_value:brique | start0 }}</label>
                                             <input type="number" name="livree" number class="form-control text-center gras" value="{{item.briques|dict_value:brique}}" min=0 max="{{item.briques|dict_value:brique}}">
                                         </td>
@@ -125,11 +125,9 @@
                                 </div>
                             </div><br>
 
-                            <input type="hidden" name="client_id" value="<?= $groupecommande->client_id ?>">
-
+                            <hr/>
+                            <button class="btn btn-primary btn-block dim"><i class="fa fa-check"></i> Valider la livraison</button>
                         </form>
-                        <hr/>
-                        <button class="btn btn-primary btn-block dim"><i class="fa fa-check"></i> Valider la livraison</button>
                     </div>
                 </div>
 

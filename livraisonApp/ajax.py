@@ -1,8 +1,9 @@
+import datetime
 from django.shortcuts import render
 from django.template.loader import render_to_string, get_template
 from django.http import HttpResponse, JsonResponse
-from livraisonApp.models import LigneLivraison, ModeLivraison
-from productionApp.models import Brique
+from livraisonApp.models import LigneLivraison, Livraison, ModeLivraison, Tricycle
+from productionApp.models import Brique, PerteBrique, Production
 from commandeApp.models import GroupeCommande, Commande, LigneCommande, LigneConversion, ZoneLivraison, PrixZoneLivraison, Conversion
 from clientApp.models import Client
 from coreApp.models import Etat
@@ -11,144 +12,158 @@ from django.urls import reverse
 
 
 def livraison(request):
-    pass
-#     if request.method == "POST":
-#         datas = request.POST
-#         try :
-#             if "groupecommande_id" not in request.session:
-#                 return JsonResponse({"status": False, "message": "Erreur lors de l'opération', veuillez recommencer !"})
+    if request.method == "POST":
+        datas = request.POST
+        try :
+            if "groupecommande_id" not in request.session:
+                return JsonResponse({"status": False, "message": "Erreur lors de l'opération', veuillez recommencer !"})
 
-#             total = 0
-#             tableau = datas["tableau"].split(",")
-#             for item in tableau:
-#                 if "=" in item:
-#                     id, livree, surplus, perte = item.split("=")
-#                     total += int(livree)
-#             if len(tableau) <= 0 :
-#                 return JsonResponse({"status": False, "message": "Veuillez selectionner des produits et leur quantité pour faire la livraison !"})
-#             if total <= 0 :
-#                 return JsonResponse({"status": False, "message": "Veuillez entrer des quantités valides pour la loivraison !"})
+            total = 0
+            tableau = datas["listeproduits"].split(",")
+            for item in tableau:
+                if "=" in item:
+                    id, livree, surplus, perte = item.split("=")
+                    total += int(livree)
+            if len(tableau) <= 0 :
+                return JsonResponse({"status": False, "message": "Veuillez selectionner des produits et leur quantité pour faire la livraison !"})
+            if total <= 0 :
+                return JsonResponse({"status": False, "message": "Veuillez entrer des quantités valides pour la loivraison !"})
             
-#             groupe = GroupeCommande.objects.get(pk = request.session["groupecommande_id"])
+            
+            groupe =  GroupeCommande.objects.get(pk = request.session["groupecommande_id"])
+            test = True 
+            for item in tableau:
+                if "=" in item:
+                    id, livree, surplus, perte = item.split("=")
+                    brique = Brique.objects.get(pk = id)
+                    stock = brique.stock(request.agence)
+                    livree = int(livree)
+                    if not ((0 < livree <= groupe.reste(brique)) and (livree <= stock >= (livree + int(surplus) + int(perte)))):
+                        test = False
+                        break
+            
+            if test :
+                mode = ModeLivraison.objects.get(pk = datas["modelivraison"])
+                if mode.etiquette != ModeLivraison.DEFAUT :
+                    datas._mutable = True
+                    datas["chauffeur"] = None
+                    datas["vehicule"] = None
 
-#             livraison = Livraison.objects.create(
-#                 groupecommande = groupe,
-#                 agence = request.agence,
-#                 employe = request.user.employe,
-#                 lieu = datas["lieu"],
-#                 comment = datas["comment"],
-#                 mode = ModeLivraison.objects.get(pk = datas["zone"]),
-#                 zone = ZoneLivraison.objects.get(pk = datas["zone"]),
-#             )
+                livraison = Livraison.objects.create(
+                    groupecommande = groupe,
+                    agence = request.agence,
+                    employe = request.user.employe,
+                    lieu = datas["lieu"],
+                    chauffeur_id = datas["chauffeur"],
+                    vehicule_id = datas["vehicule"],
+                    modelivraison = mode,
+                    zone = ZoneLivraison.objects.get(pk = datas["zone"]),
+                )
 
-#             for item in tableau:
-#                 if "=" in item:
-#                     id, livree, surplus, perte = item.split("=")
-#                     if int(livree) > 0 :
-#                         brique = Brique.objects.get(pk = id)
-#                         LigneLivraison.objects.create(
-#                             livraison = livraison,
-#                             brique = brique,
-#                             quantite = livree,
-#                             surplus = surplus,
-#                         );
-
-#                         PerteBrique.objects.create(
-#                             agence = request.agence,
-#                             brique = brique,
-#                             quantite = perte,
-#                         );
-
-#     $params = PARAMS::findLastId();
-# 	if (getSession("commande-encours") != null) {
-# 		$datas = GROUPECOMMANDE::findBy(["id ="=>getSession("commande-encours")]);
-# 		if (count($datas) > 0) {
-# 			$groupecommande = $datas[0];
-# 			$groupecommande->actualise();
+                if mode.etiquette == ModeLivraison.TRICYCLE :
+                    tri = Tricycle.objects.create(
+                        livraison = livraison,
+                        fullname = datas["nom_tricycle"],
+                        contact = datas["contact_tricycle"],
+                        montant = datas["paye_tricycle"],
+                        etat = Etat.objects.get(etiquette = Etat.EN_COURS)
+                    )
 
 
-# 			$listeproduits = explode(",", $listeproduits);
-# 			if (count($listeproduits) > 0) {
-# 				$tests = $listeproduits;
-# 				foreach ($tests as $key => $value) {
-# 					$lot = explode("-", $value);
-# 					$id = $lot[0];
-# 					$qte = $lot[1];
-# 					$surplus = $lot[2];
-# 					$perte = end($lot);
-# 					$produit = PRODUIT::findBy(["id ="=>$id])[0];
-# 					$stock = $produit->stock(PARAMS::DATE_DEFAULT, dateAjoute(1), getSession("agence_connecte_id"));
-# 					if ($qte >= 0 && $groupecommande->reste($produit->id) >= $qte && $qte <= $stock && (($qte + $surplus + $perte) <= $stock)) {
-# 						unset($tests[$key]);
-# 					}
-# 				}
-# 				if (count($tests) == 0) {
-# 					$livraison = new LIVRAISON();
-# 					if ($vehicule_id <= VEHICULE::TRICYCLE) {
-# 						$_POST["chauffeur_id"] = 0;
-# 					}
-# 					$livraison->hydrater($_POST);
-# 					$livraison->groupecommande_id = $groupecommande->id;
-# 					$data = $livraison->enregistre();
-# 					if ($data->status) {
-# 						$montant = 0;
+                montant = 0
+                for item in tableau:
+                    if "=" in item:
+                        id, livree, surplus, perte = item.split("=")
+                        if int(livree) > 0 :
+                            brique = Brique.objects.get(pk = id)
+                            LigneLivraison.objects.create(
+                                livraison = livraison,
+                                brique = brique,
+                                quantite = livree,
+                                surplus = surplus,
+                            );
 
-# 						foreach ($listeproduits as $key => $value) {
-# 							$lot = explode("-", $value);
-# 							$id = $lot[0];
-# 							$qte = $lot[1];
-# 							$surplus = $lot[2];
-# 							$perte = end($lot);
+                            if mode.etiquette != ModeLivraison.TRICYCLE :
+                                paye = brique.cout("livraison", (livree+surplus), request.isferie)
+                                if datas["chargement"] == "on":
+                                    montant += paye / 2
+                                if datas["dechargement"] == "on":
+                                    montant += paye / 2
+    
+                            if int(perte) > 0 :
+                                PerteBrique.objects.create(
+                                    agence = request.agence,
+                                    brique = brique,
+                                    quantite = perte,
+                                    comment = "Perte lors du chargement pour la livraison N°"+str(livraison.reference)
+                                );
 
-# 							if ($vehicule_id > VEHICULE::TRICYCLE) {
-# 								$paye = $produit->coutProduction("livraison", $qte);
-# 								if (isset($chargement) && $chargement == "on") {
-# 									$montant += $paye / 2;
-# 								}
+                if montant > 0:
+                    production = Production.objects.get(date = datetime.datetime.now().date())
+                    production.montant_livraison += montant
+                    production.save();
 
-# 								if (isset($dechargement) && $dechargement == "on") {
-# 									$montant += $paye / 2;
-# 								}
-# 							}
-							
-# 							$lignelivraison = new LIGNELIVRAISON;
-# 							$lignelivraison->livraison_id = $livraison->id;
-# 							$lignelivraison->produit_id = $id;
-# 							$lignelivraison->quantite = $qte;
-# 							$lignelivraison->surplus = $surplus;
-# 							$lignelivraison->enregistre();
+                
+                return JsonResponse({"status":True, "url":reverse("fiches:livraison", args=[livraison.id])})
 
-# 							$laperte = new PERTEPRODUIT;
-# 							$laperte->typeperte_id = TYPEPERTE::CHARGEMENT;
-# 							$laperte->produit_id = $id;
-# 							$laperte->quantite = $perte;
-# 							$laperte->comment = "Perte lors du chargement pour la livraison N°$livraison->reference";
-# 							$laperte->enregistre();
-# 						}
+            else:
+                return JsonResponse({"status":False, "message":"Veuillez verifier la quantité de <b>"+brique.name+"</b> et/ou vous assurer qu'il y a suffisement de stock pour cette livraison !"})
+        
+        except Exception as e:
+            print("----------------------------------------", e)
+            return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'operation, veuillez recommencer !"})
 
-# 						$production = PRODUCTION::today();
-# 						$production->montant_livraison += $montant;
-# 						$production->save();
 
-# //////////////////////////////////////////
 
-# 						$data = $livraison->save();
-# 						$data->setUrl("fiches", "master", "bonlivraison", $data->lastid);				
-# 					}	
-# 				}else{
-# 					$data->status = false;
-# 					$data->message = "Veuillez à bien vérifier les quantités des différents produits à livrer, certaines sont incorrectes !";
-# 				}
-# 			}else{
-# 				$data->status = false;
-# 				$data->message = "Veuillez selectionner des produits et leur quantité pour passer la commande !";
-# 			}
-# 		}else{
-# 			$data->status = false;
-# 			$data->message = "Une erreur s'est produite lors de l'operation, veuillez recommencer !";
-# 		}
-# 	}else{
-# 		$data->status = false;
-# 		$data->message = "Une erreur s'est produite lors de l'operation, veuillez recommencer !";
-# 	}
-# 	echo json_encode($data);
+
+
+
+def retour_livraison(request):
+    if request.method == "POST":
+        datas = request.POST
+        try :
+            livraison = Livraison.objects.get(pk = datas["livraison"])
+            tableau = datas["tableau"].split(",")
+
+            if len(tableau) <= 0 :
+                return JsonResponse({"status": False, "message": "Veuillez selectionner des produits et leur quantité pour faire la livraison !"})
+
+            for item in tableau:
+                if "=" in item:
+                    id, perte = item.split("=")
+                    perte = int(perte)
+                    brique = Brique.objects.get(pk = id)
+                    ligne = LigneLivraison.objects.get(livraison = livraison, brique = brique)
+                    if not (ligne.quantite + ligne.surplus >= perte) :
+                        return JsonResponse({"status": False, "message": "Veuillez à bien vérifier les quantités des différents produits livrés, certaines sont incorrectes (<b>"+brique.name+"</b>) !"})
+
+
+            for item in tableau:
+                if "=" in item:
+                    id, perte = item.split("=")
+                    perte = int(perte)
+                    brique = Brique.objects.get(pk = id)
+                    ligne = LigneLivraison.objects.get(livraison = livraison, brique = brique)
+                    ligne.perte = perte
+                    ligne.livree = ligne.quantite if ligne.surplus >= perte else ((ligne.quantite + ligne.surplus)-perte)
+                    ligne.save()
+                    ligne.reste = livraison.groupecommande.reste(brique)
+                    ligne.save()
+                    if (ligne.reste > 0 and livraison.groupecommande.etat.etiquette == Etat.TERMINE):
+                        livraison.groupecommande.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
+                        livraison.groupecommande.save()
+
+            livraison.comment = datas["comment"]
+            livraison.nom_receptionniste = datas["nom_receptionniste"]
+            livraison.contact_receptionniste = datas["contact_receptionniste"]
+            livraison.datelivraison = datas["datelivraison"]
+            livraison.etat = Etat.objects.get(etiquette = Etat.TERMINE)
+            print(livraison.__dict__)
+            livraison.save()
+            print(livraison.etat)
+
+            return JsonResponse({"status":True})
+
+        except Exception as e:
+            print("----------------------------------------", e)
+            return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'operation, veuillez recommencer !"})

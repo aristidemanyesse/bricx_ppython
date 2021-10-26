@@ -169,7 +169,6 @@ def pre_save_groupe_commande(sender, instance, **kwargs):
 
 @receiver(pre_save, sender = Commande)
 def pre_save_commande(sender, instance, **kwargs):
-    print(datetime.datetime.now().date())
     if instance.datelivraison is None:
         raise Exception("Veuillez notifier une date correcte de livraison pour la commande")
     if instance.lieu == "":

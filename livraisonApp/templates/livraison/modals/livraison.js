@@ -1,5 +1,9 @@
 $(function () {
 
+    clear_ligne = function (id) {
+        $(".livraison tr[data-id =" + id + "]").hide(400).remove();
+    }
+
     $(".formLivraison").submit(function (event) {
         var formdata = new FormData($(this)[0]);
         var tableau = new Array();
@@ -19,7 +23,7 @@ $(function () {
             okLabel: "OUI, livrer",
         }, function () {
             Loader.start();
-            var url = "../../livraison/ajax/livraison/";
+            var url = "/boutique/livraisons/ajax/livraison/";
             $.post({ url: url, data: formdata, contentType: false, processData: false }, function (data) {
                 if (data.status) {
                     window.open(data.url, "_blank");
@@ -29,6 +33,30 @@ $(function () {
                 }
             }, 'json')
         })
+        return false
+    });
+
+
+    $(".formValiderLivraison").submit(function(event) {
+        Loader.start();
+        var url = "/boutique/livraisons/ajax/retour_livraison/";
+        var formdata = new FormData($(this)[0]);
+        var tableau = new Array();
+        $(this).find("table tr").each(function(index, el) {
+            var id = $(this).attr('data-id');
+            var val = $(this).find('input').val();
+            var item = id+"="+val;
+            tableau.push(item);
+        });
+        formdata.append('tableau', tableau);
+        $.post({url:url, data:formdata, contentType:false, processData:false}, function(data){
+            if (data.status) {
+                window.location.reload()
+            }else{
+                Alerter.error('Erreur !', data.message);
+            }
+        }, 'json');
+        return false;
     });
 
 });

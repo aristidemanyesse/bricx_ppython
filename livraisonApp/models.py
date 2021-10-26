@@ -5,12 +5,14 @@ from django.dispatch.dispatcher import receiver
 
 from coreApp.models import BaseModel, Etat
 import datetime, uuid
+
+from productionApp.models import Brique
 # Create your models here.
 
 class ModeLivraison(BaseModel):
-    DEFAUT = "1"
-    TRICYCLE = "2"
-    CLIENT = "3"
+    DEFAUT = 1
+    TRICYCLE = 2
+    CLIENT = 3
 
     name      = models.CharField(max_length = 255)
     etiquette = models.CharField(max_length = 255, null = True, blank=True)
@@ -45,6 +47,7 @@ class Livraison(BaseModel):
     groupecommande = models.ForeignKey("commandeApp.GroupeCommande", on_delete = models.CASCADE, related_name="groupecommande_livraison")
     agence         = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_livraison")
     modelivraison  = models.ForeignKey(ModeLivraison, on_delete = models.CASCADE, related_name="mode_livraison")
+    zone           = models.ForeignKey("commandeApp.ZoneLivraison", on_delete = models.CASCADE, related_name="zone_livraison")
     lieu           = models.CharField(max_length = 255)
     employe        = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_livraison")
     chauffeur      = models.ForeignKey(Chauffeur, on_delete = models.CASCADE, null=True, blank=True, related_name="chauffeur_livraison")
@@ -58,29 +61,44 @@ class Livraison(BaseModel):
     chargement             = models.BooleanField(default=True)
     dechargement           = models.BooleanField(default=True)
 
+
     def __str__(self):
         return "Livraison N°"+self.reference
+
+
+    def all_briques(self):
+        briques = {}
+        for brique in Brique.objects.filter(active = True, deleted = False):
+            ligne = LigneLivraison.objects.filter(livraison = self, livraison__deleted = False, brique = brique).first()
+            briques[brique] = "-"
+            if ligne != None:
+                print(ligne.livraison.etat.etiquette, Etat.EN_COURS)
+                briques[brique] = ligne.quantite if ligne.livraison.etat.etiquette == str(Etat.EN_COURS) else ligne.livree
+        return briques
+
 
 class LigneLivraison(BaseModel):
     livraison = models.ForeignKey(Livraison, on_delete = models.CASCADE, related_name="livraison_ligne")
     brique    = models.ForeignKey("productionApp.Brique", on_delete = models.CASCADE, related_name="brique_lignelivraison")
     quantite  = models.IntegerField(default = 0)
+    livree  = models.IntegerField(default = 0)
     surplus   = models.IntegerField(default = 0)
     perte     = models.IntegerField(default = 0)
     reste     = models.IntegerField(default = 0)
 
-
+    def __str__(self):
+        return str(self.quantite) + " " +self.brique.name
 
 
 class Tricycle(BaseModel):
     livraison = models.ForeignKey(Livraison, on_delete = models.CASCADE, related_name="livraison_tricycle")
     montant   = models.IntegerField(default = 0)
     fullname  = models.CharField(max_length = 255)
-    adresse   = models.CharField(max_length = 255, null = True, blank=True)
     contact   = models.CharField(max_length = 255, null = True, blank=True)
     etat      = models.ForeignKey("coreApp.Etat",  on_delete = models.CASCADE) 
 
-
+    def __str__(self):
+        return self.fullname
 
 ######################################################################################################
 ##### SIGNAUX
@@ -89,11 +107,10 @@ class Tricycle(BaseModel):
 
 
 @receiver(pre_save, sender = Livraison)
-def pre_save_commande(sender, instance, **kwargs):
-    print(datetime.datetime.now().date())
-    if instance.datelivraison is None:
-        raise Exception("Veuillez notifier une date correcte de livraison pour la commande")
-    if instance.lieu == "":
-        raise Exception("Veuillez préciser le lieu exact de la livraison !")
-    instance.reference = uuid.uuid4()
-    instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
+def pre_save_livraison(sender, instance, **kwargs):
+    if instance._state.adding:
+        if instance.lieu == "":
+            raise Exception("Veuillez préciser le lieu exact de la livraison !")
+        instance.reference = uuid.uuid4()
+        instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
+

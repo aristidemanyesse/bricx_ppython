@@ -1,0 +1,162 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block wrapper %} 
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-9">
+        <h2 class="text-uppercase text-blue gras">Les livraisons en cours</h2>
+    </div>
+    <div class="col-sm-3">
+        <!-- <button style="margin-top: 5%;" type="button" data-toggle=modal data-target='#modal-clients' class="btn btn-success btn-sm dim float-right"><i class="fa fa-plus"></i> Nouvelle livraison </button> -->
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5 class="text-capitalize">Du {{ debut }} au {{ fin }}</h5>
+            <div class="ibox-tools">
+                {% include 'extra/filter_form.html' %}
+            </div>
+        </div>
+        <div class="ibox-content" style="min-height: 300px">
+            {% if livraisons|length > 0 %}
+                <table class="footable table table-stripped toggle-arrow-tiny">
+                    <thead>
+                        <tr>
+                            <th data-toggle="true">Status</th>
+                            <th>Reference</th>
+                            <th>Livré par</th>
+                            <th></th>
+                            <th>Client</th>
+                            <th data-hide="all">Produits</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for livraison in livraisons %}
+                            <tr style="border-bottom: 2px solid black">
+                                <td class="project-status">
+                                    <span class="label label-{{ livraison.etat.classe }}">{{ livraison.etat.name }}</span>
+                                </td>
+                                <td>
+                                    <span class="text-uppercase gras">Livraison de commande</span><br>
+                                    <span>{{ livraison.reference }}</span>
+                                </td>
+                                {% if livraison.modelivraison.etiquette|add:'0' == request.modelivraison.DEFAUT|add:'0' %}
+                                    <td>
+                                        <h6 class="text-uppercase">{{ livraison.chauffeur }}</h6>
+                                        <h5 class="text-uppercase mp0">{{ livraison.vehicule }}</h5>
+                                    </td>
+                                {% elif livraison.modelivraison.etiquette|add:'0' == request.modelivraison.TRICYCLE|add:'0' %}
+                                    <td>
+                                        <h6 class="text-uppercase">{{ livraison.livraison_tricycle.get.fullname }} (Tricycle) </h6>
+                                        <h5 class="text-uppercase mp0">{{ livraison.livraison_tricycle.get.contact  }}</h5>
+                                    </td>
+                                {% else %}
+                                <td>
+                                    <h6 class="text-uppercase">Par les moyens du client</h6>
+                                </td>
+                                {% endif %}
+
+                                <td>
+                                    <h6 class="text-uppercase text-muted" style="margin: 0">Zone de livraison :  {{ livraison.zone.name }}</h6>
+                                    <small>{{ livraison.created_at|naturaltime }}</small>
+                                </td>
+                                <td>
+                                    <h5 class="text-uppercase">{{ livraison.groupecommande.client.name }}</h5>
+                                </td>
+                                <td class="border-right">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                {% for ligne in livraison.livraison_ligne.all %} 
+                                                <th class="text-center">{{ ligne.brique.name }}</th>
+                                                {% endfor %}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><h4 class="mp0 text-muted">Chargées : </h4></td>
+                                                {% for ligne in livraison.livraison_ligne.all %}
+                                                <th class="text-center ">{{ ligne.quantite |start0 }}</th>
+                                                {% endfor %}
+                                            </tr>
+                                            <tr>
+                                                <td><h4 class="mp0">surplus : </h4></td>
+                                                {% for ligne in livraison.livraison_ligne.all %}
+                                                <th class="text-center"  style="color: #ccc">{{ ligne.surplus|start0 }}</th>
+                                                {% endfor %}
+                                            </tr>
+                                            {% if livraison.etat.etiquette|add:'0' != request.etat.EN_COURS|add:'0' %}
+                                            <tr>
+                                                <td><h4 class="mp0">Livrées : </h4></td>
+                                                {% for ligne in livraison.livraison_ligne.all %}
+                                                <th class="text-center text-green">{{ ligne.livree|start0 }}</th>
+                                                {% endfor %}
+                                            </tr>
+                                            <tr>
+                                                <td><h4 class="mp0 text-red">Perte : </h4></td>
+                                                {% for ligne in livraison.livraison_ligne.all %}
+                                                <th class="text-center text-red">{{ ligne.perte|start0 }}</th>
+                                                {% endfor %}
+                                            </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </td>
+                                
+                                <td>
+                                    <a href="{% url 'fiches:livraison' livraison.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
+                                    {% if livraison.etat.etiquette|add:'0' == request.etat.EN_COURS|add:'0' %}
+                                    <button data-toggle="modal" data-target="#modal-livraison-{{ livraison.id }}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Terminer</button>
+                                    {% endif %}
+                                    
+                                    {% if livraison.etat.etiquette|add:'0' == request.etat.ANNULE|add:'0' %}
+                                    <button onclick="annuler('livraison', '{{ livraison.id }}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                                    {% endif %}
+                            <?php } }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+           
+                {% else %}
+                {% include 'extra/empty.html' %}
+                {% endif %}
+
+        </div>
+    </div>
+</div>         
+
+
+{% for livraison in livraisons %}
+{% if livraison.etat.etiquette|add:'0' == request.etat.EN_COURS|add:'0' %}
+{% include 'livraison/modals/retour_livraison.html' with livraison=livraison %}
+{% endif %}
+{% endfor %}
+
+
+}}
+{% endblock wrapper %} 
+
+{% block script %} 
+<script>
+    {% include '../modals/livraison.js' %}
+    {% include './livraison.js' %}
+</script>
+{% endblock %} 

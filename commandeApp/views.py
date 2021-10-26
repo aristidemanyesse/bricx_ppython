@@ -16,7 +16,12 @@ def commandes(request):
         commandes = groupe.commande_groupecommande.filter(deleted = False)
         livraisons = groupe.groupecommande_livraison.filter(deleted = False)
 
-        mylist = []
+        for commande in commandes:
+            commande.tipe = "commande"
+        for livraison in livraisons:
+            livraison.tipe = "livraison"
+
+        mylist = [] 
         mylist.extend(commandes)
         mylist.extend(livraisons)
         mylist.sort(key=lambda x: x.created_at)

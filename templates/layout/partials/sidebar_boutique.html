@@ -57,7 +57,7 @@
                     <a href="{% url 'boutique:commandes:commandes' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Commandes de clients</span> <span class="label label-warning float-right">{{ request.commandes | length |start0}}</span></a>
                 </li>
                 <li class="" id="livraisons">
-                    <a href="<?= $this->url($this->section, "ventes", "livraisons") ?>"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> <span class="label label-warning float-right">{{ request.livraisons | length |start0}}</span> </a>
+                    <a href="{% url 'boutique:livraisons:livraisons' %}"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> <span class="label label-warning float-right">{{ request.livraisons | length |start0}}</span> </a>
                 </li>
                 <li class="">
                     <a href="{% url 'boutique:commandes:prixparzone' %}"><i class="fa fa-list"></i> <span class="nav-label">Voir les prix par zone</span></a>
