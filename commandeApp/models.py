@@ -36,8 +36,8 @@ class GroupeCommande(BaseModel):
 
     def reste(self, brique):
         commades = LigneCommande.objects.filter(commande__groupecommande = self, commande__deleted = False, brique = brique).aggregate(Sum("quantite"))
-        livraisons = LigneLivraison.objects.filter(livraison__groupecommande = self, brique = brique).exclude(livraison__etat__etiquette = Etat.ANNULE).aggregate(Sum("quantite"))
-        return (commades["quantite__sum"] or 0) - (livraisons["quantite__sum"] or 0)
+        livraisons = LigneLivraison.objects.filter(livraison__groupecommande = self, brique = brique).exclude(livraison__etat__etiquette = Etat.ANNULE).aggregate(Sum("livree"))
+        return (commades["quantite__sum"] or 0) - (livraisons["livree__sum"] or 0)
 
     def reste_a_payer(self):
         total = 0

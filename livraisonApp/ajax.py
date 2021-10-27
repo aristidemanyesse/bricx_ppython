@@ -2,13 +2,14 @@ import datetime
 from django.shortcuts import render
 from django.template.loader import render_to_string, get_template
 from django.http import HttpResponse, JsonResponse
+from comptabilityApp.models import Mouvement, ReglementTricycle
 from livraisonApp.models import LigneLivraison, Livraison, ModeLivraison, Tricycle
 from productionApp.models import Brique, PerteBrique, Production
 from commandeApp.models import GroupeCommande, Commande, LigneCommande, LigneConversion, ZoneLivraison, PrixZoneLivraison, Conversion
 from clientApp.models import Client
 from coreApp.models import Etat
 from django.urls import reverse
-
+from comptabilityApp.tools import mouvement_pour_sortie
 
 
 def livraison(request):
@@ -167,3 +168,27 @@ def retour_livraison(request):
         except Exception as e:
             print("----------------------------------------", e)
             return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'operation, veuillez recommencer !"})
+
+
+
+
+def paye_tricycle(request):
+    if request.method == "POST":
+        datas = request.POST
+        try :
+            tricycle = Tricycle.objects.get(pk = datas["tricycle_id"])
+            name = "Reglement de la paye du  tricycle "+ tricycle.fullname +" pour la livraison N°"+str(tricycle.livraison.reference)
+            res = mouvement_pour_sortie(request, datas, name)
+            if type(res) is Mouvement:
+                ReglementTricycle.objects.create(
+                    mouvement = res,
+                    tricycle = tricycle
+                )
+                return JsonResponse({"status":True, "url":reverse("fiches:boncaisse", args=[res.id])})
+            else:
+                return JsonResponse(res)
+
+        except Exception as e:
+            print("Erreur valid tricycle", e)
+            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer !"})
+

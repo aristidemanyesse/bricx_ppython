@@ -28,7 +28,10 @@
             <div class="social-avatar">
                 <div class="media-body">
                     <a class="text-capitalize text-dark gras" href="{% url 'boutique:clients:client' item.groupe.client.id  %}">{{ item.groupe.client.name }} ({{ item.commandes | length}})</a>
-                    <small class="text-muted">Livraison prévue pour le {{ item.groupe.datelivraison }}</small><br>
+                    <small class="text-muted">Livraison prévue pour le {{ item.groupe.datelivraison | naturalday }}</small><br>
+                    {% if item.livraisons_encours|length > 0 %}
+                    <p class="text-blue">{{ item.livraisons_encours | length }} livraison{{ item.livraisons_encours|pluralize }} en cours pour cette commande</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="social-footer">

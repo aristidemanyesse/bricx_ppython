@@ -59,4 +59,28 @@ $(function () {
         return false;
     });
 
+
+    $(".formReglerTricycle").submit(function (event) {
+        $this = $(this);
+        var url = "/boutique/livraisons/ajax/paye_tricycle/";
+        alerty.confirm("Voulez-vous vraiment valider le payement ?", {
+            title: "Paye du tricycle",
+            cancelLabel: "Non",
+            okLabel: "OUI, valider",
+        }, function () {
+            var formdata = new FormData($this[0]);
+            Loader.start();
+            $.post({ url: url, data: formdata, contentType: false, processData: false }, function (data) {
+                if (data.status) {
+                    window.open(data.url, "_blank");
+                    window.location.reload();
+                } else {
+                    Alerter.error('Erreur !', data.message);
+                }
+            }, 'json')
+        })
+        return false;
+    });
+    
+
 });

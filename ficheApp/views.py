@@ -34,6 +34,16 @@ def livraison(request, id):
         return render(request, "fiches/pages/livraison.html", context)
 
 
+
+def tricycle(request, id):
+    if request.method == "GET":
+        tricycle = get_object_or_404(Livraison, pk = id)
+        context = {
+                "tricycle" : tricycle,
+            }
+        return render(request, "fiches/pages/tricycle.html", context)
+
+
 def conversion(request, id):
     if request.method == "GET":
         converson = get_object_or_404(Conversion, pk = id)

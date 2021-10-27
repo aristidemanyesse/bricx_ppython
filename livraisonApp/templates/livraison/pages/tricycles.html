@@ -1,0 +1,149 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block wrapper %} 
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-9">
+        <h2 class="text-uppercase gras">Payement des tricycles</h2>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Toutes les livraisons</h5>
+            <div class="ibox-tools">
+                {% include 'extra/filter_form.html' %}
+            </div>
+        </div>
+        <div class="ibox-content" style="min-height: 300px">
+
+            {% if tricycles|length > 0 %}
+            <table class="footable table table-stripped toggle-arrow-tiny">
+                <thead>
+                    <tr>
+
+                        <th data-toggle="true">Status</th>
+                        <th>Reference</th>
+                        <th>Nom du tricycle</th>
+                        <th>Zone de livraison</th>
+                        <th>Reste à payer</th>
+                        <th data-hide="all"></th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tricycle in tricycles %}
+                    <tr style="border-bottom: 2px solid black">
+                        <td class="project-status">
+                            <span class="label label-{{tricycle.etat.classe}}">livraison {{tricycle.livraison.etat.name}}</span>
+                        </td>
+                        <td>
+                            <span class="text-uppercase gras">Livraison N°{{tricycle.livraison.reference}}</span><br>
+                            <small>Effectué {{tricycle.created_at | naturalday }}</small>
+                        </td>
+                        <td>
+                            <h5 class="text-uppercase text-muted gras" style="margin: 3px">{{tricycle.fullname}}</h5>
+                            <span class="text-muted">{{tricycle.contact}}</span>
+                        </td>
+                        <td>
+                            <h5 class="mp0">{{tricycle.livraison.zone.name}}</h5>
+                            <small>{{tricycle.livraison.lieu}}</small>
+                        </td>
+                        <td>
+                            <h4>
+                                <span class="gras text-orange">{{tricycle.reste_a_payer|intcomma}} {{request.societe.devise }}</span>
+                            </h4>
+                        </td>
+                        <td class="border-right">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        {% for ligne in tricycle.livraison.livraison_ligne.all %} 
+                                        <th class="text-center">{{ ligne.brique.name }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><h4 class="mp0 text-muted">Chargées : </h4></td>
+                                        {% for ligne in tricycle.livraison.livraison_ligne.all %}
+                                        <th class="text-center ">{{ ligne.quantite |start0 }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                    {% if tricycle.livraison.etat.etiquette|add:'0' != request.etat.EN_COURS|add:'0' %}
+                                    <tr>
+                                        <td><h4 class="mp0">Livrées : </h4></td>
+                                        {% for ligne in tricycle.livraison.livraison_ligne.all %}
+                                        <th class="text-center text-green">{{ ligne.livree|start0 }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr>
+                                        <td><h4 class="mp0 text-red">Perte : </h4></td>
+                                        {% for ligne in tricycle.livraison.livraison_ligne.all %}
+                                        <th class="text-center text-red">{{ ligne.perte|start0 }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#modal-paye-tricycle-{{tricycle.id}}" class="btn btn-primary btn-sm"><i class="fa fa-money"></i> Payer le tricycle</button>
+                        </td>
+                        <td>
+                            {% if reste_a_payer > 0 %}
+                            <a href="{% url 'fiches:tricycle' tricycle.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not tricycle.deleted %}
+                                <button onclick="supprimer('tricycle', '{{tricycle.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                            {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    {% else %}
+                    {% include 'extra/empty.html' %}
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>           
+
+
+
+
+        {% for tricycle in tricycles %}
+        {% include 'livraison/modals/paye_tricycle.html' with tricycle=tricycle  reste=tricycle.reste_a_payer %}
+        {% endfor %}
+
+
+    }}
+    {% endblock wrapper %} 
+
+    {% block script %} 
+    <script>
+        {% include '../modals/livraison.js' %}
+        {% include './livraison.js' %}
+    </script>
+    {% endblock %} 

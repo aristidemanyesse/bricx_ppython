@@ -1,7 +1,9 @@
 
 from django.db import models
+from django.db.models.aggregates import Sum
 from django.db.models.signals import pre_save
 from django.dispatch.dispatcher import receiver
+from comptabilityApp.models import ReglementTricycle
 
 from coreApp.models import BaseModel, Etat
 import datetime, uuid
@@ -95,10 +97,14 @@ class Tricycle(BaseModel):
     montant   = models.IntegerField(default = 0)
     fullname  = models.CharField(max_length = 255)
     contact   = models.CharField(max_length = 255, null = True, blank=True)
-    etat      = models.ForeignKey("coreApp.Etat",  on_delete = models.CASCADE) 
 
     def __str__(self):
         return self.fullname
+
+
+    def reste_a_payer(self):
+        data = ReglementTricycle.objects.filter(tricycle = self).aggregate(Sum("mouvement__montant"))
+        return self.montant - (data["mouvement__montant__sum"] or 0)
 
 ######################################################################################################
 ##### SIGNAUX
@@ -112,5 +118,10 @@ def pre_save_livraison(sender, instance, **kwargs):
         if instance.lieu == "":
             raise Exception("Veuillez préciser le lieu exact de la livraison !")
         instance.reference = uuid.uuid4()
-        instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
 
+
+
+@receiver(pre_save, sender = LigneLivraison)
+def pre_save_ligne_livraison(sender, instance, **kwargs):
+    if instance._state.adding:
+        instance.livree = instance.quantite

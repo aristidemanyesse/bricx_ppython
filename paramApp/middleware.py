@@ -36,7 +36,7 @@ class InjectMyAppDataMiddleware:
 
                     request.commandes = GroupeCommande.objects.filter(agence = request.agence, etat__etiquette = Etat.EN_COURS)
                     request.livraisons = Livraison.objects.filter(groupecommande__agence = request.agence, etat__etiquette = Etat.EN_COURS)
-                    request.tricycles = Tricycle.objects.filter(livraison__groupecommande__agence = request.agence, etat__etiquette = Etat.EN_COURS)
+                    request.tricycles = Tricycle.objects.filter(livraison__groupecommande__agence = request.agence, deleted = False)
 
 
 
