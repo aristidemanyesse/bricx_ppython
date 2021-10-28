@@ -1,11 +1,11 @@
 
-<div class="modal inmodal fade" id="modal-approvisionnement" style="z-index: 99999999">
+<div class="modal inmodal fade" id="modal-achatstock">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">Nouvel approvisionnement de ressource</h4>
-            <small class="font-bold">Renseigner ces champs pour enregistrer l'approvisonnement </small>
+            <h4 class="modal-title">Nouvel achat de brique</h4>
+            <small class="font-bold">Renseigner ces champs pour enregistrer le nouvel achat </small>
         </div>
         
         <div class="row">
@@ -17,14 +17,14 @@
                     <div class="ibox-content"><br>
                         <div class="table-responsive">
                             <table class="table table-striped">
-                                <tbody class="approvisionnement">
+                                <tbody class="achatstock">
                                     <!-- rempli en Ajax -->
                                 </tbody>
                             </table>
 
                             <div class="text-center">
-                                {% for ressource in ressources %}
-                                    <button class="btn btn-white dim newressource btn-sm" data-id="{{ ressource.id }}" data-toggle="tooltip" title="{{ ressource.unite }}">{{ ressource.name }}</button>
+                                {% for brique in briques %}
+                                <button class="btn btn-white dim newproduit btn-sm" data-id="{{ brique.id }}" >{{ brique.name }}</button>
                                 {% endfor %}
                             </div>
                         </div>
@@ -34,14 +34,14 @@
             <div class="col-md-4 ">
                 <div class="ibox"  style="background-color: #eee">
                     <div class="ibox-title" style="padding-right: 2%; padding-left: 3%; ">
-                        <h5 class="text-uppercase">Finaliser l'approvisionnement </h5>
+                        <h5 class="text-uppercase">Finaliser l'achat </h5>
                     </div>
                     <div class="ibox-content container-fluid"  style="background-color: #fafafa">
-                        <form id="formApprovisionnement" >
+                        <form id="formAchat" >
                             <div>
                                 <label>Le fournisseur <span style="color: red">*</span> </label>                                
                                 <div class="input-group">
-                                    {% include 'extra/select.html' with name='fournisseur' instances=fournisseurs  %}
+                                    {% include 'extra/select.html' with name='fournisseur' instances=fournisseurs  %}   
                                 </div>
                             </div><br>
                             <div>
@@ -50,11 +50,17 @@
                                     <option value="{{request.etat.EN_COURS}}">Pas encore livré</option>
                                     <option value="{{request.etat.TERMINE}}">Déjà livré</option>
                                 </select>
+                            </div><br>
+                            <div>
+                                <label>Frais de transport <span style="color: red">*</span> </label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-bank"></i></span><input type="text" name="transport" class="form-control">
+                                </div>
                             </div><hr>
                             <div>
                                 <label>Mode de payement <span style="color: red">*</span> </label>                                
                                 <div class="input-group">
-                                    {% include 'extra/select.html' with name='modepayement' instances=modes  %}
+                                    {% include 'extra/select.html' with name='modepayement' instances=modepayements  %}   
                                 </div>
                             </div><br>
                             <div class="no_modepayement_facultatif">
@@ -64,9 +70,8 @@
                                         <span class="input-group-addon"><i class="fa fa-money"></i></span><input type="text" value="0" min="0" name="avance" class="form-control">
                                     </div>
                                 </div>
-                            </div>
+                            </div><br>
                             <div class="modepayement_facultatif">
-                                <br>
                                 <div>
                                     <label>Structure d'encaissement<span style="color: red">*</span> </label>
                                     <div class="input-group">
@@ -79,23 +84,14 @@
                                         <span class="input-group-addon"><i class="fa fa-pencil"></i></span><input type="text" name="numero" class="form-control">
                                     </div>
                                 </div>
-                            </div>  <br>
-                            <div>
-                                <div>
-                                    <label>Frais de transport<span style="color: red">*</span> </label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-money"></i></span><input type="text" value="0" min="0" name="transport" class="form-control">
-                                    </div>
-                                </div>
-                            </div><br>
+                            </div> 
                         </form><br>
                         <h3><span>Montant brut</span> <span class="pull-right montant">0 {{request.societe.devise}} </span></h3>
 
-                            <h3><span>Avance</span> <span class="pull-right avance">0 {{request.societe.devise}} </span></h3><br>
-                            <h2 class="font-bold"><span>Reste</span> <span class="pull-right total">0 {{request.societe.devise}} </span></h2>
-                            
+                        <h3><span>Avance</span> <span class="pull-right avance">0 {{request.societe.devise}} </span></h3><br>
+                        <h2 class="font-bold"><span>Reste</span> <span class="pull-right total">0 {{request.societe.devise}} </span></h2>
                         <hr/>
-                        <button onclick="validerApprovisionnement()" class="btn btn-warning btn-block dim"><i class="fa fa-check"></i> Valider l'approvisionnement</button>
+                        <button onclick="validerAchatStock()" class="btn btn-warning btn-block dim"><i class="fa fa-check"></i> Valider l'achat de ce stock</button>
                     </div>
                 </div>
 

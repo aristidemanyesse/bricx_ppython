@@ -203,6 +203,22 @@ def post_save_reglement_approvisionnement(sender, instance, created, **kwargs):
 
 
 
+@receiver(pre_save, sender = ReglementAchatStock)
+def pre_save_reglement_achatstock(sender, instance, **kwargs):
+    if instance._state.adding:
+        instance.restait = instance.achatstock.reste_a_payer() - instance.mouvement.montant
+
+
+@receiver(post_save, sender = ReglementAchatStock)
+def post_save_reglement_achatstock(sender, instance, created, **kwargs):
+    if created:
+        if instance.mouvement.mode.etiquette == ModePayement.PRELEVEMENT:
+            CompteFournisseur.objects.create(
+                fournisseur = instance.achatstock.fournisseur,
+                mouvement = instance.mouvement
+            )
+
+
 
 @receiver(pre_save, sender = Operation)
 def pre_save_operation(sender, instance, **kwargs):

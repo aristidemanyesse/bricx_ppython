@@ -81,7 +81,7 @@
                     <a href="{% url 'production:productions' %}"><i class="fa fa-building-o"></i> <span class="nav-label">Les productions </span></a>
                 </li>
                 <li class="" id="achatstock">
-                    <a href="<?= $this->url($this->section, "production", "achatstock") ?>"><i class="fa fa-handshake-o"></i> <span class="nav-label">Achat de stocks </span> <?php if (count($achatstock__) > 0) { ?> <span class="label label-warning float-right"><?= count($achatstock__) ?></span> <?php } ?></a>
+                    <a href="{% url 'fabrique:appros:achatstock' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Achat de briques </span> <?php if (count($achatstock__) > 0) { ?> <span class="label label-warning float-right"><?= count($achatstock__) ?></span> <?php } ?></a>
                 </li>
                 <li >
                     <a href="#"><i class="fa fa-trash"></i> <span class="nav-label">Les pertes</span><span class="fa arrow"></span></a>

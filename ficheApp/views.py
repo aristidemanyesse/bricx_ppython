@@ -43,6 +43,15 @@ def approvisionnement(request, id):
         return render(request, "fiches/pages/approvisionnement.html", context)
 
 
+def achatstock(request, id):
+    if request.method == "GET":
+        achatstock = get_object_or_404(Livraison, pk = id)
+        context = {
+                "achatstock" : achatstock,
+            }
+        return render(request, "fiches/pages/achatstock.html", context)
+
+
 def tricycle(request, id):
     if request.method == "GET":
         tricycle = get_object_or_404(Livraison, pk = id)

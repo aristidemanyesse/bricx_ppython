@@ -55,8 +55,8 @@ class Brique(BaseModel):
     def livraison(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_lignelivraison.filter(deleted = False, livraison__created_at__range = (debut, fin)).exclude(livraison__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
-        return res["quantite__sum"] or 0
+        res = self.brique_lignelivraison.filter(deleted = False, livraison__created_at__range = (debut, fin)).exclude(livraison__etat__etiquette = Etat.ANNULE).aggregate(Sum('livree'))
+        return res["livree__sum"] or 0
 
     def surplus(self, agence, fin=None):
         res = self.brique_lignelivraison.filter(deleted = False, livraison__created_at__lte = fin, livraison__etat__etiquette = Etat.EN_COURS).aggregate(Sum('surplus'))
@@ -65,8 +65,8 @@ class Brique(BaseModel):
     def achat(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_ligneachatstock.filter(deleted = False, achatstock__created_at__range = (debut, fin)).exclude(achatstock__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
-        return res["quantite__sum"] or 0
+        res = self.brique_ligneachatstock.filter(deleted = False, achatstock__created_at__range = (debut, fin)).exclude(achatstock__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite_recu'))
+        return res["quantite_recu__sum"] or 0
 
 
     def perte(self, agence, debut=None, fin=None):
@@ -164,8 +164,8 @@ class Ressource(BaseModel):
     def achat(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.ressource_ligneapprovisionnement.filter(deleted = False, approvisionnement__created_at__range = (debut, fin), approvisionnement__etat__etiquette = Etat.TERMINE).aggregate(Sum('quantite'))
-        return res["quantite__sum"] or 0
+        res = self.ressource_ligneapprovisionnement.filter(deleted = False, approvisionnement__created_at__range = (debut, fin), approvisionnement__etat__etiquette = Etat.TERMINE).aggregate(Sum('quantite_recu'))
+        return res["quantite_recu__sum"] or 0
 
     def perte(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")

@@ -1,10 +1,11 @@
 
 from django.db import models
 from commandeApp.models import Commande
-from comptabilityApp.models import ReglementApprovisionnement, TypeMouvement
+from comptabilityApp.models import ReglementAchatStock, ReglementApprovisionnement, TypeMouvement
 from django.db.models import Avg, Sum
 
 from coreApp.models import BaseModel, Etat
+from ficheApp.views import achatstock
 
 # Create your models here.
 
@@ -52,13 +53,17 @@ class AchatStock(BaseModel):
     montant           = models.IntegerField(default = 0)
     avance            = models.IntegerField(default = 0)    
     reste             = models.IntegerField(default = 0)    
+    transport          = models.IntegerField(default = 0)
     fournisseur       = models.ForeignKey(Fournisseur, on_delete = models.CASCADE, related_name="fournisseur_achatstock")
     etat              = models.ForeignKey("coreApp.Etat",  on_delete = models.CASCADE) 
     employe           = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_achatstock")
-    employe_reception = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_reception_achatstock")
+    employe_reception = models.ForeignKey("organisationApp.Employe", null = True, blank=True,  on_delete = models.CASCADE, related_name="employe_reception_achatstock")
     comment           = models.TextField(default="",  null = True, blank=True);
     datelivraison     = models.DateTimeField(null = True, blank=True)
 
+    def reste_a_payer(self):
+        data = ReglementAchatStock.objects.filter(achatstock = self).aggregate(Sum("mouvement__montant"))
+        return self.montant - (data["mouvement__montant__sum"] or 0)
 
 class LigneAchatStock(BaseModel):
     achatstock    = models.ForeignKey(AchatStock, on_delete = models.CASCADE, related_name="achatstock_ligne")
