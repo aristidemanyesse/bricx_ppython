@@ -111,7 +111,7 @@ def valider_approvisionnement(request):
                 return JsonResponse({"status": False, "message": "L'avance de la commande est incorrect, verifiez-le!"})
 
             if mode.etiquette == ModePayement.PRELEVEMENT:
-                if (request.agence_compte.solde_actuel() > (avance + int(datas["transport"]))):
+                if not (request.agence_compte.solde_actuel() >= (avance + int(datas["transport"]))):
                     return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler l'avance et les frais de transport de l'approvisionnement !"})
 
             etat = Etat.objects.get(etiquette = datas["etat"]) 

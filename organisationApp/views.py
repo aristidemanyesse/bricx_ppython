@@ -53,7 +53,32 @@ def dashboard_boutique(request):
 
 
 
+
 def dashboard_fabrique(request):
-    agence = get_object_or_404(Agence, pk=request.agence.id)
-    return render(request, "fabrique/pages/dashboard.html")
+    datas = {}
+    datas_ressources = {}
+    for brique in Brique.objects.filter(active = True, deleted = False):
+        data = {
+            "attente" : brique.attente(request.agence),
+            "livrable" : brique.livrable(request.agence),
+            "commande" : brique.commande(request.agence),
+        }
+        datas[brique] = data
+
+
+
+    for ressource in Ressource.objects.filter(active = True, deleted = False):
+        data = {
+            "stock" : ressource.stock(request.agence),
+        }
+        datas_ressources[ressource] = data
+
+
+
+    context = {
+        "datas" : datas,
+        "datas_ressources" : datas_ressources
+    }
+
+    return render(request, "fabrique/pages/dashboard.html", context)
 

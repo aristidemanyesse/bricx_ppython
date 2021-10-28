@@ -3,7 +3,8 @@ from django.db import models
 from commandeApp.models import Commande
 from comptabilityApp.models import ReglementAchatStock, ReglementApprovisionnement, TypeMouvement
 from django.db.models import Avg, Sum
-
+from django.db.models.signals import pre_save
+from django.dispatch.dispatcher import receiver
 from coreApp.models import BaseModel, Etat
 from ficheApp.views import achatstock
 
@@ -107,3 +108,16 @@ class LigneApprovisionnement(BaseModel):
     quantite          = models.IntegerField(default = 0)
     quantite_recu     = models.IntegerField(default = 0)
     price             = models.IntegerField(default = 0)
+
+
+
+
+######################################################################################################
+##### SIGNAUX
+
+
+@receiver(pre_save, sender = LigneAchatStock)
+@receiver(pre_save, sender = LigneApprovisionnement)
+def pre_save_ligne_appro(sender, instance, **kwargs):
+    if instance._state.adding:
+        instance.quantite_recu = instance.quantite

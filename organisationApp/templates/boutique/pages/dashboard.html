@@ -11,7 +11,7 @@
         <div class=" border-bottom white-bg dashboard-header">
             <br>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 border-right">
                     <div class="text-center">
                         <img src="{% static request.societe.logo %}" class="img-circle" style="height: 140px; width: 140px" alt=""><br><br>
                         <h2 class="text-uppercase">{{request.agence.name}}</h2><br>
@@ -45,7 +45,7 @@
                                 <label>Qte commandée</label>
                             </div>
                         </div>
-                        <small>Graphe de comparaison des différents modes de ventes</small>
+                        <small class="text-uppercase">Courbe représentative du stock de produits en fonction des commandes actuelles</small>
                     </div><hr>
                     <div class="row stat-list text-center">
                         <div class="col-4 ">
