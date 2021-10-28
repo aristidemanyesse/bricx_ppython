@@ -33,6 +33,8 @@ class InjectMyAppDataMiddleware:
                 request.agence = None
                 if access is not None:
                     request.agence = access.agence
+                    compte = request.agence.agence_compte.all().first()
+                    request.agence_compte = compte
 
                     request.commandes = GroupeCommande.objects.filter(agence = request.agence, etat__etiquette = Etat.EN_COURS)
                     request.livraisons = Livraison.objects.filter(groupecommande__agence = request.agence, etat__etiquette = Etat.EN_COURS)

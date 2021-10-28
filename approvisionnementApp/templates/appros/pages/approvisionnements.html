@@ -1,0 +1,146 @@
+{% extends "layout/base_sidebar_fabrique.html" %} 
+{% load static %} 
+{% load humanize %} 
+{% load myfilters %} 
+
+{% block wrapper %} 
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-9">
+        <h2 class="text-uppercase text-warning gras">Tous les approvisionnements</h2>
+    </div>
+    <div class="col-sm-3">
+        <button style="margin-top: 5%" data-toggle='modal' data-target="#modal-approvisionnement" class="btn btn-warning dim"><i class="fa fa-plus"></i> Nouvel Approvisionnement</button>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Tous les approvisionnements</h5>
+            <div class="ibox-tools">
+                {% include 'extra/filter_form.html' %}
+            </div>
+        </div>
+        <div class="ibox-content" style="min-height: 300px;">
+
+            {% if appros|length > 0 %}
+            <table class="footable table table-stripped toggle-arrow-tiny">
+                <thead>
+                    <tr>
+
+                        <th data-toggle="true">Status</th>
+                        <th>Reference</th>
+                        <th>Entrepôt</th>
+                        <th>Enregistré par</th>
+                        <th>Montant</th>
+                        <th>Reste à payer</th>
+                        <th>Fournisseur</th>
+                        <th data-hide="all"></th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appro in appros %}
+                    <tr style="border-bottom: 2px solid black">
+                        <td class="project-status">
+                            <span class="label label-{{appro.etat.classe}}">{{appro.etat.name}}</span>
+                        </td>
+                        <td>
+                            <span class="text-uppercase gras">Appro N°{{appro.reference}}</span><br>
+                            <small>{{appro.created_at | naturaltime }}</small>
+                        </td>
+                        <td>
+                            <h6 class="text-uppercase text-muted gras" style="margin: 0">{{appro.agence.name }}</h6>
+                        </td>
+                        <td><i class="fa fa-user"></i> {{appro.employe.get_full_name}}</td>
+                        <td>
+                            <h4>
+                                <span class="gras text-orange">{{appro.montant|intcomma}} {{request.societe.devise }}</span>
+                            </h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <span class="gras text-red">{{appro.reste_a_payer|intcomma}} {{request.societe.devise }}</span>
+                            </h4>
+                        </td>
+                        <td class="text-uppercase"><a href="{% url 'fabrique:appros:fournisseur' appro.fournisseur.id %}"><i class="fa fa-truck"></i> {{appro.fournisseur.name}}</a></td>
+                        <td class="border-right">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="no">
+                                        <td></td>
+                                        {% for ligne in appro.approvisionnement_ligne.all %}
+                                        <th class="text-center gras"><span class="small">{{ligne.ressource.name}}</span></th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class='gras'>Demandé</td>
+                                        {% for ligne in appro.approvisionnement_ligne.all %}
+                                        <td class="text-center">{{ligne.quantite|start0}} {{ligne.ressource.unite}}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% if appro.etat.etiquette|add:0 == request.etat.TERMINE|add:0 %}
+                                    <tr>
+                                        <td class='gras'>Livrée</td>
+                                        {% for ligne in appro.approvisionnement_ligne.all %}
+                                        <td class="text-center">{{ligne.quantite_recu|start0}} {{ligne.ressource.unite}}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endif %}
+                                </tbody>  
+                            </table>
+                        </td>
+                        <td>
+                            <a href="{% url 'fiches:approvisionnement' appro.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
+                            {% if appro.etat.etiquette|add:0 == request.etat.EN_COURS|add:0 %}
+                            <button data-toggle='modal' data-target="#modal-approvisionnement-{{appro.id}}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Valider</button>
+                            {% endif %}
+                            {% if appro.reste_a_payer > 0 %}
+                                <button data-toggle="modal" data-target="#modal-regler-appro-{{ appro.id }}" onclick="session('fournisseur_id', '{{appro.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Payer</button>
+                            {% endif %}
+                            {% if appro.etat.etiquette|add:0 != request.etat.ANNULE|add:0 %}
+                            <button onclick="annuler('approvisionnement', '{{appro.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <ul class="pagination float-right"></ul>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            {% else %}
+            {% include 'extra/empty.html' %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+{% include 'appros/modals/approvisionnement.html' with modes=modepayements fournisseurs=fournisseurs ressources=ressources %}
+
+
+{% for appro in appros %}
+{% include 'appros/modals/terminer_appro.html' with appro=appro %}
+{% include 'appros/modals/regler_appro.html' with appro=appro modes=modepayements %}
+{% endfor %} 
+
+
+{% endblock wrapper %} 
+
+
+
+{% block script %}
+<script>
+    {% include "./approvisionnements.js" %}
+</script>
+{% endblock %}

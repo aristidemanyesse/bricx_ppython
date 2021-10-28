@@ -34,6 +34,8 @@ class TypeReglement(BaseModel):
 
 class CategoryOperation(BaseModel):
     REFUND_CLIENT = 5
+    TRANSPORT = 6
+    REFUND_FOURNISSEUR = 7
 
     name      = models.CharField(max_length = 255)
     etiquette = models.CharField(max_length = 255)
@@ -64,7 +66,8 @@ class Compte(BaseModel):
         return self.name
 
     def solde_actuel(self):
-        return 166132
+        return self.initial_amount
+        
 
 class Mouvement(BaseModel):
     name      = models.CharField(max_length = 255)
@@ -86,6 +89,8 @@ class ReglementApprovisionnement(BaseModel):
     approvisionnement = models.ForeignKey("approvisionnementApp.Approvisionnement", on_delete = models.CASCADE, related_name="approvisionnement_reglement")
     restait  = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.mouvement.reference
 
 class ReglementCommande(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement_commande")
@@ -93,7 +98,7 @@ class ReglementCommande(BaseModel):
     restait  = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.reglement.reference
+        return self.mouvement.reference
 
 
 class CompteClient(BaseModel):
@@ -103,6 +108,16 @@ class CompteClient(BaseModel):
 
     def __str__(self):
         return self.client.name +" | "+self.mouvement.reference
+
+
+
+class CompteFournisseur(BaseModel):
+    mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_comptefournisseur")
+    fournisseur  = models.ForeignKey("approvisionnementApp.Fournisseur", on_delete = models.CASCADE, related_name="fournisseur_compte")
+    is_dette = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.fournisseur.fullname +" | "+self.mouvement.reference
 
 
 class ReglementAchatStock(BaseModel):
@@ -168,6 +183,23 @@ def post_save_reglement_commande(sender, instance, created, **kwargs):
                 mouvement = instance.mouvement
             )
 
+
+
+
+@receiver(pre_save, sender = ReglementApprovisionnement)
+def pre_save_reglement_approvisionnement(sender, instance, **kwargs):
+    if instance._state.adding:
+        instance.restait = instance.approvisionnement.reste_a_payer() - instance.mouvement.montant
+
+
+@receiver(post_save, sender = ReglementApprovisionnement)
+def post_save_reglement_approvisionnement(sender, instance, created, **kwargs):
+    if created:
+        if instance.mouvement.mode.etiquette == ModePayement.PRELEVEMENT:
+            CompteFournisseur.objects.create(
+                fournisseur = instance.approvisionnement.fournisseur,
+                mouvement = instance.mouvement
+            )
 
 
 

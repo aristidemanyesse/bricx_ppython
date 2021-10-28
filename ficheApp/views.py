@@ -34,6 +34,14 @@ def livraison(request, id):
         return render(request, "fiches/pages/livraison.html", context)
 
 
+def approvisionnement(request, id):
+    if request.method == "GET":
+        approvisionnement = get_object_or_404(Livraison, pk = id)
+        context = {
+                "approvisionnement" : approvisionnement,
+            }
+        return render(request, "fiches/pages/approvisionnement.html", context)
+
 
 def tricycle(request, id):
     if request.method == "GET":

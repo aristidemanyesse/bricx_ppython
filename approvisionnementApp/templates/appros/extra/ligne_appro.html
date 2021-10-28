@@ -1,0 +1,23 @@
+{% load static %}
+
+
+<tr class="border-0 border-bottom " data-id="{{ressource.id}}">
+    <td><i class="fa fa-close text-red cursor" onclick="delete_ligne('{{ressource.id}}')" style="font-size: 18px;"></i></td>
+    <td >
+        <img style="width: 40px" src="{% static ressource.image %}">
+    </td>
+    <td class="text-left">
+        <h4 class="mp0 text-uppercase">{{ressource.name}}</h4>
+        <small>en {{ressource.unite}}</small>
+    </td>
+    <td width="90">
+        <label>Quantité</label>
+        <input type="text" number name="quantite" class="form-control text-center gras" value="1" style="padding: 3px">
+    </td>
+    <td class="gras"><br><br>{{ressource.unite}}</td>
+    <td width="120">
+        <label>Prix d'achat</label>
+        <input type="text" number name="prix" class="form-control text-center gras prix" value="1" style="padding: 3px">
+    </td>
+    <td class="gras"><br><br>{{request.societe.devise}}</td>
+</tr>

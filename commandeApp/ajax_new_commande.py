@@ -186,7 +186,7 @@ def valider_commande(request):
 
 
             commande.acompte_client = client.acompte_actuel();
-            commande.acompte_client = client.dette_totale();
+            commande.dette_client = client.dette_totale();
             commande.save();
 
             return JsonResponse({"status": True, "url1":reverse("fiches:commande", args=[commande.id])})

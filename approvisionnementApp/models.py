@@ -1,7 +1,10 @@
 
 from django.db import models
+from commandeApp.models import Commande
+from comptabilityApp.models import ReglementApprovisionnement, TypeMouvement
+from django.db.models import Avg, Sum
 
-from coreApp.models import BaseModel
+from coreApp.models import BaseModel, Etat
 
 # Create your models here.
 
@@ -15,7 +18,32 @@ class Fournisseur(BaseModel):
     description     = models.TextField(default="",  null = True, blank=True)
     acompte_initial = models.IntegerField(default=0)
     dette_initial   = models.IntegerField(default=0)
-    seuil_credit    = models.IntegerField(default=0)
+    image          = models.ImageField(upload_to = "storage/images/fournisseurs/", max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return self.fullname
+
+    def name(self):
+        return self.fullname
+
+
+    def acompte_actuel(self):
+        total = 0
+        datas = self.fournisseur_compte.filter(mouvement__type__etiquette = TypeMouvement.ENTREE).aggregate(Sum("mouvement__montant"))
+        total += datas["mouvement__montant__sum"] or 0
+        datas = self.fournisseur_compte.filter(mouvement__type__etiquette = TypeMouvement.SORTIE).aggregate(Sum("mouvement__montant"))
+        total -= datas["mouvement__montant__sum"] or 0
+        return self.acompte_initial + total
+
+
+    def dette_totale(self):
+        total = 0
+        for appro in self.fournisseur_approvisionnement.filter(deleted = False).exclude(etat__etiquette = Etat.ANNULE):
+            total += appro.reste_a_payer()
+
+        datas = self.fournisseur_compte.filter(is_dette = True, mouvement__type__etiquette = TypeMouvement.SORTIE).aggregate(Sum("mouvement__montant"))
+        total -= datas["mouvement__montant__sum"] or 0
+        return self.dette_initial + total
 
 
 class AchatStock(BaseModel):
@@ -58,6 +86,14 @@ class Approvisionnement(BaseModel):
 
     acompteFournisseur = models.IntegerField(default = 0)
     detteFournisseur   = models.IntegerField(default = 0)
+
+    def __str__(self):
+        return "Approvisionnement N°"+str(self.id)
+
+    
+    def reste_a_payer(self):
+        data = ReglementApprovisionnement.objects.filter(approvisionnement = self).aggregate(Sum("mouvement__montant"))
+        return self.montant - (data["mouvement__montant__sum"] or 0)
 
 
 class LigneApprovisionnement(BaseModel):

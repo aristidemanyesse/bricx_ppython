@@ -8,6 +8,7 @@ from django.urls import reverse
 import coreApp.tools as tools
 
 from clientApp.forms import *
+from approvisionnementApp.forms import *
 from commandeApp.forms import *
 from productionApp.forms import *
 from comptabilityApp.forms import *
@@ -37,6 +38,8 @@ def save(request):
                     item = form.save()
                     if modelform == "ClientForm":
                         return JsonResponse({"status":True, "url" : reverse("boutique:clients:client", args=[item.id])})
+                    if modelform == "FournisseurForm":
+                        return JsonResponse({"status":True, "url" : reverse("fabrique:appros:fournisseur", args=[item.id])})
                     return JsonResponse({"status":True})
                 
                 else:

@@ -9,5 +9,6 @@ from . import traitement
 app_name = "fabrique"
 urlpatterns = [
     path('', views.fabrique, name="home"),  
+    path('appros/', include("approvisionnementApp.urls") ),
 
 ]

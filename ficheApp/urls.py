@@ -12,6 +12,7 @@ urlpatterns = [
     path('commande/<uuid:id>/', views.commande, name="commande"),
     path('livraison/<uuid:id>/', views.livraison, name="livraison"),
     path('tricycle/<uuid:id>/', views.tricycle, name="tricycle"),
+    path('approvisionnement/<uuid:id>/', views.approvisionnement, name="approvisionnement"),
     path('conversion/<uuid:id>/', views.conversion, name="conversion"),
     path('production/<uuid:id>/', views.production, name="production"),
     path('boncaisse/<uuid:id>/', views.boncaisse, name="boncaisse"),

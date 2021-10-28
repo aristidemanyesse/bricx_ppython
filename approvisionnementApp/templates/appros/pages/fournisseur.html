@@ -1,0 +1,222 @@
+{% extends "layout/base_sidebar_fabrique.html" %} 
+{% load static %} 
+{% load humanize %} 
+{% load myfilters %} 
+
+{% block wrapper %} 
+
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <p></p>
+                    <div class="">                                
+                       <ul class="nav nav-tabs">
+                        <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> Approvision. en cours</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#tab-3"><i class="fa fa-money"></i> Transactions de caisse</a></li>
+                    </ul>
+                    <div class="tab-content" style="min-height: 300px;">
+
+                        <div id="tab-1" class="tab-pane active"><br>
+                            <div class="row container-fluid">
+
+                            </div>
+                            <div class="">
+                                {% if appros|length > 0 %}
+                                <table class="footable table table-stripped toggle-arrow-tiny">
+                                    <thead>
+                                        <tr>
+                                            <th data-toggle="true">Status</th>
+                                            <th>Reference</th>
+                                            <th>Enregistré par</th>
+                                            <th>Montant</th>
+                                            <th>Reste à payer</th>
+                                            <th data-hide="all"></th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for appro in appros %}
+                                            <tr style="border-bottom: 2px solid black">
+                                                <td class="project-status">
+                                                    <span class="label label-{{appro.etat.classe}}">{{appro.etat.name}}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-uppercase gras">Appro N°{{appro.reference}}</span><br>
+                                                    <small>{{appro.created_at | naturaltime }}</small>
+                                                </td>
+                                                <td><i class="fa fa-user"></i> {{appro.employe.get_full_name}}</td>
+                                                <td>
+                                                    <h4>
+                                                        <span class="gras text-orange">{{appro.montant|intcomma}} {{request.societe.devise }}</span>
+                                                    </h4>
+                                                </td>
+                                                <td>
+                                                    <h4>
+                                                        <span class="gras text-red">{{appro.reste_a_payer|intcomma}} {{request.societe.devise }}</span>
+                                                    </h4>
+                                                </td>
+                                                <td class="border-right">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr class="no">
+                                                                <td></td>
+                                                                {% for ligne in appro.approvisionnement_ligne.all %}
+                                                                    <th class="text-center gras"><span class="small">{{ligne.ressource.name}}</span></th>
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class='gras'>Demandé</td>
+                                                                {% for ligne in appro.approvisionnement_ligne.all %}
+                                                                    <td class="text-center">{{ligne.quantite|start0}} {{ligne.ressource.unite}}</td>
+                                                                {% endfor %}
+                                                            </tr>
+                                                            {% if appro.etat.etiquette|add:0 == request.etat.TERMINE|add:0 %}
+                                                            <tr>
+                                                                <td class='gras'>livrée</td>
+                                                                {% for ligne in appro.approvisionnement_ligne.all %}
+                                                                <td class="text-center">{{ligne.quantite_recu|start0}} {{ligne.ressource.unite}}</td>
+                                                                {% endfor %}
+                                                            </tr>
+                                                            {% endif %}
+                                                        </tbody>  
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <a href="{% url 'fiches:approvisionnement' appro.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
+                                                    {% if appro.reste_a_payer > 0 %}
+                                                        <button data-toggle="modal" data-target="#modal-regler-appro-{{appro.id }}" onclick="session('fournisseur_id', '{{appro.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Payer</button>
+                                                    {% endif %}
+                                                    {% if appro.etat.etiquette|add:0 == request.etat.EN_COURS|add:0 %}
+                                                    <button data-toggle='modal' data-target="#modal-approvisionnement-{{appro.id}}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Valider</button>
+                                                    {% endif %}
+                                                    {% if appro.etat.etiquette|add:0 != request.etat.ANNULE|add:0 %}
+                            <button onclick="annuler('approvisionnement', '{{appro.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                            {% endif %}
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5">
+                                                <ul class="pagination float-right"></ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                {% else %}
+                                {% include 'extra/empty.html' %}
+                                {% endif %}
+                        </div>
+                    </div>
+
+
+                    <div id="tab-3" class="tab-pane"><br>
+                        {% for transaction in transactions %}
+                            <div class="timeline-item">
+                                <div class="row">
+                                    <div class="col-2 date" style="padding-right: 1%; padding-left: 1%;">
+                                        <i data-toggle="tooltip" tiitle="Imprimer le bon" class="fa fa-file-text"></i>
+                                        {{transaction.created | time}}
+                                        <br/>
+                                        <small class="text-navy">{{transaction.created}}</small>
+                                    </div>
+                                    <div class="col-10 content">
+                                        <div>
+                                         <span class="">Bon de caisse N°<strong>{{transaction.reference}}</strong></span>
+                                         <span class="pull-right text-right ">
+                                            <span class="gras" style="font-size: 16px">{{transaction.montant|intcomma}} {{request.societe.devise}}</span> <br>
+                                            <small>Par {{transaction.modepayement.name}}</small><br>
+                                            {% if transaction.mouvement.mode.etiquette|add:0 != request.modepayement.PRELEVEMENT|add:0 %}
+                                                <a href="{% url 'fiches:boncaisse' transaction.id %}" target="_blank" class="simple_tag"><i class="fa fa-file-text-o"></i> Bon de caisse</a>
+                                                {% endif %} 
+                                        </span>
+                                    </div>
+                                    <p class="m-b-xs mp0">{{transaction.comment}} </p>
+                                    <p class="m-b-xs">{{transaction.structure}} - {{transaction.numero}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}                
+                </div>
+
+
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<div class="col-sm-4">
+<div class="ibox selected">
+
+<div class="ibox-content">
+    <div class="tab-content">
+        <div id="contact-1" class="tab-pane active">
+            <h2>{{fournisseur.fullname}} 
+            <i onclick="modification('fournisseur', '{{fournisseur.id}}')" data-toggle="modal" data-target="#modal-fournisseur" class="pull-right fa fa-pencil cursor"></i>
+        </h2>
+        <address>
+            <i class="fa fa-phone"></i>&nbsp; {{fournisseur.contact}}<br>
+            <i class="fa fa-map-marker"></i>&nbsp; {{fournisseur.adresse}}<br>
+            <i class="fa fa-envelope"></i>&nbsp; {{fournisseur.email}}
+        </address><hr>
+
+        <div class="m-b-lg">
+            <span>Acompte actuel chez le fournisseur</span><br>
+            <h2 class="font-bold d-inline">{{fournisseur.acompte_actuel|intcomma}} {{request.societe.devise }}</h2> 
+            <button data-toggle="modal" data-target="#modal-crediter" class="cursor simple_tag pull-right"><i class="fa fa-plus"></i> Crediter acompte</button><br><br>
+
+            {% if fournisseur.acompte_actuel > 0 %}
+                <button style="font-size: 11px" type="button" data-toggle="modal" data-target="#modal-rembourser" class="btn btn-danger dim btn-block"><i
+                    class="fa fa-minus"></i> Se faire rembourser par le fournisseur
+                </button>
+            {% endif %} 
+
+            <hr>
+
+            <span>Dette actuelle chez le fournisseur</span><br>
+            <h2 class="font-bold d-inline text-red">{{fournisseur.dette_totale|intcomma}} {{request.societe.devise }}</h2> 
+            {% if fournisseur.dette_totale > 0 %}
+                <button onclick="reglerToutesDettes('{{fournisseur.id}}')" class="btn btn-xs dim btn-outline-danger pull-right"><i class="fa fa-money"></i> Régler toutes les dettes</button>
+            {% endif %}                   
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% include '../modals/fournisseur.html' with element=fournisseur %}
+{% include '../modals/crediter.html' with items=modepayements %}
+{% include '../modals/rembourser.html' with items=modepayements %}
+
+
+
+{% for appro in appros %}
+{% include 'appros/modals/terminer_appro.html' with appro=appro %}
+{% include 'appros/modals/regler_appro.html' with appro=appro modes=modepayements %}
+{% endfor %} 
+
+
+{% endblock wrapper %} 
+
+
+{% block script %}
+<script>
+    {% include "./fournisseur.js" %}
+    {% include "./approvisionnements.js" %}
+</script>
+{% endblock %}

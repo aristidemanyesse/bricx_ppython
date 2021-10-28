@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TypeOperationCaisse, Operation, CategoryOperation, Compte, CompteClient, ReglementCommande, TypeReglement, Mouvement, TypeMouvement, ModePayement
+from .models import ReglementApprovisionnement, TypeOperationCaisse, Operation, CategoryOperation, Compte, CompteClient, ReglementCommande, TypeReglement, Mouvement, TypeMouvement, ModePayement
 # Register your models here.
 admin.site.register(Compte)
 admin.site.register(CompteClient)
@@ -11,3 +11,4 @@ admin.site.register(Mouvement)
 admin.site.register(ModePayement)
 admin.site.register(TypeReglement)
 admin.site.register(ReglementCommande)
+admin.site.register(ReglementApprovisionnement)

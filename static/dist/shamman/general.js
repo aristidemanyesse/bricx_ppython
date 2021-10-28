@@ -37,6 +37,14 @@ $(function () {
         });
     });
 
+    //selection des images
+    $('body').on("click", "button.btn_image", function(event) {
+		$(this).prev("input[type=file]").trigger('click');
+	});
+	$('body').on("change", ".modal input[type=file]", function(e) {
+		var src = URL.createObjectURL(e.target.files[0])
+		$(this).prev("img.logo").attr('src', src);
+	});
 
     //selection du mode de payement
     $("div.modepayement_facultatif").hide();

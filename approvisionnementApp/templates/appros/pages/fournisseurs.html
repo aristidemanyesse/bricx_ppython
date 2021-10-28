@@ -1,0 +1,58 @@
+{% extends "layout/base_sidebar_fabrique.html" %} 
+{% load static %} 
+{% load myfilters %} 
+
+{% block wrapper %} 
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-9">
+        <h2 class="text-uppercase text-green gras">Liste des fournisseurs</h2>
+    </div>
+    <div class="col-sm-3 text-right">
+     <button data-toggle="modal" data-target="#modal-fournisseur" style="margin-top: 5%" class="btn btn-primary dim"><i class="fa fa-plus"></i> Nouveau fournisseur</button>
+ </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Tous les fournisseurs ({{ fournisseurs|length|start0 }})</h5>
+        </div>
+        <div class="ibox-content">
+            {% if fournisseurs|length > 0 %}
+            <table class="table table-hover issue-tracker">
+                <tbody>
+                    <tr>
+                        {% for fournisseur in fournisseurs %}
+                        <td ><img style="width: 60px" src="{% static fournisseur.image %}"></td>
+                        <td>
+                            <a><h5 class="text-uppercase gras ">{{fournisseur.fullname}}</h5></a>
+                            <small>{{fournisseur.description}}</small>
+                        </td>
+                        <td>
+                            {{fournisseur.adresse}}<br>
+                        </td>
+                        <td>
+                            {{fournisseur.email}}<br>
+                            {{fournisseur.contact}}
+                        </td>
+                        <td class="text-right">
+                            <a href="{% url 'fabrique:appros:fournisseur' fournisseur.id %}" class="btn btn-white btn-xs"><i class="fa fa-eye"></i> Voir le compte</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            {% include 'extra/empty.html' %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+{% include '../modals/fournisseur.html' %}
+
+{% endblock wrapper %} 
+
