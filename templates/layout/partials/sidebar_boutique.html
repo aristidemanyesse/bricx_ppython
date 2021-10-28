@@ -32,7 +32,7 @@
 
             <ul class="nav metismenu" id="side-menu">
                 <li class="" id="dashboard">
-                    <a href="<?= $this->url($this->section, "master", "dashboard") ?>"><i class="fa fa-tachometer"></i> <span class="nav-label">Tableau de bord</span></a>
+                    <a href="{% url 'boutique:dashboard_boutique' %}"><i class="fa fa-tachometer"></i> <span class="nav-label">Tableau de bord</span></a>
                 </li>
                 <li class="" id="clients">
                     <a href="{% url 'boutique:clients:clients' %}"><i class="fa fa-users"></i> <span class="nav-label">Liste des clients</span></a>

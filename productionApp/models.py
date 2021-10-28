@@ -37,10 +37,17 @@ class Brique(BaseModel):
         return res["quantite__sum"] or 0
 
     def livrable(self, agence, fin=None):
-        debut = datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
         initial = self.brique_initialagence.filter(deleted = False, agence = agence).aggregate(Sum('quantite'))
         return (initial["quantite__sum"] or 0) + self.production(agence, None, fin) + self.achat(agence, None, fin) - self.livraison(agence, None, fin) - self.perte(agence, None, fin) - self.surplus(agence, fin) - self.attente(agence, fin);
+
+    def commande(self, agence, fin=None):
+        fin = fin or datetime.date.today() + datetime.timedelta(days=1)
+        total = 0
+        for groupe in commandeApp.models.GroupeCommande.objects.filter(deleted=False, etat__etiquette = Etat.EN_COURS, created_at__lte = fin):
+            total += groupe.reste(self)
+        return total
+
 
     def production(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
@@ -48,8 +55,6 @@ class Brique(BaseModel):
         print(debut, fin)
         res = self.brique_ligneproduction.filter(deleted = False, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
-
-
 
 
     def livraison(self, agence, debut=None, fin=None):
@@ -139,6 +144,14 @@ class Brique(BaseModel):
         except:
             return 0  
 
+    
+    @staticmethod
+    def en_rupture(agence):
+        datas = []
+        for brique in Brique.objects.filter():
+            if brique.stock(agence) <= brique.alert_stock:
+                datas.append(brique)
+        return datas
 
 class Ressource(BaseModel):
     name      = models.CharField(max_length = 255)

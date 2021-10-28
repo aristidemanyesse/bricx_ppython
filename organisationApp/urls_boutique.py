@@ -8,7 +8,7 @@ from . import views
 
 app_name = "boutique"
 urlpatterns = [
-    path('', views.boutique, name="home"),  
+    path('', views.dashboard_boutique, name="dashboard_boutique"),  
 
     path('clients/', include("clientApp.urls") ),
 

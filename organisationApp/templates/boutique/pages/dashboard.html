@@ -1,9 +1,231 @@
 {% extends "layout/base_sidebar_boutique.html" %} 
 {% load static %} 
+{% load humanize %} 
+{% load myfilters %} 
 
 {% block wrapper %} 
 
+<div class="wrapper wrapper-content">
+    <div class="animated fadeInRightBig">
+
+        <div class=" border-bottom white-bg dashboard-header">
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <img src="{% static request.societe.logo %}" class="img-circle" style="height: 140px; width: 140px" alt=""><br><br>
+                        <h2 class="text-uppercase">{{request.agence.name}}</h2><br>
+                    </div>
+                    <ul class="list-group clear-list m-t">
+                        <li class="list-group-item fist-item">
+                            Commandes en cours <span class="label label-success float-right">{{ request.commandes | length |start0}}</span> 
+                        </li>
+                        <li class="list-group-item">
+                            Livraisons en cours <span class="label label-success float-right">{{ request.livraisons | length |start0}}</span> 
+                        </li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-center">
+                        <div class="" style="margin-top: 0%">
+                            <div id="ct-chart" style="height: 280px;"></div>
+                        </div>
+                        <div class="row container text-center">
+                            <div class="col text-center">
+                                <div class="carre bg-green"></div>
+                                <label>Qte livrable</label>
+                            </div>
+                            <div class="col text-center">
+                                <div class="carre bg-orange"></div>
+                                <label>Qte non rangée</label>
+                            </div>
+                            <div class="col text-center">
+                                <div class="carre bg-gray"></div>
+                                <label>Qte commandée</label>
+                            </div>
+                        </div>
+                        <small>Graphe de comparaison des différents modes de ventes</small>
+                    </div><hr>
+                    <div class="row stat-list text-center">
+                        <div class="col-4 ">
+                            <h3 class="no-margins text-green">{{entree_du_jour | intcomma}} <small>{{request.societe.devise}}</small></h3>
+                            <small>Entrées du jour</small>
+                        </div>
+                        <div class="col-4 border-left border-right">
+                            <h2 class="no-margins gras">{{solde_actuel | intcomma}} <small>{{request.societe.devise}}</small></h2>
+                            <small>En caisse actuellement</small>
+                        </div>
+                        <div class="col-4">
+                            <h3 class="no-margins text-red">{{depense_du_jour | intcomma}} <small>{{request.societe.devise}}</small></h3>
+                            <small>Dépenses du jour</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 border-left">
+                    <div class="statistic-box" style="margin-top: 0%">
+                       <div class="ibox">
+                        <div class="ibox-content">
+                            <h5>Courbe des ventes</h5>
+                            <div id="sparkline2"></div>
+                        </div>
+
+                        <div class="ibox-content">
+                            <h5>Dette chez les clients</h5>
+                            <h2 class="no-margins">{{ dette_clients|intcomma}} {{request.societe.devise}}</h2>
+                        </div>
+
+                        <div class="ibox-content">
+                            <h5>En rupture de Stock</h5>
+                            <h2 class="no-margins">{{rupture_stock_brique|length|start0}} produit(s)</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr style="border-top: dashed 3px #ddd">
+        <hr style="border-top: dashed 3px #ddd">
+        <br><br>
+        <div class="row justify-content-center">
+            {% for item in datas.keys %}
+                <div class="col-sm-6 col-md border-right " style="margin-bottom: 3%; border-bottom: 2px solid black">
+                    <h6 class="text-uppercase text-center"><img class="border" src="{% static item.image %}" style="height: 20px;"> Stock de <u class="gras">{{item.name}}</u></h6>
+                    <ul class="list-group clear-list m-t">
+                        <li class="list-group-item">
+                            <i class="fa fa-cubes"></i> <small>Livrable</small>          
+                            <span class="float-right">
+                                <span title="quantité prête à être livrer" class="gras text-{% if datas|dict_value:item|dict_value:'livrable' >= item.alert_stock %}green {% else %}red clignote{% endif %} ?>">{{datas|dict_value:item|dict_value:'livrable'|intcomma}}</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fa fa-cubes"></i> <small>Non rangée</small>          
+                            <span class="float-right">
+                                <span class="gras text-muted" title="quantité non rangée">{{datas|dict_value:item|dict_value:'attente'|intcomma}}</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+           {% endfor %}
+        </div> 
+    </div>
+
+    </div>
+
+</div>
 
 {% endblock wrapper %} 
+
+
+{% block style %} 
+<style>
+
+.block .col-sm-6{
+	margin-bottom: 3%;
+}
+
+.carre{
+    display: inline-block;
+    width:15px;
+    height:15px;
+}
+
+.rate{
+	border-radius:  100%;
+	display: inline-block;
+	padding: 25px 27px 25px;
+	background-color: rgba(250, 177, 160);
+	color: #fff;
+	font-size: 35px;
+	font-weight: bold;
+	border: 3px dotted #ddd;
+}
+
+.ibox-title{
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+
+.ct-series-c line:nth-of-type(n+1) {
+	stroke: rgba(210, 140, 14, 0.5);
+}
+
+.ct-series-a line:nth-of-type(n+1) {
+	stroke: #bbb;
+}
+</style>
+{% endblock style %} 
+
+
+{% block script %} 
+<script>
+    $(document).ready(function() {
+
+        var id = "<?= $this->id;  ?>";
+        if (id == 1) {
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.success('Content de vous revoir de nouveau!', 'Bonjour {{request.employe.get_full_name}}');
+            }, 1300);
+        }
+
+
+ // Stocked horizontal bar
+
+ new Chartist.Bar('#ct-chart', {
+    labels: [{% for item in datas %} "{{item.name}}", " ", " ","",{% endfor %}],
+    series: [
+    [{% for item in datas %} {{datas|dict_value:item|dict_value:'attente'}}, 0, 0,0,{% endfor %}],
+    [{% for item in datas %} {{datas|dict_value:item|dict_value:'livrable'}}, 0, 0,0,{% endfor %}],
+    [{% for item in datas %} 0, {{datas|dict_value:item|dict_value:'commande'}}, 0,0,{% endfor %}],
+    ]
+}, {
+ stackBars: true,
+ axisX: {
+    labelInterpolationFnc: function(value) {
+        if (value >= 1000) {
+            return (value / 1000) + 'k';            
+        }
+        return value;
+    }
+},
+reverseData:true,
+seriesBarDistance: 10,
+horizontalBars: true,
+axisY: {
+    offset: 80
+}
+});
+
+
+
+ var ctx3 = document.getElementById("polarChart").getContext("2d");
+ new Chart(ctx3, {type: 'polarArea', data: polarData, options:polarOptions});
+
+ var doughnutData = {
+    labels: ["App","Software","Laptop" ],
+    datasets: [{
+        data: [300,50,100],
+        backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
+    }]
+} ;
+
+
+var doughnutOptions = {
+    responsive: true
+};
+
+
+});
+</script>
+
+{% endblock script %} 
 
 
