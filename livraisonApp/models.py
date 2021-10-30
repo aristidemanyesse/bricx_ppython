@@ -118,6 +118,7 @@ def pre_save_livraison(sender, instance, **kwargs):
         if instance.lieu == "":
             raise Exception("Veuillez préciser le lieu exact de la livraison !")
         instance.reference = uuid.uuid4()
+        instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
 
 
 

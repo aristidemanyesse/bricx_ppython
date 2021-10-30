@@ -36,6 +36,8 @@ class CategoryOperation(BaseModel):
     REFUND_CLIENT = 5
     TRANSPORT = 6
     REFUND_FOURNISSEUR = 7
+    TRANSFERT_ENTREE = 8
+    TRANSFERT_SORTIE = 9
 
     name      = models.CharField(max_length = 255)
     etiquette = models.CharField(max_length = 255)
@@ -60,7 +62,7 @@ class Compte(BaseModel):
     initial_amount = models.IntegerField(default=0)
     etablissement  = models.CharField(max_length = 255, null = True, blank=True)
     numero         = models.CharField(max_length = 255, null = True, blank=True)
-    agence = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_compte")
+    agence = models.ForeignKey("organisationApp.Agence", null=True, blank=True, on_delete = models.CASCADE, related_name="agence_compte")
 
     def __str__(self):
         return self.name
@@ -90,6 +92,7 @@ class Mouvement(BaseModel):
     compte    = models.ForeignKey(Compte, on_delete = models.CASCADE, related_name="compte_mouvement")
     employe   = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_payetricycle")
     etat      = models.ForeignKey("coreApp.Etat",  null = True, blank=True, on_delete = models.CASCADE)
+    date_approbation = models.DateTimeField(null = True, blank=True)
     mode      = models.ForeignKey(ModePayement,  null = True, blank=True, on_delete = models.CASCADE, related_name="modepayement_mouvement")
     structure = models.CharField(default=0, max_length = 255, null = True, blank=True)
     numero    = models.CharField(default=0, max_length = 255, null = True, blank=True)
@@ -112,6 +115,14 @@ class ReglementCommande(BaseModel):
 
     def __str__(self):
         return self.mouvement.reference
+
+    
+    @staticmethod
+    def total(agence, debut=None, fin=None):
+        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        fin = fin or datetime.date.today() + datetime.timedelta(days=1)
+        total = ReglementCommande.objects.filter(deleted = False, mouvement__compte__agence = agence, created_at__range = (debut, fin)).aggregate(Sum('mouvement__montant'))
+        return total["mouvement__montant__sum"] or 0
 
 
 class CompteClient(BaseModel):
@@ -148,7 +159,6 @@ class Operation(BaseModel):
     category         = models.ForeignKey(CategoryOperation,  null = True, blank=True, on_delete = models.CASCADE, related_name="category_operation")
     mouvement        = models.ForeignKey(Mouvement,  null = True, blank=True, on_delete = models.CASCADE, related_name="mouvement_operation")
     etat             = models.ForeignKey("coreApp.Etat",  null = True, blank=True, on_delete = models.CASCADE)
-    date_approbation = models.DateTimeField(null = True, blank=True)
     image            = models.ImageField(null = True, blank=True)
 
     def __str__(self):

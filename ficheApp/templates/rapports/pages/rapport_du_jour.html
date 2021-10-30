@@ -1,0 +1,299 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block wrapper %} 
+
+
+<div class="wrapper wrapper-content">
+    <div class="animated fadeInRightBig">
+        <div class="ibox">
+         <div class="ibox-title">
+            <h5>Recapitulatif de la journée</h5>
+            <div class="ibox-tools">
+                <form id="formFiltrer" method="POST">
+                    <div class="row" style="margin-top: -1%">
+                        <div class="col-8">
+                            <input type="date" value="<?= $date ?>" class="form-control input-sm" name="date">
+                        </div>
+                        <div class="col-2">
+                            <button type="button" onclick="filtrer()" class="btn btn-sm btn-white"><i class="fa fa-search"></i> Filtrer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img style="width: 20%" src="{% static request.societe.logo %}">
+                </div>
+                <div class="col-sm-8 text-right">
+                    <h2 class="title text-uppercase gras">Recapitulatif de la journée</h2>
+                    <h3>du {{date|date:"l d F Y"}}</h3>
+                </div>
+            </div><hr><br>
+
+            <div class="row">
+                <div class="col-sm-8" style="border-right: 2px solid black">
+
+                    <div>
+                     <h2 class="text-uppercase text-center">Commandes du jour</h2>
+                     <div class="">
+                        <table class="table table-bordered mp0">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    {% for brique in briques %}
+                                    <th class="text-center">{{ brique.name }}</th>
+                                    {% endfor %}
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for commande in commandes.keys %}
+                                <tr>
+                                    <td data-toggle="tooltip" title="imprimer le bon de commande">
+                                        <a target="_blank" href="{% url 'fiches:commande' commande.id %}">
+                                            <i class="d-block fa fa-file-text fa-2x text-orange"></i>
+                                        </a>                               
+                                    </td>
+                                    <td>{{ commande.groupecommande.client.name }}</td>
+                                    {% for brique in briques %}
+                                    <td class="text-center">{{commandes|dict_value:commande|dict_value:brique}}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% empty %}
+                                <p class="text-center text-muted italic">Aucune commande ce jour </p>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <hr><br><br>
+
+                <div>
+                    <h2 class="text-uppercase text-center">Livraisons du jour</h2>
+                    <div class="">
+                       <table class="table table-bordered mp0">
+                           <thead>
+                               <tr>
+                                   <th></th>
+                                   <th></th>
+                                   {% for brique in briques %}
+                                   <th class="text-center">{{ brique.name }}</th>
+                                   {% endfor %}
+
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for livraison in livraisons.keys %}
+                               <tr>
+                                   <td data-toggle="tooltip" title="imprimer le bon de livraison">
+                                       <a target="_blank" href="{% url 'fiches:livraison' livraison.id %}">
+                                           <i class="d-block fa fa-file-text fa-2x text-green"></i>
+                                       </a>                               
+                                   </td>
+                                   <td>{{ livraison.groupecommande.client.name }}</td>
+                                   {% for brique in briques %}
+                                   <td class="text-center">{{livraisons|dict_value:livraison|dict_value:brique}}</td>
+                                   {% endfor %}
+                               </tr>
+                               {% empty %}
+                               <p class="text-center text-muted italic">Aucune livraison ce jour </p>
+                               {% endfor %}
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+
+
+
+               <hr><br><br>
+
+               <div>
+                   <h2 class="text-uppercase text-center">Production du jour</h2>
+                   <div class="">
+                      <table class="table table-bordered mp0">
+                          <thead>
+                              <tr>
+                                  <th></th>
+                                  {% for brique in briques %}
+                                  <th class="text-center">{{ brique.name }}</th>
+                                  {% endfor %}
+
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {% for prod in production.keys %}
+                              <tr>
+                                  <td>{{ prod.employe.name }}</td>
+                                  {% for brique in briques %}
+                                  <td class="text-center">{{production|dict_value:prod|dict_value:brique}}</td>
+                                  {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                      </table>
+                  </div>
+              </div>
+
+
+
+              <hr><br><br>
+
+              <div>
+                  <h2 class="text-uppercase text-center">Approvisionnements du jour</h2>
+                  <div class="">
+                     <table class="table table-bordered mp0">
+                         <thead>
+                             <tr>
+                                 <th></th>
+                                 <th></th>
+                                 {% for ressource in ressources %}
+                                 <th class="text-center">{{ ressource.name }}</th>
+                                 {% endfor %}
+
+                             </tr>
+                         </thead>
+                         <tbody>
+                             {% for appro in appros.keys %}
+                             <tr>
+                                 <td data-toggle="tooltip" title="imprimer le bon d'pprovisionnement">
+                                     <a target="_blank" href="{% url 'fiches:approvisionnement' appro.id %}">
+                                         <i class="d-block fa fa-file-text fa-2x text-green"></i>
+                                     </a>                               
+                                 </td>
+                                 <td>{{ appro.fournisseur.name }}</td>
+                                 {% for ressource in ressources %}
+                                 <td class="text-center">{{appros|dict_value:appro|dict_value:ressource|default:0}} {{ ressource.unite }}</td>
+                                 {% endfor %}
+                             </tr>
+                             {% empty %}
+                             <p class="text-center text-muted italic">Aucune approvisionnement ce jour </p>
+                             {% endfor %}
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+
+
+
+               <hr><br><br>
+
+                                <?php if ($employe->isAutoriser("caisse")) { ?>
+                                <div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover ">
+                                            <thead>
+                                                <tr class="text-center text-uppercase">
+                                                    <th colspan="2" style="visibility: hidden; width: 62%"></th>
+                                                    <th>Entrée</th>
+                                                    <th>Sortie</th>
+                                                    <th>Résultats</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tableau">
+                                                <tr>
+                                                    <td colspan="2">Repport du solde </td>
+                                                    <td class="text-center">-</td>
+                                                    <td class="text-center">-</td>
+                                                    <td style="background-color: #fafafa" class="text-center"><?= money($repport = $last = $comptebanque->solde(Home\PARAMS::DATE_DEFAULT , dateAjoute1($date, -1))) ?> {{request.societe.devise}}</td>
+                                                </tr>
+                                                <?php foreach ($mouvements as $key => $mouvement) {  ?>
+                                                <tr>
+                                                    <td class="text-center" width="15"><a target="_blank" href="<?= $this->url("fiches", "master", "boncaisse", $mouvement->id)  ?>"><i class="fa fa-file-text-o fa-2x"></i></a> 
+                                                    </td>
+                                                    <td>
+                                                        <h6 style="margin-bottom: 3px" class="mp0 text-uppercase gras <?= ($mouvement->typemouvement_id == Home\TYPEMOUVEMENT::DEPOT)?"text-green":"text-red" ?>"><?= $mouvement->name() ?>  
+
+                                                            <?php if ($employe->isAutoriser("modifier-supprimer")) { ?>
+                                                            |
+                                                            &nbsp;&nbsp;<i onclick="modifierOperation(<?= $mouvement->id ?>)" class="cursor fa fa-pencil text-dark"></i> 
+                                                            &nbsp;&nbsp;<i class="cursor fa fa-close text-red" onclick="suppressionWithPassword('operation', <?= $mouvement->id ?>)"></i>
+                                                            <?php } ?>
+
+                                                            <span class="pull-right"><i class="fa fa-clock-o"></i> <?= datelong($mouvement->created) ?></span>
+                                                        </h6>
+                                                        <i><?= $mouvement->comment ?> ## <u style="font-size: 9px; font-style: italic;"><?= $mouvement->structure ?> - <?= $mouvement->numero ?></u></i>
+                                                    </td>
+                                                    <?php if ($mouvement->typemouvement_id == Home\TYPEMOUVEMENT::DEPOT) { ?>
+                                                    <td class="text-center text-green gras" style="padding-top: 12px;">
+                                                        <?= money($mouvement->montant) ?> {{request.societe.devise}}
+                                                    </td>
+                                                    <td class="text-center"> - </td>
+                                                    <?php }elseif ($mouvement->typemouvement_id == Home\TYPEMOUVEMENT::RETRAIT) { ?>
+                                                    <td class="text-center"> - </td>
+                                                    <td class="text-center text-red gras" style="padding-top: 12px;">
+                                                        <?= money($mouvement->montant) ?> {{request.societe.devise}}
+                                                    </td>
+                                                    <?php } ?>
+                                                    <?php $last += ($mouvement->typemouvement_id == Home\TYPEMOUVEMENT::DEPOT)? $mouvement->montant : -$mouvement->montant ; ?>
+                                                    <td class="text-center gras" style="padding-top: 12px; background-color: #fafafa"><?= money($last) ?> {{request.societe.devise}}</td>
+                                                </tr>
+                                                <?php } ?>
+                                                <tr style="height: 15px;"></tr>
+                                                <tr>
+                                                    <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">Total des comptes au <?= datecourt(dateAjoute()) ?></h4></td>
+                                                    <td><h3 class="text-center text-green"><?= money(comptage($entrees, "montant", "somme") + $repport) ?> {{request.societe.devise}}</h3></td>
+                                                    <td><h3 class="text-center text-red"><?= money(comptage($depenses, "montant", "somme")) ?> {{request.societe.devise}}</h3></td>
+                                                    <td style="background-color: #fafafa"><h3 class="text-center text-blue gras"><?= money($last) ?> {{request.societe.devise}}</h3></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <?php } ?>
+
+
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                <h4 class="text-uppercase">Employés connectés</h4>
+                                <ul>
+                                    {% for employe in employes %}
+                                        <li>{{employe.name}}</li>
+                                    {% endfor %}
+                                    </ul><br>
+                                    <hr>
+
+
+                                    <h4 class="text-uppercase">SOLDE DU COMPTE</h4>
+                                    <br>
+                                    <div class="">
+                                        <small>Solde en Ouverture</small>
+                                        <h2 class="no-margins">{{solde_ouverture|intcomma}} {{request.societe.devise}}</h2>
+                                        <div class="progress progress-mini">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                        </div>
+                                    </div><br>
+
+                                    <small>Entrées du jour</small>
+                                    <h3 class="no-margins text-green">{{entree_du_jour|intcomma}} {{request.societe.devise}}</h3>
+                                    <br>
+
+                                    <small>Dépenses du jour</small>
+                                    <h3 class="no-margins text-red">{{depense_du_jour|intcomma}} {{request.societe.devise}}</h3>
+                                    <br>
+
+                                    <div class="">
+                                        <small>Solde à la fermeture</small>
+                                        <h2 class="no-margins">{{solde_fermeture|intcomma}} {{request.societe.devise}}</h2>
+                                        <div class="progress progress-mini">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {% endblock wrapper %} 
+

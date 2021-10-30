@@ -46,6 +46,13 @@ class Client(BaseModel):
         return self.dette_initial + total
 
 
+    @staticmethod
+    def dette_clients(agence):
+        total = 0
+        for client in Client.objects.filter(deleted = False, agence = agence):
+            total += client.dette_totale()
+        return total
+
 
     def get_groupecommandes(self):
         return self.client_groupecommande.filter(client = self).exclude(etat__etiquette = Etat.ANNULE).order_by("etat__etiquette", "-created_at", "datelivraison")

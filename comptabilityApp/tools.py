@@ -5,7 +5,7 @@ from clientApp.models import Client
 from .models import CompteClient, ModePayement, Mouvement, TypeMouvement
 
 
-def mouvement_pour_entree(request, datas, name):
+def mouvement_pour_entree(request, datas, title, comment):
     mode = ModePayement.objects.get(pk = datas["modepayement"])
     type = TypeMouvement.objects.get(etiquette = TypeMouvement.ENTREE)
 
@@ -18,7 +18,8 @@ def mouvement_pour_entree(request, datas, name):
         return {"status":False, "message":"Vous ne pouvez pas choisir ce mode de payement pour cette opération !"}
         
     return Mouvement.objects.create(
-        name      = name,
+        name      = title,
+        comment      = comment,
         montant   = montant,
         compte    = request.agence_compte,
         type      = type,
@@ -31,7 +32,7 @@ def mouvement_pour_entree(request, datas, name):
 
 
 
-def mouvement_pour_sortie(request, datas, name):
+def mouvement_pour_sortie(request, datas, title, comment):
     mode = ModePayement.objects.get(pk = datas["modepayement"])
     type = TypeMouvement.objects.get(etiquette = TypeMouvement.SORTIE)
     compte = request.agence_compte
@@ -47,7 +48,8 @@ def mouvement_pour_sortie(request, datas, name):
         return {"status":False, "message":"Fonds insuffisant pour effectuer cette opération!"}
 
     return Mouvement.objects.create(
-        name      = name,
+        name      = title,
+        comment      = comment,
         montant   = montant,
         compte    = compte,
         type      = type,
@@ -60,7 +62,7 @@ def mouvement_pour_sortie(request, datas, name):
 
 
 
-def mouvement_pour_sortie_client(request, datas, name):
+def mouvement_pour_sortie_client(request, datas, title, comment):
     try:
         mode = ModePayement.objects.get(pk = datas["modepayement"])
         type = TypeMouvement.objects.get(etiquette = TypeMouvement.SORTIE)
@@ -79,7 +81,8 @@ def mouvement_pour_sortie_client(request, datas, name):
             return {"status":False, "message":"Fonds insuffisant pour effectuer cette opération!"}
 
         mouvement = Mouvement.objects.create(
-            name      = name,
+            name      = title,
+            comment      = comment,
             montant   = montant,
             compte    = compte,
             type      = type,
@@ -97,7 +100,7 @@ def mouvement_pour_sortie_client(request, datas, name):
 
     
 
-def mouvement_pour_sortie_fournisseur(request, datas, name):
+def mouvement_pour_sortie_fournisseur(request, datas, title, comment):
     try:
         mode = ModePayement.objects.get(pk = datas["modepayement"])
         type = TypeMouvement.objects.get(etiquette = TypeMouvement.SORTIE)
@@ -116,7 +119,8 @@ def mouvement_pour_sortie_fournisseur(request, datas, name):
             return {"status":False, "message":"Fonds insuffisant pour effectuer cette opération!"}
 
         mouvement = Mouvement.objects.create(
-            name      = name,
+            name      = title,
+            comment      = comment,
             montant   = montant,
             compte    = compte,
             type      = type,

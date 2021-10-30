@@ -15,7 +15,7 @@ def clients(request):
         date = datetime.datetime.now() - datetime.timedelta(days=7)
         ctx = {
             "clients" : Client.objects.filter(agence = request.agence),
-            "clients" : Client.objects.filter(agence = request.agence, created_at__gte = date ),
+            "clients_semaine" : Client.objects.filter(agence = request.agence, created_at__gte = date ),
             "types" : TypeClient.objects.all()
         }
         return render(request, "clients/pages/clients.html", ctx)

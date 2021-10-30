@@ -94,6 +94,12 @@ class Commande(BaseModel):
             briques[brique] = ligne.quantite if ligne != None else 0
         return briques
 
+    @staticmethod
+    def chiffre_affaire(agence):
+        total = Commande.objects.filter(deleted = False, agence = agence).aggregate(Sum("montant"))
+        return total["montant__sum"] or 0
+
+
     def __str__(self):
         return "Commande N°"+self.reference
 

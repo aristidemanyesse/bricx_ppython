@@ -64,7 +64,7 @@
 
 
                 <li class="" id="rapportjour">
-                    <a href="<?= $this->url($this->section, "rapports", "rapportjour") ?>"><i class="fa fa-calendar"></i> <span class="nav-label">Rapport du Jour</span></a>
+                    <a href="{% url 'boutique:rapport_du_jour' request.now|date:'Y' request.now|date:'m' request.now|date:'d' %}"><i class="fa fa-calendar"></i> <span class="nav-label">Rapport du Jour</span></a>
                 </li>
                 <?php } ?>
 
@@ -73,7 +73,7 @@
                     <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> <span class="label label-warning float-right">{{ request.tricycles | length |start0}}</span> </a>
                 </li>
                 <li class="" id="caisse">
-                    <a href="<?= $this->url($this->section, "caisse", "caisse") ?>"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
+                    <a href="{% url 'tresorerie:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
             </ul>

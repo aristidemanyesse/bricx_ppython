@@ -2,6 +2,7 @@ from commandeApp.models import GroupeCommande
 from livraisonApp.models import Livraison, Tricycle
 from coreApp.models import Etat
 from paramApp.models import MyApp, MyCompte
+from comptabilityApp.models import ModePayement, TypeMouvement
 import datetime, uuid
 from django.shortcuts import redirect
 
@@ -16,7 +17,10 @@ class InjectMyAppDataMiddleware:
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         request.etat = Etat
+        request.modepayement = ModePayement
+        request.typemouvement = TypeMouvement
         request.isferie = False
+        
         if "date1" not in request.session:
             request.session["date1"] = str((datetime.datetime.now() - datetime.timedelta(days=2)).date())
             request.session["date2"] = str((datetime.datetime.now() + datetime.timedelta(days=1)).date())

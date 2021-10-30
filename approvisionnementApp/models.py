@@ -6,7 +6,6 @@ from django.db.models import Avg, Sum
 from django.db.models.signals import pre_save
 from django.dispatch.dispatcher import receiver
 from coreApp.models import BaseModel, Etat
-from ficheApp.views import achatstock
 
 # Create your models here.
 
@@ -47,6 +46,12 @@ class Fournisseur(BaseModel):
         total -= datas["mouvement__montant__sum"] or 0
         return self.dette_initial + total
 
+    @staticmethod
+    def dette_fournisseurs(agence):
+        total = 0
+        for fournisseur in Fournisseur.objects.filter(deleted = False, agence = agence):
+            total += fournisseur.dette_totale()
+        return total
 
 class AchatStock(BaseModel):
     reference         = models.CharField(max_length = 255)

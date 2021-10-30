@@ -161,9 +161,10 @@ def valider_commande(request):
             if mode.etiquette == ModePayement.PRELEVEMENT :
                 commande.avance = total if avance >= total else avance
                 if commande.avance > 0 :
-                    name = "Avance sur réglement de la facture pour la commande N°"+str(commande.reference);
+                    title = "Avance sur commande"
+                    comment = "Avance sur réglement de la facture pour la commande N°"+str(commande.reference);
                     datas["montant"] = commande.avance
-                    res = mouvement_pour_sortie_client(request, datas, name)
+                    res = mouvement_pour_sortie_client(request, datas, title, comment)
                     if type(res) is Mouvement:
                         CompteClient.objects.create(
                             mouvement = res,
@@ -173,9 +174,10 @@ def valider_commande(request):
                         return JsonResponse(res)
 
             else:
-                name = "Avance sur réglement de la facture pour la commande N°"+str(commande.reference);
+                title = "Avance sur commande"
+                comment = "Avance sur réglement de la facture pour la commande N°"+str(commande.reference);
                 datas["montant"] = avance
-                res = mouvement_pour_sortie(request, datas, name)
+                res = mouvement_pour_sortie(request, datas, title, comment)
                 if type(res) is Mouvement:
                     ReglementCommande.objects.create(
                         mouvement = res,
@@ -204,8 +206,9 @@ def regler_commande(request):
         datas = request.POST
         try :
             commande = Commande.objects.get(pk = datas["commande_id"])
-            name = "Reglement de la commande N°"+str(commande.reference)
-            res = mouvement_pour_sortie_client(request, datas, name)
+            title = "Reglement de facture commande"
+            comment = "Reglement de la commande N°"+str(commande.reference)
+            res = mouvement_pour_sortie_client(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementCommande.objects.create(
                     mouvement = res,

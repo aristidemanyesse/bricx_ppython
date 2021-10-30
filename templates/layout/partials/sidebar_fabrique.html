@@ -48,10 +48,10 @@
                 
 
                 <li class="" id="tricycle">
-                    <a href="<?= $this->url($this->section, "caisse", "tricycle") ?>"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> <span class="label label-warning float-right">{{ request.tricycles | length |start0}}</span> </a>
+                    <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> <span class="label label-warning float-right">{{ request.tricycles | length |start0}}</span> </a>
                 </li>
                 <li class="" id="caisse">
-                    <a href="<?= $this->url($this->section, "caisse", "caisse") ?>"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
+                    <a href="{% url 'tresorerie:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 

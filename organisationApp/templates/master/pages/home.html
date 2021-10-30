@@ -59,7 +59,7 @@
 
         {% if perms.paramApp.fabrique and request.agence != None %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-            <a href="{% url 'fabrique:home' %}">
+            <a href="{% url 'fabrique:dashboard_fabrique' %}">
                 <div class="ibox">
                     <div class="ibox-content">
                         <div class="row">
@@ -79,7 +79,7 @@
 
         {% if perms.paramApp.boutique and request.agence != None %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-            <a href="{% url 'boutique:home' %}">
+            <a href="{% url 'boutique:dashboard_boutique' %}">
                 <div class="ibox">
                     <div class="ibox-content">
                         <div class="row">

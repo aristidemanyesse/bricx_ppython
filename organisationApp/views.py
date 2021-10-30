@@ -36,13 +36,11 @@ def dashboard_boutique(request):
         }
         datas[brique] = data
 
-    dette_clients = 0
-    for client in Client.objects.filter(deleted = False, agence = request.agence):
-        dette_clients += client.dette_totale()
+    
 
     context = {
         "datas" : datas,
-        "dette_clients" : dette_clients,
+        "dette_clients" : Client.dette_clients(request.agence),
         "entree_du_jour" :request.agence_compte.total_entree(request.now.date(), request.now.date()),
         "depense_du_jour" : request.agence_compte.total_sortie(request.now.date(), request.now.date()),
         "solde_actuel" : request.agence_compte.solde_actuel(),

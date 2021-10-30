@@ -1,0 +1,230 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block wrapper %} 
+
+
+<div class="wrapper wrapper-content">
+    
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5 class="float-left">Du {{debut}} au {{fin}}</h5>
+                    <div class="ibox-tools">
+                        {% include 'extra/filter_form.html' %}
+                    </div>
+                </div>
+                <div class="ibox-content">
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="flot-dashboard-chart"></div>
+                            </div><br>
+                            <div class="row stat-list text-center">
+                                <div class="col-4 ">
+                                    <h3 class="no-margins text-green">{{entree_du_jour | intcomma}} <small>{{request.societe.devise}}</small></h3>
+                                    <small>Entrées du jour</small>
+                                </div>
+                                <div class="col-4 border-left border-right">
+                                    <h2 class="no-margins gras">{{solde_actuel | intcomma}} <small>{{request.societe.devise}}</small></h2>
+                                    <small>En caisse actuellement</small>
+                                </div>
+                                <div class="col-4">
+                                    <h3 class="no-margins text-red">{{depense_du_jour | intcomma}} <small>{{request.societe.devise}}</small></h3>
+                                    <small>Dépenses du jour</small>
+                                </div>
+                            </div><hr>
+                            <div class="row" style="font-size: 10px">
+                                <div class="col-sm">
+                                    <button data-toggle="modal" data-target="#modal-entree" class="btn btn-xs btn-primary dim"><i class="fa fa-long-arrow-left"></i> Faire Nouvelle entrée</button>
+                                </div>
+                                <div class="col-sm text-center">
+                                    <button data-toggle="modal" data-target="#modal-depense" class="btn btn-xs btn-danger dim"><i class="fa fa-long-arrow-right"></i> Faire Nouvelle dépense</button>
+                                </div>
+                                <div class="col-sm text-center">
+                                    <button data-toggle="modal" data-target="#modal-attente" class="btn btn-xs btn-success dim" ><i class="fa fa-eye"></i> Voir les versemments en attente</button>
+                                </div>
+                                <div class="col-sm">
+                                    <button data-toggle="modal" data-target="#modal-transfert" class="btn btn-xs btn-warning dim pull-right"><i class="fa fa-refresh"></i> Transferts de caisse</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+<div class="col-lg-3 row">
+    <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-7">
+                            <h5 class="text-uppercase">Chiffre d'affaire</h5>
+                            <h2 class="no-margins">{{chiffre_affaire|intcomma}}  <small>{{request.societe.devise }}</small></h2>
+                        </div>
+                        <div class="col-5 text-right">
+                            <i class="fa fa-dollar fa-4x" style="color: #ddd"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-7">
+                            <h5 class="text-uppercase">Résultat brut</h5>
+                            <h2 class="no-margins">{{resultat|intcomma}} <small>{{request.societe.devise }}</small></h2>
+                        </div>
+                        <div class="col-5 text-right">
+                            <i class="fa fa-money fa-4x" style="color: #ddd"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="ibox">
+                <div class="ibox-content bg-navy">
+                    <div class="row">
+                        <div class="col-7">
+                            <h5 class="text-uppercase">Dette clientèle</h5>
+                            <h2 class="no-margins">{{dette_clients|intcomma}} <small>{{request.societe.devise }}</small></h2>
+                        </div>
+                        <div class="col-5 text-right">
+                            <i class="fa fa-users fa-4x" style="color: #ddd"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="ibox">
+                <div class="ibox-content bg-red">
+                    <div class="row">
+                        <div class="col-7">
+                            <h5 class="text-uppercase">Dette Fournisseur</h5>
+                            <h2 class="no-margins">{{dette_fournisseurs|intcomma}} <small>{{request.societe.devise }}</small></h2>
+                        </div>
+                        <div class="col-5 text-right">
+                            <i class="fa fa-truck fa-4x "></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5 class="text-uppercase">Tableau des compte</h5>
+                    <div class="ibox-tools">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-operation">
+                                    <thead>
+                                        <tr class="text-center text-uppercase">
+                                            <th colspan="2" style="visibility: hidden; width: 65%"></th>
+                                            <th>Entrée</th>
+                                            <th>Sortie</th>
+                                            <th>Résultats</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tableau">
+                                        <tr>
+                                            <td colspan="2">Repport du solde </td>
+                                            <td class="text-center">-</td>
+                                            <td class="text-center">-</td>
+                                            <td style="background-color: #fafafa" class="text-center">{{report|intcomma}} {{request.societe.devise}}</td>
+                                        </tr>
+                                        {% for mouvement in mouvements.keys %}
+                                            <tr>
+                                                <td class="text-center" width="15"><a target="_blank" href="{% url 'fiches:boncaisse' mouvement.id %}"><i class="fa fa-file-text-o fa-2x"></i></a> 
+                                                </td>
+                                                <td>
+                                                    <h6 style="margin-bottom: 3px" class="mp0 text-uppercase gras text-{% if mouvement.type.etiquette|add:0 == request.typemouvement.ENTREE|add:0 %}green {% else %}red{% endif %}">{{mouvement.name}}  
+
+                                                        <div class="d-inline-block">
+                                                            &nbsp;&nbsp;<i onclick="modifierOperation(<?= $mouvement->id ?>)" class="cursor fa fa-pencil text-dark"></i> 
+                                                        &nbsp;&nbsp;<i class="cursor fa fa-close text-red" onclick="suppressionWithPassword('operation', <?= $mouvement->id ?>)"></i>
+                                                        </div>
+
+                                                    <span class="pull-right"><i class="fa fa-clock-o"></i> {{mouvement.created_at}}</span>
+                                                </h6>
+                                                <i>{{mouvement.comment}} ## <u style="font-size: 9px; font-style: italic;">{{mouvement.structure}} - {{mouvement.numero}}</u></i>
+                                            </td>
+                                                {% if mouvement.type.etiquette|add:0 == request.typemouvement.ENTREE|add:0 %}
+                                                <td class="text-center text-green gras" style="padding-top: 12px;">
+                                                    {{mouvement.montant|intcomma}} {{request.societe.devise}}
+                                                </td>
+                                                <td class="text-center"> - </td>
+                                                {% elif mouvement.type.etiquette|add:0 == request.typemouvement.SORTIE|add:0 %}
+                                                <td class="text-center"> - </td>
+                                                <td class="text-center text-red gras" style="padding-top: 12px;">
+                                                    {{mouvement.montant|intcomma}} {{request.societe.devise}}
+                                                </td>
+                                            {% endif %}
+                                            <td class="text-center gras" style="padding-top: 12px; background-color: #fafafa">{{mouvements|dict_value:mouvement|intcomma}} {{request.societe.devise}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    <tr style="height: 15px;"></tr>
+                                    <tr>
+                                        <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">Total des comptes au <?= datecourt(dateAjoute()) ?></h4></td>
+                                        <td><h3 class="text-center text-green">{{total_depense|add:report |intcomma}} {{request.societe.devise}}</h3></td>
+                                        <td><h3 class="text-center text-red">{{total_depense|intcomma}} {{request.societe.devise}}</h3></td>
+                                        <td style="background-color: #fafafa"><h3 class="text-center text-blue gras">{{solde_a_la_date|intcomma}} {{request.societe.devise}}</h3></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+{% include '../modals/entree.html' %}
+{% include '../modals/depense.html' %}
+{% include '../modals/transfert.html' %}
+{% include '../modals/versement_attente.html' with attentes=attentes %}
+
+ 
+<?php include($this->rootPath("composants/assets/modals/modal-operation.php")); ?>  
+
+</div>
+
+{% endblock wrapper %} 
+
+
+
+
+{% block script %} 
+
+<script type="text/javascript">
+    {% include './caisse.js' %}
+</script>
+
+{% endblock %} 
+
+
