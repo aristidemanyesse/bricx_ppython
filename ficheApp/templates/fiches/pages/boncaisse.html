@@ -1,0 +1,131 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+{% load humanize %} 
+{% load myfilters %} 
+
+{% block body %} 
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight article">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-10">
+            <div class="ibox" >
+                <div class="ibox-content border"  style="background-color: #fcfcfc">
+                    <div class="facture">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src="{% static request.societe.logo %}" class="img-circle" style="height: 120px; width: 120px" alt="">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h5>
+                                        <h5 class="mp0">{{ request.societe.adresse }}</h5>
+                                        <h5 class="mp0">{{ request.societe.postale }}</h5>
+                                        <h5 class="mp0">Tél: {{ request.societe.contact }}</h5>
+                                        <h5 class="mp0">Email: {{ request.societe.email }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7 text-right">
+                                <h2 class="title text-uppercase gras text-blue">Bon de caisse</h2>
+                                <h3 class="text-uppercase">N°{{mouvement.reference}}</h3>
+                                <h5>{{mouvement.created_at}}</h5>  
+                                <h4><small>Bon délivré par :</small> <span class="text-uppercase">{{mouvement.employe.name}}</span></h4>                                
+                            </div>
+                        </div><hr class="mp3">
+
+                        <br>
+                        <div style="margin: auto 5%;">
+                            <div class="row" style="margin-top: 1%;">
+                                <div class="col-6">
+                                    <br>
+                                    <span class="text-uppercase gras">Opération par {{mouvement.mode.name}}</span>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span>Montant :</span> <span class="prix text-uppercase">{{mouvement.montant|intcomma}} {{request.societe.devise}}</span>
+                                </div>
+                            </div><br><br>
+
+                            <div class="text">
+                                <span>Opération de <i>{{mouvement.type.name}} N°{{mouvement.reference}}</i> d'un montant de</span> <span class="lettre text-capitalize">{{mouvement.montant|intword}} {{request.societe.devise }}</span><br>
+                                <span>pour <i>{{mouvement.comment}}</i>.</span>
+                                <p class="m-b-xs">{{mouvement.structure}} - {{mouvement.numero}}</p><br>
+                            </div>
+
+                            <br><br>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="text-left" style="height: 120px">
+                                        <span><u>Signature du bénéficiaire</u></span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-right" style="height: 120px">
+                                        <span><u>Signature & Cachet</u></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="text-center"><small><i>* Aucun remboursement n'est admis après réglement !</i></small></p>
+                    </div><br><hr><br>
+
+                    <div class="facture2">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+{% endblock body %} 
+
+
+
+{% block style %} 
+<style>
+    .ibox-content{
+        padding: 1%;
+    }
+    
+    h2.title{
+        font-size: 35px;
+        padding: 0;
+        margin: 0;
+    }
+    
+    h3{
+        font-weight: 500
+    }
+    
+    .text{
+        word-spacing: 4px;
+        line-height: 29px;
+        font-size: 16px;
+        font-weight: normal;
+        text-align: justify;
+    }
+    
+    .prix{
+        border: 3px solid navy;
+        padding: 2px 15px;
+        font-size: 23px;
+        font-weight: bold;
+        display: inline-block;
+        margin: 0;
+        margin-left: 3%;
+    }
+    
+    .lettre{
+        font-size: 17px;
+        font-style: italic;
+        font-weight: 600;
+    }
+</style>
+{% endblock style %} 

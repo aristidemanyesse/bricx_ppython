@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render
+from approvisionnementApp.models import AchatStock, Approvisionnement
 from commandeApp.models import Conversion, PrixZoneLivraison, Commande, ZoneLivraison
 from comptabilityApp.models import Mouvement
 from livraisonApp.models import Livraison
@@ -9,7 +10,6 @@ def prixparzone(request, id):
         zone = get_object_or_404(ZoneLivraison, pk = id)
         context = {
                 "zone" : zone,
-                "prixparzones" : zone.zone_prix.filter(),
             }
         return render(request, "fiches/pages/prixparzone.html", context)
 
@@ -17,9 +17,10 @@ def prixparzone(request, id):
 
 def commande(request, id):
     if request.method == "GET":
-        zone = get_object_or_404(Commande, pk = id)
+        commande = get_object_or_404(Commande, pk = id)
         context = {
-                "zone" : zone,
+                "commande" : commande,
+                "reglement" : commande.commande_reglement.filter(deleted = False).first(),
             }
         return render(request, "fiches/pages/commande.html", context)
 
@@ -36,53 +37,29 @@ def livraison(request, id):
 
 def approvisionnement(request, id):
     if request.method == "GET":
-        approvisionnement = get_object_or_404(Livraison, pk = id)
+        approvisionnement = get_object_or_404(Approvisionnement, pk = id)
         context = {
-                "approvisionnement" : approvisionnement,
+                "appro" : approvisionnement,
+                "reglement" : approvisionnement.approvisionnement_reglement.filter(deleted = False).first(),
             }
         return render(request, "fiches/pages/approvisionnement.html", context)
 
 
 def achatstock(request, id):
     if request.method == "GET":
-        achatstock = get_object_or_404(Livraison, pk = id)
+        achatstock = get_object_or_404(AchatStock, pk = id)
         context = {
-                "achatstock" : achatstock,
+                "achat" : achatstock,
             }
         return render(request, "fiches/pages/achatstock.html", context)
 
 
-def tricycle(request, id):
-    if request.method == "GET":
-        tricycle = get_object_or_404(Livraison, pk = id)
-        context = {
-                "tricycle" : tricycle,
-            }
-        return render(request, "fiches/pages/tricycle.html", context)
-
-
-def conversion(request, id):
-    if request.method == "GET":
-        converson = get_object_or_404(Conversion, pk = id)
-        context = {
-                "conversion" : conversion,
-            }
-        return render(request, "fiches/pages/conversion.html", context)
-
-
-def production(request, id):
-    if request.method == "GET":
-        converson = get_object_or_404(Production, pk = id)
-        context = {
-                "production" : production,
-            }
-        return render(request, "fiches/pages/production.html", context)
 
 
 def boncaisse(request, id):
     if request.method == "GET":
-        zone = get_object_or_404(Mouvement, pk = id)
+        mouvement = get_object_or_404(Mouvement, pk = id)
         context = {
-                "zone" : zone,
+                "mouvement" : mouvement,
             }
         return render(request, "fiches/pages/boncaisse.html", context)

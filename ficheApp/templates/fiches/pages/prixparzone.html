@@ -1,0 +1,88 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+{% load humanize %} 
+
+{% block body %} 
+
+
+<div class="wrapper wrapper-content animated fadeInRight article">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-10">
+            <div class="ibox"  >
+                <div class="ibox-content"  style="height: 33cm; background-image: url() ; background-size: 50%; background-position: center center; background-repeat: no-repeat;">
+
+
+                   <div>
+                      <div class="row">
+                        <div class="col-sm-5">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="{% static request.societe.logo %}" class="img-circle" style="height: 120px; width: 120px" alt="">
+                                </div>
+                                <div class="col-8">
+                                    <h5 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h5>
+                                    <h5 class="mp0">{{ request.societe.adresse }}</h5>
+                                    <h5 class="mp0">{{ request.societe.postale }}</h5>
+                                    <h5 class="mp0">Tél: {{ request.societe.contact }}</h5>
+                                    <h5 class="mp0">Email: {{ request.societe.email }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 text-right">
+                            <h2 class="title text-uppercase gras text-blue">Proforma de prix</h2>
+
+                        </div>
+                    </div><br><hr>
+                    <br><br><br>
+
+                    <div class="">
+                        <h2 class="gras text-center text-uppercase"><span>Pour la zone de livraison de </span> <span class="text-uppercase">{{ zone.name }}</span></h2>  
+                    </div><br><br><br>
+
+                    <table class="table table-bordered">
+                        <thead class="text-uppercase" style="background-color: #dfdfdf">
+                            <tr>
+                                <th></th>
+                                <th class="text-center">Brique</th>
+                                <th class="text-center">Prix unitaire</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for pz in zone.zone_prix.all %}
+                            <tr>
+                                <td width="100">
+                                    <img style="width: 100%; height: 80px" src="{% static pz.brique.image %}">
+                                </td>
+                                <td class="desc">
+                                    <br><h2 class="mp0 text-uppercase gras">{{ pz.brique.name }}</h2>
+                                    <span>{{ pz.brique.comment }}</span>
+                                </td>
+                                <td class="text-center" ><br><h2>{{ pz.price|intcomma }} {{ request.societe.devise }}</h2></td>
+                            </tr>
+                        {% endfor %}                          
+                    </tbody>
+                </table>
+
+            </div><br><br><br>
+
+
+            <hr>
+
+            <div class="text-center">
+                <h3 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h3>
+                <h4 class="mp0">{{ request.societe.adresse }}</h4>
+                <h4 class="mp0">{{ request.societe.postale }}</h4>
+                <h4 class="mp0">Tél: {{ request.societe.contact }}</h4>
+                <h4 class="mp0">Email: {{ request.societe.email }}</h4>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+
+{% endblock body %} 
+

@@ -74,3 +74,16 @@ def rapport_du_jour(request, year, month, day):
         }
         return render(request, "rapports/pages/rapport_du_jour.html", context)
 
+
+
+
+
+
+def production(request, id):
+    if request.method == "GET":
+        converson = get_object_or_404(Production, pk = id)
+        context = {
+                "production" : production,
+            }
+        return render(request, "fiches/pages/production.html", context)
+

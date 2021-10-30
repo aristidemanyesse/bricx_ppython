@@ -1,0 +1,151 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+{% load humanize %} 
+{% load myfilters %} 
+
+{% block body %} 
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight article">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-10">
+            <div class="ibox"  >
+                <div class="ibox-content"  style="height: 33cm; background-image: url ; background-size: 50%; background-position: center center; background-repeat: no-repeat;">
+
+
+                 <div>
+                  <div class="row">
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="{% static request.societe.logo %}" class="img-circle" style="height: 120px; width: 120px" alt="">
+                            </div>
+                            <div class="col-8">
+                                <h5 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h5>
+                                <h5 class="mp0">{{ request.societe.adresse }}</h5>
+                                <h5 class="mp0">{{ request.societe.postale }}</h5>
+                                <h5 class="mp0">Tél: {{ request.societe.contact }}</h5>
+                                <h5 class="mp0">Email: {{ request.societe.email }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7 text-right">
+                        <h2 class="title text-uppercase gras text-blue">Bon de livraison</h2>
+                        <h3 class="text-uppercase">N°{{livraison.reference }}</h3>
+                        <h5>{{livraison.created_at}}</h5>  
+                        <h4><small>Bon édité par :</small> <span class="text-uppercase">{{livraison.employe.name}}</span></h4>                                
+                    </div>
+                </div><hr class="mp3">
+
+                <div class="row">
+                    <div class="col-6">
+                        <h5><span>Zone de livraison :</span> <span class="text-uppercase">{{livraison.zone.name}}</span></h5>   
+                        <h5><span>Lieu de livraison :</span> <span class="text-uppercase">{{livraison.lieu}}</span></h5>                              
+                    </div>
+
+                    <div class="col-6 text-right">
+                        <h5><span>Client :</span> <span class="text-uppercase">{{livraison.groupecommande.client.name}}</span></h5>
+                        <span>Mode de livraison :</span> {% if livraison.modelivraison.etiquette|add:'0' == request.modelivraison.DEFAUT|add:'0' %}
+                                        <h6 class="text-uppercase">{{ livraison.chauffeur }}</h6>
+                                        <h5 class="text-uppercase mp0">{{ livraison.vehicule }}</h5>
+                                {% elif livraison.modelivraison.etiquette|add:'0' == request.modelivraison.TRICYCLE|add:'0' %}
+                                        <h6 class="text-uppercase">{{ livraison.livraison_tricycle.get.fullname }} (Tricycle) </h6>
+                                        <h5 class="text-uppercase mp0">{{ livraison.livraison_tricycle.get.contact  }}</h5>
+                                {% else %}
+                                    <h6 class="text-uppercase">Par les moyens du client</h6>
+                                {% endif %}
+                    </div>
+                </div><br><br>
+
+                <table class="table table-bordered">
+                    <thead class="text-uppercase" style="background-color: #dfdfdf">
+                        <tr>
+                            <th colspan="2"></th>
+                            <th class="text-center">Quantité à livrer</th>
+                            <th class="text-center">Surplus</th>
+                            <th class="text-center">Quantité livrées</th>
+                            <th class="text-center text-red" width="120">perte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ligne in livraison.livraison_ligne.all %}
+                            <tr>
+                                <td>
+                                    <img style="height: 20px" src="{% static ligne.brique.image %}" >
+                                </td>
+                                <td class="desc">
+                                    <h5 class="mp0 text-uppercase gras">{{ligne.brique.name}}</h5>
+                                    <small>{{ligne.brique.comment}}</small>
+                                </td>
+                                <td class="text-center">
+                                    <h2 class="gras mp0">{{ligne.quantite|start0}}</h2>
+                                </td>
+                                <td class="text-center">
+                                    <h3 class="gras mp0">{{ligne.surplus|start0}}</h3>
+                                </td>
+                                {% if livraison.etat.etiquette|add:0 == request.etat.TERMINE %}
+                                <td class="text-center"><h2 class="gras">{{ligne.quantite_livree|start0}}</h2></td>
+                                <td class="text-center text-red"><br><h3>{{ligne.perte|start0}}</h3></td>
+                                {% else %}
+                                <td class="text-center"><h2 class="gras"></h2></td>
+                                <td class="text-center text-red"><br><h3></h3></td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}                        
+                    </tbody>
+                </table>
+
+                <br>
+                <div class="row">
+                    <div class="col-7">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="4"><h4 class="gras text-uppercase">Observation du client</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="gras">Livraison reçue le : </td>
+                                    <td>{{livraison.datelivraison}}</td>
+                                </tr>
+                                <tr style="height: 60px">
+                                    <td class="gras">Observation : </td>
+                                    <td>{{livraison.comment}}</td>
+                                </tr>
+                                <tr style="height: 80px">
+                                    <td class="gras">Noms, contacts & signature : </td>
+                                    <td>
+                                        <span>{{livraison.nom_receptionniste}}</span><br>
+                                        <span>{{livraison.contact_receptionniste}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-5">
+                        <div class="text-right" style="margin-top: 14%;">
+                            <span><u>Signature & Cachet</u></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr>
+            <p class="text-center"><small><i>* Nous vous prions de vérifier l'exactitude de toutes les informations qui ont été mentionnées sur cette facture avant de quitter la boutique !</i></small></p>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+</div>
+
+
+</div>
+
+{% endblock body %} 

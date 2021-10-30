@@ -1,0 +1,155 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+{% load humanize %} 
+{% load myfilters %} 
+
+{% block body %} 
+
+<div class="wrapper wrapper-content animated fadeInRight article">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-10">
+            <div class="ibox"  >
+                <div class="ibox-content"  style="min-height: 33cm;">
+
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src="{% static request.societe.logo %}" class="img-circle" style="height: 120px; width: 120px" alt="">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h5>
+                                        <h5 class="mp0">{{ request.societe.adresse }}</h5>
+                                        <h5 class="mp0">{{ request.societe.postale }}</h5>
+                                        <h5 class="mp0">Tél: {{ request.societe.contact }}</h5>
+                                        <h5 class="mp0">Email: {{ request.societe.email }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7 text-right">
+                                <h2 class="title text-uppercase gras text-blue">Bon d'approvisionnement</h2>
+                                <h3 class="text-uppercase">N°{{appro.reference }}</h3>
+                                <h5>{{appro.created_at}}</h5>  
+                                <h4><small>Bon édité par :</small> <span class="text-uppercase">{{appro.employe.name}}</span></h4>
+                            </div>
+                        </div><hr class="mp3">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <h5><span>Fournisseur :</span> <span class="text-uppercase">{{appro.fournisseur.name}}</span></h5>                       
+                            </div>
+
+                            <div class="col-6 text-right">
+                                <h5><span>Livraison prévue pour le:</span> <span class="text-uppercase">{{appro.datelivraison}}</span></h5>
+                            </div>
+                        </div><br><br>
+
+                        <table class="table table-striped">
+                            <thead class="text-uppercase" style="background-color: #dfdfdf">
+                                <tr class="text-center">
+                                    <th colspan="2"></th>
+                                    <th>Prix unitaire</th>
+                                    <th>Quantité</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ligne in appro.approvisionnement_ligne.all %}
+                                    <tr>
+                                        <td class="desc">
+                                            <h5 class="mp0 text-uppercase gras">{{ligne.ressource.name}}</h5>
+                                        </td>
+                                        <td></td>
+                                        <td class="text-center">
+                                            <h4 class="text-muted">{{ligne.price|div:ligne.quantite|intcomma}} {{request.societe.devise}}</h4>
+                                        </td>
+                                        <td class="text-center">
+                                            <h3 class="gras mp0"> <small>x</small> {{ligne.quantite|start0}} {{ligne.ressource.unite }}</h3>
+                                        </td>
+                                        <td class="text-center" width="25%">
+                                            <h3 class="gras">{{ligne.price|intcomma}} {{request.societe.devise}}</h3>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                <tr style="height: 20px;"></tr>
+                                <tr style="background-color: #fff">
+                                    <td colspan="3" class="text-uppercase text-right"><h4 class="">Total = </h4></td>
+                                    <td></td>
+                                    <td colspan="1" class="text-center"><h3 class="text-muted">{{appro.montant|intcomma}} {{request.societe.devise}}</h3></td>
+                                </tr>
+                                <tr style="background-color: #fff">
+                                    <td colspan="3" class="text-uppercase text-right"><h4 class="">TVA (0%) = </h4></td>
+                                    <td></td>
+                                    <td colspan="1" class="text-center"><h4 class="text-muted">{{0}} {{request.societe.devise}}</h4></td>
+                                </tr>
+
+                                <tr style="height: 35px;"></tr>
+
+                                <tr class="border">
+                                    <td colspan="3" class="text-uppercase text-right"><h2 class="">montant total à payer = </h2></td>
+                                    <td></td>
+                                    <td colspan="1" class="text-center"><h2 class="gras text-success">{{appro.montant|intcomma}} {{request.societe.devise}}</h2></td>
+                                </tr>
+
+                                <tr class="border">
+                                    <td colspan="3" class="text-right">
+                                        <h3 class="text-uppercase mp0">Avance sur montant = {{000}}</h3>
+                                        {% if rgelement is None %}
+                                        <small>Réglement par prélèvement sur acompte</small>
+                                    {% else %}
+                                        <small>Réglement par {{reglement.mouvement.modepayement.name}}</small>
+                                    {% endif %}
+                                        
+                                    </td>
+                                    <td></td>
+                                    <td colspan="1" class="text-center"><h3 class="gras text-">{{appro.avance|intcomma}} {{request.societe.devise}}</h3></td>
+                                </tr>
+                                <tr class="border">
+                                    <td colspan="3" class="text-uppercase text-right"><h4 class=" text--warning-muted ">reste à payer pour cette commande = </h4></td>
+                                    <td></td>
+                                    <td colspan="1" class="text-center"><h3 class="gras text-warning-muted">{{appro.reste}} {{request.societe.devise}}</h3></td>
+                                </tr>
+
+                                <tr style="height: 45px;"></tr>
+
+                                <tr class="border">
+                                    <td colspan="3" class="text-right">
+                                        <h4 class="text-uppercase mp0">Solde de l'acompte du fournisseur =</h4>
+                                    </td>
+                                    <td></td>
+                                    <td colspan="1" class="text-center"><h3 class="gras text-">{{appro.acompte_fournisseur}} {{request.societe.devise}}</h3></td>
+                                </tr>
+                                <tr class="border">
+                                    <td colspan="3" class="text-uppercase text-right"><h4 class=" text-red ">Dette totale envers le fournisseur = </h4></td>
+                                    <td></td>
+                                    <td colspan="1" class="text-center"><h3 class="gras text-danger-muted">{{appro.dette_fournisseur}} {{request.societe.devise}}</h3></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <br><br><br>
+                        <div class="row text-center" style="margin-top: -2%">
+                            <div class="offset-9 col-3" style="padding-top: 0.5%; height: 100px;">
+                                <span><u>Signature & Cachet</u></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <br><br><hr class="mp0">
+                    <p class="text-center"><small><i>* Nous vous prions de vérifier l'exactitude de toutes les informations qui ont été mentionnées sur cette facture avant de quitter nos locaux !</i></small></p>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock body %} 

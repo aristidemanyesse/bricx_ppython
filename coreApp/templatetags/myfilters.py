@@ -46,7 +46,16 @@ def multiply(value, arg):
         return int(value) * int(arg)
     except :
         return value
-        
+
+
+@register.filter
+def div(value, arg):
+    try:
+        return int(value) / int(arg)
+    except :
+        return ""
+
+
 
 @register.filter
 def sub(value, arg):

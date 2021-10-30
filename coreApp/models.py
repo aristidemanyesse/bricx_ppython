@@ -14,10 +14,6 @@ class BaseModel(models.Model):
     def __str__(self):
         return self.name
 
-    def encours(self):
-        etat = Etat.objects.get(etiquette = Etat.ENCOURS)
-        return Super().objects.filter(etat = etat)
-
     class Meta:
         ordering = ['-created_at']
         abstract = True
