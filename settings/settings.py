@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'paramApp',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -7,7 +7,7 @@ from .models import CompteClient, ModePayement, Mouvement, TypeMouvement
 
 def mouvement_pour_entree(request, datas, title, comment):
     mode = ModePayement.objects.get(pk = datas["modepayement"])
-    type = TypeMouvement.objects.get(etiquette = TypeMouvement.ENTREE)
+    type = TypeMouvement.objects.get(etiquette = TypeMouvement.DEPOT)
 
     montant = datas["montant"]
     montant = int(montant)
@@ -34,7 +34,7 @@ def mouvement_pour_entree(request, datas, title, comment):
 
 def mouvement_pour_sortie(request, datas, title, comment):
     mode = ModePayement.objects.get(pk = datas["modepayement"])
-    type = TypeMouvement.objects.get(etiquette = TypeMouvement.SORTIE)
+    type = TypeMouvement.objects.get(etiquette = TypeMouvement.RETRAIT)
     compte = request.agence_compte
 
     montant = datas["montant"]
@@ -65,7 +65,7 @@ def mouvement_pour_sortie(request, datas, title, comment):
 def mouvement_pour_sortie_client(request, datas, title, comment):
     try:
         mode = ModePayement.objects.get(pk = datas["modepayement"])
-        type = TypeMouvement.objects.get(etiquette = TypeMouvement.SORTIE)
+        type = TypeMouvement.objects.get(etiquette = TypeMouvement.RETRAIT)
         client = Client.objects.get(pk = request.session["client_id"])
         compte = request.agence_compte
 
@@ -103,7 +103,7 @@ def mouvement_pour_sortie_client(request, datas, title, comment):
 def mouvement_pour_sortie_fournisseur(request, datas, title, comment):
     try:
         mode = ModePayement.objects.get(pk = datas["modepayement"])
-        type = TypeMouvement.objects.get(etiquette = TypeMouvement.SORTIE)
+        type = TypeMouvement.objects.get(etiquette = TypeMouvement.RETRAIT)
         fournisseur = Fournisseur.objects.get(pk = request.session["fournisseur_id"])
         compte = request.agence_compte
 

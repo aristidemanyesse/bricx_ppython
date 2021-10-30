@@ -16,7 +16,7 @@ def caisse(request):
         datas = {}
         report = test = 14523
         for mouvement in Mouvement.objects.filter(deleted=False, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT,):
-            test = (test - mouvement.montant) if mouvement.type.etiquette == TypeMouvement.SORTIE else (test + mouvement.montant)
+            test = (test - mouvement.montant) if mouvement.type.etiquette == TypeMouvement.RETRAIT else (test + mouvement.montant)
             datas[mouvement] = test
 
         context = {
@@ -36,8 +36,8 @@ def caisse(request):
             "total_depense" : request.agence_compte.total_sortie(debut, fin),
             "solde_a_la_date" : request.agence_compte.solde_actuel(fin),
 
-            "categories_entrees" : CategoryOperation.objects.filter(deleted = False, type__etiquette = TypeOperationCaisse.ENTREE),
-            "categories_depenses" : CategoryOperation.objects.filter(deleted = False, type__etiquette = TypeOperationCaisse.SORTIE),
+            "categories_entrees" : CategoryOperation.objects.filter(deleted = False, type__etiquette = TypeOperationCaisse.DEPOT),
+            "categories_depenses" : CategoryOperation.objects.filter(deleted = False, type__etiquette = TypeOperationCaisse.RETRAIT),
             "modes": ModePayement.objects.filter(deleted = False),
             "comptes": Compte.objects.filter(deleted = False).exclude(pk = request.agence_compte.id),
 

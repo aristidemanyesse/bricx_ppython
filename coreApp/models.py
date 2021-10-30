@@ -25,9 +25,9 @@ class BaseModel(models.Model):
 
 
 class Etat(models.Model):
-    ANNULE   = 0
     EN_COURS = 1
     TERMINE  = 2
+    ANNULE   = 3
 
     name = models.CharField(max_length= 255)
     etiquette = models.CharField(max_length= 255)

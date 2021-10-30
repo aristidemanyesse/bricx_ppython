@@ -12,16 +12,15 @@ class MyCompte(models.Model):
 class MyApp(models.Model):
     socialreason          = models.CharField(max_length = 255)
     email                 = models.CharField(max_length = 255)
-    contact               = models.CharField(max_length = 255)
-    fax                   = models.CharField(max_length = 255)
-    postale               = models.CharField(max_length = 255)
-    devise                = models.CharField(max_length = 255)
+    contact               = models.CharField(max_length = 255, null = True, blank=True)
+    fax                   = models.CharField(max_length = 255, null = True, blank=True)
+    postale               = models.CharField(max_length = 255, null = True, blank=True)
+    devise                = models.CharField(max_length = 255, null = True, blank=True)
     logo          = models.ImageField(upload_to = "storage/images/params/", max_length=255, null=True, blank=True)
 
     allow_waiting_payment = models.BooleanField(default=True)
-    tva                   = models.IntegerField(default=True)
-
-    seuil_credit          = models.IntegerField(default=True)
+    tva                   = models.IntegerField(default=0)
+    seuil_credit          = models.IntegerField(default=0)
     production_auto       = models.BooleanField(default=True)
 
     class Meta:

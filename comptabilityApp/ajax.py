@@ -13,7 +13,7 @@ def operation(request):
         try :
             cat = CategoryOperation.objects.get(pk = datas["category"])
             title = cat.name
-            if cat.type.etiquette == TypeOperationCaisse.ENTREE:
+            if cat.type.etiquette == TypeOperationCaisse.DEPOT:
                 res = mouvement_pour_entree(request, datas, title, datas["comment"])
             else:
                 res = mouvement_pour_sortie(request, datas, title, datas["comment"])
@@ -47,7 +47,7 @@ def transfert(request):
             datas["structure"] = ""
             datas["numero"] = ""
 
-            cat = CategoryOperation.objects.get(etiquette = CategoryOperation.TRANSFERT_SORTIE)
+            cat = CategoryOperation.objects.get(etiquette = CategoryOperation.TRANSFERT_RETRAIT)
             title = cat.name
             res = mouvement_pour_sortie(request, datas, title, datas["comment"])
             if type(res) is Mouvement:
@@ -56,7 +56,7 @@ def transfert(request):
                     category = cat
                 )
 
-                cat = CategoryOperation.objects.get(etiquette = CategoryOperation.TRANSFERT_ENTREE)
+                cat = CategoryOperation.objects.get(etiquette = CategoryOperation.TRANSFERT_DEPOT)
                 title = cat.name
                 request.agence_compte = Compte.objects.get(pk = datas["compte"])
                 res = mouvement_pour_entree(request, datas, title, datas["comment"])

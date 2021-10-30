@@ -12,47 +12,42 @@ from django.db.models import Sum
 # Create your models here.
 
 class TypeOperationCaisse(BaseModel):
-    ENTREE = "1"
-    SORTIE = "-1"
+    DEPOT = "1"
+    RETRAIT = "-1"
 
     name      = models.CharField(max_length = 255)
     etiquette = models.CharField(max_length = 255, null = True, blank=True)
 
 
 class TypeMouvement(BaseModel):
-    ENTREE = "1"
-    SORTIE = "-1"
+    DEPOT = "1"
+    RETRAIT = "-1"
 
-    name      = models.CharField(max_length = 255)
-    etiquette = models.CharField(max_length = 255, null = True, blank=True)
-
-
-class TypeReglement(BaseModel):
     name      = models.CharField(max_length = 255)
     etiquette = models.CharField(max_length = 255, null = True, blank=True)
 
 
 class CategoryOperation(BaseModel):
-    REFUND_CLIENT = 5
-    TRANSPORT = 6
-    REFUND_FOURNISSEUR = 7
-    TRANSFERT_ENTREE = 8
-    TRANSFERT_SORTIE = 9
+    REFUND_FOURNISSEUR = 1
+    TRANSFERT_DEPOT    = 2
+
+    MAIN_D_OEUVRE        = 10
+    REFUND_CLIENT      = 11
+    TRANSPORT          = 12
+    TRANSFERT_RETRAIT  = 13
 
     name      = models.CharField(max_length = 255)
-    etiquette = models.CharField(max_length = 255)
+    etiquette = models.CharField(max_length = 255, null = True, blank=True)
     type      = models.ForeignKey(TypeOperationCaisse, on_delete = models.CASCADE, related_name="type_categorie")
     color     = models.CharField(default="", max_length = 255,  null = True, blank=True)
 
 
 class ModePayement(BaseModel):
-    PRELEVEMENT  = "1"
-    ESPECES      = "2"
-    MOBILE_MONEY = "3"
-    CHEQUE       = "4"
+    ESPECES      = "1"
+    PRELEVEMENT  = "2"
 
     name      = models.CharField(max_length = 255)
-    etiquette = models.CharField(max_length = 255)
+    etiquette = models.CharField(max_length = 255, null = True, blank=True)
     etat      = models.ForeignKey("coreApp.Etat", on_delete = models.CASCADE)
     class Meta:
         ordering = ['etiquette']
@@ -70,13 +65,13 @@ class Compte(BaseModel):
     def total_entree(self, debut = None, fin = None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.ENTREE, created_at__lte = fin).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
+        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.DEPOT, created_at__lte = fin).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
         return (total["montant__sum"] or 0)
 
     def total_sortie(self, debut = None, fin = None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.SORTIE, created_at__lte = fin).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
+        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.RETRAIT, created_at__lte = fin).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
         return (total["montant__sum"] or 0)
 
     def solde_actuel(self, fin = None):

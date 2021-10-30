@@ -16,7 +16,7 @@ class TypePerte(BaseModel):
     DECHARGEMENT = 2
     
     name      = models.CharField(max_length = 255)
-    etiquette = models.CharField(max_length = 255)
+    etiquette = models.CharField(max_length = 255, null = True, blank=True)
 
 
 class Brique(BaseModel):

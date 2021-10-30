@@ -11,7 +11,7 @@ class TypeClient(BaseModel):
     PARTICULIER = "PARTICULIER"
     ENTREPRISE = "ENTREPRISE"
 
-    name           = models.CharField(max_length = 255)
+    name           = models.CharField(max_length = 255, null = True, blank=True)
     etiquette = models.CharField(max_length = 255, null = True, blank=True)
 
 
@@ -29,9 +29,9 @@ class Client(BaseModel):
 
     def acompte_actuel(self):
         total = 0
-        datas = self.client_compte.filter(mouvement__type__etiquette = TypeMouvement.ENTREE).aggregate(Sum("mouvement__montant"))
+        datas = self.client_compte.filter(mouvement__type__etiquette = TypeMouvement.DEPOT).aggregate(Sum("mouvement__montant"))
         total += datas["mouvement__montant__sum"] or 0
-        datas = self.client_compte.filter(mouvement__type__etiquette = TypeMouvement.SORTIE).aggregate(Sum("mouvement__montant"))
+        datas = self.client_compte.filter(mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
         total -= datas["mouvement__montant__sum"] or 0
         return self.acompte_initial + total
 
@@ -41,7 +41,7 @@ class Client(BaseModel):
         for commande in Commande.objects.filter(groupecommande__client = self, deleted = False):
             total += commande.reste_a_payer()
 
-        datas = self.client_compte.filter(is_dette = True, mouvement__type__etiquette = TypeMouvement.SORTIE).aggregate(Sum("mouvement__montant"))
+        datas = self.client_compte.filter(is_dette = True, mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
         total -= datas["mouvement__montant__sum"] or 0
         return self.dette_initial + total
 

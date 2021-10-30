@@ -33,21 +33,21 @@ ETAT.objects.create(
 
 TypeMouvement.objects.create(
     name = "Entrée",
-    etiquette = TypeMouvement.ENTREE
+    etiquette = TypeMouvement.DEPOT
 )
 TypeMouvement.objects.create(
     name = "Sortie",
-    etiquette = TypeMouvement.SORTIE
+    etiquette = TypeMouvement.RETRAIT
 )
 
 
 TypeOperationCaisse.objects.create(
     name = "Entrée",
-    etiquette = TypeOperationCaisse.ENTREE
+    etiquette = TypeOperationCaisse.DEPOT
 )
 TypeOperationCaisse.objects.create(
     name = "Sortie",
-    etiquette = TypeOperationCaisse.SORTIE
+    etiquette = TypeOperationCaisse.RETRAIT
 )
 
 
