@@ -1,0 +1,195 @@
+{% extends "layout/base_sidebar_boutique.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block wrapper %} 
+
+<div class="animated fadeInRightBig">
+
+    <div class="ibox ">
+        <div class="ibox-title d-print-none">
+            <h5 class="float-left">Du {{debut}} au {{fin}}</h5>
+                <div class="ibox-tools">
+                    {% include 'extra/filter_form.html' %}
+                </div>
+            </div><br>
+
+            <div class="ibox-title">
+                <h5 class="float-left">Tableau comparatif des productions par rapport aux pertes sur la période</h5>
+                <div class="ibox-tools">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+
+                <div class="">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="text-uppercase text-center" style="font-size: 11px;">
+                                <th rowspan="2"></th>
+                                <th rowspan="2">Stock au {{veille}}</th>
+                                <th rowspan="2">Production</th>
+                                <th rowspan="2">acheté</th>
+                                <th rowspan="2">Livraison</th>
+                                <th colspan="4">Perte</th>
+                                <th rowspan="2">Stock au {{fin}}</th>
+                            </tr>
+                            <tr class="text-uppercase text-center" style="font-size: 11px;">
+                                <th width="15">Livr.</th>
+                                <th width="15">Rang.</th>
+                                <th width="15">Autre</th>
+                                <th width="15">Prct%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for brique in briques.keys %}
+                            <tr>
+                                <td>
+                                    <span class="gras text-uppercase">{{brique.name}}</span> <br>
+                                    <small>{{brique.comment}}</small>
+                                </td>
+                                <td class="text-center"><h4 class="gras">{{briques|dict_value:brique|dict_value:'veille'|intcomma}}</h4></td>
+                                <td class="text-center"><h3 class="gras text-green">{{briques|dict_value:brique|dict_value:'production'|intcomma}}</h3></td>
+                                <td class="text-center">{{briques|dict_value:brique|dict_value:'achat'|intcomma}}</td>
+                                <td class="text-center"><h3 class="gras text-blue">{{briques|dict_value:brique|dict_value:'livraison'|intcomma}}</h3></td>
+                                <td class="text-center text-red">{{briques|dict_value:brique|dict_value:'perteL'|intcomma}}</td>
+                                <td class="text-center text-red">{{briques|dict_value:brique|dict_value:'perteR'|intcomma}}</td>
+                                <td class="text-center text-red">{{briques|dict_value:brique|dict_value:'perteA'|intcomma}}</td>
+                                <td class="text-center text-red gras" >{{briques|dict_value:brique|dict_value:'pct'}} %</td>
+                                <td class="text-center"><h2 class="gras">{{briques|dict_value:brique|dict_value:'stock'|intcomma}}</h2></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="row stat-list text-center">
+                        <div class="col-sm-6 col-md-3 ">
+                            <h3 class="no-margins text-green">{{cout_production|intcomma}} <small>{{request.societe.devise}}</small></h3>
+                            <small>Coût de production</small>
+                        </div>
+                        <div class="col-sm-6 col-md-3 border-left border-right">
+                            <h3 class="no-margins gras">{{cout_rangement|intcomma}} <small>{{request.societe.devise}}</small></h3>
+                            <small>Coût de rangement</small>
+                        </div>
+                        <div class="col-sm-6 col-md-3 border-right">
+                            <h3 class="no-margins text-blue">{{cout_livraison|intcomma}} <small>{{request.societe.devise}}</small></h3>
+                            <small>Coût de livraison</small>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <h3 class="no-margins text-red">{{cout_tricycle|intcomma}} <small>{{request.societe.devise}}</small></h3>
+                            <small>Paye des tricycles</small>
+                        </div>
+                    </div><hr>
+                </div>
+
+                <hr style="border: dashed 1px orangered"> 
+            </div>
+        </div>
+
+
+
+
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5 class="float-left text-uppercase">Tableau comparatif de la consommation de ressource sur la période</h5>
+                <div class="ibox-tools">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center" >
+                            <th colspan="2">Production</th>
+                            {% for ressource in ressources.keys %}
+                            <th>
+                                <span style="font-size: 11px;" class="text-uppercase">{{ressource.name}}</span>
+                                <br><small>{{ressource.unite}}</small>
+                            </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for brique in briques.keys %}
+                        <tr>
+                            <td><span class="gras text-uppercase">{{brique.name}}</span> <br> <small>{{brique.comment}}</small></td>
+                            <td class="text-center"><h3 class="gras">{{briques|dict_value:brique|dict_value:'production'|intcomma}}</h3></td>
+                            {% for ressource in ressources.keys %}
+                            <td class="text-center">{{ressources|dict_value:ressource|dict_value:"stock"|intcomma}} {{ressource.unite}}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                        
+                        <tr style="height: 12px;"></tr>
+                        <tr>
+                            <td colspan="2">
+                                <h5 class="gras text-uppercase mp0">Consommation totale dûe</h5>
+                                <small>(Ce qu'ils auraient normalement dû être consommé)</small>
+                            </td>
+                            {% for ressource in ressources.keys %}
+                            <td class="text-center text-green gras">00 {{ressource.unite }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h5 class="gras text-uppercase mp0">Consommation totale effective</h5>
+                                <small>(Consommation qu'ils ont effectivement déclaré)</small>
+                            </td>
+                            {% for ressource in ressources.keys %}
+                            <td class="text-center text-green gras">00 {{ressource.unite }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr style="height: 12px;"></tr>
+                        <tr>
+                            <td colspan="2"><h5 class="gras text-uppercase">Comparatif de la Consommation</h5></td>
+                            {% for ressource in ressources.keys %}
+                            <td class="text-center text-green gras">Conso de 00 {{ressource.unite }} de plus</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+                <small><i>* Selon la ressource, vous devez considerer une certaine marge de consommation sur la periode. (Ex: -/+ 5 sacs de ciments pour 30 jours)</i></small><br>
+                <small><i>* Si cette marge est franchie (positivement ou négativement), alors il y a un problème de production.<br> Soit ils n'utilisent pas les quantités néccéssaires pour une bonne qualité de la production, soit ils font du gaspillage de ressource.</i></small>
+            </div>
+        </div>
+        
+
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5 class="float-left text-uppercase">Estimation des pertes en ressource sur la période</h5>
+                <div class="ibox-tools">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center" >
+                            <th colspan="2"></th>
+                            {% for ressource in ressources.keys %}
+                            <th>
+                                <span style="font-size: 11px;" class="text-uppercase">{{ressource.name}}</span>
+                                <br><small>{{ressource.unite}}</small>
+                            </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <h5 class="gras text-uppercase mp0">Estimation en ressource</h5>
+                                <small>(Appréciez par vous-même)</small>
+                            </td>
+                            {% for ressource in ressources.keys %}
+                            <td class="text-center text-red gras">00 {{ressource.abbr }}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    {% endblock wrapper %} 

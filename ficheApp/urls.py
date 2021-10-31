@@ -8,6 +8,7 @@ from . import views, fiches
 
 app_name = "fiches"
 urlpatterns = [
+    path('production/<uuid:id>/', views.production, name="production"),
 
     
     path('prixparzone/<uuid:id>/', fiches.prixparzone, name="prixparzone"),

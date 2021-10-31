@@ -2,9 +2,9 @@ import datetime
 from django.shortcuts import get_object_or_404, render
 from approvisionnementApp.models import AchatStock, Approvisionnement
 from commandeApp.models import Conversion, GroupeCommande, PrixZoneLivraison, Commande, ZoneLivraison
-from comptabilityApp.models import Mouvement
+from django.db.models import Sum
 from coreApp.models import Etat
-from livraisonApp.models import Livraison
+from livraisonApp.models import Livraison, Tricycle
 from productionApp.models import Brique, Production, Ressource
 from organisationApp.models import Employe
 # Create your views here.
@@ -21,7 +21,6 @@ def rapport_du_jour(request, year, month, day):
                 data[ligne.brique] = ligne.quantite
             commandes[item] = data
 
-
         livraisons = {}
         for item in Livraison.objects.filter(deleted = False, created_at__date = date).exclude(etat__etiquette = Etat.ANNULE):
             data = {}
@@ -29,15 +28,12 @@ def rapport_du_jour(request, year, month, day):
                 data[ligne.brique] = ligne.quantite
             livraisons[item] = data
 
-
         appros = {}
         for item in Approvisionnement.objects.filter(deleted = False, created_at__date = date).exclude(etat__etiquette = Etat.ANNULE):
             data = {}
             for ligne in item.approvisionnement_ligne.all():
                 data[ligne.ressource] = ligne.quantite
             appros[item] = data
-
-
 
         achats = {}
         for item in AchatStock.objects.filter(deleted = False, created_at__date = date).exclude(etat__etiquette = Etat.ANNULE):
@@ -54,7 +50,6 @@ def rapport_du_jour(request, year, month, day):
             for ligne in prod.production_ligne.all():
                 data[ligne.brique] = ligne.quantite
             production[prod] = data
-
 
         context = {
             "date" : date,
@@ -81,9 +76,58 @@ def rapport_du_jour(request, year, month, day):
 
 def production(request, id):
     if request.method == "GET":
-        converson = get_object_or_404(Production, pk = id)
-        context = {
-                "production" : production,
+
+        debut = datetime.date.fromisoformat(request.session["date1"])
+        fin = datetime.date.fromisoformat(request.session["date2"]) 
+        veille = debut - datetime.timedelta(days=1)
+        lendemain = fin + datetime.timedelta(days=1)
+
+        briques = {}
+        for brique in Brique.objects.filter(active = True, deleted = False):
+            data = {
+                "veille"    : brique.stock(request.agence, veille),
+                "stock"     : brique.stock(request.agence, fin), 
+                "production": brique.production(request.agence, debut, fin), 
+                "achat"     : brique.achat(request.agence, debut, fin), 
+                "livraison": brique.livraison(request.agence, debut, fin), 
+                "perteR"    : brique.perte_rangement(request.agence, debut, fin), 
+                "perteL"    : brique.perte_livraison(request.agence, debut, fin), 
+                "perteA"    : brique.perte_autre(request.agence, debut, fin), 
             }
-        return render(request, "fiches/pages/production.html", context)
+            data["pct"] = (brique.perte(request.agence, debut, fin) / (data["production"] + data["achat"])) * 100
+            briques[brique] = data
+
+
+        ressources = {}
+        for ressource in Ressource.objects.filter(active = True, deleted = False):
+            data = {
+                "stock"    : ressource.stock(request.agence, fin), 
+                "achat"    : ressource.achat(request.agence, debut, fin), 
+                "consommee": ressource.consommation(request.agence, debut, fin), 
+                "perte"    : ressource.perte(request.agence, debut, fin), 
+            }
+            ressources[ressource] = data
+
+        cout_production = cout_rangement = cout_livraison =0
+        for prod in Production.objects.filter(deleted = False, created_at__range = (debut, lendemain)):
+            cout_production += prod.montant_production
+            cout_rangement += prod.montant_rangement
+            cout_livraison += prod.montant_livraison
+
+    
+        tricycle = Tricycle.objects.filter(deleted = False, created_at__range = (debut, lendemain)).aggregate(Sum("montant"))
+
+        context = {
+            "debut" : debut,
+            "fin":fin,
+            "veille":veille,
+            "briques" : briques,
+            "ressources" : ressources,
+
+            "cout_production" : cout_production,
+            "cout_rangement" : cout_rangement,
+            "cout_livraison" : cout_livraison,
+            "cout_tricycle" : tricycle["montant__sum"] or 0,
+        }
+        return render(request, "rapports/pages/production.html", context)
 
