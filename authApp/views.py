@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, logout
 
 
 def login(request):
+    logout(request)
     if request.method == "GET":
         logout(request)
         if 'locked' in request.session:
@@ -27,6 +28,11 @@ def forgetpassword(request):
 
 def reset(request):
     return render(request, "auth/pages/reset.html")
+
+
+
+def expiration(request):
+    return render(request, "auth/pages/expiration.html")
 
 
 def disconnect(request):

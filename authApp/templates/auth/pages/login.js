@@ -1,5 +1,7 @@
 $(function(){
 
+    localStorage.setItem("is_new", "1")
+
     $("form#formConnexion").submit(function(event) {
         Loader.start();
         var url = "../ajax/login/";

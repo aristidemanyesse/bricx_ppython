@@ -9,6 +9,7 @@ django-cors-headers = "*"
 djangorestframework = "*"
 pillow = "*"
 mysqlclient = "*"
+python-dateutil = "*"
 
 [dev-packages]
 

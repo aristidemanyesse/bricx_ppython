@@ -17,4 +17,4 @@ def run():
         devise = "Fcfa"
     )
     
-    print("bootstrap.py de params")
+    print("Initialisation du module d'Adminnistration")

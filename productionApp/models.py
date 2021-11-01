@@ -52,7 +52,6 @@ class Brique(BaseModel):
     def production(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        print(debut, fin)
         res = self.brique_ligneproduction.filter(deleted = False, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
@@ -171,7 +170,6 @@ class Ressource(BaseModel):
     def consommation(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        print(debut, fin)
         res = self.ressource_ligneconsommation.filter(deleted = False, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 

@@ -1,3 +1,3 @@
 
 def run():
-    print("bootstrap de appro")
+    print("Initialisation du module d'Approvisionnement ")

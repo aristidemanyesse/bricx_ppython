@@ -32,11 +32,12 @@ $(function () {
     //filtre de la barre generale de recherche
     $("#top-search").on("keyup", function () {
         var value = $(this).val().toLowerCase();
-        $("table.table-mise tr:not(.no)").filter(function () {
+        $("table.table-mise tr:not(.no), .item").filter(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
 
+    
     //selection des images
     $('body').on("click", "button.btn_image", function(event) {
 		$(this).prev("input[type=file]").trigger('click');

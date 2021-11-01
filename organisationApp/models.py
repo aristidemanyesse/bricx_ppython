@@ -19,7 +19,7 @@ class Employe(User, BaseModel):
     is_never_connected = models.BooleanField(default = True)
     is_allowed         = models.BooleanField(default = True)
     agence             = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_employe")
-    avatar          = models.ImageField(upload_to = "storage/images/employes/", max_length=255,  null=True, blank=True)
+    image          = models.ImageField(upload_to = "storage/images/employes/", max_length=255,  null=True, blank=True)
 
     def __str__(self):
         return self.first_name+" "+self.last_name

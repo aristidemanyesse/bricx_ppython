@@ -1,4 +1,4 @@
 
 
 def run():
-    print("bootstrap.py de auth")
+    print("Initialisation du module d'Authentification")

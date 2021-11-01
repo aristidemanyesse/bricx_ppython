@@ -51,10 +51,18 @@
 
 
                 <li class="" id="commandes">
-                    <a href="{% url 'boutique:commandes:commandes' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Commandes de clients</span> <span class="label label-warning float-right">{{ request.commandes | length |start0}}</span></a>
+                    <a href="{% url 'boutique:commandes:commandes' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Commandes de clients</span>
+                        {% if request.commandes|length > 0 %}
+                        <span class="label label-warning float-right">{{request.commandes|length|start0}}</span>
+                        {% endif %}
+                    </a>
                 </li>
                 <li class="" id="livraisons">
-                    <a href="{% url 'boutique:livraisons:livraisons' %}"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> <span class="label label-warning float-right">{{ request.livraisons | length |start0}}</span> </a>
+                    <a href="{% url 'boutique:livraisons:livraisons' %}"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> 
+                        {% if request.livraisons|length > 0 %}
+                        <span class="label label-warning float-right">{{request.livraisons|length|start0}}</span>
+                        {% endif %}
+                    </a>
                 </li>
                 <li class="">
                     <a href="{% url 'boutique:commandes:prixparzone' %}"><i class="fa fa-list"></i> <span class="nav-label">Voir les prix par zone</span></a>
@@ -70,7 +78,11 @@
 
 
                 <li class="" id="tricycle">
-                    <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> <span class="label label-warning float-right">{{ request.tricycles | length |start0}}</span> </a>
+                    <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> 
+                        {% if request.tricycles|length > 0 %}
+                        <span class="label label-warning float-right">{{request.tricycles|length|start0}}</span>
+                        {% endif %}
+                    </a>
                 </li>
                 <li class="" id="caisse">
                     <a href="{% url 'tresorerie:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>

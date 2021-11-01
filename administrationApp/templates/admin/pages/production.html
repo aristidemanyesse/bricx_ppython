@@ -45,7 +45,7 @@
                                   <td>
                                       <div class="switch">
                                           <div class="onoffswitch">
-                                              <input type="checkbox" {{brique.active|yesno:"checked"}} onchange="changeActive('produit', '{{brique.id}}')" class="onoffswitch-checkbox">
+                                              <input type="checkbox" {{brique.active|yesno:"checked"}} onchange="changeActive('brique', '{{brique.id}}')" class="onoffswitch-checkbox">
                                                 <label class="onoffswitch-label" for="produit{{brique.id}}">
                                                     <span class="onoffswitch-inner"></span>
                                                   <span class="onoffswitch-switch"></span>
@@ -54,7 +54,7 @@
                                       </div>
                                   </td>
                                   <td data-toggle="modal" data-target="#modal-produit{{brique.id}}" title="modifier le produit" ><i class="fa fa-pencil text-blue cursor"></i></td>
-                                  <td data-toggle="tooltip" title="modifier le produit" onclick="delete_password('produit', '{{brique.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                                  <td data-toggle="tooltip" title="modifier le produit" onclick="delete_password('brique', '{{brique.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
                               </tr>
                             {% endfor %}
                       </tbody>
@@ -126,8 +126,8 @@
                   <h5 class="text-uppercase">Exigence de production par ressource 
                       <div class="switch">
                           <div class="onoffswitch">
-                              <input type="checkbox" {{request.societe.productionAuto|yesno:"checked" }} onchange='changeProductionAuto()' class="onoffswitch-checkbox" id="productionAuto">
-                              <label class="onoffswitch-label" for="productionAuto">
+                              <input type="checkbox" {{request.societe.productionAuto|yesno:"checked" }} class="onoffswitch-checkbox maj" model="myapp" name="production_auto" id="{{request.societe.id}}">
+                              <label class="onoffswitch-label" for="{{request.societe.id}}">
                                   <span class="onoffswitch-inner"></span>
                                   <span class="onoffswitch-switch"></span>
                               </label>
@@ -155,7 +155,10 @@
                         {% for brique in briques.keys %}
                             {% with exi=brique.brique_exigenceproduction.filter.first %}
                             <tr>
-                                <td style="width: 250px" class="gras text-uppercase">{{brique.name}}</td>
+                                <td style="width: 250px" class="">
+                                    <span class="gras text-uppercase">{{brique.name}}</span><br>
+                                    <small>{{brique.comment}}</small>
+                                </td>
                                 {% for ressource in ressources %}
                                         <td class="text-center"> {{briques|dict_value:brique|dict_value:ressource|start0}} {{ressource.unite}}</td>
                                 {% endfor %}

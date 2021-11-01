@@ -23,4 +23,4 @@ def run():
 
 
 
-    print("bootstrap.py de liv")
+    print("Initialisation du module de Livraison")

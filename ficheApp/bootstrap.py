@@ -1,4 +1,4 @@
 
 
 def run():
-    print("bootstrap.py de fiches")
+    print("Initialisation du module de Fiches et reçus")

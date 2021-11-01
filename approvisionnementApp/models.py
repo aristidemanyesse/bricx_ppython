@@ -53,6 +53,8 @@ class Fournisseur(BaseModel):
             total += fournisseur.dette_totale()
         return total
 
+        
+
 class AchatStock(BaseModel):
     reference         = models.CharField(max_length = 255)
     agence            = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_achatstock")
@@ -71,6 +73,10 @@ class AchatStock(BaseModel):
         data = ReglementAchatStock.objects.filter(achatstock = self).aggregate(Sum("mouvement__montant"))
         return self.montant - (data["mouvement__montant__sum"] or 0)
 
+    def __str__(self):
+        return "Achat de stock N°"+str(self.reference)
+
+
 class LigneAchatStock(BaseModel):
     achatstock    = models.ForeignKey(AchatStock, on_delete = models.CASCADE, related_name="achatstock_ligne")
     brique        = models.ForeignKey("productionApp.Brique", on_delete = models.CASCADE, related_name="brique_ligneachatstock")
@@ -79,6 +85,8 @@ class LigneAchatStock(BaseModel):
     price         = models.IntegerField(default = 0)
 
 
+    def __str__(self):
+        return str(self.quantite) + " " +self.brique.name+" à " +str(self.price)
 
 
 class Approvisionnement(BaseModel):
@@ -114,7 +122,8 @@ class LigneApprovisionnement(BaseModel):
     quantite_recu     = models.IntegerField(default = 0)
     price             = models.IntegerField(default = 0)
 
-
+    def __str__(self):
+        return str(self.quantite) + " " +self.ressource.name+" à " +str(self.price)
 
 
 ######################################################################################################

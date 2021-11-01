@@ -68,9 +68,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
-    'paramApp.middleware.LockoutMiddleware',
+    'coreApp.middleware.LockoutMiddleware',
+    'coreApp.middleware.AccessCheckMiddleware',
     'paramApp.middleware.InjectMyAppDataMiddleware',
-    'organisationApp.middleware.InjectAgenceMiddleware'
 ]
 
 ROOT_URLCONF = 'settings.urls'

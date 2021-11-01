@@ -31,7 +31,7 @@ def run():
 
     Brique.objects.create(
         name = "AP 15",
-        classe = "Agglos pleines 15",
+        comment = "Agglos pleines 15",
         alert_stock = 0,
         protected = True
     )
@@ -43,4 +43,4 @@ def run():
         protected = True
     )
 
-    print("bootstrap.py de prod")
+    print("Initialisation du module de Production")

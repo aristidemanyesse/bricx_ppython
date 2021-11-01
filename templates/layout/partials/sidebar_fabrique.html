@@ -48,7 +48,11 @@
                 
 
                 <li class="" id="tricycle">
-                    <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> <span class="label label-warning float-right">{{ request.tricycles | length |start0}}</span> </a>
+                    <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> 
+                        {% if request.tricycles|length > 0 %}
+                        <span class="label label-warning float-right">{{request.tricycles|length|start0}}</span>
+                        {% endif %}
+                    </a>
                 </li>
                 <li class="" id="caisse">
                     <a href="{% url 'tresorerie:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
@@ -71,7 +75,11 @@
                     <a href="{% url 'production:productions' %}"><i class="fa fa-building-o"></i> <span class="nav-label">Les productions </span></a>
                 </li>
                 <li class="" id="achatstock">
-                    <a href="{% url 'fabrique:appros:achatstock' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Achat de briques </span> <?php if (count($achatstock__) > 0) { ?> <span class="label label-warning float-right"><?= count($achatstock__) ?></span> <?php } ?></a>
+                    <a href="{% url 'fabrique:appros:achatstock' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Achat de briques </span> 
+                        {% if request.achats|length > 0 %}
+                        <span class="label label-warning float-right">{{request.achats|length|start0}}</span>
+                        {% endif %}
+                    </a>
                 </li>
                 <li >
                     <a href="#"><i class="fa fa-trash"></i> <span class="nav-label">Les pertes</span><span class="fa arrow"></span></a>
@@ -86,7 +94,11 @@
                     <a href="{% url 'fabrique:appros:fournisseurs' %}"><i class="fa fa-address-book-o"></i> <span class="nav-label">Liste des Fournisseurs</span></a>
                 </li>
                 <li class="" id="approvisionnements">
-                    <a href="{% url 'fabrique:appros:approvisionnements' %}"><i class="fa fa-bus"></i> <span class="nav-label">Approvisionnements </span> <?php if (count($approvisionnements__) > 0) { ?> <span class="label label-warning float-right"><?= count($approvisionnements__) ?></span> <?php } ?></a>
+                    <a href="{% url 'fabrique:appros:approvisionnements' %}"><i class="fa fa-bus"></i> <span class="nav-label">Approvisionnements </span> 
+                        {% if request.appros|length > 0 %}
+                        <span class="label label-warning float-right">{{request.appros|length|start0}}</span>
+                        {% endif %}
+                    </a>
                 </li>
                 <li class="dropdown-divider"></li>              
 

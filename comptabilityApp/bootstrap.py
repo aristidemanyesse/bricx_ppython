@@ -75,6 +75,7 @@ def run():
 
     CategoryOperation.objects.create(
         name = "Remboursement du client",
+        type = TypeOperationCaisse.objects.get(etiquette = TypeOperationCaisse.RETRAIT),
         etiquette = CategoryOperation.REFUND_CLIENT
     )
     CategoryOperation.objects.create(
@@ -106,4 +107,4 @@ def run():
 
 
     
-    print("bootstrap.py de compta")
+    print("Initialisation du module de Comptabilité")

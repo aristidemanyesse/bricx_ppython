@@ -1,4 +1,4 @@
 
 
 def run():
-    print("bootstrap.py de commande")
+    print("Initialisation du module de Commandes")

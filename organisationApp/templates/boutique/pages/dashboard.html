@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-3 border-right">
                     <div class="text-center">
-                        <img src="{% static request.societe.logo %}" class="img-circle" style="height: 140px; width: 140px" alt=""><br><br>
+                        <img src="{% static request.societe.image %}" class="img-circle" style="height: 140px; width: 140px" alt=""><br><br>
                         <h2 class="text-uppercase">{{request.agence.name}}</h2><br>
                     </div>
                     <ul class="list-group clear-list m-t">
@@ -64,23 +64,18 @@
                 </div>
                 <div class="col-md-3 border-left">
                     <div class="statistic-box" style="margin-top: 0%">
-                       <div class="ibox">
-                        <div class="ibox-content">
-                            <h5>Courbe des ventes</h5>
-                            <div id="sparkline2"></div>
-                        </div>
-
-                        <div class="ibox-content">
-                            <h5>Dette chez les clients</h5>
-                            <h2 class="no-margins">{{ dette_clients|intcomma}} {{request.societe.devise}}</h2>
-                        </div>
-
-                        <div class="ibox-content">
-                            <h5>En rupture de Stock</h5>
-                            <h2 class="no-margins">{{rupture_stock_brique|length|start0}} produit(s)</h2>
-                        </div>
-                    </div>
-                </div>
+                        <div class="ibox">
+                         <div class="ibox-content">
+                             <h5>Dette chez les clients</h5>
+                             <h2 class="no-margins">{{ dette_clients|intcomma}} {{request.societe.devise}}</h2>
+                         </div>
+ 
+                         <div class="ibox-content">
+                             <h5>Briques en rupture de Stock</h5>
+                             <h2 class="no-margins">{{rupture_stock_brique|length|start0}} produit(s)</h2>
+                         </div>
+                     </div>
+                 </div>
             </div>
         </div>
         <br>
@@ -163,20 +158,6 @@
 <script>
     $(document).ready(function() {
 
-        var id = "<?= $this->id;  ?>";
-        if (id == 1) {
-            setTimeout(function() {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('Content de vous revoir de nouveau!', 'Bonjour {{request.employe.get_full_name}}');
-            }, 1300);
-        }
-
-
  // Stocked horizontal bar
 
  new Chartist.Bar('#ct-chart', {
@@ -203,24 +184,6 @@ axisY: {
     offset: 80
 }
 });
-
-
-
- var ctx3 = document.getElementById("polarChart").getContext("2d");
- new Chart(ctx3, {type: 'polarArea', data: polarData, options:polarOptions});
-
- var doughnutData = {
-    labels: ["App","Software","Laptop" ],
-    datasets: [{
-        data: [300,50,100],
-        backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
-    }]
-} ;
-
-
-var doughnutOptions = {
-    responsive: true
-};
 
 
 });

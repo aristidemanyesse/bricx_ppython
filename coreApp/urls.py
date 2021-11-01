@@ -5,7 +5,8 @@ from . import ajax
 app_name = "core"
 urlpatterns = [
     path('ajax/save/', ajax.save, name="save"),
+    path('ajax/mise_a_jour/', ajax.mise_a_jour, name="mise_a_jour"),
+    path('ajax/supprimer/', ajax.supprimer, name="supprimer"),
     path('ajax/session/', ajax.session, name="session"),
-    path('ajax/delete_session/', ajax.delete_session, name="delete_session"),
 
 ]

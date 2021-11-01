@@ -14,4 +14,4 @@ def run():
             protected = True
     )
 
-    print("bootstrap.py de client")
+    print("Initialisation du module de Gestion des clients")

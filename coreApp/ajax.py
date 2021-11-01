@@ -24,6 +24,7 @@ def save(request):
         datas._mutable = True
         for key in datas:
             if datas[key] == "on": datas[key]=True
+
         try:
             modelform = datas["modelform"]
             MyForm = globals()[modelform]
@@ -36,12 +37,15 @@ def save(request):
                 if "id" in datas and datas["id"] != "":
                     obj = MyModel.objects.get(pk=datas["id"])
                     form = MyForm(datas, instance = obj)
-                    print(obj.__dict__)
                 else:
                     datas["id"] = uuid.uuid4()
                     form = MyForm(datas)
 
                 if form.is_valid():
+                    if 'image' in request.FILES and request.FILES["image"] != "":
+                        image = request.FILES.get('image')
+                        form.image = image
+
                     item = form.save()
                     if modelform == "ClientForm":
                         return JsonResponse({"status":True, "url" : reverse("boutique:clients:client", args=[item.id])})
@@ -55,6 +59,64 @@ def save(request):
                     errors_keys = list(errors.keys())
                     return JsonResponse({"status":False, "message":"{} : {}".format(errors_keys[0], errors_values[0])})
    
+        except Exception as e:
+            print("erreur save :", e)
+            return JsonResponse({"status":False, "message":"Erreur lors du processus. Veuillez recommencer : "+str(e)})
+
+
+
+
+def mise_a_jour(request):
+    if request.method == "POST":
+        datas = request.POST
+        datas._mutable = True
+        for key in datas:
+            if datas[key] == "on": datas[key]=True
+
+        try:
+            if (datas["model"]) != "":
+                modelform = datas["model"]
+                content_type = ContentType.objects.get(model= modelform.lower())
+                MyModel = content_type.model_class()
+
+                item = MyModel.objects.get(pk=datas["id"])
+
+                mydict = item.__dict__
+                del mydict["_state"]
+                del mydict["id"]
+                mydict[datas["name"]] = datas["val"]
+                MyModel.objects.filter(pk=datas["id"]).update(**mydict)
+
+                return JsonResponse({"status": True})
+
+        except Exception as e:
+            print("--------------------", e)
+            return JsonResponse({"status": False, "message": "Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
+
+
+
+
+def supprimer(request):
+    if request.method == "POST":
+        datas = request.POST
+
+        try:
+            modelform = datas["model"]
+            content_type = ContentType.objects.get(model= modelform.lower())
+            MyModel = content_type.model_class()
+
+            if "password" in datas and not request.user.check_password(datas["password"]):
+                return JsonResponse({"status":False, "message":"Le mot de passe est incorrect !"})
+
+            obj = MyModel.objects.get(pk=datas["id"])
+            print(obj)
+            if obj.protected:
+                return JsonResponse({"status":False, "message":"Vous ne pouvez pas supprimer cet element, il est protégé !"})
+
+            obj.deleted = True
+            obj.save()
+            return JsonResponse({"status":True, "message":"Suppression effectuée avec succes !"})
+
         except Exception as e:
             print("erreur save :", e)
             return JsonResponse({"status":False, "message":"Erreur lors du processus. Veuillez recommencer : "+str(e)})

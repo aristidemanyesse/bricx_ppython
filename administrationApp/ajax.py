@@ -8,29 +8,6 @@ import coreApp.tools as tools
 from productionApp.models import ExigenceProduction, LigneExigenceProduction, PayeBrique, PayeBriqueFerie
 
 
-def mise_a_jour(request):
-    if request.method == "POST":
-        datas = request.POST
-
-    try:
-        if (datas["model"]) != "":
-            MyModel = tools.form_to_model(datas["model"])
-            content_type = ContentType.objects.get(model=MyModel.lower())
-            MyModel = content_type.model_class()
-
-            item = MyModel.objects.filter(pk=datas["id"])
-            item.datas["name"] = datas["val"]
-            item.save()
-
-            return JsonResponse({"status": True})
-
-    except Exception as e:
-        print("--------------------", e)
-        return JsonResponse({"status": False, "message": "Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
-
-
-
-
 def exigence(request):
     if request.method == "POST":
         datas = request.POST

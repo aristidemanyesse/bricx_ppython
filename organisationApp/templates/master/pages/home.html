@@ -11,7 +11,7 @@
         <div class="row ">
             <div class="col-lg-4 col-md-12">
                 <div class="text-center" style="margin-top: 6%;">
-                    <img src="{% static request.societe.logo %}" class="img-circle logo" alt=""><br><br>
+                    <img src="{% static request.societe.image %}" class="img-circle logo" alt=""><br><br>
                     <h2 class="text-uppercase">{{request.societe.socialreason}}</h2><br>
                 </div>
             </div>
@@ -159,3 +159,22 @@
 }
 </style>
 {% endblock style %}
+
+
+
+{% block script %}
+<script>
+    if (!!localStorage.getItem("is_new")) {
+        setTimeout(function() {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr.success('Content de vous revoir de nouveau!', 'Bonjour {{request.employe.get_full_name}}');
+        }, 1300);
+        localStorage.removeItem("is_new")
+    }
+</script>
+{% endblock script %}

@@ -144,17 +144,22 @@ class ReglementAchatStock(BaseModel):
     achatstock = models.ForeignKey("approvisionnementApp.AchatStock", on_delete = models.CASCADE, related_name="achatstock_reglement")
     restait  = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.mouvement.reference
+
 class ReglementTricycle(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement")
     tricycle = models.ForeignKey("livraisonApp.Tricycle", on_delete = models.CASCADE, related_name="tricycle_reglement")
     restait  = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.mouvement.reference
 
 class Operation(BaseModel):
     category         = models.ForeignKey(CategoryOperation,  null = True, blank=True, on_delete = models.CASCADE, related_name="category_operation")
     mouvement        = models.ForeignKey(Mouvement,  null = True, blank=True, on_delete = models.CASCADE, related_name="mouvement_operation")
     etat             = models.ForeignKey("coreApp.Etat",  null = True, blank=True, on_delete = models.CASCADE)
-    image            = models.ImageField(null = True, blank=True)
+    image            = models.ImageField(max_length = 255, upload_to = "storage/images/operations/", default="", null = True, blank=True)
 
     def __str__(self):
         return self.category.name +" | "+self.mouvement.reference
@@ -168,7 +173,8 @@ class Transfertfond(BaseModel):
     employe            = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_transfertfond")
     comment            = models.TextField(default="",  null = True, blank=True)
 
-
+    def __str__(self):
+        return str(self.reference)
 
 
 

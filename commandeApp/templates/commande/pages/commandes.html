@@ -20,7 +20,7 @@
 
 {% if datas|length > 0 %}
     {% for item in datas %}
-    <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="col-lg-3 col-md-4 col-sm-6 item">
         <div class="social-feed-box">
             <div class="float-right mp5">
                 <button data-toggle="modal" data-target="#infos-groupecommande-{{item.groupe.id}}" class="btn-white cursor float-right" onclick="session('groupecommande_id', '{{item.groupe.id}}')"  ><i class="fa fa-eye"></i></button>

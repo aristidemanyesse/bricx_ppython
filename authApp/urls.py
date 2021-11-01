@@ -11,6 +11,7 @@ urlpatterns = [
     path('disconnect/', views.disconnect, name="disconnect"),
     path('forgetpassword/', views.forgetpassword, name="forgetpassword"),
     path('reset/', views.reset, name="reset"),
+    path('expiration/', views.expiration, name="expiration"),
 
 
     path('ajax/login/', ajax.connexion),

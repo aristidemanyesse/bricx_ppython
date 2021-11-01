@@ -38,7 +38,7 @@
     {% if clients|length > 0 %}
     <div class="row">
         {% for client in clients %}
-        <div class="col-lg-3 col-md-4 col-sm-6 clients">
+        <div class="col-lg-3 col-md-4 col-sm-6 item">
             <div class="contact-box ">
                 <a href="{% url 'boutique:clients:client' client.id %}">
                     <h3 class=""><strong>{{ client.name }}</strong></h3>

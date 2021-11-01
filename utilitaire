@@ -57,17 +57,6 @@ $.ajax({
 });
 
 
-def check_user_active(get_response):
-    def middleware(request):
-        response = get_response(request)
-        if not request.path == "confirm":
-            try:
-                print(Cliente.objects.get(usuario_id=request.user.id))
-            except Cliente.DoesNotExist:
-                return redirect('confirm')
-        return response
-    return middleware
-
 
 
 
@@ -79,3 +68,27 @@ If you want to find out URL and redirect to it, use redirect
 from django.urls import redirect 
 
 redirect('app1.view.view1')
+
+
+
+
+
+>>> hasattr('abc', 'upper')
+True
+>>> hasattr('abc', 'lower')
+True
+>>> hasattr('abc', 'convert')
+False
+
+
+
+
+
+from django.contrib.admin.models import LogEntry, ADDITION, CHANGE # these are action flags from the docs
+LogEntry.objects.log_action(
+        user_id=request.user.id,
+        content_type_id=ContentType.objects.get_for_model(model_object).pk,
+        object_repr=unicode(obj.title), #or any field you wish to represent here
+        object_id=obj.id,
+        message=message, # a new user has been added
+        action_flag=ADDITION) # assuming it's a new object

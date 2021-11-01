@@ -159,9 +159,7 @@ def retour_livraison(request):
             livraison.contact_receptionniste = datas["contact_receptionniste"]
             livraison.datelivraison = datas["datelivraison"]
             livraison.etat = Etat.objects.get(etiquette = Etat.TERMINE)
-            print(livraison.__dict__)
             livraison.save()
-            print(livraison.etat)
 
             return JsonResponse({"status":True})
 

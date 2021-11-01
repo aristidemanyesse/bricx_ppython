@@ -23,4 +23,4 @@ def run():
 
 
 
-    print("bootstrap.py de core")
+    print("Initialisation du module de Core")

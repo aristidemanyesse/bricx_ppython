@@ -21,7 +21,6 @@ urlpatterns = [
     path('caisse/', views.caisse, name="caisse"),
 
 
-    path('organisation/ajax/mise_a_jour/', ajax.mise_a_jour, name="mise_a_jour"),
     path('organisation/ajax/exigence/', ajax.exigence, name="exigence"),
     path('organisation/ajax/price/', ajax.price, name="price"),
     path('organisation/ajax/paye_produit/', ajax.paye_produit, name="paye_produit"),

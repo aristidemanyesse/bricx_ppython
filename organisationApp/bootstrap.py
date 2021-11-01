@@ -28,4 +28,4 @@ def run():
         protected = True
     )
     
-    print("bootstrap.py de orga")
+    print("Initialisation du module d' Organisation")
