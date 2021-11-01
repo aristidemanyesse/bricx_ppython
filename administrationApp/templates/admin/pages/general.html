@@ -1,0 +1,85 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+
+{% block body %} 
+
+<div class="animated fadeInRightBig container-fluid">
+
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5 class="text-uppercase">Configuration des informations générales de la structure</h5>
+        </div>
+        <div class="ibox-content"><br>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <span class="text-muted">Raison sociale ou nom de la société</span>
+                            <h2 class="gras text-uppercase text-primary">{{request.societe.socialreason}}</h2>
+                        </div>
+                    </div><br><br>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span class="text-muted">Situation Géographique</span>
+                            <h4>{{request.societe.adresse}}</h4>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <span class="text-muted">Contacts</span>
+                            <h4>{{request.societe.contact}}</h4>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <span class="text-muted">Email</span>
+                            <h4>{{request.societe.email}}</h4>
+                        </div>
+                    </div><br><br>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span class="text-muted">Boite Postale</span>
+                            <h4>{{request.societe.postale}}</h4>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <span class="text-muted">Fax</span>
+                            <h4>{{request.societe.fax}}</h4>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <span class="text-muted">Devise</span>
+                            <h4>{{request.societe.devise}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 border-left text-center">
+                    <h4 class="text-muted text-uppercase">Votre logo</h4><br>
+                    <img src="{% static request.societe.logo %}" class="img-circle lelogo" alt=""><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="ibox-footer text-right">
+            <button class="btn btn-primary dim " data-toggle="modal" data-target="#modal-infos"><i class="fa fa-pencil"></i> Modifier les informations</button>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% include "../modals/infos.html" %}
+
+{% endblock body %} 
+
+
+
+{% block style %}
+<style>
+.lelogo{
+    width: 250px;
+    height: 250px;
+    border: 15px solid #f2f2f2;
+}
+</style>
+{% endblock style %}

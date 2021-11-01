@@ -1,0 +1,185 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+
+{% block body %} 
+
+
+<div class="animated fadeInRightBig">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4 col-sm-6">
+                <a href="{% url 'administration:general' %}">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-9">
+                                    <h2 class="text-uppercase gras">Infos générales</h2>
+                                    <h5 class="no-margins text-orange">Nom, adresse, contact, logo de sté </h5>
+                                </div>
+                                <div class="col-3 text-right">
+                                    <i class="fa fa-home fa-5x text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <?php if ($employe->isAutoriser("roles")) { ?>
+                <div class="col-md-4 col-sm-6">
+                    <a href="{% url 'administration:roles' %}">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h2 class="text-uppercase gras">Roles & accès</h2>
+                                        <h5 class="no-margins text-orange">Définir les droits et les accès</h5>
+                                    </div>
+                                    <div class="col-3 text-right">
+                                        <i class="fa fa-lock fa-5x text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
+
+            <?php if ($employe->isAutoriser("mycompte")) { ?>
+                <div class="col-md-4 col-sm-6">
+                    <a href="{% url 'administration:mycompte' %}">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h2 class="text-uppercase gras">Mon compte</h2>
+                                        <h5 class="no-margins text-orange">Info compte, Abonnement, formule</h5>
+                                    </div>
+                                    <div class="col-3 text-right">
+                                        <i class="fa fa-pied-piper-alt fa-5x text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
+        </div>
+    </div><hr><hr><br>
+
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-3 col-sm-6 ">
+            <a href="{% url 'administration:organisation' %}">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-9">
+                                <h3 class="text-uppercase gras text-navy">Unité d'organisation</h3>
+                                <h5 class="no-margins text-muted">Agences, stocks initiaux</h5>
+                            </div>
+                            <div class="col-3 text-right">
+                                <i class="fa fa-hospital-o fa-5x text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <a href="{% url 'administration:production' %}">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-9">
+                                <h3 class="text-uppercase gras text-navy">Elements de production</h3>
+                                <h5 class="no-margins text-muted">Produits, ressources, Exigence de production</h5>
+                            </div>
+                            <div class="col-3 text-right">
+                                <i class="fa fa-bitbucket fa-5x text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <a href="{% url 'administration:prices' %}">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-9">
+                                <h3 class="text-uppercase gras text-navy">Barème des prix</h3>
+                                <h5 class="no-margins text-muted">Etablir vos barèmes de prix et de paye</h5>
+                            </div>
+                            <div class="col-3 text-right">
+                                <i class="fa fa-dollar fa-5x text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <a href="{% url 'administration:caisse' %}">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-9">
+                                <h3 class="text-uppercase gras text-navy">Config de la caisse</h3>
+                                <h5 class="no-margins text-muted">Compte en banque, caisse, gestion</h5>
+                            </div>
+                            <div class="col-3 text-right">
+                                <i class="fa fa-stack-overflow fa-5x text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div><br>
+
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-3 col-sm-6 ">
+            <a href="<?= $this->url("config", "master", "Historiques")  ?>">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-9">
+                                <h3 class="text-uppercase gras text-navy">Historiques des actions</h3>
+                                <h5 class="no-margins text-muted">Toutes les interactions de l'app</h5>
+                            </div>
+                            <div class="col-3 text-right">
+                                <i class="fa fa-history fa-5x text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <a href="<?= $this->url("config", "master", "about")  ?>">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-9">
+                                <h3 class="text-uppercase gras text-navy">à propos de nous</h3>
+                                <h5 class="no-margins text-muted">En savoir plus sur Devaris 21</h5>
+                            </div>
+                            <div class="col-3 text-right">
+                                <i class="fa fa-info fa-5x text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock body %} 

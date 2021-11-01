@@ -55,8 +55,8 @@ class ModePayement(BaseModel):
 class Compte(BaseModel):
     name           = models.CharField(max_length = 255)
     initial_amount = models.IntegerField(default=0)
-    etablissement  = models.CharField(max_length = 255, null = True, blank=True)
-    numero         = models.CharField(max_length = 255, null = True, blank=True)
+    etablissement  = models.CharField(max_length = 255, default="", null = True, blank=True)
+    numero         = models.CharField(max_length = 255, default="", null = True, blank=True)
     agence = models.ForeignKey("organisationApp.Agence", null=True, blank=True, on_delete = models.CASCADE, related_name="agence_compte")
 
     def __str__(self):

@@ -1,0 +1,297 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block body %} 
+
+<div class="animated fadeInRightBig container-fluid">
+
+    <div class="row">
+
+       <div class="col-sm-6 bloc">
+          <div class="ibox border">
+              <div class="ibox-title">
+                  <h5 class="text-uppercase">Les produits</h5>
+                  <div class="ibox-tools">
+                      <a class="btn_modal btn_modal" data-toggle="modal" data-target="#modal-produit">
+                          <i class="fa fa-plus"></i> Ajouter
+                      </a>
+                  </div>
+              </div>
+              <div class="ibox-content">
+                  <table class="table table-striped">
+                      <thead>
+                          <tr>
+                              <th></th>
+                              <th>Libéllé</th>
+                              <th>Seuil d'alerte</th>
+                              <th>Actif ?</th>
+                              <th></th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                            {% for brique in briques.keys %}
+                              <tr>
+                                  <td ><img style="width: 40px" src="{% static brique.image %}"></td>
+                                  <td >
+                                      <p class="gras mp0">{{brique.name}}</p>
+                                      <small>{{brique.comment}}</small>
+                                  </td>
+                                  <td width="110px">
+                                    <input type="text" title="Seuil d'alerte du stock" number class="form-control input-xs text-center brique maj" step="0.1" value="{{brique.alert_stock}}" name="alert_stock" model="brique" id="{{brique.id}}" >
+                                </td>
+                                  <td>
+                                      <div class="switch">
+                                          <div class="onoffswitch">
+                                              <input type="checkbox" {{brique.active|yesno:"checked"}} onchange="changeActive('produit', '{{brique.id}}')" class="onoffswitch-checkbox">
+                                                <label class="onoffswitch-label" for="produit{{brique.id}}">
+                                                    <span class="onoffswitch-inner"></span>
+                                                  <span class="onoffswitch-switch"></span>
+                                              </label>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  <td data-toggle="modal" data-target="#modal-produit{{brique.id}}" title="modifier le produit" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                                  <td data-toggle="tooltip" title="modifier le produit" onclick="delete_password('produit', '{{brique.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                              </tr>
+                            {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="col-sm-6 bloc">
+          <div class="ibox border">
+              <div class="ibox-title">
+                  <h5 class="text-uppercase">Les matières premières</h5>
+                  <div class="ibox-tools">
+                      <button class="btn_modal btn btn-xs btn-white" data-toggle="modal" data-target="#modal-ressource">
+                          <i class="fa fa-plus"></i> Ajouter
+                      </button>
+                  </div>
+              </div>
+              <div class="ibox-content">
+                  <table class="table table-striped">
+                      <thead>
+                          <tr>
+                              <th>Libéllé</th>
+                              <th>Unité</th>
+                              <th>stockable ?</th>
+                              <th>Prix d'achat</th>
+                              <th>Seuil d'alerte</th>
+                              <th></th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                            {% for ressource in ressources %}
+                              <tr>
+                                  <td class="gras">{{ressource.name}}</td>
+                                  <td>{{ressource.unite}}</td>
+                                  <td>
+                                      <div class="switch">
+                                          <div class="onoffswitch">
+                                              <input type="checkbox" {{ressource.active|yesno:"checked"}} onchange="changeActive('produit', '{{ressource.id}}')" class="onoffswitch-checkbox" >
+                                              <label class="onoffswitch-label" for="ressource<?= $item->id ?>">
+                                                  <span class="onoffswitch-inner"></span>
+                                                  <span class="onoffswitch-switch"></span>
+                                              </label>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  <td width="110px">
+                                      <input type="text" title="Prix Unitaire normal" number class="form-control input-xs text-center ressource maj" step="0.1" value="{{ressource.price}}" name="price"  model="ressource" id="{{ressource.id}}"  >
+                                  </td>
+                                  <td width="110px">
+                                    <input type="text" title="Seuil d'alerte du stock" number class="form-control input-xs text-center ressource maj" step="0.1" value="{{ressource.alert_stock}}" name="alert_stock"  model="ressource" id="{{ressource.id}}"  >
+                                </td>
+                                  <td data-toggle="modal" data-target="#modal-ressource{{ressource.id}}" title="modifier l'élément" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                                  <td title="supprimer la ressource" onclick="delete_password('ressource', '{{ressource.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                              </tr>
+                              {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="col-md-12 bloc">
+          <div class="ibox border">
+              <div class="ibox-title">
+                  <h5 class="text-uppercase">Exigence de production par ressource 
+                      <div class="switch">
+                          <div class="onoffswitch">
+                              <input type="checkbox" {{request.societe.productionAuto|yesno:"checked" }} onchange='changeProductionAuto()' class="onoffswitch-checkbox" id="productionAuto">
+                              <label class="onoffswitch-label" for="productionAuto">
+                                  <span class="onoffswitch-inner"></span>
+                                  <span class="onoffswitch-switch"></span>
+                              </label>
+                          </div>
+                      </div>
+                  </h5>
+                  <div class="ibox-tools">
+
+                  </div>
+              </div>
+              <div class="ibox-content">
+                  <table class="table table-striped">
+                      <thead>
+                          <tr>
+                              <th></th>
+                              {% for ressource in ressources %}
+                                  <td class="gras text-center"> {{ressource.name}}</td>
+                              {% endfor %}
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {% for brique in briques.keys %}
+                            {% with exi=brique.brique_exigenceproduction.filter.first %}
+                            <tr>
+                                <td style="width: 250px" class="gras text-uppercase">{{brique.name}}</td>
+                                {% for ressource in ressources %}
+                                        <td class="text-center"> {{briques|dict_value:brique|dict_value:ressource|start0}} {{ressource.unite}}</td>
+                                {% endfor %}
+                                <td>==></td>
+                                <td class="text-blue"> Pour produire <b>{{exi.quantite|start0}}</b> unités</td>
+                                <td>
+                                    <i class="fa fa-pencil cursor" data-toggle="modal" data-target="#modal-exigence{{brique.id}}"> </i>
+                                </td>
+                            </tr>
+                            {% endwith %}
+                        {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+
+
+
+      <div class="col-md-6">
+          <div class="ibox border" >
+              <div class="ibox-title">
+                  <h5 class="text-uppercase"><i class="fa fa-car"></i> Tous les véhicules </h5>
+                  <div class="ibox-tools">
+                      <a class="btn_modal" data-toggle="modal" data-target="#modal-vehicule">
+                          <i class="fa fa-plus"></i> Ajouter
+                      </a>
+                  </div>
+              </div>
+              <div class="ibox-content table-responsive" style="min-height: 400px;">
+                  <table class="table table-striped">
+                   <thead>
+                      <tr>
+                          <th>Marque/modèle</th>
+                          <th>Immatriculation</th>
+                          <th></th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                        {% for vehicule in vehicules %}
+                          <tr>    
+                              <td>
+                                  <h5 class="text-uppercase gras">{{vehicule.modele}}</h5>
+                              </td>
+                              <td class="">
+                                  <h5 class="">{{vehicule.immatriculation}}</h5>
+                              </td>    
+                              <td data-toggle="modal" data-target="#modal-vehicule{{vehicule.id}}" title="modifier l'élément" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                              <td title="supprimer l'élément" onclick="delate_password('vehicule','{{vehicule.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                          </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>                             
+          </div>
+      </div>
+  </div>
+
+
+  <div class="col-md-6">
+      <div class="ibox border" >
+          <div class="ibox-title">
+              <h5 class="text-uppercase"><i class="fa fa-user"></i> Liste des chauffeurs </h5>
+              <div class="ibox-tools">
+                  <a class="btn_modal" data-toggle="modal" data-target="#modal-chauffeur">
+                      <i class="fa fa-plus"></i> Ajouter
+                  </a>
+              </div>
+          </div>
+          <div class="ibox-content table-responsive" style="min-height: 400px;">
+              <table class="table table-striped">
+               <thead>
+                  <tr>
+                      <th>Nom complet</th>
+                      <th>Adresse</th>
+                      <th>Contact</th>
+                      <th></th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for chauffeur in chauffeurs %}
+                      <tr>    
+                          <td class="">
+                              <h5 class="text-uppercase gras">{{chauffeur.name}}</h5>
+                          </td>
+                          <td>
+                              <h5 class="mp0">{{chauffeur.adresse}}</h5>
+                          </td>
+                          <td class="">
+                              <h5 class="mp0">{{chauffeur.contact}}</h5>
+                          </td>     
+                          <td data-toggle="modal" data-target="#modal-chauffeur{{chauffeur.id}}" title="modifier l'élément" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                          <td title="supprimer l'élément" onclick="delete_password('chauffeur', '{{chauffeur.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                      </tr>
+                  {% endfor %}
+              </tbody>
+          </table>                             
+      </div>
+  </div>
+</div>
+
+
+{% include "../modals/produit.html" %}
+{% for brique in briques %}
+{% include "../modals/produit.html" with element=brique %}
+{% include "../modals/exigence.html" with element=brique %}
+{% endfor %} 
+
+{% include "../modals/ressource.html"%}
+{% for ressource in ressources %}
+{% include "../modals/ressource.html" with element=ressource %}
+{% endfor %} 
+
+
+{% include "../modals/vehicule.html"%}
+{% for vehicule in vehicules %}
+{% include "../modals/vehicule.html" with element=vehicule %}
+{% endfor %} 
+
+{% include "../modals/chauffeur.html"%}
+{% for chauffeur in chauffeurs %}
+{% include "../modals/chauffeur.html" with element=chauffeur %}
+{% endfor %} 
+
+</div>
+</div>
+
+{% endblock body %} 
+
+
+
+
+{% block script %} 
+<script>
+    {% include './production.js' %}
+    {% include './organisation.js' %}
+</script>
+{% endblock script %} 

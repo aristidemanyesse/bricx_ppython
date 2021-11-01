@@ -1,0 +1,185 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block body %} 
+
+ <div class="animated fadeInRightBig container-fluid">
+
+    <div class="row">
+        <div class="col-sm-6 bloc">
+            <div class="ibox border">
+                <div class="ibox-title">
+                    <h5 class="text-uppercase">Opérations d'entrée de caisse</h5>
+                    <div class="ibox-tools">
+                        <a class="btn_modal" data-toggle="modal" data-target="#modal-categorieoperation">
+                            <i class="fa fa-plus"></i> Ajouter
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><i class="fa fa-ticket"></i></th>
+                                <th>Libéllé</th>
+                                <th>Type</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ligne in entrees %}
+                                <tr>
+                                    <td><div class="border" ></div></td>
+                                    <td class="gras">{{ligne.name}}</td>
+                                    <td class="gras text-green">{{ligne.type.name}}</td>
+                                    <td data-toggle="modal" data-target="#modal-categorieoperation{{ligne.id}}" title="modifier la categorie" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                                    <td title="supprimer la categorie" onclick="delete_password('categorieoperation', '{{ligne.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div><hr>
+
+            <div class="">
+                <form method="POST" class="formShamman" classname="MyAppForm" reload="false">
+                    <div class="row">
+                        <div class="col-sm-8 text-center border-right">
+                            <div class="row">
+                                <div class="col-7 gras">Autoriser Versements en attente</div>
+                                <div class="offset-1"></div>
+                                <div class="col-4">
+                                    <div class="switch d-block">
+                                        <div class="onoffswitch">
+                                            <input type="checkbox" name="allow_waiting_payment" {{request.societe.allow_waiting_payment|yesno:"checked, "}} class="onoffswitch-checkbox" id="example2">
+                                            <label class="onoffswitch-label" for="example2">
+                                                <span class="onoffswitch-inner"></span>
+                                                <span class="onoffswitch-switch"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div >
+                                <label>% tva sur les ventes</label>
+                                <input type="number" number class="form-control" name="tva" value="{{request.societe.tva}}">
+                            </div><br>
+                            <div>
+                                <label>Seuil de tolérance du crédit client </label>
+                                <input type="number" number class="form-control" name="seuil_credit" value="{{request.societe.seuil_credit}}">
+                            </div>
+                            <div>
+                                <br>
+                                <input type="hidden" name="id" value="{{request.societe.id}}">
+                                <input type="hidden" name="socialreason" value="{{request.societe.socialreason}}">
+                                <input type="hidden" name="email" value="{{request.societe.email}}">
+                                <button class="btn btn-primary dim "><i class="fa fa-check"></i> Mettre à jour</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-sm-6 bloc">
+            <div class="ibox border">
+                <div class="ibox-title">
+                    <h5 class="text-uppercase">Opérations de sortie de caisse</h5>
+                    <div class="ibox-tools">
+                        <a class="btn_modal" data-toggle="modal" data-target="#modal-categorieoperation">
+                            <i class="fa fa-plus"></i> Ajouter
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th><i class="fa fa-ticket"></i></th>
+                                <th>Libéllé</th>
+                                <th>Type</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ligne in depenses %}
+                                <tr>
+                                    <td><div class="border" ></div></td>
+                                    <td class="gras">{{ligne.name}}</td>
+                                    <td class="gras text-red">{{ligne.type.name}}</td>
+                                    <td data-toggle="modal" data-target="#modal-categorieoperation{{ligne.id}}" title="modifier la categorie" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                                    <td title="supprimer la categorie" onclick="delete_password('categorieoperation', '{{ligne.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="ibox border">
+                <div class="ibox-title">
+                    <h5 class="text-uppercase">Creation & attribution des caisses</h5>
+                    <div class="ibox-tools">
+                        <a class="btn_modal" data-toggle="modal" data-target="#modal-compte">
+                            <i class="fa fa-plus"></i> Nouveau compte
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Libéllé du compte</th>
+                                <th>Etablissement</th>
+                                <th>N° de compte</th>
+                                <th>Solde initial</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for compte in comptes %}
+                                <tr>
+                                    <td class="gras">{{compte.name}}</td>
+                                    <td class="gras">{{compte.etablissement|default_if_none:""}}</td>
+                                    <td class="gras">{{compte.numero|default_if_none:""}}</td>
+                                    <td class="gras">{{compte.initial_amount|intcomma}} {{request.societe.devise}}</td>
+                                    <td data-toggle="modal" data-target="#modal-compte{{compte.id}}" title="modifier la categorie" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                                    <td title="supprimer la categorie" onclick="delete_password('comptebanque', '{{compte.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+{% include '../modals/categorie_operation.html' with types=types %}
+{% for item in entrees %}
+{% include '../modals/categorie_operation.html' with element=item types=types %}
+{% endfor %}
+
+{% for item in depenses %}
+{% include '../modals/categorie_operation.html' with element=item types=types %}
+{% endfor %}
+
+
+{% include '../modals/compte.html' %}
+{% for compte in comptes %}
+{% include '../modals/compte.html' with element=compte %}
+{% endfor %}
+
+{% endblock body %} 

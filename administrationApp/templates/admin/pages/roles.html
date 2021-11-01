@@ -1,0 +1,111 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+{% load myfilters %} 
+
+{% block body %} 
+
+<div class="animated fadeInRightBig container-fluid">
+
+    <div class="ibox border">
+        <div class="ibox-title">
+            <h5 class="text-uppercase">Personnes ayant accès et leur roles</h5>
+            <div class="ibox-tools">
+                <a class="btn_modal" data-toggle="modal" data-target="#modal-employe">
+                    <i class="fa fa-plus"></i> Ajouter
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Utilisateur</th>
+                        <th>Identifiants</th>
+                        <th style="width: 40%">Accès et rôles</th>
+                        <th>Affiliation</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employe in employes.keys %}
+                        <tr>
+                            <td>
+                                {% if employe.is_active %}
+                                    <span class="label label-success">Actif</span>
+                                {% else %}
+                                    <span class="label label-danger">Bloqué</span>
+                               {% endif %}
+                            </td>
+                            <td >
+                                <span class="gras text-uppercase">{{employe.name}}</span><br>
+                                <span> {{employe.email}}</span><br>
+                                <span> {{employe.adresse}}</span><br>
+                                <span> {{employe.contact}}</span>
+                            </td>
+                            <td>
+                                {% if employe.last_login == None %}
+                                    <span class="">Login: {{employe.login}}</span><br>
+                                    <span class="">Pass: {{employe.pass}}</span>
+                                {% endif %}
+                            </td>
+                            <td class="" >
+                                <div class="row">
+                                    {% for perm in employes|dict_value:employe %}
+                                        <div class="col-6 col-sm-4">
+                                            <label class="cursor"><input type="checkbox" class="i-checks" employe_id="" role_id="" checked name="">{{perm.name}}</label>
+                                        </div>
+                                    {% endfor %}
+                                    {% for perm in permissons_off %}
+                                        <div class="col-6 col-sm-4">
+                                            <label class="cursor"><input type="checkbox" class="i-checks" employe_id="{{employe.id}}" role_id="<?= $role->id}}" name="<?= $role->name()}}"> <?= $role->name()}}</label>
+                                        </div>
+                                    {% endfor %} 
+                                </div>              
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <small>Selectionner l'agence</small>
+                                    {% include 'extra/select.html' with name="agence" instances=agences item=request.agence %}                                    
+                                </div>
+                            </td>
+                            <td class="text-right">          
+                                <button onclick="resetPassword('employe', '{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-refresh text-blue"></i> Init. mot de passe</button><br>
+
+                                {% if employe.is_active %}
+                                    <button onclick="lock('employe', '{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-lock text-orange"></i> Bloquer</button>
+                                    {% else %}
+                                    <button onclick="unlock('employe', '{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-unlock text-green"></i> Débloquer</button>
+                                    {% endif %}
+                                <button data-toggle="modal" data-target="#modal-employe{{employe.id}}" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-white btn-xs" onclick="suppressionWithPassword('employe', '{{employe.id}}')"><i class="fa fa-close text-red"></i></button>
+                            </td>
+                        </tr>
+                        <tr style="height: 20px"></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% include "../modals/employe.html" %}
+
+{% for employe in employes %}
+{% include "../modals/employe.html" with element=employe %}
+{% endfor %}
+
+{% endblock body %} 
+
+
+
+{% block style %}
+<style>
+.lelogo{
+    width: 250px;
+    height: 250px;
+    border: 15px solid #f2f2f2;
+}
+</style>
+{% endblock style %}

@@ -1,4 +1,4 @@
-from .models import GroupeCommande, Commande, LigneCommande
+from .models import *
 from django.forms import ModelForm
 # Create your models here.
 
@@ -20,3 +20,16 @@ class LigneCommandeForm(ModelForm):
         fields = "__all__"
         model = LigneCommande
 
+
+
+class ZoneLivraisonForm(ModelForm):
+    class Meta:
+        fields = "__all__"
+        model = ZoneLivraison
+
+
+
+class PrixZoneLivraisonForm(ModelForm):
+    class Meta:
+        fields = "__all__"
+        model = PrixZoneLivraison

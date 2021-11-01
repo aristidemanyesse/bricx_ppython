@@ -1,0 +1,158 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+{% load myfilters %} 
+{% load humanize %} 
+
+{% block body %} 
+<div class=" animated fadeInRight">
+
+    <h1 class="logo-name text-center" style=" font-size: 5rem; letter-spacing: 45px; margin: 1.5% !important; padding: 0% !important; color: #aaa ">BRICX</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5 class="text-uppercase">Licence AMB</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h2 class="no-margins text-uppercase">{{settings.licence}} - {{settings.version}}</small>
+                                <small>Licence de l'application</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>Identifiant</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h2 class="no-margins">{{mycompte.identifiant}}</h2>
+                            <small>Votre identifiant unique</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 cursor" data-toggle="modal" data-target="#modal-abonnement">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>Expiration</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h2 class="no-margins">{{mycompte.expiration}}</h2>
+                            <div class="stat-percent font-bold ">{{mycompte.expiration|naturaltime}} <i class="fa fa-calendar"></i></div>
+                            <small>Nombre de jours restants</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>Agences / Utilisateurs</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h2 class="no-margins">{{agences|length}} agences</h2>
+                            <small>{{employes|length}} utilisateurs</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-8">
+<div class="ibox-content text-center">
+				<h2 style="font-size: 30px;" class="text-green text-uppercase">Nouvel abonnement</h2>
+
+				<div class="hr-line-dashed"></div>
+
+				<div class="row">
+					<div class="col-sm-5 border-right">
+						<h4 class="m-b-lg text-center text-uppercase">Quelques points importants</h4>
+						<div id="animation_box text-left" class="animated">
+							<dl class="text-left">
+								<dt>Le code de validation</dt>
+								<dd>Pour renouveller votre abonnement, il vous faut obligatoirement un code de validation composé de 5 blocs de caractères.<br> Pour vous en procurer, veuillez <a href="">nous contacter</a> !</dd><br>
+
+								<dt>Internet est requis</dt>
+								<dd>La validation du code requiert une connexion à internet. veuillez vous assurer d'en avoir avant de commencer.</dd><br>
+
+								<dt>4 tentavives</dt>
+								<dd>Vous n'aurez droit qu'à un maximum de 4 tentatives pour valider votre ceode. Si vous échouer 5 fois de suite, l'application se vérouillera automatiquement. Vous devriez alors <a href="">nous contacter</a> !</dd><br>
+
+								<dt>Besoin d'aide ?</dt>
+								<dd>Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide ou d'une assistance particulière, veuillez <a href="">nous contacter</a> !</dd>
+							</dl>
+						</div>
+					</div>
+
+					<div class="col-lg-7 animation-efect-links text-center">
+						<br><br>
+						<div>
+							<p>Fin d'abonnement le</p>
+							<h2 class="text-uppercase" style="font-size: 32px">{{mycompte.expiration}}</h2>
+						</div><br><br>
+						<h4 class="m-b-lg text-uppercase">
+							Entrer les 5 blocs de caractères du code de validation.
+						</h4><br>
+						<form id="formAbonnement" method="post">
+							<div class="row">
+								<div class="col-sm">
+									<input type="text" name="bloc1" maxlength="5" uppercase autofocus="on" class="text-center gras form-control input-sm" name="">
+								</div>
+								<div class="col-sm">
+									<input type="text" name="bloc2" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
+								</div>
+								<div class="col-sm">
+									<input type="text" name="bloc3" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
+								</div>
+								<div class="col-sm">
+									<input type="text" name="bloc4" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
+								</div>
+								<div class="col-sm">
+									<input type="text" name="bloc5" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
+								</div>
+							</div>
+                            <br>
+                            <br>
+                            <hr>
+							<div>
+								<button class="btn btn-primary dim"><i class="fa fa-check"></i> Valider le code !</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% include "../modals/employe.html" %}
+
+{% for employe in employes %}
+{% include "../modals/employe.html" with element=employe %}
+{% endfor %}
+
+{% endblock body %} 
+
+
+
+
+
+{% block script %}
+<script>
+    $(function(){
+        $("#formAbonnement input").keyup(function(event) {
+            $(this).val($(this).val().toUpperCase())
+            if ($(this).val().length == 5) {
+                $(this).parent("div").next("div").find("input").focus();
+            }
+        });
+    })
+</script>
+{% endblock script %}

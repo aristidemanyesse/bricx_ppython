@@ -23,7 +23,7 @@ class Brique(BaseModel):
     name      = models.CharField(max_length = 255)
     active = models.BooleanField(default=True)
     comment   = models.TextField(default="", null = True, blank=True)
-    alert_stock         = models.IntegerField(default=10)
+    alert_stock         = models.IntegerField(default=10, null = True, blank=True)
     image     = models.ImageField(max_length = 255, upload_to = "storage/images/briques/", default="", null = True, blank=True)
 
 
@@ -156,8 +156,9 @@ class Brique(BaseModel):
 class Ressource(BaseModel):
     name      = models.CharField(max_length = 255)
     unite      = models.CharField(max_length = 255, default="")
+    price      = models.IntegerField(default=0, null = True, blank=True)
     active = models.BooleanField(default=True)
-    alert_stock         = models.IntegerField(default=10)
+    alert_stock         = models.IntegerField(default=10, null = True, blank=True)
     comment   = models.TextField(default="", null = True, blank=True)
     image     = models.ImageField(max_length = 255, upload_to = "storage/images/ressources/", default="", null = True, blank=True)
 
@@ -234,27 +235,34 @@ class ConsommationJour(BaseModel):
 
 class ExigenceProduction(BaseModel):
     brique   = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_exigenceproduction")
-    quantite = models.IntegerField(default=0)
+    quantite = models.IntegerField(default=0, null = True, blank=True)
 
+    def __str__(self):
+        return "Exigence de "+str(self.quantite)+" "+self.brique.name
 
 class LigneExigenceProduction(BaseModel):
     exigence  = models.ForeignKey(ExigenceProduction, on_delete = models.CASCADE, related_name="exigence_ligne")
     ressource = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_exigenceligne")
-    quantite  = models.IntegerField(default = 0)
+    quantite  = models.IntegerField(default = 0, null = True, blank=True)
 
-
+    def __str__(self):
+        return "Il faut "+str(self.quantite)+" de "+self.ressource.name+" pour produire "+str(self.exigence.quantite)+" "+self.exigence.brique.name
 
 class InitialBriqueAgence(BaseModel):
     agence   = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_initialbrique")
     brique   = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_initialagence")
-    quantite = models.IntegerField(default=0)
+    quantite = models.IntegerField(default=0, null = True, blank=True)
 
+    def __str__(self):
+        return "Initial dans  "+self.agence.name+" de "+self.brique.name+" => "+str(self.quantite)
 
 class InitialRessourceAgence(BaseModel):
     agence    = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_initialressource")
     ressource = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_initialagence")
     quantite  = models.IntegerField(default=0)
 
+    def __str__(self):
+        return "Initial dans  "+self.agence.name+" de "+self.ressource.name+" => "+str(self.quantite)
 
 
 class PerteRessource(BaseModel):
@@ -281,6 +289,7 @@ class PerteBrique(BaseModel):
 
 
 class PayeBrique(BaseModel):
+    agence          = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_paye")
     brique          = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_paye")
     price           = models.IntegerField(default=0)
     price_rangement = models.IntegerField(default=0)
@@ -288,6 +297,7 @@ class PayeBrique(BaseModel):
 
 
 class PayeBriqueFerie(BaseModel):
+    agence = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_payeferie")
     brique = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_payeferie")
     price = models.IntegerField(default=0)
     price_rangement = models.IntegerField(default=0)
@@ -343,20 +353,23 @@ def post_save_brique(sender, instance, created, **kwargs):
                 quantite = 0
             )
 
+            PayeBrique.objects.create(
+                agence = agence,
+                brique = instance,
+                price = 0
+            )
+
+            PayeBriqueFerie.objects.create(
+                agence = agence,
+                brique = instance,
+                price = 0
+            )
+        
         ExigenceProduction.objects.create(
             brique = instance,
             quantite = 0
         )
 
-        PayeBrique.objects.create(
-            brique = instance,
-            price = 0
-        )
-
-        PayeBriqueFerie.objects.create(
-            brique = instance,
-            price = 0
-        )
 
 
 

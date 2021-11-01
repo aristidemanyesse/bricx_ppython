@@ -1,0 +1,119 @@
+from django.contrib.auth.models import Permission
+from django.shortcuts import get_object_or_404, render
+
+from commandeApp.models import ZoneLivraison, PrixZoneLivraison
+from comptabilityApp.models import CategoryOperation, Compte, TypeOperationCaisse
+from organisationApp.models import Agence, Employe
+from paramApp.models import MyCompte
+from productionApp.models import Brique, PayeBrique, PayeBriqueFerie, Ressource
+from livraisonApp.models import Vehicule, Chauffeur
+# Create your views here.
+
+
+def dashboard(request):
+    if request.method == "GET":
+        context = {}
+        return render(request, "admin/pages/dashboard.html", context)
+        pass
+
+
+
+
+def general(request):
+    if request.method == "GET":
+        context = {}
+        return render(request, "admin/pages/general.html", context)
+
+
+def roles(request):
+    if request.method == "GET":
+        datas={}
+        for employe in Employe.objects.filter(deleted = False):
+            datas[employe] = Permission.objects.filter(codename__in = employe.get_all_permissions()) 
+
+        context = {
+            "employes" : datas,
+            "agences" : Agence.objects.filter(deleted = False),
+            "permissions_on" : Permission.objects.filter(name__contains = "BRICX |")
+        }
+        return render(request, "admin/pages/roles.html", context)
+
+
+def mycompte(request):
+    if request.method == "GET":
+        context = {
+            "employes" : Employe.objects.filter(deleted = False),
+            "agences" : Agence.objects.filter(deleted = False),
+            "mycompte": MyCompte.objects.filter().first(),
+        }
+        return render(request, "admin/pages/mycompte.html", context)
+
+
+
+
+
+
+
+
+def organisation(request):
+    if request.method == "GET":
+        datas= {}
+        for agence in Agence.objects.filter(deleted = False):
+            datas[agence] = request.agence.agence_compte.all().first()
+
+        context = {
+            "agences" : datas,
+            "employes" : Employe.objects.filter(deleted = False),
+            "organisation": MyCompte.objects.filter().first(),
+        }
+        return render(request, "admin/pages/organisation.html", context)
+
+
+
+def production(request):
+    if request.method == "GET":
+        datas= {}
+        for brique in Brique.objects.filter(deleted = False):
+            exi = brique.brique_exigenceproduction.filter().first()
+            data = {}
+            for ressource in Ressource.objects.filter(deleted = False):
+                item = ressource.ressource_exigenceligne.filter(exigence = exi).first()
+                data[ressource] = item.quantite if item != None else 0
+
+            datas[brique] = data
+
+        context = {
+            "briques" : datas,
+            "ressources" : Ressource.objects.filter(deleted = False),
+            "vehicules" : Vehicule.objects.filter(deleted = False),
+            "chauffeurs" : Chauffeur.objects.filter(deleted = False),
+        }
+        return render(request, "admin/pages/production.html", context)
+
+
+
+
+def prices(request, id):
+    if request.method == "GET":
+        agence = get_object_or_404(Agence, pk = id)
+        context = {
+            "briques" : Brique.objects.filter(deleted = False),
+            "zones" : ZoneLivraison.objects.filter(),
+            "prixparzones" : PrixZoneLivraison.objects.filter(),
+            "payes" : PayeBrique.objects.filter(agence = agence),
+            "payeferies" : PayeBriqueFerie.objects.filter(agence = agence)
+        }
+        return render(request, "admin/pages/prices.html", context)
+
+
+
+
+def caisse(request):
+    if request.method == "GET":
+        context = {
+            "entrees" : CategoryOperation.objects.filter(deleted = False, type__etiquette = TypeOperationCaisse.DEPOT),
+            "depenses" : CategoryOperation.objects.filter(deleted = False, type__etiquette = TypeOperationCaisse.RETRAIT),
+            "types" : TypeOperationCaisse.objects.filter(deleted = False),
+            "comptes" : Compte.objects.filter(deleted = False),
+        }
+        return render(request, "admin/pages/caisse.html", context)

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'ficheApp',
     'comptabilityApp',
     'paramApp',
+    'administrationApp'
 ]
 
 

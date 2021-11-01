@@ -27,21 +27,18 @@ class Chauffeur(BaseModel):
     name = models.CharField(max_length = 255)
     adresse  = models.CharField(max_length = 255, null = True, blank=True)
     contact  = models.CharField(max_length = 255, null = True, blank=True)
-    etat     = models.ForeignKey("coreApp.Etat", on_delete = models.CASCADE) 
 
 
 
 class Vehicule(BaseModel):
     immatriculation = models.CharField(max_length = 255)
     modele          = models.CharField(max_length = 255, null = True, blank=True)
-    marque          = models.CharField(max_length = 255, null = True, blank=True)
-    etat            = models.ForeignKey("coreApp.Etat",  on_delete = models.CASCADE) 
 
     def __str__(self):
-        return self.marque +" "+self.modele+" | "+self.immatriculation
+        return self.modele+" | "+self.immatriculation
 
     def name(self):
-        return self.marque +" "+self.modele+" | "+self.immatriculation
+        return self.modele+" | "+self.immatriculation
 
 
 class Livraison(BaseModel):

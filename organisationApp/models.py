@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from comptabilityApp.models import Compte
 
 from coreApp.models import BaseModel
-
+import productionApp.models 
 
 
 class Agence(BaseModel):
@@ -41,6 +41,21 @@ def post_save_agence(sender, instance, created, **kwargs):
             agence = instance,
             initial_amount = 0
         )
+
+        for item in productionApp.models.Brique.objects.filter(deleted = False):
+            productionApp.models.InitialBriqueAgence.objects.create(
+                brique = item,
+                agence = instance,
+                quantite = 0
+            )
+
+        for item in productionApp.models.Ressource.objects.filter(deleted = False):
+            productionApp.models.InitialRessourceAgence.objects.create(
+                ressource = item,
+                agence = instance,
+                quantite = 0
+            )
+
 
 
 

@@ -1,43 +1,35 @@
-from .models import Chauffeur, Vehicule, ZoneLivraison, Livraison, LigneLivraison, PrixZoneLivraison, Tricycle
-from django.forms import modelForm
+from .models import *
+from django.forms import ModelForm
 from django.db import models
 
 # Create your models here.
 
 
-class ChauffeurForm(modelForm):
+class ChauffeurForm(ModelForm):
     class Meta:
+        fields = "__all__"
         model = Chauffeur
 
 
-class VehiculeForm(modelForm):
+class VehiculeForm(ModelForm):
     class Meta:
+        fields = "__all__"
         model = Vehicule
 
 
-
-class ZoneLivraisonForm(modelForm):
+class LivraisonForm(ModelForm):
     class Meta:
-        model = ZoneLivraison
-
-
-
-class LivraisonForm(modelForm):
-    class Meta:
+        fields = "__all__"
         model = Livraison
 
 
-class LigneLivraisonForm(modelForm):
+class LigneLivraisonForm(ModelForm):
     class Meta:
+        fields = "__all__"
         model = LigneLivraison
 
 
-class PrixZoneLivraisonForm(modelForm):
+class TricycleForm(ModelForm):
     class Meta:
-        model = PrixZoneLivraison
-
-
-
-class TricycleForm(modelForm):
-    class Meta:
+        fields = "__all__"
         model = Tricycle

@@ -10,16 +10,22 @@ import coreApp.tools as tools
 from clientApp.forms import *
 from approvisionnementApp.forms import *
 from commandeApp.forms import *
+from livraisonApp.forms import *
+from organisationApp.forms import *
 from productionApp.forms import *
 from comptabilityApp.forms import *
+from paramApp.forms import *
 
 
 # Create your views here.
 def save(request):
     if request.method == "POST":
-        request.POST._mutable = True
+        datas = request.POST
+        datas._mutable = True
+        for key in datas:
+            if datas[key] == "on": datas[key]=True
         try:
-            modelform = request.POST["modelform"]
+            modelform = datas["modelform"]
             MyForm = globals()[modelform]
 
             if (MyForm) :
@@ -27,12 +33,13 @@ def save(request):
                 content_type = ContentType.objects.get(model= MyModel.lower())
                 MyModel = content_type.model_class()
 
-                if "id" in request.POST and request.POST["id"] != "":
-                    obj = MyModel.objects.get(pk=request.POST["id"])
-                    form = MyForm(request.POST, instance = obj)
+                if "id" in datas and datas["id"] != "":
+                    obj = MyModel.objects.get(pk=datas["id"])
+                    form = MyForm(datas, instance = obj)
+                    print(obj.__dict__)
                 else:
-                    request.POST["id"] = uuid.uuid4()
-                    form = MyForm(request.POST)
+                    datas["id"] = uuid.uuid4()
+                    form = MyForm(datas)
 
                 if form.is_valid():
                     item = form.save()
@@ -40,7 +47,7 @@ def save(request):
                         return JsonResponse({"status":True, "url" : reverse("boutique:clients:client", args=[item.id])})
                     if modelform == "FournisseurForm":
                         return JsonResponse({"status":True, "url" : reverse("fabrique:appros:fournisseur", args=[item.id])})
-                    return JsonResponse({"status":True})
+                    return JsonResponse({"status":True, "message":"Opération effectuée avec succes !"})
                 
                 else:
                     errors = form.errors.get_json_data()
@@ -60,6 +67,7 @@ def session(request):
         datas = request.POST
         request.session[datas["name"]] = datas["value"]
         return JsonResponse(dict(request.session))
+
 
 
 def delete_session(request):

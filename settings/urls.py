@@ -21,6 +21,8 @@ from django.urls.conf import include
 from organisationApp import views as orga
 
 def home(request):
+    if request.user.is_authenticated:
+        return redirect("home/")
     return redirect("auth/login")
 
 urlpatterns = [
@@ -38,6 +40,7 @@ urlpatterns = [
 
     path('fiches/', include('ficheApp.urls')),
     path('admin/', admin.site.urls),
+    path('administration/', include('administrationApp.urls')),
 ]
 
 
