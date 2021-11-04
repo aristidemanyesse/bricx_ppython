@@ -94,7 +94,7 @@
                         <td>
                             {% if production.etat.etiquette|add:'0' == request.etat.EN_COURS|add:'0' %}
                             <button data-toggle="modal" data-target="#modal-rangement-{{ production.id }}" class="btn btn-white btn-xs"><i class="fa fa-plus"></i> Faire le rangement </button>
-                            <button onclick="annuler('production', '{{ production.id }}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                            <button onclick="delete_password('production', '{{ production.id }}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
                             {% endif %}
                         </td>
                     </tr>

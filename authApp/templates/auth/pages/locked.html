@@ -12,6 +12,7 @@
 
     <div class=" text-center text-white">
         <div class="m-b-md">
+            <img style="width: 120px; height: 120px; margin-right:5%" class="rounded-circle circle-border" src="{% static request.societe.image %}">
             <img alt="image" style="width: 120px; height: 120px" class="rounded-circle circle-border" src="{% static request.user.employe.avatar %}">
         </div>
         <h1>{{ request.user.get_full_name }}</h1>

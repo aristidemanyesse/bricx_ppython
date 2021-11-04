@@ -3,6 +3,7 @@ from approvisionnementApp.models import AchatStock, Approvisionnement
 from commandeApp.models import Conversion, PrixZoneLivraison, Commande, ZoneLivraison
 from comptabilityApp.models import Mouvement
 from livraisonApp.models import Livraison
+from productionApp.models import Production
 
 # Create your views here.
 def prixparzone(request, id):
@@ -33,6 +34,21 @@ def livraison(request, id):
                 "livraison" : livraison,
             }
         return render(request, "fiches/pages/livraison.html", context)
+
+
+
+def production(request, id):
+    if request.method == "GET":
+        production = get_object_or_404(Production, pk = id)
+        total = 0
+        for ligne in production.production_ligneconsommation.all() :
+            total += ligne.ressource.estimation() * ligne.quantite
+
+        context = {
+                "total" : total,
+                "production" : production,
+            }
+        return render(request, "fiches/pages/production.html", context)
 
 
 def approvisionnement(request, id):

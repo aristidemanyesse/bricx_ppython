@@ -77,33 +77,36 @@ def post_save(sender, instance, created, **kwargs):
                 if hasattr(entry[0].f_locals['request'], "user") :
                     user = entry[0].f_locals['request'].user
                     break
-
-    # if created:
-    #     if user is not None:
-    #         History.objects.log_action(
-    #             user_id=user,
-    #             content_type_id=ContentType.objects.get_for_model(instance).pk,
-    #             object_repr=instance, #or any field you wish to represent here
-    #             object_id=instance.id,
-    #             message="Nouvel enregistrement", # a new user has been added
-    #             action_flag=ADDITION) # assuming it's a new object
-    # else:
-    #     if not instance.deleted:
-    #         History.objects.log_action(
-    #             user_id=user,
-    #             content_type_id=ContentType.objects.get_for_model(instance).pk,
-    #             object_repr=instance, #or any field you wish to represent here
-    #             object_id=instance.id,
-    #             message="Mise à jour de l'enregistrement", # a new user has been added
-    #             action_flag=CHANGE) # assuming it's a new object
-    #     else:
-    #         History.objects.log_action(
-    #             user_id=user,
-    #             content_type_id=ContentType.objects.get_for_model(instance).pk,
-    #             object_repr=instance, #or any field you wish to represent here
-    #             object_id=instance.id,
-    #             message="Suppression de l'élément", # a new user has been added
-    #             action_flag=DELETION) # assuming it's a new object
+        
+        if user is not None:
+            if created:
+                if not user.has_perm("paramApp.CCREATE"):
+                    Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
+                History.objects.log_action(
+                    user_id=user,
+                    content_type_id=ContentType.objects.get_for_model(instance).pk,
+                    object_repr=instance, #or any field you wish to represent here
+                    object_id=instance.id,
+                    action_flag=ADDITION) # assuming it's a new object
+            else:
+                if not user.has_perm("paramApp.UPDATE"):
+                    Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
+                if not instance.deleted:
+                    History.objects.log_action(
+                        user_id=user,
+                        content_type_id=ContentType.objects.get_for_model(instance).pk,
+                        object_repr=instance, #or any field you wish to represent here
+                        object_id=instance.id,
+                        action_flag=CHANGE) # assuming it's a new object
+                else:
+                    if not user.has_perm("paramApp.DELETE"):
+                        Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
+                    History.objects.log_action(
+                        user_id=user,
+                        content_type_id=ContentType.objects.get_for_model(instance).pk,
+                        object_repr=instance, #or any field you wish to represent here
+                        object_id=instance.id,
+                        action_flag=DELETION) # assuming it's a new object
 
 
 

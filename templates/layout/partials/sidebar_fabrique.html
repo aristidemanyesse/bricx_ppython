@@ -80,7 +80,7 @@
 
 
                 <li class="" id="rapport_du_jour">
-                    <a href="{% url 'fiches:rapport_du_jour' request.now|date:'Y' request.now|date:'m' request.now|date:'d' %}"><i class="fa fa-calendar"></i> <span class="nav-label">Rapport du Jour</span></a>
+                    <a href="{% url 'fabrique:rapport_du_jour' request.now|date:'Y' request.now|date:'m' request.now|date:'d' %}"><i class="fa fa-calendar"></i> <span class="nav-label">Rapport du Jour</span></a>
                 </li>
                 <li class="" id="rapport_production">
                     <a href="{% url 'fabrique:production:rapport_production' %}"><i class="fa fa-file-text-o"></i> <span class="nav-label">Rapport de production</span></a>
@@ -90,7 +90,7 @@
 
 
                 <li class="" id="caisse">
-                    <a href="{% url 'tresorerie:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
+                    <a href="{% url 'fabrique:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 

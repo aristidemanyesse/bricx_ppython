@@ -33,7 +33,7 @@ class Client(BaseModel):
         total += datas["mouvement__montant__sum"] or 0
         datas = self.client_compte.filter(mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
         total -= datas["mouvement__montant__sum"] or 0
-        return self.acompte_initial + total
+        return (self.acompte_initial or 0) + total
 
 
     def dette_totale(self):
@@ -43,7 +43,7 @@ class Client(BaseModel):
 
         datas = self.client_compte.filter(is_dette = True, mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
         total -= datas["mouvement__montant__sum"] or 0
-        return self.dette_initial + total
+        return (self.dette_initial or 0) + total
 
 
     @staticmethod

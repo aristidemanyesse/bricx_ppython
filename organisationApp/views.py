@@ -80,3 +80,34 @@ def dashboard_fabrique(request):
 
     return render(request, "fabrique/pages/dashboard.html", context)
 
+
+
+
+def dashboard_manager(request):
+    datas = {}
+    datas_ressources = {}
+    for brique in Brique.objects.filter(active = True, deleted = False):
+        data = {
+            "attente" : int(brique.attente(request.agence)),
+            "livrable" : int(brique.livrable(request.agence)),
+            "commande" : int(brique.commande(request.agence)),
+        }
+        datas[brique] = data
+
+
+
+    for ressource in Ressource.objects.filter(active = True, deleted = False):
+        data = {
+            "stock" : ressource.stock(request.agence),
+        }
+        datas_ressources[ressource] = data
+
+
+
+    context = {
+        "datas" : datas,
+        "datas_ressources" : datas_ressources
+    }
+
+    return render(request, "manager/pages/dashboard.html", context)
+

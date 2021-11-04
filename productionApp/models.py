@@ -154,6 +154,8 @@ class Brique(BaseModel):
                 datas.append(brique)
         return datas
 
+
+
 class Ressource(BaseModel):
     name        = models.CharField(max_length = 255)
     unite       = models.CharField(max_length = 255, default="")
@@ -188,8 +190,16 @@ class Ressource(BaseModel):
         return res["quantite__sum"] or 0
 
 
-    def estimation(self, quantite, ressource):
-        return 100
+    def estimation(self, agence):
+        if self.price <= 0:
+            try :
+                data = self.ressource_ligneapprovisionnement.filter(deleted = False).aggregate(Sum("price"))
+                return (data["price__sum"] or 0) / self.achat(agence) * self.stock(agence)
+            except Exception as e:
+                print("----------------", e)
+                return self.price * self.stock(agence)
+        else:
+            return self.price * self.stock(agence)
 
 
 class Production(BaseModel):
@@ -211,8 +221,8 @@ class Production(BaseModel):
 class LigneProduction(BaseModel):
     production = models.ForeignKey(Production, on_delete = models.CASCADE, related_name="production_ligne")
     brique     = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_ligneproduction")
-    perte      = models.FloatField(default=0)
-    quantite   = models.FloatField(default=0)
+    perte      = models.IntegerField(default=0)
+    quantite   = models.IntegerField(default=0)
 
     def __str__(self):
         return "production du "+str(self.production.date)+" : "+self.brique.name+" => "+str(self.quantite)

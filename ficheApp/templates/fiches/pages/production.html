@@ -1,0 +1,161 @@
+{% extends "layout/base_top.html" %} 
+{% load static %} 
+{% load humanize %} 
+{% load myfilters %} 
+
+{% block body %} 
+
+          <div class="wrapper wrapper-content animated fadeInRight article">
+            <div class="row justify-content-md-center">
+                <div class="col-lg-10">
+                    <div class="ibox"  >
+                        <div class="ibox-content"  style="height: 33cm; background-image: url() ; background-size: 50%; background-position: center center; background-repeat: no-repeat;">
+                         <div>
+                          <div class="row">
+                            <div class="col-sm-5">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src="{% static request.societe.image %}" class="img-circle" style="height: 120px; width: 120px" alt="">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h5>
+                                        <h5 class="mp0">{{ request.societe.adresse }}</h5>
+                                        <h5 class="mp0">{{ request.societe.postale }}</h5>
+                                        <h5 class="mp0">Tél: {{ request.societe.contact }}</h5>
+                                        <h5 class="mp0">Email: {{ request.societe.email }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7 text-right">
+                                <h2 class="title text-uppercase gras text-blue">Production</h2>
+                                <h3 class="text-uppercase">N°{{pproduction.reference}}</h3>
+                                <h5>{{pproduction.date}}</h5>  
+                                <h4><small>Production effectuée par :</small> <span class="text-uppercase">{{pproduction.employe.name}}</span></h4>                               
+                                <h4><small>Production effectuée par :</small> <span class="text-uppercase">{{pproduction.employe_rangement.name}}</span></h4>                               
+                            </div>
+                        </div><hr class="mp3">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <h5><span>Date :</span> <span class="text-uppercase">{{pproduction.created_at | date:"d l Y"}}</span></h5> 
+                                <h5><span>Heure :</span> <span class="text-uppercase">{{pproduction.created_at | time:"H:i"}}</span></h5>                             
+                            </div>
+
+                            <div class="col-6 text-right">
+                                <h5><span>Fabrique  :</span> <span class="text-uppercase">{{pproduction.agence.name}}</span></h5>   
+                            </div>
+                        </div><br><br>
+
+                        <table class="table table-bordered">
+                            <thead class="text-uppercase" style="background-color: #dfdfdf">
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center">Quantité produite</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ligne in production.production_ligne.all %}
+                                    <tr>
+                                        <td class="desc">
+                                            <h5 class="mp0 text-uppercase gras">{{ligne.brique.name}}</h5>
+                                        </td>
+                                        <td class="text-center">
+                                            <h2 class="gras mp0">{{ligne.quantite|intcomma}} </h2>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 15px;" />
+
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="row justify-content-center">
+                                                {% for ligne_con in production.production_ligneconsommation.all %}
+                                                {% if ligne_con.quantite > 0 %}
+                                                            <div class="col-sm border-right">
+                                                                {{ligne_con.ressource.name}}: <i><b>{{ligne_con.quantite|intcomma}} {{ligne_con.ressource.unite}}</b> ({{ligne_con.quantite|multiply:ligne_con.ressource.estimation}} {{request.societe.devise}})</i>
+                                                            </div>
+                                                {% endif %}
+                                                {% endfor %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4 class="text-uppercase gras">Coût d'achat :</h4>
+                                            </td>
+                                            <td><h4><i><b>{{total|intcomma}} {{request.societe.devise}}</b></i></h4></td>
+                                        </tr>
+                                        <tr style="height: 15px;" />
+
+                                        <tr>
+                                            <td>
+                                                <h4 class="text-uppercase gras">Coût de production :</h4>
+                                            </td>
+                                            <td>
+                                                <h4><i><b>{{production.montant_production|intcomma}} {{request.societe.devise}}</b></i></h4>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 15px;" />
+
+                                        <tr>
+                                            <td ><h4 class="text-uppercase text-warning">Coût de production total</h4></td>
+                                            <td ><h4><i><b>{{production.montant_production|add:total|intcomma}} {{request.societe.devise}}</b></i></h4></td>
+                                        </tr>
+                                        <tr style="height: 30px;" />
+
+                                        <tr>
+                                            <td colspan="2">
+                                                <div class="row">
+                                                        <div class="col-sm border-right ">
+                                                            Soit 1 {{ligne.brique.name}} vous à coûté environs  = <i><b>
+                                                                {{production.montant_production|add:total|div:ligne.quantite|intcomma}} {{request.societe.devise}}</b></i>
+                                                        </div>
+                                                </div> 
+                                            </td>
+                                        </tr>
+{% endfor %}                        
+                                </tbody>
+                            </table><br>
+
+                            <div class="row">
+                                <div class="col-7">
+                                    <table class="table">
+                                        <thead>
+                                       <!--  <tr>
+                                            <th colspan="4"><h4 class="gras text-uppercase">Observation du client</h4></th>
+                                        </tr> -->
+                                    </thead>
+                                    <tbody>
+                                        <tr style="height: 60px">
+                                            <td class="gras">Observation : </td>
+                                            <td>{{production.comment}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-5">
+                                <!-- <div class="text-right" style="margin-bottom: 20%;">
+                                    <span><u>Signature & Cachet</u></span>
+                                </div> -->
+                            </div>
+                        </div>
+
+
+                        <hr>
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock body %} 

@@ -94,7 +94,7 @@
                                                     <button data-toggle='modal' data-target="#modal-approvisionnement-{{appro.id}}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Valider</button>
                                                     {% endif %}
                                                     {% if appro.etat.etiquette|add:0 != request.etat.ANNULE|add:0 %}
-                            <button onclick="annuler('approvisionnement', '{{appro.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                            <button onclick="delete_password('approvisionnement', '{{appro.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
                             {% endif %}
                                                 </td>
                                             </tr>

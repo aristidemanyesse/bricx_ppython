@@ -97,7 +97,7 @@
                                 <button data-toggle="modal" data-target="#modal-regler-achatstock-{{ achat.id }}" onclick="session('fournisseur_id', '{{achat.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Payer</button>
                             {% endif %}
                             <?php if (employe.isAutoriser("modifier-supprimer") && achat.etat_id != Home\ETAT::ANNULEE) {}}
-                                <button onclick="annuler('achatstock', '{{achat.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                                <button onclick="delete_password('achatstock', '{{achat.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
                             <?php }}}
                         </td>
                     </tr>

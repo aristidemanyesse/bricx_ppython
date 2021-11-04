@@ -1,0 +1,25 @@
+{% extends "./base.html" %}    
+{% load static %}      
+
+{% block main %}
+<body class="fixed-sidebar">
+  <div id="wrapper">
+
+    {% include  "./partials/sidebar_manager.html"%}
+
+    <div id="page-wrapper" class="gray-bg">
+
+      {% include  "./partials/header.html"%}
+
+      {% block wrapper %}
+
+      <h1>Hello world</h1>
+      {% endblock wrapper %}
+
+      {% include  "./partials/footer.html"%}
+
+    </div>
+
+  </div>
+</body>
+{% endblock main %}

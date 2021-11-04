@@ -1,0 +1,212 @@
+{% extends "layout/base_sidebar_manager.html" %} 
+{% load static %} 
+{% load humanize %} 
+{% load myfilters %} 
+
+{% block wrapper %} 
+
+<div class="wrapper wrapper-content">
+    <div class="animated fadeInRightBig">
+
+        <div class="border-bottom white-bg dashboard-header" style="border-top: dashed 3px #ddd">
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <img src="{% static request.societe.image %}" class="img-circle" style="height: 140px; width: 140px" alt=""><br><br>
+                        <h2 class="text-uppercase">{{request.agence.name}}</h2><br>
+                    </div>
+                    <ul class="list-group clear-list m-t">
+                        <li class="list-group-item fist-item">
+                            Approvisionnements en cours <span class="label label-success float-right">{{ request.commandes | length |start0}}</span> 
+                        </li>
+                        <li class="list-group-item">
+                            Achats de briques en cours <span class="label label-success float-right">{{ request.livraisons | length |start0}}</span> 
+                        </li>
+                        <li class="list-group-item">
+                            Tricycles non réglés <span class="label label-success float-right">{{ request.livraisons | length |start0}}</span> 
+                        </li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 border-right border-left text-center">
+                    <div class="" style="margin-top: 0%">
+                        <div id="ct-chart" style="height: 270px;"></div>
+                    </div><br>
+                    <div class="row container text-center">
+                        <div class="col text-center">
+                            <div class="carre bg-green"></div>
+                            <label>Qte livrable</label>
+                        </div>
+                        <div class="col text-center">
+                            <div class="carre bg-orange"></div>
+                            <label>Qte non rangée</label>
+                        </div>
+                        <div class="col text-center">
+                            <div class="carre bg-gray"></div>
+                            <label>Qte commandée</label>
+                        </div>
+                    </div>
+                    <small class="text-uppercase">Courbe représentative du stock de produits en fonction des commandes actuelles</small>
+                </div>
+                <div class="col-md-3 text-center">
+                    <h3 class="text-uppercase">Stock des ressources</h3>
+                    <ul class="list-group  text-left clear-list m-t">
+                        {% for item in datas_ressources.keys %}
+                            <li class="list-group-item">
+                                <i class="fa fa-truck"></i>&nbsp;&nbsp;&nbsp; {{item.name}}
+                                <span class="float-right">
+                                    <span class="text-blue gras">{{datas_ressources|dict_value:item|dict_value:'stock'|start0}} {{item.unite}}</span>
+                                </span>
+                            </li>
+                            {% endfor %}
+                        <li class="list-group-item"></li><br>
+
+                    </ul>
+
+                </div>
+            </div>   
+            <br>
+            <hr style="border-top: dashed 3px #ddd">
+            <hr style="border-top: dashed 3px #ddd">
+            <br><br>
+            <div class="row">
+                {% for item in datas.keys %}
+                <div class="col-sm-6 col-md border-right " style="margin-bottom: 3%; border-bottom: 2px solid black">
+                    <h6 class="text-uppercase text-center"><img class="border" src="{% static item.image %}" style="height: 20px;"> Stock de <u class="gras">{{item.name}}</u></h6>
+                    <ul class="list-group clear-list m-t">
+                        <li class="list-group-item">
+                            <i class="fa fa-cubes"></i> <small>Livrable</small>          
+                            <span class="float-right">
+                                <span title="quantité prête à être livrer" class="gras text-{% if datas|dict_value:item|dict_value:'livrable' >= item.alert_stock %}green {% else %}red clignote{% endif %} ?>">{{datas|dict_value:item|dict_value:'livrable'|intcomma}}</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fa fa-cubes"></i> <small>Non rangée</small>          
+                            <span class="float-right">
+                                <span class="gras text-muted" title="quantité non rangée">{{datas|dict_value:item|dict_value:'attente'|intcomma}}</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+           {% endfor %}
+            </div> 
+        </div>
+
+    </div>
+</div>
+
+{% endblock wrapper %} 
+
+
+
+{% block style %} 
+<style>
+
+.block .col-sm-6{
+	margin-bottom: 3%;
+}
+
+.carre{
+    display: inline-block;
+    width:15px;
+    height:15px;
+}
+
+.rate{
+	border-radius:  100%;
+	display: inline-block;
+	padding: 25px 27px 25px;
+	background-color: rgba(250, 177, 160);
+	color: #fff;
+	font-size: 35px;
+	font-weight: bold;
+	border: 3px dotted #ddd;
+}
+
+.ibox-title{
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+
+.ct-series-c line:nth-of-type(n+1) {
+	stroke: rgba(210, 140, 14, 0.5);
+}
+
+.ct-series-a line:nth-of-type(n+1) {
+	stroke: #bbb;
+}
+</style>
+{% endblock style %} 
+
+
+{% block script %} 
+<script>
+    $(document).ready(function() {
+
+        var id = "<?= $this->id;  ?>";
+        if (id == 1) {
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.success('Content de vous revoir de nouveau!', 'Bonjour {{request.employe.get_full_name}}');
+            }, 1300);
+        }
+
+
+ // Stocked horizontal bar
+
+ new Chartist.Bar('#ct-chart', {
+    labels: [{% for item in datas %} "{{item.name}}", " ", " ","",{% endfor %}],
+    series: [
+    [{% for item in datas %} {{datas|dict_value:item|dict_value:'attente'}}, 0, 0,0,{% endfor %}],
+    [{% for item in datas %} {{datas|dict_value:item|dict_value:'livrable'}}, 0, 0,0,{% endfor %}],
+    [{% for item in datas %} 0, {{datas|dict_value:item|dict_value:'commande'}}, 0,0,{% endfor %}],
+    ]
+}, {
+ stackBars: true,
+ axisX: {
+    labelInterpolationFnc: function(value) {
+        if (value >= 1000) {
+            return (value / 1000) + 'k';            
+        }
+        return value;
+    }
+},
+reverseData:true,
+seriesBarDistance: 10,
+horizontalBars: true,
+axisY: {
+    offset: 80
+}
+});
+
+
+
+ var ctx3 = document.getElementById("polarChart").getContext("2d");
+ new Chart(ctx3, {type: 'polarArea', data: polarData, options:polarOptions});
+
+ var doughnutData = {
+    labels: ["App","Software","Laptop" ],
+    datasets: [{
+        data: [300,50,100],
+        backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
+    }]
+} ;
+
+
+var doughnutOptions = {
+    responsive: true
+};
+
+
+});
+</script>
+
+{% endblock script %} 

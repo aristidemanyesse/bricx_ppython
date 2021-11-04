@@ -1,4 +1,4 @@
-{% extends "layout/base_sidebar_boutique.html" %} 
+{% extends request.base_template %} 
 {% load static %} 
 {% load myfilters %} 
 {% load humanize %} 
@@ -19,15 +19,14 @@
                     <i class="fa fa-cube fa-2x text-dark"></i>
                     <div class="{% if briques|dict_value:brique <= brique.alert_stock %} clignote {% endif %}">
                         <h4 class="m-xs gras ">{{briques|dict_value:brique | start0 }} {{brique.name}}</h4>
-                        <h6 class="no-margins text-uppercase gras">{{briques|dict_value:brique|multiply:brique.estimation|intcomma }} {{ request.societe.devise }}</h6>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-
     </div>
 </div>
+
 
 <div class="wrapper wrapper-content">
     <div class=" animated fadeInRightBig">

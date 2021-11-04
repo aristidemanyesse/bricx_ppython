@@ -7,9 +7,9 @@ import ficheApp.views, comptabilityApp.views
 
 from . import views 
 
-app_name = "fabrique"
+app_name = "manager"
 urlpatterns = [
-    path('', views.dashboard_fabrique, name="dashboard_fabrique"),  
+    path('', views.dashboard_manager, name="dashboard_manager"),  
     path('caisse/', comptabilityApp.views.caisse, name="caisse"),  
     path('appros/', include("approvisionnementApp.urls") ),
     path('appros/', include("approvisionnementApp.urls") ),

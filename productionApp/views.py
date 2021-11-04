@@ -96,7 +96,11 @@ def stock_ressource(request):
 
         datas = {}
         for ressource in Ressource.objects.filter(deleted = False, active=True):
-            datas[ressource] = ressource.stock(request.agence)
+            data = {}
+            data["stock"] = ressource.stock(request.agence)
+            data["estimation"] = ressource.estimation(request.agence)
+            datas[ressource] = data
+
 
         context = {
             "dates" : dates,
