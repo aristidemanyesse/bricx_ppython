@@ -10,6 +10,10 @@ djangorestframework = "*"
 pillow = "*"
 mysqlclient = "*"
 python-dateutil = "*"
+dateutils = "*"
+django-post-office = "*"
+django-debug-toolbar = "*"
+django-crontab = "*"
 
 [dev-packages]
 

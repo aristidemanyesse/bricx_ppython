@@ -17,8 +17,8 @@ class Fournisseur(BaseModel):
     email           = models.CharField(max_length = 255, null = True, blank=True)
     contact         = models.CharField(max_length = 255, null = True, blank=True)
     description     = models.TextField(default="",  null = True, blank=True)
-    acompte_initial = models.IntegerField(default=0)
-    dette_initial   = models.IntegerField(default=0)
+    acompte_initial = models.IntegerField(default=0, null = True, blank=True)
+    dette_initial   = models.IntegerField(default=0, null = True, blank=True)
     image          = models.ImageField(upload_to = "storage/images/fournisseurs/", max_length=255, null=True, blank=True)
 
     def __str__(self):

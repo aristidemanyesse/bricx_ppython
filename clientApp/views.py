@@ -36,7 +36,12 @@ def client(request, client_id):
         datas = []
         for groupe in client.get_groupecommandes():
             commandes = groupe.commande_groupecommande.filter(deleted = False)
-            livraisons = groupe.groupecommande_livraison.filter(deleted = False)
+            livraisons = groupe.groupecommande_livraison.filter(deleted = False).exclude(etat__etiquette = Etat.ANNULE)
+
+            for commande in commandes:
+                commande.tipe = "commande"
+            for livraison in livraisons:
+                livraison.tipe = "livraison"
 
             mylist = []
             mylist.extend(commandes)

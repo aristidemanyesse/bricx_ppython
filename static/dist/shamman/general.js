@@ -10,6 +10,7 @@ $(function () {
     });
 
 
+
     $('.footable').footable({
         "paging": {
             "size": 20
@@ -46,6 +47,8 @@ $(function () {
 		var src = URL.createObjectURL(e.target.files[0])
 		$(this).prev("img.logo").attr('src', src);
 	});
+
+
 
     //selection du mode de payement
     $("div.modepayement_facultatif").hide();
@@ -105,37 +108,6 @@ $(function () {
     $(document).on("idle.idleTimer", function (event, elem, obj) {
         window.location.href = "/auth/locked/";
     });
-
-
-
-
-    // selecteur des onglets item de page
-    var section = "<?= $this->getSection() ?>"
-    var modul = "<?= $this->getModule() ?>"
-    var url = "<?= $this->getPage() ?>"
-
-    if (url == "clients" || url == "client") {
-        url = "clients";
-    }
-
-    $("nav ul.metismenu li").removeClass('active');
-    $("nav ul.metismenu li").each(function (index, el) {
-        if ($(this).attr("id") == url) {
-            $(this).addClass("active")
-            $(this).parent("ul").addClass("in");
-            $(this).parent("ul").parent("li.groupe").addClass("active");
-        }
-    });
-
-    $("a.onglets").each(function () {
-        if ($(this).attr("id") == "onglet-" + section) {
-            $("a.onglets").removeClass("active btn-warning")
-            $("a.onglets").addClass("btn-white");
-            $(this).addClass("active btn-warning").removeClass("btn-white");
-        }
-    })
-
-
 
 
 

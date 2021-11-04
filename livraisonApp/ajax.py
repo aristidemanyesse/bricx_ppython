@@ -4,7 +4,7 @@ from django.template.loader import render_to_string, get_template
 from django.http import HttpResponse, JsonResponse
 from comptabilityApp.models import Mouvement, ReglementTricycle
 from livraisonApp.models import LigneLivraison, Livraison, ModeLivraison, Tricycle
-from productionApp.models import Brique, PerteBrique, Production
+from productionApp.models import Brique, PerteBrique, Production, TypePerte
 from commandeApp.models import GroupeCommande, Commande, LigneCommande, LigneConversion, ZoneLivraison, PrixZoneLivraison, Conversion
 from clientApp.models import Client
 from coreApp.models import Etat
@@ -42,7 +42,7 @@ def livraison(request):
                     if not ((0 < livree <= groupe.reste(brique)) and (livree <= stock >= (livree + int(surplus) + int(perte)))):
                         test = False
                         break
-            
+
             if test :
                 mode = ModeLivraison.objects.get(pk = datas["modelivraison"])
                 if mode.etiquette != ModeLivraison.DEFAUT :
@@ -96,6 +96,8 @@ def livraison(request):
                                     agence = request.agence,
                                     brique = brique,
                                     quantite = perte,
+                                    employe = request.user.employe,
+                                    type = TypePerte.objects.get(etiquette = TypePerte.CHARGEMENT),
                                     comment = "Perte lors du chargement pour la livraison N°"+str(livraison.reference)
                                 );
 

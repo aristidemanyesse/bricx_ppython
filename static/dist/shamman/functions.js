@@ -31,13 +31,4 @@ $(function(){
 
 
 
-    //concatener a 0
-    concate0 = function(nom){
-        if (nom < 10) {
-            return "0"+nom;
-        }
-        return nom;
-    }
-
-
 });

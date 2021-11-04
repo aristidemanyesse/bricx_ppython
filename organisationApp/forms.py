@@ -13,6 +13,6 @@ class AgenceForm(ModelForm):
 
 class EmployeForm(ModelForm):
     class Meta:
-        fields = "__all__"
+        fields = ["agence", "first_name", "last_name", "email", "contact", "adresse", "image"]
         model = Employe
 

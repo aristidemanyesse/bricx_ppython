@@ -32,7 +32,7 @@ def run():
     Brique.objects.create(
         name = "AP 15",
         comment = "Agglos pleines 15",
-        alert_stock = 0,
+        alert_stock = 10,
         protected = True
     )
 

@@ -1,5 +1,6 @@
 {% extends "layout/base_top.html" %} 
 {% load static %} 
+{% load myfilters %} 
 
 {% block body %} 
 
@@ -20,7 +21,7 @@
                     <div class="col-sm-6 border-left border-bottom">
                         <div class="p-lg">
                             <i class="fa fa-bank fa-4x text-green"></i>
-                            <h1 class="m-xs">{{nb_agences}}</h1>
+                            <h1 class="m-xs">{{nb_agences|start0}}</h1>
                             <h4 class="no-margins text-uppercase gras">Fabrique{{ agences |pluralize }}</h4>
                             <small>{{request.societe.socialreason}}</small>
                         </div>
@@ -28,7 +29,7 @@
                     <div class="col-sm-6 border-left border-bottom">
                         <div class="p-lg">
                             <i class="fa fa-cube fa-4x text-orange"></i>
-                            <h1 class="m-xs">{{nb_briques}}</h1>
+                            <h1 class="m-xs">{{nb_briques|start0}}</h1>
                             <h4 class="no-margins text-uppercase gras">Brique{{ briques |pluralize }}</h4>
                             <small>{{request.societe.socialreason}}</small>
                         </div>
@@ -36,7 +37,7 @@
                     <div class="col-sm-6 border-left">
                         <div class="p-lg">
                             <i class="fa fa-users fa-4x text-green"></i>
-                            <h1 class="m-xs">{{nb_clients}}</h1>
+                            <h1 class="m-xs">{{nb_clients|start0}}</h1>
                             <h4 class="no-margins text-uppercase gras">CLient{{ clients|pluralize }}</h4>
                             <small>{{request.societe.socialreason}}</small>
                         </div>
@@ -44,7 +45,7 @@
                     <div class="col-sm-6 border-left">
                         <div class="p-lg">
                             <i class="fa fa-male fa-4x text-green"></i>
-                            <h1 class="m-xs">{{nb_users}}</h1>
+                            <h1 class="m-xs">{{nb_users|start0}}</h1>
                             <h4 class="no-margins text-uppercase gras">Utilisateur{{ users|pluralize }}</h4>
                             <small>{{request.societe.socialreason}}</small>
                         </div>
@@ -119,7 +120,7 @@
         {% endif %}
 
 
-        {% if perms.paramApp.configuration %}
+        {% if perms.paramApp.administration %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
             <a href="{% url 'administration:dashboard' %}">
                 <div class="ibox">

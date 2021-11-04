@@ -7,53 +7,78 @@
 
 <div class="animated fadeInRightBig container-fluid">
 
-    <div class="row">
 
+    <div class="ibox">                                
+        <ul class="nav nav-tabs">
+            {% for agence in agences.keys %}
+            <li><a class="nav-link" data-toggle="tab" href="#tab-{{agence.id}}"><i class="fa fa-user"></i> Prix chez {{agence.name}}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="tab-content ibox-content" style="min-height: 300px;">
+            
+            {% for agence in agences.keys %}
+            <div id="tab-{{agence.id}}" class="tab-pane">
+                <div class=" bloc">
+                    <div class="ibox border">
+                        <div class="ibox-title">
+                            <h5 class="text-uppercase">Prix des produits par zone de livraison</h5>
+                            <div class="ibox-tools">
+                                <!-- <a class="btn_modal" data-toggle="modal" data-target="#modal-zonelivraison">
+                                    <i class="fa fa-plus"></i> Ajouter nouvelle zone
+                                </a> -->
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        {% for brique in briques %}
+                                        <th class="text-center">{{ brique.name }}</th>
+                                        {% endfor  %}
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for zone in agences|dict_value:agence|dict_value:"zones" %}
+                                        <tr>
+                                             <td title="supprimer la zone">
+                                                <i class="fa fa-trash text-red cursor" onclick="delete_password('zonelivraison', '{{zone.id}}')"></i>
+                                            </td>
+                                             <td class="gras">{{ zone.name }}</td>
+                                            {% for brique in briques %}
+                                            {% for prix in prixparzones %}
+                                            {% if prix.brique.id == brique.id and prix.zone.id == zone.id %}
+                                            <td class="text-center" >{{ prix.price | intcomma }} {{ request.societe.devise }}</td>
+                                            {% endif  %}
+                                            {% endfor  %}
+                                        {% endfor  %}
+                                        <td data-toggle="modal" data-target="#modal-prix{{zone.id}}" title="modifier les prix"><i class="fa fa-pencil text-blue cursor"></i></td>
+                                    </tr>
 
-        <div class="col-sm-12 bloc">
-            <div class="ibox border">
-                <div class="ibox-title">
-                    <h5 class="text-uppercase">Prix des produits par zone de livraison</h5>
-                    <div class="ibox-tools">
-                        <a class="btn_modal" data-toggle="modal" data-target="#modal-zonelivraison">
-                            <i class="fa fa-plus"></i> Ajouter nouvelle zone
-                        </a>
+                                    {% include "../modals/prix.html" with element=zone  %}
+                                    {% include "../modals/zone.html" with element=zone agence=agence %}
+
+                                    {% endfor  %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="ibox-content">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                {% for brique in briques %}
-                                <th class="text-center">{{ brique.name }}</th>
-                                {% endfor  %}
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for zone in zones %}
-                                <tr>
-                                     <td title="supprimer la zone">
-                                        <i class="fa fa-trash text-red cursor" onclick="delete_password('zonelivraison', '{{zone.id}}')"></i>
-                                    </td>
-                                     <td class="gras">{{ zone.name }}</td>
-                                    {% for brique in briques %}
-                                    {% for prix in prixparzones %}
-                                        {% if prix.brique.id == brique.id and prix.zone.id == zone.id %}
-                                            <td class="text-center" >{{ prix.price | intcomma }} {{ request.societe.devise }}</td>
-                                        {% endif  %}
-                                    {% endfor  %}
-                                {% endfor  %}
-                                <td data-toggle="modal" data-target="#modal-prix{{zone.id}}" title="modifier les prix"><i class="fa fa-pencil text-blue cursor"></i></td>
-                            </tr>
-                            {% endfor  %}
-                        </tbody>
-                    </table>
-                </div>
             </div>
+            {% endfor %}
+
+
+
         </div>
+    </div>
+
+    
+    
+    
+    
+    <div class="row">
 
         <div class="col-sm-6 bloc">
             <div class="ibox border">
@@ -135,11 +160,6 @@
 {% include "../modals/payes_produits.html"%}
 
 
-{% include "../modals/zone.html"%}
-{% for zone in zones %}
-{% include "../modals/prix.html" with element=zone %}
-{% include "../modals/zone.html" with element=zone %}
-{% endfor %} 
 
 {% endblock body %} 
 

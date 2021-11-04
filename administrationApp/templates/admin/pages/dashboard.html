@@ -14,7 +14,7 @@
                         <div class="ibox-content">
                             <div class="row">
                                 <div class="col-9">
-                                    <h2 class="text-uppercase gras">Infos générales</h2>
+                                    <h3 class="text-uppercase gras">Infos générales</h3>
                                     <h5 class="no-margins text-orange">Nom, adresse, contact, logo de sté </h5>
                                 </div>
                                 <div class="col-3 text-right">
@@ -26,7 +26,7 @@
                 </a>
             </div>
 
-            <?php if ($employe->isAutoriser("roles")) { ?>
+            
                 <div class="col-md-4 col-sm-6">
                     <a href="{% url 'administration:roles' %}">
                         <div class="ibox">
@@ -44,9 +44,7 @@
                         </div>
                     </a>
                 </div>
-            <?php } ?>
 
-            <?php if ($employe->isAutoriser("mycompte")) { ?>
                 <div class="col-md-4 col-sm-6">
                     <a href="{% url 'administration:mycompte' %}">
                         <div class="ibox">
@@ -64,10 +62,12 @@
                         </div>
                     </a>
                 </div>
-            <?php } ?>
+                
         </div>
-    </div><hr><hr><br>
-
+    </div>
+    
+    
+    <hr><hr><br>
 
 
     <div class="row justify-content-center">

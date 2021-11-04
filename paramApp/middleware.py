@@ -18,15 +18,13 @@ class InjectMyAppDataMiddleware:
         return response
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        print("InjectMyAppDataMiddleware")
         if "date1" not in request.session:
-            request.session["date1"] = str((datetime.datetime.now() - datetime.timedelta(days=2)).date())
-            request.session["date2"] = str((datetime.datetime.now() + datetime.timedelta(days=1)).date())
+            request.session["date1"] = str((datetime.datetime.now() - datetime.timedelta(days=3)).date())
+            request.session["date2"] = str((datetime.datetime.now()).date())
             
         if not request.path_info.startswith('/admin/'):
 
             if request.user.is_authenticated:
-                print("InjectMyAppDataMiddleware is_authenticated")
                 access = request.user.employe.employe_acces.first()
                 request.agence = None
                 if access is not None:

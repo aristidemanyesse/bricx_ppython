@@ -15,7 +15,7 @@ def is_ferie(date):
     year = date.year;
 
     #samedi et dimanche
-    #if date.
+    if date.weekday() == 0 or date.weekday() == 6: return True #
 
     ## dates fériées fixes
     if day == 1 and month == 1 : return True # 1er janvier
@@ -28,28 +28,18 @@ def is_ferie(date):
     if day == 25 and month == 12: return True # 25 décembre
 
     ##fetes religieuses mobiles
-    easter = easter(year);
+    easter_day = easter(year);
 
-    if easter.day == day and easter.month == month: return True  # Pâques
+    if easter_day.day == day and easter_day.month == month: return True  # Pâques
 
-    new_day = easter + datetime.timedelta(days=1)
+    new_day = easter_day + datetime.timedelta(days=1)
     if new_day.day == day and new_day.month == month: return True  # Lundi de Pâques
 
-    new_day = easter + datetime.timedelta(days=40)
+    new_day = easter_day + datetime.timedelta(days=40)
     if new_day.day == day and new_day.month == month: return True  # Ascension
 
-    new_day = easter + datetime.timedelta(days=50)
+    new_day = easter_day + datetime.timedelta(days=50)
     if new_day.day == day and new_day.month == month: return True  # Pentecote
 
-    new_day = easter + datetime.timedelta(days=51)
+    new_day = easter_day + datetime.timedelta(days=51)
     if new_day.day == day and new_day.month == month: return True  # Lundi de Pentecote
-
-
-# # Samedis et dimanches
-# jour_sem = jddayofweek(unixtojd(timestaeaster_month), 0);
-# if(jour_sem == 0 /*|| jour_sem == 6*/) res = True;
-# # ces deux lignes au dessus sont à retirer si vous ne désirez pas faire
-# # apparaitre les
-# # samedis et dimanches comme fériés.
-# return res;
-

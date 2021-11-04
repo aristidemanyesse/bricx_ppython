@@ -1,5 +1,8 @@
 $(function(){
 
+
+    $(".tab-pane, li.nav-link").first().addClass("active")
+
     $(".formPrix").submit(function(event) {
         Loader.start();
         var url = "/administration/organisation/ajax/price/";

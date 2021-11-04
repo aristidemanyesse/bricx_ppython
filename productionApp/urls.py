@@ -14,6 +14,8 @@ urlpatterns = [
     path('perte_ressource', views.perte_ressource, name="perte_ressource"),  
     path('perte_brique', views.perte_brique, name="perte_brique"),  
 
+    path('rapport_production/', views.rapport_production, name="rapport_production"),
+
 
     path('ajax/calcul_production/', ajax.calcul_production, name="calcul_production"), 
     path('ajax/new_production/', ajax.new_production, name="new_production"), 

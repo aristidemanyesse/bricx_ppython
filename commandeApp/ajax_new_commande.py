@@ -119,8 +119,8 @@ def valider_commande(request):
             if mode.etiquette == ModePayement.PRELEVEMENT :
                 avance = client.acompte_actuel()
 
-            seuil = client.seuil_credit if client.seuil_credit > 0 else request.societe.seuil_credit
-            if not (avance == total or ((total - avance + client.dette_totale()) <= seuil)):
+            seuil = (client.seuil_credit or 0) if (client.seuil_credit or 0) > 0 else request.societe.seuil_credit
+            if not (seuil == 0 or avance == total or ((total - avance + client.dette_totale()) <= seuil)):
                 return JsonResponse({"status": False, "message": "Le crédit restant pour la commande ne doit pas excéder "+intcomma(seuil)+" "+request.societe.devise+" pour ce client "})
 
             if "groupecommande_id" in request.session:
@@ -130,7 +130,6 @@ def valider_commande(request):
                     client = client,
                     agence = request.agence
                 )
-
 
             commande = Commande.objects.create(
                 groupecommande = groupe,

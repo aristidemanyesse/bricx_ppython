@@ -1,13 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User, Permission
-from coreApp.models import BaseModel, MyCodeException
 
 from django.db import models, transaction
 import uuid, datetime, json, random
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
-from django.utils import timezone
-from django.db.models import Sum
+
+from coreApp.models import BaseModel
 
 
 class ForgotPassword(BaseModel):

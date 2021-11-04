@@ -15,6 +15,13 @@ $(function(){
 	    	}
 	    }
 
+		concate0 = function(nom){
+			if (nom < 10) {
+				return "0"+nom;
+			}else{
+				return nom;
+			}
+		}
 
 	    horloge = function(){
 	    	tabMois = ["Janvier", "Février", "Mars","Avril","Mai","Juin", "Juillet", "Août","Septembre","Octobre","Novembre", "Décembre"];

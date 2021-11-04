@@ -18,7 +18,7 @@
                 <div class="p-xs">
                     <i class="fa fa-cube fa-2x text-dark"></i>
                     <div class="{% if briques|dict_value:brique <= brique.alert_stock %} clignote {% endif %}">
-                        <h5 class="m-xs gras ">{{briques|dict_value:brique | start0 }} unités</h5>
+                        <h4 class="m-xs gras ">{{briques|dict_value:brique | start0 }} {{brique.name}}</h4>
                         <h6 class="no-margins text-uppercase gras">{{briques|dict_value:brique|multiply:brique.estimation|intcomma }} {{ request.societe.devise }}</h6>
                     </div>
                 </div>

@@ -9,70 +9,413 @@
 
     <h1 class="text-center display-4 text-uppercase">{{agence.name}}</h1><br>
 
-    <div class="row">
+
+    <div class="ibox">                                
+        <ul class="nav nav-tabs">
+            <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> Infos de l'agence</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#tab-2"><i class="fa fa-money"></i> Stocks initiaux</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#tab-3"><i class="fa fa-money"></i> Prix de ventes</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#tab-4"><i class="fa fa-money"></i> Véhicules & Chauffeurs</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#tab-5"><i class="fa fa-money"></i> Gestion des employés</a></li>
+        </ul>
+        <div class="tab-content ibox-content" style="min-height: 300px;">
 
 
 
-        <div class="col-sm-6 bloc">
-            <div class="ibox border">
-                <div class="ibox-title">
-                    <h5 class="text-uppercase">Stock initial des matières premières</h5>
-                </div>
-                <div class="ibox-content">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Libéllé</th>
-                                <th>Unité</th>
-                                <th>Stock initial</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for ligne in agence.agence_initialressource.all %}
-                                <tr>
-                                    <td class="gras">{{ligne.ressource.name}}</td>
-                                    <td>{{ligne.ressource.unite}}</td>
-                                    <td width="110px">
-                                        {% if ligne.ressource.active %}
-                                            <input type="text" title="Stock initial" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" name="initialressourceagence" id="{{ligne.id}}">
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="col-md-12 bloc">
-            <div class="ibox border">
-                <div class="ibox-title">
-                    <h5 class="text-uppercase">Stock initial par produit dans cette agence</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="row text-center">
-                        {% for ligne in agence.agence_initialbrique.all %}
-                            <div class="col-sm-4 col-md-3 col-lg-2 border-left border-bottom">
-                                <div class="p-xs">
-                                    <i class="fa fa-cube fa-2x text-dark"></i>
-                                    <h6 class="text-uppercase gras"><{{brique.name}}</h6>
-
-                                    <input type="text" title="Stock initial" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" name="initialproduitagence" id="{{ligne.id}}">
-                                </div>
+            <div id="tab-1" class="tab-pane active">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <span class="text-muted">Raison sociale de l'agence</span>
+                                <h2 class="gras text-uppercase text-primary">{{agence.name}}</h2>
                             </div>
-                        {% endfor %}
+                        </div><br><br>
+    
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <span class="text-muted">Situation Géographique</span>
+                                <h4>{{agence.lieu}}</h4>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <span class="text-muted">Compte lié</span>
+                                <h4>{{compte.name}}</h4>
+                            </div>
+                            
+                            <div class="col-sm-4">
+                                <span class="text-muted">Solde initial</span>
+                                <h4>{{compte.initial_amount|intcomma}} {{request.societe.devise}}</h4>
+                            </div>
+                            
+                        </div><br><br>
+    
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <span class="text-muted">Nombre d'employes</span>
+                                <h4>{{employes|start0}}</h4>
+                            </div>
+    
+                            <div class="col-sm-4">
+                                <span class="text-muted">Nombre de véhicules</span>
+                                <h4>{{vehicules|length|start0}}</h4>
+                            </div>
+    
+                            <div class="col-sm-4">
+                                <span class="text-muted">Nombre de chauffeurs</span>
+                                <h4>{{chauffeurs|length|start0}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border-left text-center">
+                        <h4 class="text-muted text-uppercase">Logo de l'entreprise</h4><br>
+                        <img src="{% static request.societe.image %}" class="img-circle lelogo" alt=""> 
+                        <br><br>
+
+                        <div>
+                            <button class="btn btn-primary dim " data-toggle="modal" data-target="#modal-agence{{agence.id}}"><i class="fa fa-pencil"></i> Modifier</button>
+                            <button class="btn btn-danger dim " onclick="delete_password('agence', '{{agence.id}}')" ><i class="fa fa-trash"></i> Supprimer</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
+            <div id="tab-2" class="tab-pane">
+                <div class="row" style="margin-bottom: 5%">
+                    <div class="col-md-6">
+                        <h4>Définir le stock de ressources initial</h4><br>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Libéllé</th>
+                                    <th>Unité</th>
+                                    <th>Stock initial</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ligne in agence.agence_initialressource.all %}
+                                    <tr>
+                                        <td class="gras">{{ligne.ressource.name}}</td>
+                                        <td>{{ligne.ressource.unite}}</td>
+                                        <td width="110px">
+                                            {% if ligne.ressource.active %}
+                                                <input type="text" title="Stock initial" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" model="initialressourceagence" name="quantite" id="{{ligne.id}}">
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 border-left text-center">
+                        <h4>Définir le stock de briques initial</h4><br>
+                        <div class="row">
+                            {% for ligne in agence.agence_initialbrique.all %}
+                            <div class="col-sm-6 col-md-4 border-left border-bottom">
+                                <div class="p-xs">
+                                    <i class="fa fa-cube fa-2x text-dark"></i>
+                                    <h6 class="text-uppercase gras">{{ligne.brique.name}}</h6>
+                                    <input type="text" title="Stock initial" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" model="initialbriqueagence" name="quantite" id="{{ligne.id}}">
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div id="tab-3" class="tab-pane">
+                <div class=" bloc">
+                    <div class="ibox border">
+                        <div class="ibox-title">
+                            <h5 class="text-uppercase">Prix des produits par zone de livraison</h5>
+                            <div class="ibox-tools">
+                                <a class="btn_modal" data-toggle="modal" data-target="#modal-zonelivraison">
+                                    <i class="fa fa-plus"></i> Ajouter nouvelle zone
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        {% for brique in briques %}
+                                        <th class="text-center">{{ brique.name }}</th>
+                                        {% endfor  %}
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for zone in zones %}
+                                        <tr>
+                                             <td title="supprimer la zone">
+                                                <i class="fa fa-trash text-red cursor" onclick="delete_password('zonelivraison', '{{zone.id}}')"></i>
+                                            </td>
+                                             <td class="gras">{{ zone.name }}</td>
+                                            {% for brique in briques %}
+                                            {% for prix in prixparzones %}
+                                                {% if prix.brique.id == brique.id and prix.zone.id == zone.id %}
+                                                    <td class="text-center" >{{ prix.price | intcomma }} {{ request.societe.devise }}</td>
+                                                {% endif  %}
+                                            {% endfor  %}
+                                        {% endfor  %}
+                                        <td data-toggle="modal" data-target="#modal-prix{{zone.id}}" title="modifier les prix"><i class="fa fa-pencil text-blue cursor"></i></td>
+                                    </tr>
+                                    {% endfor  %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div id="tab-4" class="tab-pane">
+                <div class="row">
+
+      <div class="col-md-6">
+        <div class="ibox border" >
+            <div class="ibox-title">
+                <h5 class="text-uppercase"><i class="fa fa-car"></i> Tous les véhicules </h5>
+                <div class="ibox-tools">
+                    <a class="btn_modal" data-toggle="modal" data-target="#modal-vehicule">
+                        <i class="fa fa-plus"></i> Ajouter
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content table-responsive" style="min-height: 400px;">
+                <table class="table table-striped">
+                 <thead>
+                    <tr>
+                        <th>Marque/modèle</th>
+                        <th>Immatriculation</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                      {% for vehicule in vehicules %}
+                        <tr>    
+                            <td>
+                                <h5 class="text-uppercase gras">{{vehicule.modele}}</h5>
+                            </td>
+                            <td class="">
+                                <h5 class="">{{vehicule.immatriculation}}</h5>
+                            </td>    
+                            <td data-toggle="modal" data-target="#modal-vehicule{{vehicule.id}}" title="modifier l'élément" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                            <td title="supprimer l'élément" onclick="delate_password('vehicule','{{vehicule.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>                             
         </div>
-
-
-
     </div>
 </div>
 
+<div class="col-md-6">
+    <div class="ibox border" >
+        <div class="ibox-title">
+            <h5 class="text-uppercase"><i class="fa fa-user"></i> Liste des chauffeurs </h5>
+            <div class="ibox-tools">
+                <a class="btn_modal" data-toggle="modal" data-target="#modal-chauffeur">
+                    <i class="fa fa-plus"></i> Ajouter
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content table-responsive" style="min-height: 400px;">
+            <table class="table table-striped">
+             <thead>
+                <tr>
+                    <th>Nom complet</th>
+                    <th>Adresse</th>
+                    <th>Contact</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for chauffeur in chauffeurs %}
+                    <tr>    
+                        <td class="">
+                            <h5 class="text-uppercase gras">{{chauffeur.name}}</h5>
+                        </td>
+                        <td>
+                            <h5 class="mp0">{{chauffeur.adresse}}</h5>
+                        </td>
+                        <td class="">
+                            <h5 class="mp0">{{chauffeur.contact}}</h5>
+                        </td>     
+                        <td data-toggle="modal" data-target="#modal-chauffeur{{chauffeur.id}}" title="modifier l'élément" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                        <td title="supprimer l'élément" onclick="delete_password('chauffeur', '{{chauffeur.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>                             
+    </div>
+</div>
+</div>
+
+                </div>
+            </div>
+
+
+            
+
+            <div id="tab-5" class="tab-pane">
+                <div class="ibox border">
+                    <div class="ibox-title">
+                        <h5 class="text-uppercase">Attribution des accès des agences</h5>
+                                  <div class="ibox-tools">
+                <a class="btn_modal" data-toggle="modal" data-target="#modal-employe">
+                    <i class="fa fa-plus"></i> Ajouter un employé
+                </a>
+            </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Utilisateur</th>
+                                    <th>Identifiants</th>
+                                    <th style="width: 40%">Accès et rôles</th>
+                                    <th>Affiliation</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for employe in employes.keys %}
+                                    <tr>
+                                        <td>
+                                            {% if employe.is_active %}
+                                                <span class="label label-success">Actif</span>
+                                            {% else %}
+                                                <span class="label label-danger">Bloqué</span>
+                                           {% endif %}
+                                        </td>
+                                        <td >
+                                            <span class="gras text-uppercase">{{employe.get_full_name}}</span><br>
+                                            <span> {{employe.email}}</span><br>
+                                            <span> {{employe.adresse}}</span><br>
+                                            <span> {{employe.contact}}</span>
+                                        </td>
+                                        <td>
+                                            {% if employe.last_login == None %}
+                                                <span class="">Login: <b>{{employe.username}}</b></span><br>
+                                                <span class="">Pass: <b>{{employe.brut}}</b> </span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="" >
+                                            <div class="row">
+                                                {% for perm in employes|dict_value:employe|dict_value:"perms_on" %}
+                                                    <div class="col-6 col-sm-4">
+                                                        <label class="cursor"><input type="checkbox" class="i-checks" employe_id="{{employe.id}}" perm_id="{{perm.id}}" checked name="perm">{{perm.name}}</label>
+                                                    </div>
+                                                {% endfor %}
+                                                {% for perm in employes|dict_value:employe|dict_value:"perms_off" %}
+                                                    <div class="col-6 col-sm-4">
+                                                        <label class="cursor"><input type="checkbox" class="i-checks" employe_id="{{employe.id}}" perm_id="{{perm.id}}" name="perm">{{perm.name}}</label>
+                                                    </div>
+                                                {% endfor %} 
+                                            </div>              
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <small>Selectionner l'agence</small>
+                                                {% include 'extra/select.html' with name="agence" instances=agences obj=agence %}                                    
+                                            </div>
+                                        </td>
+                                        <td class="text-right">          
+                                            <button onclick="reset_password('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-refresh text-blue"></i> Init. mot de passe</button><br>
+            
+                                            {% if employe.is_active %}
+                                                <button onclick="lock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-lock text-orange"></i> Bloquer</button>
+                                                {% else %}
+                                                <button onclick="unlock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-unlock text-green"></i> Débloquer</button>
+                                                {% endif %}
+                                            <button data-toggle="modal" data-target="#modal-employe{{employe.id}}" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-white btn-xs" onclick="delete_password('{{employe.id}}')"><i class="fa fa-close text-red"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px"></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+
+</div>
+
+
+{% include '../modals/agence.html' with element=agence %}
+
+
+
+{% include "../modals/vehicule.html" with agence=agence %}
+{% for vehicule in vehicules %}
+{% include "../modals/vehicule.html" with element=vehicule agence=agence %}
+{% endfor %} 
+
+{% include "../modals/chauffeur.html" with agence=agence %}
+{% for chauffeur in chauffeurs %}
+{% include "../modals/chauffeur.html" with element=chauffeur agence=agence %}
+{% endfor %} 
+
+
+{% include '../modals/employe.html' with agence=agence %}
+{% for employe in employes.keys %}
+{% include '../modals/employe.html' with element=employe agence=agence %}
+{% endfor %} 
+
+
+{% include "../modals/zone.html"%}
+{% for zone in zones %}
+{% include "../modals/prix.html" with element=zone %}
+{% include "../modals/zone.html" with element=zone %}
+{% endfor %} 
+
+
+
 {% endblock body %} 
+
+
+
+
+{% block script %} 
+<script>
+    {% include './agence.js' %}
+    {% include './price.js' %}
+</script>
+{% endblock script %} 
+
+
+
+
+{% block style %}
+<style>
+.lelogo{
+    width: 250px;
+    height: 250px;
+    border: 15px solid #f2f2f2;
+}
+</style>
+{% endblock style %}

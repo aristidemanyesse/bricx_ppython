@@ -11,7 +11,7 @@
         <h2 class="text-uppercase text-blue gras">Les livraisons en cours</h2>
     </div>
     <div class="col-sm-3">
-        <!-- <button style="margin-top: 5%;" type="button" data-toggle=modal data-target='#modal-clients' class="btn btn-success btn-sm dim float-right"><i class="fa fa-plus"></i> Nouvelle livraison </button> -->
+        
     </div>
 </div>
 
@@ -117,10 +117,9 @@
                                     <button data-toggle="modal" data-target="#modal-livraison-{{ livraison.id }}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Terminer</button>
                                     {% endif %}
                                     
-                                    {% if livraison.etat.etiquette|add:'0' == request.etat.ANNULE|add:'0' %}
-                                    <button onclick="annuler('livraison', '{{ livraison.id }}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                                    {% if livraison.etat.etiquette|add:'0' != request.etat.ANNULE|add:'0' %}
+                                    <button onclick="delete_password('livraison', '{{ livraison.id }}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
                                     {% endif %}
-                            <?php } }}
                                 </td>
                             </tr>
                             {% endfor %}
@@ -151,7 +150,6 @@
 {% endfor %}
 
 
-}}
 {% endblock wrapper %} 
 
 {% block script %} 

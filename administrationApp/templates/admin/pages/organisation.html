@@ -18,80 +18,29 @@
                         </a>
                     </div>
                 </div>
-                <div class="ibox-content">
-                    <table class="footable table table-stripped">
-                        <thead>
-                            <tr>
-                                <th>Nom</th>
-                                <th>Lieu</th>
-                                 <th>Compte attribué</th>
-                                <th></th>
-                                <th data-hide="all"></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for agence in agences %}
-                                <tr>
-                                    <td class="gras"><h4 class="d-inline-block">{{agence.name}}</h4></td>
-                                    <td>{{agence.lieu}}</td>
-                                    <td class="gras">{{agences|dict_value:agence}}</td>
-                                    <td>
-                                        <a class="btn_modal btn btn-xs btn-white footable-toggle">
-                                            <i class="fa fa-eye"></i> définir stock initial
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="row" style="margin-bottom: 5%">
-                                            <div class="col-md-6">
-                                                <h4>Définir le stock de ressources initial</h4><br>
-                                                <table class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Libéllé</th>
-                                                            <th>Unité</th>
-                                                            <th>Stock initial</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {% for ligne in agence.agence_initialressource.all %}
-                                                            <tr>
-                                                                <td class="gras">{{ligne.ressource.name}}</td>
-                                                                <td>{{ligne.ressource.unite}}</td>
-                                                                <td width="110px">
-                                                                    {% if ligne.ressource.active %}
-                                                                        <input type="text" title="Stock initial" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" model="initialressourceagence" name="quantite" id="{{ligne.id}}">
-                                                                    {% endif %}
-                                                                </td>
-                                                            </tr>
-                                                        {% endfor %}
-                                                    </tbody>
-                                                </table>
+                <div class="">
+                    <br>
+                    <div class="row justify-content-center">
+                        {% for agence in agences %}
+                        <div class="col-md-3 col-sm-6 ">
+                            <a href="{% url 'administration:agence' agence.id %}">
+                                <div class="ibox">
+                                    <div class="ibox-content">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <h3 class="text-uppercase gras text-navy">{{agence.name}}</h3>
+                                                <h5 class="no-margins text-muted">{{agence.lieu}}</h5>
                                             </div>
-                                            <div class="col-md-6 border-left text-center">
-                                                <h4>Définir le stock de briques initial</h4><br>
-                                                <div class="row">
-                                                    {% for ligne in agence.agence_initialbrique.all %}
-                                                    <div class="col-sm-6 col-md-4 border-left border-bottom">
-                                                        <div class="p-xs">
-                                                            <i class="fa fa-cube fa-2x text-dark"></i>
-                                                            <h6 class="text-uppercase gras">{{ligne.brique.name}}</h6>
-                                                            <input type="text" title="Stock initial" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" model="initialbriqueagence" name="quantite" id="{{ligne.id}}">
-                                                        </div>
-                                                    </div>
-                                                {% endfor %}
-                                                </div>
+                                            <div class="col-3 text-right">
+                                                <i class="fa fa-hospital-o fa-5x text-muted"></i>
                                             </div>
                                         </div>
-                                                                            
-                                    </td>
-                                    <td data-toggle="modal" data-target="#modal-agence{{agence.id}}" title="modifier l'agence"><i class="fa fa-pencil text-blue cursor"></i></td>
-                                    <td title="supprimer la categorie" onclick="delete_password('agence', '{{agence.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
-                                </tr>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>
                             {% endfor %}
-                        </tbody>
-                    </table>
+                            </div>
                 </div>
             </div>
         </div>
@@ -102,11 +51,6 @@
 </div>
 
 {% include '../modals/agence.html' %}
-
-{% for agence in agences %}
-{% include '../modals/agence.html' with element=agence %}
-{% endfor %}
-
 
 {% endblock body %} 
 

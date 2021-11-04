@@ -12,9 +12,9 @@ from productionApp.models import Brique
 # Create your models here.
 
 class ModeLivraison(BaseModel):
-    DEFAUT = 1
-    TRICYCLE = 2
-    CLIENT = 3
+    DEFAUT = "1"
+    TRICYCLE = "2"
+    CLIENT = "3"
 
     name      = models.CharField(max_length = 255)
     etiquette = models.CharField(max_length = 255, null = True, blank=True)
@@ -24,6 +24,7 @@ class ModeLivraison(BaseModel):
 
 
 class Chauffeur(BaseModel):
+    agence         = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_chauffeur")
     name = models.CharField(max_length = 255)
     adresse  = models.CharField(max_length = 255, null = True, blank=True)
     contact  = models.CharField(max_length = 255, null = True, blank=True)
@@ -31,6 +32,7 @@ class Chauffeur(BaseModel):
 
 
 class Vehicule(BaseModel):
+    agence         = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_vehicule")
     immatriculation = models.CharField(max_length = 255)
     modele          = models.CharField(max_length = 255, null = True, blank=True)
 
@@ -55,11 +57,13 @@ class Livraison(BaseModel):
     comment        = models.TextField(default="",  null = True, blank=True);
 
     datelivraison          = models.DateTimeField(null = True, blank=True)
-    nom_receptionniste     = models.CharField(max_length = 255, default="")
-    contact_receptionniste = models.CharField(max_length = 255, default="")
+    nom_receptionniste     = models.CharField(max_length = 255, default="", null = True, blank=True)
+    contact_receptionniste = models.CharField(max_length = 255, default="", null = True, blank=True)
     chargement             = models.BooleanField(default=True)
     dechargement           = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ['etat__etiquette', "-created_at"]
 
     def __str__(self):
         return "Livraison N°"+self.reference
@@ -71,7 +75,6 @@ class Livraison(BaseModel):
             ligne = LigneLivraison.objects.filter(livraison = self, livraison__deleted = False, brique = brique).first()
             briques[brique] = "-"
             if ligne != None:
-                print(ligne.livraison.etat.etiquette, Etat.EN_COURS)
                 briques[brique] = ligne.quantite if ligne.livraison.etat.etiquette == str(Etat.EN_COURS) else ligne.livree
         return briques
 

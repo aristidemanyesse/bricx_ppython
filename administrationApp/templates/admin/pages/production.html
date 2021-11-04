@@ -178,90 +178,6 @@
 
 
 
-      <div class="col-md-6">
-          <div class="ibox border" >
-              <div class="ibox-title">
-                  <h5 class="text-uppercase"><i class="fa fa-car"></i> Tous les véhicules </h5>
-                  <div class="ibox-tools">
-                      <a class="btn_modal" data-toggle="modal" data-target="#modal-vehicule">
-                          <i class="fa fa-plus"></i> Ajouter
-                      </a>
-                  </div>
-              </div>
-              <div class="ibox-content table-responsive" style="min-height: 400px;">
-                  <table class="table table-striped">
-                   <thead>
-                      <tr>
-                          <th>Marque/modèle</th>
-                          <th>Immatriculation</th>
-                          <th></th>
-                          <th></th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                        {% for vehicule in vehicules %}
-                          <tr>    
-                              <td>
-                                  <h5 class="text-uppercase gras">{{vehicule.modele}}</h5>
-                              </td>
-                              <td class="">
-                                  <h5 class="">{{vehicule.immatriculation}}</h5>
-                              </td>    
-                              <td data-toggle="modal" data-target="#modal-vehicule{{vehicule.id}}" title="modifier l'élément" ><i class="fa fa-pencil text-blue cursor"></i></td>
-                              <td title="supprimer l'élément" onclick="delate_password('vehicule','{{vehicule.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
-                          </tr>
-                      {% endfor %}
-                  </tbody>
-              </table>                             
-          </div>
-      </div>
-  </div>
-
-
-  <div class="col-md-6">
-      <div class="ibox border" >
-          <div class="ibox-title">
-              <h5 class="text-uppercase"><i class="fa fa-user"></i> Liste des chauffeurs </h5>
-              <div class="ibox-tools">
-                  <a class="btn_modal" data-toggle="modal" data-target="#modal-chauffeur">
-                      <i class="fa fa-plus"></i> Ajouter
-                  </a>
-              </div>
-          </div>
-          <div class="ibox-content table-responsive" style="min-height: 400px;">
-              <table class="table table-striped">
-               <thead>
-                  <tr>
-                      <th>Nom complet</th>
-                      <th>Adresse</th>
-                      <th>Contact</th>
-                      <th></th>
-                      <th></th>
-                  </tr>
-              </thead>
-              <tbody>
-                {% for chauffeur in chauffeurs %}
-                      <tr>    
-                          <td class="">
-                              <h5 class="text-uppercase gras">{{chauffeur.name}}</h5>
-                          </td>
-                          <td>
-                              <h5 class="mp0">{{chauffeur.adresse}}</h5>
-                          </td>
-                          <td class="">
-                              <h5 class="mp0">{{chauffeur.contact}}</h5>
-                          </td>     
-                          <td data-toggle="modal" data-target="#modal-chauffeur{{chauffeur.id}}" title="modifier l'élément" ><i class="fa fa-pencil text-blue cursor"></i></td>
-                          <td title="supprimer l'élément" onclick="delete_password('chauffeur', '{{chauffeur.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
-                      </tr>
-                  {% endfor %}
-              </tbody>
-          </table>                             
-      </div>
-  </div>
-</div>
-
-
 {% include "../modals/produit.html" %}
 {% for brique in briques %}
 {% include "../modals/produit.html" with element=brique %}
@@ -271,17 +187,6 @@
 {% include "../modals/ressource.html"%}
 {% for ressource in ressources %}
 {% include "../modals/ressource.html" with element=ressource %}
-{% endfor %} 
-
-
-{% include "../modals/vehicule.html"%}
-{% for vehicule in vehicules %}
-{% include "../modals/vehicule.html" with element=vehicule %}
-{% endfor %} 
-
-{% include "../modals/chauffeur.html"%}
-{% for chauffeur in chauffeurs %}
-{% include "../modals/chauffeur.html" with element=chauffeur %}
 {% endfor %} 
 
 </div>

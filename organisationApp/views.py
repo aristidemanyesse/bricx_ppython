@@ -30,9 +30,9 @@ def dashboard_boutique(request):
     briques = Brique.objects.filter(active = True, deleted = False)
     for brique in briques:
         data = {
-            "attente" : brique.attente(request.agence),
-            "livrable" : brique.livrable(request.agence),
-            "commande" : brique.commande(request.agence),
+            "attente" : int(brique.attente(request.agence)),
+            "livrable" : int(brique.livrable(request.agence)),
+            "commande" : int(brique.commande(request.agence)),
         }
         datas[brique] = data
 
@@ -57,9 +57,9 @@ def dashboard_fabrique(request):
     datas_ressources = {}
     for brique in Brique.objects.filter(active = True, deleted = False):
         data = {
-            "attente" : brique.attente(request.agence),
-            "livrable" : brique.livrable(request.agence),
-            "commande" : brique.commande(request.agence),
+            "attente" : int(brique.attente(request.agence)),
+            "livrable" : int(brique.livrable(request.agence)),
+            "commande" : int(brique.commande(request.agence)),
         }
         datas[brique] = data
 

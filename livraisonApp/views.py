@@ -16,7 +16,7 @@ def livraisons(request):
         context = {
             "debut" : debut,
             "fin":fin,
-            "livraisons" : Livraison.objects.filter(deleted = False, created_at__range = (debut, fin)).exclude(etat__etiquette = Etat.ANNULE),
+            "livraisons" : Livraison.objects.filter(deleted = False, created_at__range = (debut, fin))
         }
         return render(request, "livraison/pages/livraisons.html", context)
 

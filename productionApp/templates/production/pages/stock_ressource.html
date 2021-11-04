@@ -1,4 +1,4 @@
-{% extends "layout/base_sidebar_boutique.html" %} 
+{% extends "layout/base_sidebar_fabrique.html" %} 
 {% load static %} 
 {% load myfilters %} 
 {% load humanize %} 
@@ -18,7 +18,8 @@
                 <div class="p-xs">
                     <i class="fa fa-cube fa-2x text-dark"></i>
                     <div class="{% if ressources|dict_value:ressource <= ressource.alert_stock %} clignote {% endif %}">
-                        <h5 class="m-xs gras ">{{ressources|dict_value:ressource | start0 }} unités</h5>
+                        <h3 class="m-xs gras ">{{ressource.name}}</h3>
+                        <h4 class="m-xs gras ">{{ressources|dict_value:ressource | start0 }} {{ressource.unite}}</h4>
                         <h6 class="no-margins text-uppercase gras">{{ressources|dict_value:ressource|multiply:ressource.estimation|intcomma }} {{ request.societe.devise }}</h6>
                     </div>
                 </div>

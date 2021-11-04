@@ -52,17 +52,11 @@ def mycompte(request):
 
 
 
-
-
-
 def organisation(request):
     if request.method == "GET":
-        datas= {}
-        for agence in Agence.objects.filter(deleted = False):
-            datas[agence] = request.agence.agence_compte.all().first()
 
         context = {
-            "agences" : datas,
+            "agences" : Agence.objects.filter(deleted = False),
             "employes" : Employe.objects.filter(deleted = False),
             "organisation": MyCompte.objects.filter().first(),
         }
@@ -85,26 +79,60 @@ def production(request):
         context = {
             "briques" : datas,
             "ressources" : Ressource.objects.filter(deleted = False),
-            "vehicules" : Vehicule.objects.filter(deleted = False),
-            "chauffeurs" : Chauffeur.objects.filter(deleted = False),
         }
         return render(request, "admin/pages/production.html", context)
 
 
 
 
-def prices(request, id):
+def agence(request, id):
     if request.method == "GET":
         agence = get_object_or_404(Agence, pk = id)
+        datas = {}
+        for employe in Employe.objects.filter(deleted = False, agence = agence):
+            perms_off = []
+            perms = employe.user_permissions.filter()
+            data = {}
+            data["perms_on"] = perms 
+            items = Permission.objects.filter(name__contains="BRICX")
+            for p in items:
+                if p not in perms: 
+                    perms_off.append(p)
+
+            data["perms_off"] = perms_off
+            datas[employe] = data
+
         context = {
+            "agence" : agence,
+            "agences" : Agence.objects.filter(deleted = False),
+            "compte" : agence.agence_compte.all().first(),
+            "prixparzones": PrixZoneLivraison.objects.filter(deleted = False),
+            "vehicules" : Vehicule.objects.filter(deleted = False, agence = agence),
+            "chauffeurs" : Chauffeur.objects.filter(deleted = False, agence = agence),
             "briques" : Brique.objects.filter(deleted = False),
-            "zones" : ZoneLivraison.objects.filter(),
-            "prixparzones" : PrixZoneLivraison.objects.filter(),
-            "payes" : PayeBrique.objects.filter(agence = agence),
-            "payeferies" : PayeBriqueFerie.objects.filter(agence = agence)
+            "zones" : ZoneLivraison.objects.filter(agence = agence),
+            "employes" : datas
+        }
+        return render(request, "admin/pages/agence.html", context)
+
+
+
+def prices(request):
+    if request.method == "GET":
+        datas={}
+        for agence in Agence.objects.filter(deleted = False):
+            data = {}
+            data["zones"] = ZoneLivraison.objects.filter(deleted = False, agence = agence)
+            datas[agence] = data
+
+        context = {
+            "agences" : datas,
+            "briques" : Brique.objects.filter(deleted = False),
+            "prixparzones": PrixZoneLivraison.objects.filter(deleted = False),
+            "payes": PayeBrique.objects.filter(deleted = False),
+            "payeferies": PayeBriqueFerie.objects.filter(deleted = False),
         }
         return render(request, "admin/pages/prices.html", context)
-
 
 
 

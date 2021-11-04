@@ -31,48 +31,23 @@
             </li>
 
             <ul class="nav metismenu" id="side-menu">
-                <li class="" id="dashboard">
+                <li class="" id="dashboard_fabrique">
                     <a href="{% url 'fabrique:dashboard_fabrique' %}"><i class="fa fa-tachometer"></i> <span class="nav-label">Tableau de bord</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
 
-                <li class="" id="stock">
-                    <a href="{% url 'production:stock_brique' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de briques</span></a>
+                <li class="" id="stock_brique">
+                    <a href="{% url 'fabrique:production:stock_brique' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de briques</span></a>
                 </li>
-                <li class="" id="ressources">
-                    <a href="{% url 'production:stock_ressource' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de ressources </span></a>
-                </li>
-                <li style="margin: 3% auto"><hr class="mp0" style="background-color: #aaa; "></li>        
-
-                
-
-                <li class="" id="tricycle">
-                    <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> 
-                        {% if request.tricycles|length > 0 %}
-                        <span class="label label-warning float-right">{{request.tricycles|length|start0}}</span>
-                        {% endif %}
-                    </a>
-                </li>
-                <li class="" id="caisse">
-                    <a href="{% url 'tresorerie:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
+                <li class="" id="stock_ressource">
+                    <a href="{% url 'fabrique:production:stock_ressource' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de ressources </span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
 
-
-                <li class="" id="rapportjour">
-                    <a href="<?= $this->url($this->section, "rapports", "rapportjour") ?>"><i class="fa fa-calendar"></i> <span class="nav-label">Rapport du Jour</span></a>
-                </li>
-                <li class="" id="rapportproduction">
-                    <a href="<?= $this->url($this->section, "rapports", "rapportproduction") ?>"><i class="fa fa-file-text-o"></i> <span class="nav-label">Rapport de production</span></a>
-                </li>
-                <li style="margin: 3% auto"><hr class="mp0" style="background-color: #aaa; "></li>
-
-
-
                 <li class="" id="productions">
-                    <a href="{% url 'production:productions' %}"><i class="fa fa-building-o"></i> <span class="nav-label">Les productions </span></a>
+                    <a href="{% url 'fabrique:production:productions' %}"><i class="fa fa-building-o"></i> <span class="nav-label">Les productions </span></a>
                 </li>
                 <li class="" id="achatstock">
                     <a href="{% url 'fabrique:appros:achatstock' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Achat de briques </span> 
@@ -84,11 +59,12 @@
                 <li >
                     <a href="#"><i class="fa fa-trash"></i> <span class="nav-label">Les pertes</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li id="perteproduits"><a href="{% url 'production:perte_brique' %}">Perte de briques</a></li>
-                        <li id="perteressources"><a href="{% url 'production:perte_ressource' %}">Perte de ressources</a></li>
+                        <li id="perte_brique"><a href="{% url 'fabrique:production:perte_brique' %}">Perte de briques</a></li>
+                        <li id="perte_ressource"><a href="{% url 'fabrique:production:perte_ressource' %}">Perte de ressources</a></li>
                     </ul>
                 </li>
-                <li class="dropdown-divider"></li>
+                <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
+
 
                 <li class="" id="fournisseurs">
                     <a href="{% url 'fabrique:appros:fournisseurs' %}"><i class="fa fa-address-book-o"></i> <span class="nav-label">Liste des Fournisseurs</span></a>
@@ -100,7 +76,23 @@
                         {% endif %}
                     </a>
                 </li>
-                <li class="dropdown-divider"></li>              
+                <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
+
+
+                <li class="" id="rapport_du_jour">
+                    <a href="{% url 'fiches:rapport_du_jour' request.now|date:'Y' request.now|date:'m' request.now|date:'d' %}"><i class="fa fa-calendar"></i> <span class="nav-label">Rapport du Jour</span></a>
+                </li>
+                <li class="" id="rapport_production">
+                    <a href="{% url 'fabrique:production:rapport_production' %}"><i class="fa fa-file-text-o"></i> <span class="nav-label">Rapport de production</span></a>
+                </li>
+                <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
+
+
+
+                <li class="" id="caisse">
+                    <a href="{% url 'tresorerie:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
+                </li>
+                <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
 
             </ul>

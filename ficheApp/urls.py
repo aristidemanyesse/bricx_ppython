@@ -8,9 +8,11 @@ from . import views, fiches
 
 app_name = "fiches"
 urlpatterns = [
-    path('production/<uuid:id>/', views.production, name="production"),
-
     
+    path('rapport_du_jour/<int:year>/<int:month>/<int:day>/', views.rapport_du_jour, name="rapport_du_jour"),
+
+
+
     path('prixparzone/<uuid:id>/', fiches.prixparzone, name="prixparzone"),
     path('commande/<uuid:id>/', fiches.commande, name="commande"),
     path('livraison/<uuid:id>/', fiches.livraison, name="livraison"),

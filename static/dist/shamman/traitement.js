@@ -43,11 +43,15 @@
         })
 
 
+
         filtrer = function(){
             Loader.start()
             session("date1", $("#formFiltrer input[name=date1]").val())
             session("date2", $("#formFiltrer input[name=date2]").val())
-            window.location.reload();
+            setTimeout(()=>{
+                alert("2")
+                window.location.reload();
+            }, 2000)
         }
 
 

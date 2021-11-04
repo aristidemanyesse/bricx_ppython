@@ -69,7 +69,7 @@ class Brique(BaseModel):
     def achat(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-06-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_ligneachatstock.filter(deleted = False, achatstock__created_at__range = (debut, fin)).exclude(achatstock__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite_recu'))
+        res = self.brique_ligneachatstock.filter(deleted = False,  achatstock__created_at__range = (debut, fin)).exclude(achatstock__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite_recu'))
         return res["quantite_recu__sum"] or 0
 
 
@@ -114,12 +114,14 @@ class Brique(BaseModel):
 
     def exigence(self, quantite, ressource):
         try:
-            exigence = self.brique_exigenceproduction.get()
+            exigence = self.brique_exigenceproduction.filter().first()
             ligne = LigneExigenceProduction.objects.get(exigence = exigence, ressource = ressource)
             if int(quantite) > 0:
-                return (quantite * ligne.quantite) / exigence.quantite;
+                if exigence.quantite > 0:
+                    return (int(quantite) * ligne.quantite) / exigence.quantite;
             return 0
-        except:
+        except Exception as e:
+            print("-----------------------------", e)
             return 0
 
 
@@ -153,13 +155,13 @@ class Brique(BaseModel):
         return datas
 
 class Ressource(BaseModel):
-    name      = models.CharField(max_length = 255)
-    unite      = models.CharField(max_length = 255, default="")
-    price      = models.IntegerField(default=0, null = True, blank=True)
-    active = models.BooleanField(default=True)
-    alert_stock         = models.IntegerField(default=10, null = True, blank=True)
-    comment   = models.TextField(default="", null = True, blank=True)
-    image     = models.ImageField(max_length = 255, upload_to = "storage/images/ressources/", default="", null = True, blank=True)
+    name        = models.CharField(max_length = 255)
+    unite       = models.CharField(max_length = 255, default="")
+    price       = models.IntegerField(default=0, null = True, blank=True)
+    active      = models.BooleanField(default=True)
+    alert_stock = models.IntegerField(default=10, null = True, blank=True)
+    comment     = models.TextField(default="", null = True, blank=True)
+    image       = models.ImageField(max_length = 255, upload_to = "storage/images/ressources/", default="", null = True, blank=True)
 
     
     def stock(self, agence, fin=None):
@@ -209,8 +211,8 @@ class Production(BaseModel):
 class LigneProduction(BaseModel):
     production = models.ForeignKey(Production, on_delete = models.CASCADE, related_name="production_ligne")
     brique     = models.ForeignKey(Brique, on_delete = models.CASCADE, related_name="brique_ligneproduction")
-    perte      = models.IntegerField(default=0)
-    quantite   = models.IntegerField(default=0)
+    perte      = models.FloatField(default=0)
+    quantite   = models.FloatField(default=0)
 
     def __str__(self):
         return "production du "+str(self.production.date)+" : "+self.brique.name+" => "+str(self.quantite)
@@ -241,7 +243,7 @@ class ExigenceProduction(BaseModel):
 class LigneExigenceProduction(BaseModel):
     exigence  = models.ForeignKey(ExigenceProduction, on_delete = models.CASCADE, related_name="exigence_ligne")
     ressource = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_exigenceligne")
-    quantite  = models.IntegerField(default = 0, null = True, blank=True)
+    quantite  = models.FloatField(default = 0, null = True, blank=True)
 
     def __str__(self):
         return "Il faut "+str(self.quantite)+" de "+self.ressource.name+" pour produire "+str(self.exigence.quantite)+" "+self.exigence.brique.name
@@ -257,7 +259,7 @@ class InitialBriqueAgence(BaseModel):
 class InitialRessourceAgence(BaseModel):
     agence    = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_initialressource")
     ressource = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_initialagence")
-    quantite  = models.IntegerField(default=0)
+    quantite  = models.FloatField(default=0)
 
     def __str__(self):
         return "Initial dans  "+self.agence.name+" de "+self.ressource.name+" => "+str(self.quantite)
@@ -268,7 +270,7 @@ class PerteRessource(BaseModel):
     agence      = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_perteressource")
     ressource   = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_perte")
     employe = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_perteressource")
-    quantite    = models.IntegerField(default=0)
+    quantite    = models.FloatField(default=0)
     comment     = models.TextField(default="",  null = True, blank=True)
 
     def __str__(self):
@@ -334,6 +336,14 @@ def post_save_production(sender, instance, created, **kwargs):
 
 
 
+@receiver(pre_save, sender = Brique)
+@receiver(pre_save, sender = Ressource)
+def pre_save_brique(sender, instance, **kwargs):
+    if instance._state.adding:
+        instance.active = True
+
+
+
 @receiver(post_save, sender = Brique)
 def post_save_brique(sender, instance, created, **kwargs):
     if created:
@@ -363,10 +373,17 @@ def post_save_brique(sender, instance, created, **kwargs):
                 price = 0
             )
         
-        ExigenceProduction.objects.create(
+        exigence = ExigenceProduction.objects.create(
             brique = instance,
             quantite = 0
         )
+
+        for ressource in Ressource.objects.filter(deleted = False):
+            LigneExigenceProduction.objects.create(
+                exigence = exigence,
+                ressource = ressource,
+                quantite = 0
+            )
 
 
 
@@ -395,12 +412,12 @@ def post_save_ressource(sender, instance, created, **kwargs):
 @receiver(pre_save, sender = PerteBrique)
 def pre_save_perte_brique(sender, instance, **kwargs):
     if instance._state.adding:
-        if instance.brique.stock(instance.agence) < instance.quantite:
+        if instance.brique.stock(instance.agence) < int(instance.quantite):
             raise Exception("Vous ne pouvez déclarer de perte au délà du stock disponible")
 
 
 @receiver(pre_save, sender = PerteRessource)
 def pre_save_perte_ressource(sender, instance, **kwargs):
     if instance._state.adding:
-        if instance.ressource.stock(instance.agence) < instance.quantite:
+        if instance.ressource.stock(instance.agence) < int(instance.quantite):
             raise Exception("Vous ne pouvez déclarer de perte au délà du stock disponible")

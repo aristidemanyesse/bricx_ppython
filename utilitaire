@@ -60,31 +60,9 @@ $.ajax({
 
 
 
-from django.urls import reverse
-
-reverse('app1.view.view1')
-If you want to find out URL and redirect to it, use redirect
-
-from django.urls import redirect 
-
-redirect('app1.view.view1')
 
 
-
-
-
->>> hasattr('abc', 'upper')
-True
->>> hasattr('abc', 'lower')
-True
->>> hasattr('abc', 'convert')
-False
-
-
-
-
-
-from django.contrib.admin.models import LogEntry, ADDITION, CHANGE # these are action flags from the docs
+from django.contrib.admin.models import LogEntry, ADDITION, CHANGE, DELETION # these are action flags from the docs
 LogEntry.objects.log_action(
         user_id=request.user.id,
         content_type_id=ContentType.objects.get_for_model(model_object).pk,
@@ -92,3 +70,12 @@ LogEntry.objects.log_action(
         object_id=obj.id,
         message=message, # a new user has been added
         action_flag=ADDITION) # assuming it's a new object
+
+
+
+faire le filter
+graphe de caisse
+liste des operations dans caisse et dans rapport
+
+
+

@@ -19,7 +19,7 @@
 
 
 							<div id="tab-1" class="tab-pane active"><br>
-								{% if perms.commandeApp.add_commande %}
+								{% if not perms.commandeApp.add_commande %}
 								<div class="row container-fluid">
 									<button type="button" data-toggle=modal data-target='#modal-newcommande' class="btn btn-primary btn-sm dim float-right" onclick="delete_session('groupecommande_id')"><i class="fa fa-plus"></i> Nouvelle commande </button>
 								</div>

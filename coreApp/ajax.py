@@ -36,10 +36,10 @@ def save(request):
 
                 if "id" in datas and datas["id"] != "":
                     obj = MyModel.objects.get(pk=datas["id"])
-                    form = MyForm(datas, instance = obj)
+                    form = MyForm(datas, request.FILES, instance = obj)
                 else:
                     datas["id"] = uuid.uuid4()
-                    form = MyForm(datas)
+                    form = MyForm(datas, request.FILES)
 
                 if form.is_valid():
                     if 'image' in request.FILES and request.FILES["image"] != "":
@@ -109,11 +109,13 @@ def supprimer(request):
                 return JsonResponse({"status":False, "message":"Le mot de passe est incorrect !"})
 
             obj = MyModel.objects.get(pk=datas["id"])
-            print(obj)
             if obj.protected:
                 return JsonResponse({"status":False, "message":"Vous ne pouvez pas supprimer cet element, il est protégé !"})
 
-            obj.deleted = True
+            if hasattr(obj, "etat"):
+                obj.etat = Etat.objects.get(etiquette = Etat.ANNULE)
+            else:
+                obj.deleted = True
             obj.save()
             return JsonResponse({"status":True, "message":"Suppression effectuée avec succes !"})
 

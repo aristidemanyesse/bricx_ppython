@@ -81,6 +81,8 @@ class Commande(BaseModel):
     datelivraison  = models.DateTimeField(null = True, blank=True,)
     acompte_client = models.IntegerField(default = 0)
     dette_client   = models.IntegerField(default = 0)
+    class Meta:
+        ordering = ['deleted', "-created_at"]
 
     def reste_a_payer(self):
         data = ReglementCommande.objects.filter(commande = self).aggregate(Sum("mouvement__montant"))

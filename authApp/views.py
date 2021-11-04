@@ -1,6 +1,10 @@
 from django.shortcuts import redirect, render
 from organisationApp.models import Employe
 from django.contrib.auth import authenticate, logout
+
+import datetime
+from django.shortcuts import redirect
+from django.utils.timezone import make_aware
 # Create your views here.
 
 
@@ -32,6 +36,8 @@ def reset(request):
 
 
 def expiration(request):
+    if request.mycompte.expiration >= make_aware(datetime.datetime.now()):
+        return redirect("auth:login")
     return render(request, "auth/pages/expiration.html")
 
 

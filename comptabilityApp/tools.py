@@ -77,12 +77,12 @@ def mouvement_pour_sortie_client(request, datas, title, comment):
         if mode.etiquette == ModePayement.PRELEVEMENT :
             if client.acompte_actuel() < montant:
                 return {"status":False, "message":"L'acompte du client est insuffisant pour effectuer cette opération!"}
-        if compte.solde_actuel() < montant:
-            return {"status":False, "message":"Fonds insuffisant pour effectuer cette opération!"}
+        # if compte.solde_actuel() < montant:
+        #     return {"status":False, "message":"Fonds insuffisant pour effectuer cette opération!"}
 
         mouvement = Mouvement.objects.create(
             name      = title,
-            comment      = comment,
+            comment   = comment,
             montant   = montant,
             compte    = compte,
             type      = type,

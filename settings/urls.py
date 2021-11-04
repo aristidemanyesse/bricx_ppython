@@ -34,9 +34,7 @@ urlpatterns = [
     path('boutique/', include('organisationApp.urls_boutique')),
     path('fabrique/', include('organisationApp.urls_fabrique')),
 
-    path('production/', include('productionApp.urls')),
     path('tresorerie/', include('comptabilityApp.urls')),
-
 
     path('fiches/', include('ficheApp.urls')),
     path('admin/', admin.site.urls),

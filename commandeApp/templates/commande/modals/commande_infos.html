@@ -49,7 +49,7 @@
                             {% if element.tipe == "commande" %}
                             <tr>
                               <td data-toggle="tooltip" title="Supprimer la commande">
-                                <i class="fa fa-trash fa-2x d-block text-red cursor" onclick="delete_element('commande', '{{ element.id }}')"></i> 
+                                <i class="fa fa-trash fa-2x d-block text-red cursor" onclick="delete_password('commande', '{{ element.id }}')"></i> 
                             </td>
                             <td>
                                 <h5 class="text-uppercase mp0">Commande N°{{element.reference}}</h5>
@@ -83,7 +83,7 @@
                         <tr>
                             <td data-toggle="tooltip" >
                                 {% if element.etat.etiquette|add:0 == request.etat.EN_COURS|add:0 %}
-                                <i title="Annuler la livraison" class="fa fa-close fa-2x d-block text-red cursor" onclick="delete_element('commande', '{{ element.id }}')"></i> 
+                                <i title="Annuler la livraison" class="fa fa-close fa-2x d-block text-red cursor" onclick="delete_password('livraison', '{{ element.id }}')"></i> 
                                 {% endif %}
                             </td>
                             <td>

@@ -36,5 +36,6 @@ class MyApp(models.Model):
             ("comptabilitte", "BRICX | Peut acceder à la gestion des comptabilitte"),
             ("tresorerie", "BRICX | Peut acceder à la tresorerie"),
             ("administration", "BRICX | Peut acceder aux administrations"),
+            ("manager", "BRICX | Peut acceder à la gestion globale"),
             ("role", "BRICX | Peut acceder aux accès utilisateurs"),
         ]
