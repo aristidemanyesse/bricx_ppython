@@ -43,16 +43,19 @@ def run():
     ModePayement.objects.create(
         name = "Mobile Money",
         etat = Etat.objects.get(etiquette = Etat.EN_COURS),
+        etiquette = 3,
         protected = True
     )
     ModePayement.objects.create(
         name = "Par chèque",
         etat = Etat.objects.get(etiquette = Etat.EN_COURS),
+        etiquette = 4,
         protected = True
     )
     ModePayement.objects.create(
         name = "Par virement bancaire",
         etat = Etat.objects.get(etiquette = Etat.EN_COURS),
+        etiquette = 5,
         protected = True
     )
 

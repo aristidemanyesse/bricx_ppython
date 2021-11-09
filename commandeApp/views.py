@@ -11,6 +11,7 @@ import datetime
 
 def commandes(request):
     if request.method == "GET":
+        GroupeCommande.maj_etat()
         datas = []
         for groupe in GroupeCommande.objects.filter(etat__etiquette = Etat.EN_COURS):
 
@@ -38,7 +39,7 @@ def commandes(request):
         context = {
             "datas" : datas,
             "briques" : Brique.objects.filter(active = True, deleted = False),
-            'commandes' : GroupeCommande.objects.filter(etat__etiquette = Etat.EN_COURS),
+            'commandes' : GroupeCommande.objects.filter(etat__etiquette = Etat.EN_COURS, deleted = False),
             "chauffeurs": Chauffeur.objects.filter(deleted = False),
             "vehicules": Vehicule.objects.filter(deleted = False),
             "modepayements": ModePayement.objects.filter(deleted = False),

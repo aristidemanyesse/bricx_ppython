@@ -59,6 +59,20 @@ class GroupeCommande(BaseModel):
             if commande.zone not in tab : tab.append(commande.zone)
         return tab
 
+    @staticmethod
+    def maj_etat():
+        try:
+            groupes = GroupeCommande.objects.filter(etat__etiquette = Etat.EN_COURS, deleted = False)
+            for groupe in groupes:
+                if len(groupe.all_briques()) == 0:
+                    groupe.etat = Etat.objects.get(etiquette = Etat.TERMINE)
+                    groupe.save()
+        except Exception as e:
+            print("maj grcom ", e)
+                
+
+
+
     def __str__(self):
         return "Groupe de commande de "+self.client.name
 

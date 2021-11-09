@@ -65,13 +65,13 @@ class Compte(BaseModel):
     def total_entree(self, debut = None, fin = None):
         debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.DEPOT, created_at__lte = fin).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
+        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.DEPOT, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
         return (total["montant__sum"] or 0)
 
     def total_sortie(self, debut = None, fin = None):
         debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.RETRAIT, created_at__lte = fin).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
+        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.RETRAIT, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
         return (total["montant__sum"] or 0)
 
     def solde_actuel(self, fin = None):

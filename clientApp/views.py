@@ -12,11 +12,12 @@ import datetime
 
 def clients(request):
     if request.method == "GET":
+        GroupeCommande.maj_etat()
         date = datetime.datetime.now() - datetime.timedelta(days=7)
         ctx = {
             "clients" : Client.objects.filter(agence = request.agence),
             "clients_semaine" : Client.objects.filter(agence = request.agence, created_at__gte = date ),
-            "types" : TypeClient.objects.all()
+            "types" : TypeClient.objects.filter(deleted = False)
         }
         return render(request, "clients/pages/clients.html", ctx)
         
@@ -67,7 +68,7 @@ def client(request, client_id):
         context = {
             'client' : client,
             'clients' : Client.objects.filter(agence = request.agence),
-            'types' : TypeClient.objects.all(),
+            'types' : TypeClient.objects.filter(deleted = False),
             "datas" : datas,
             "briques" : Brique.objects.filter(active = True, deleted = False),
             'commandes' : GroupeCommande.objects.filter(etat__etiquette = Etat.EN_COURS),

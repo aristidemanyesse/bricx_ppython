@@ -81,9 +81,9 @@ def pre_save(sender, instance, **kwargs):
                     break
         
 
-        if user is not AnonymousUser:
+        if user != None and  user is not AnonymousUser:
             if instance._state.adding:
-                if not user.has_perm("paramApp.CCREATE"):
+                if not user.has_perm("paramApp.CREATE"):
                     return Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
             else:
                 if instance.deleted and not user.has_perm("paramApp.DELETE"):
