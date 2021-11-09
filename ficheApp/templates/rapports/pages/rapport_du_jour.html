@@ -12,16 +12,7 @@
          <div class="ibox-title">
             <h5>Recapitulatif de la journée</h5>
             <div class="ibox-tools">
-                <form id="formFiltrer" method="POST">
-                    <div class="row" style="margin-top: -1%">
-                        <div class="col-8">
-                            <input type="date" value="<?= $date ?>" class="form-control input-sm" name="date">
-                        </div>
-                        <div class="col-2">
-                            <button type="button" onclick="filtrer()" class="btn btn-sm btn-white"><i class="fa fa-search"></i> Filtrer</button>
-                        </div>
-                    </div>
-                </form>
+                {% include 'extra/filter_form_day.html' %}
             </div>
         </div>
         <div class="ibox-content">
@@ -38,6 +29,7 @@
             <div class="row">
                 <div class="col-sm-8" style="border-right: 2px solid black">
 
+                    {% if perms.paramApp.commande %}
                     <div>
                      <h2 class="text-uppercase text-center">Commandes du jour</h2>
                      <div class="">
@@ -72,9 +64,10 @@
                         </table>
                     </div>
                 </div>
+                {% endif %}
 
+                {% if perms.paramApp.livraison %}
                 <hr><br><br>
-
                 <div>
                     <h2 class="text-uppercase text-center">Livraisons du jour</h2>
                     <div class="">
@@ -105,15 +98,15 @@
                                {% empty %}
                                <p class="text-center text-muted italic">Aucune livraison ce jour </p>
                                {% endfor %}
-                           </tbody>
-                       </table>
-                   </div>
-               </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
 
 
-
+               {% if perms.paramApp.production %}
                <hr><br><br>
-
                <div>
                    <h2 class="text-uppercase text-center">Production du jour</h2>
                    <div class="">
@@ -137,14 +130,15 @@
                                 </tr>
                                 {% endfor %}
                             </tbody>
-                      </table>
-                  </div>
-              </div>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+                
 
-
-
+              
+              {% if perms.paramApp.approvisionnement %}
               <hr><br><br>
-
               <div>
                   <h2 class="text-uppercase text-center">Approvisionnements du jour</h2>
                   <div class="">
@@ -167,7 +161,10 @@
                                          <i class="d-block fa fa-file-text fa-2x text-green"></i>
                                      </a>                               
                                  </td>
-                                 <td>{{ appro.fournisseur.name }}</td>
+                                 <td>
+                                     <h4>{{ appro.fournisseur.name }}</h4>
+                                     <span>{{ appro.created_at }}</span>
+                                 </td>
                                  {% for ressource in ressources %}
                                  <td class="text-center">{{appros|dict_value:appro|dict_value:ressource|default:0}} {{ ressource.unite }}</td>
                                  {% endfor %}
@@ -180,17 +177,17 @@
                  </div>
              </div>
 
+             {% endif %}
 
 
-               <hr><br><br>
-
-                                <?php if ($employe->isAutoriser("caisse")) { ?>
+             {% if perms.paramApp.comptabilite %}
+                         <hr><br><br>
                                 <div>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover ">
+                                        <table class="table table-bordered table-hover table-operation">
                                             <thead>
                                                 <tr class="text-center text-uppercase">
-                                                    <th colspan="2" style="visibility: hidden; width: 62%"></th>
+                                                    <th colspan="2" style="visibility: hidden; width: 65%"></th>
                                                     <th>Entrée</th>
                                                     <th>Sortie</th>
                                                     <th>Résultats</th>
@@ -201,52 +198,50 @@
                                                     <td colspan="2">Repport du solde </td>
                                                     <td class="text-center">-</td>
                                                     <td class="text-center">-</td>
-                                                    <td style="background-color: #fafafa" class="text-center"><?= money($repport = $last = $comptebanque->solde(Home\PARAMS::DATE_DEFAULT , dateAjoute1($date, -1))) ?> {{request.societe.devise}}</td>
+                                                    <td style="background-color: #fafafa" class="text-center">{{report|intcomma}} {{request.societe.devise}}</td>
                                                 </tr>
-                                                <?php foreach ($mouvements as $key => $mouvement) {  ?>
-                                                <tr>
-                                                    <td class="text-center" width="15"><a target="_blank" href="<?= $this->url("fiches", "master", "boncaisse", $mouvement->id)  ?>"><i class="fa fa-file-text-o fa-2x"></i></a> 
-                                                    </td>
-                                                    <td>
-                                                        <h6 style="margin-bottom: 3px" class="mp0 text-uppercase gras <?= ($mouvement->typemouvement_id == Home\TYPEMOUVEMENT::DEPOT)?"text-green":"text-red" ?>"><?= $mouvement->name() ?>  
-
-                                                            <?php if ($employe->isAutoriser("modifier-supprimer")) { ?>
-                                                            |
-                                                            &nbsp;&nbsp;<i onclick="modifierOperation(<?= $mouvement->id ?>)" class="cursor fa fa-pencil text-dark"></i> 
-                                                            &nbsp;&nbsp;<i class="cursor fa fa-close text-red" onclick="suppressionWithPassword('operation', <?= $mouvement->id ?>)"></i>
-                                                            <?php } ?>
-
-                                                            <span class="pull-right"><i class="fa fa-clock-o"></i> <?= datelong($mouvement->created) ?></span>
+                                                {% for mouvement in mouvements.keys %}
+                                                    <tr>
+                                                        <td class="text-center" width="15"><a target="_blank" href="{% url 'fiches:boncaisse' mouvement.id %}"><i class="fa fa-file-text-o fa-2x"></i></a> 
+                                                        </td>
+                                                        <td>
+                                                            <h6 style="margin-bottom: 3px" class="mp0 text-uppercase gras text-{% if mouvement.type.etiquette|add:0 == request.typemouvement.DEPOT|add:0 %}green {% else %}red{% endif %}">{{mouvement.name}}  
+        
+                                                                <div class="d-inline-block">
+                                                                    &nbsp;&nbsp;<i class="cursor fa fa-pencil text-dark"></i> 
+                                                                &nbsp;&nbsp;<i class="cursor fa fa-close text-red" onclick="delete_password('mouvement', '{{mouvement.id}}')"></i>
+                                                                </div>
+        
+                                                            <span class="pull-right"><i class="fa fa-clock-o"></i> {{mouvement.created_at}}</span>
                                                         </h6>
-                                                        <i><?= $mouvement->comment ?> ## <u style="font-size: 9px; font-style: italic;"><?= $mouvement->structure ?> - <?= $mouvement->numero ?></u></i>
+                                                        <i>{{mouvement.comment}} ## <u style="font-size: 9px; font-style: italic;">{{mouvement.structure}} - {{mouvement.numero}}</u></i>
                                                     </td>
-                                                    <?php if ($mouvement->typemouvement_id == Home\TYPEMOUVEMENT::DEPOT) { ?>
-                                                    <td class="text-center text-green gras" style="padding-top: 12px;">
-                                                        <?= money($mouvement->montant) ?> {{request.societe.devise}}
-                                                    </td>
-                                                    <td class="text-center"> - </td>
-                                                    <?php }elseif ($mouvement->typemouvement_id == Home\TYPEMOUVEMENT::RETRAIT) { ?>
-                                                    <td class="text-center"> - </td>
-                                                    <td class="text-center text-red gras" style="padding-top: 12px;">
-                                                        <?= money($mouvement->montant) ?> {{request.societe.devise}}
-                                                    </td>
-                                                    <?php } ?>
-                                                    <?php $last += ($mouvement->typemouvement_id == Home\TYPEMOUVEMENT::DEPOT)? $mouvement->montant : -$mouvement->montant ; ?>
-                                                    <td class="text-center gras" style="padding-top: 12px; background-color: #fafafa"><?= money($last) ?> {{request.societe.devise}}</td>
+                                                        {% if mouvement.type.etiquette|add:0 == request.typemouvement.DEPOT|add:0 %}
+                                                        <td class="text-center text-green gras" style="padding-top: 12px;">
+                                                            {{mouvement.montant|intcomma}} {{request.societe.devise}}
+                                                        </td>
+                                                        <td class="text-center"> - </td>
+                                                        {% elif mouvement.type.etiquette|add:0 == request.typemouvement.RETRAIT|add:0 %}
+                                                        <td class="text-center"> - </td>
+                                                        <td class="text-center text-red gras" style="padding-top: 12px;">
+                                                            {{mouvement.montant|intcomma}} {{request.societe.devise}}
+                                                        </td>
+                                                    {% endif %}
+                                                    <td class="text-center gras" style="padding-top: 12px; background-color: #fafafa">{{mouvements|dict_value:mouvement|intcomma}} {{request.societe.devise}}</td>
                                                 </tr>
-                                                <?php } ?>
-                                                <tr style="height: 15px;"></tr>
-                                                <tr>
-                                                    <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">Total des comptes au <?= datecourt(dateAjoute()) ?></h4></td>
-                                                    <td><h3 class="text-center text-green"><?= money(comptage($entrees, "montant", "somme") + $repport) ?> {{request.societe.devise}}</h3></td>
-                                                    <td><h3 class="text-center text-red"><?= money(comptage($depenses, "montant", "somme")) ?> {{request.societe.devise}}</h3></td>
-                                                    <td style="background-color: #fafafa"><h3 class="text-center text-blue gras"><?= money($last) ?> {{request.societe.devise}}</h3></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                            {% endfor %}
+                                            <tr style="height: 15px;"></tr>
+                                            <tr>
+                                                <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">Total des comptes au {{date}}</h4></td>
+                                                <td><h3 class="text-center text-green">{{total_entree|add:report |intcomma}} {{request.societe.devise}}</h3></td>
+                                                <td><h3 class="text-center text-red">{{total_depense|intcomma}} {{request.societe.devise}}</h3></td>
+                                                <td style="background-color: #fafafa"><h3 class="text-center text-blue gras">{{solde_a_la_date|intcomma}} {{request.societe.devise}}</h3></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                     </div>
                                 </div>
-                                <?php } ?>
+                                {% endif %}
 
 
                             </div>
@@ -259,7 +254,7 @@
                                     </ul><br>
                                     <hr>
 
-
+                                    {% if perms.paramApp.comptabilite %}
                                     <h4 class="text-uppercase">SOLDE DU COMPTE</h4>
                                     <br>
                                     <div class="">
@@ -285,7 +280,7 @@
                                             <div class="progress-bar" style="width: 100%;"></div>
                                         </div>
                                     </div>
-
+{% endif %}
                                     <br>
                                 </div>
                             </div>

@@ -16,4 +16,16 @@ $(function(){
         return false;
     });
 
+
+    change_production_auto = function(){
+        var url = "/administration/organisation/ajax/change_production_auto/";
+        $.post(url, {}, (data)=>{
+            if (data.status) {
+                Alerter.success('Mise à jour !', "Modification effectuée avec succès !");
+            }else{
+                Alerter.error('Erreur !', data.message);
+            }
+        },"json");
+    }
+
 })

@@ -1,7 +1,7 @@
 from django.urls import reverse
 from commandeApp.models import Commande
 from django.http import  JsonResponse
-from comptabilityApp.models import CategoryOperation, Operation, ReglementApprovisionnement, ReglementCommande, Mouvement, ModePayement, CompteFournisseur
+from comptabilityApp.models import CategoryOperation, Operation, ReglementApprovisionnement, Mouvement, ModePayement, CompteFournisseur
 from comptabilityApp.tools import mouvement_pour_entree, mouvement_pour_sortie, mouvement_pour_sortie_fournisseur
 from approvisionnementApp.models import Approvisionnement, Fournisseur
 from authApp.tools import verify_password
@@ -13,9 +13,10 @@ def crediter(request):
     if request.method == "POST":
         datas = request.POST
         fournisseur = Fournisseur.objects.get(pk = request.session["fournisseur_id"])
-        name = fournisseur.fullname +" a crédité son compte de "+datas["montant"]
+        title = "Apport acompte fournisseur"
+        comment = "Dépot d'acompte chez le fourniseur "+fournisseur.fullname +" d'un montant de "+datas["montant"]
         
-        res = mouvement_pour_entree(request, datas, name)
+        res = mouvement_pour_entree(request, datas, title, comment)
         if type(res) is Mouvement:
             CompteFournisseur.objects.create(
                     mouvement = res,
@@ -33,9 +34,10 @@ def rembourser(request):
         datas = request.POST
         try:
             fournisseur = Fournisseur.objects.get(pk = request.session["fournisseur_id"])
-            name = "remboursement par le fournisseur "+fournisseur.fullname
+            title = "Remboursement par fourniseur"
+            comment = "Remboursement par le fournisseur "+fournisseur.fullname
 
-            res = mouvement_pour_entree(request, datas, name)
+            res = mouvement_pour_entree(request, datas, title, comment)
             if type(res) is Mouvement:
                 Operation.objects.create(
                     mouvement = res,
@@ -80,8 +82,9 @@ def regler_toutes_dettes(request):
                     reste =  appro.reste_a_payer()
                     if reste > 0 and acompte > 0:
                         datas["montant"] = reste if acompte >= reste else acompte
-                        name = "reglement de l'approvisonnement N°"+appro.reference
-                        res = mouvement_pour_sortie(request, datas, name)
+                        title ="Reglement approvisionnement"
+                        comment = "reglement de l'approvisonnement N°"+appro.reference
+                        res = mouvement_pour_sortie(request, datas, title, comment)
                         if type(res) is Mouvement:
                             ReglementApprovisionnement.objects.create(
                                 mouvement = res,
@@ -94,8 +97,9 @@ def regler_toutes_dettes(request):
                 if acompte > 0:
                     dette = fournisseur.dette_totale()
                     datas["montant"] = dette if acompte >= dette else acompte
-                    name = "reglement de la dette de "+fournisseur.fullname
-                    res = mouvement_pour_sortie_fournisseur(request, datas, name)
+                    title ="Reglement approvisionnement"
+                    comment = "reglement de la dette de "+fournisseur.fullname
+                    res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
                     if type(res) is Mouvement:
                         CompteFournisseur.objects.create(
                             mouvement = res,

@@ -25,6 +25,7 @@ urlpatterns = [
 
 
     path('organisation/ajax/exigence/', ajax.exigence, name="exigence"),
+    path('organisation/ajax/change_production_auto/', ajax.change_production_auto, name="change_production_auto"),
     path('organisation/ajax/price/', ajax.price, name="price"),
     path('organisation/ajax/paye_produit/', ajax.paye_produit, name="paye_produit"),
     path('organisation/ajax/paye_produit_ferie/', ajax.paye_produit_ferie, name="paye_produit_ferie"),

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from commandeApp.models import GroupeCommande, ZoneLivraison
 from livraisonApp.models import Chauffeur, ModeLivraison, Vehicule
 from productionApp.models import Brique
-from comptabilityApp.models import ModePayement
+from comptabilityApp.models import CompteClient, ModePayement, Mouvement, ReglementCommande
 from coreApp.models import Etat
 from .models import TypeClient, Client
 from django.shortcuts import get_object_or_404
@@ -56,6 +56,14 @@ def client(request, client_id):
                 "briques" : groupe.all_briques()
             })
 
+        items = []
+        for item in ReglementCommande.objects.filter(commande__groupecommande__client = client, deleted = False):
+            items.append(item.mouvement)
+        for item in CompteClient.objects.filter(client = client, deleted = False):
+            if item.mouvement not in items:
+                items.append(item.mouvement)
+        items.sort(key=lambda x: x.created_at)
+
         context = {
             'client' : client,
             'clients' : Client.objects.filter(agence = request.agence),
@@ -64,11 +72,12 @@ def client(request, client_id):
             "briques" : Brique.objects.filter(active = True, deleted = False),
             'commandes' : GroupeCommande.objects.filter(etat__etiquette = Etat.EN_COURS),
 
-            "chauffeurs": Chauffeur.objects.filter(deleted = False),
-            "vehicules": Vehicule.objects.filter(deleted = False),
+            "chauffeurs": Chauffeur.objects.filter(deleted = False, agence = request.agence),
+            "vehicules": Vehicule.objects.filter(deleted = False, agence = request.agence),
             "modepayements": ModePayement.objects.filter(deleted = False),
-            "zonelivraisons": ZoneLivraison.objects.filter(deleted = False),
+            "zonelivraisons": ZoneLivraison.objects.filter(deleted = False, agence = request.agence),
             "modelivraisons": ModeLivraison.objects.filter(deleted = False),
+            "mouvements": items,
 
         }
         return render(request, "clients/pages/client.html", context)

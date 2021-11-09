@@ -10,6 +10,7 @@ from . import views
 app_name = "fabrique"
 urlpatterns = [
     path('', views.dashboard_fabrique, name="dashboard_fabrique"),  
+    path('<uuid:id>/', views.dashboard_fabrique, name="dashboard_fabrique_id"),  
     path('caisse/', comptabilityApp.views.caisse, name="caisse"),  
     path('appros/', include("approvisionnementApp.urls") ),
     path('appros/', include("approvisionnementApp.urls") ),

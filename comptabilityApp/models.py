@@ -8,7 +8,7 @@ from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django.db.models import Sum
-
+import math
 # Create your models here.
 
 class TypeOperationCaisse(BaseModel):
@@ -63,13 +63,13 @@ class Compte(BaseModel):
         return self.name
 
     def total_entree(self, debut = None, fin = None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
         total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.DEPOT, created_at__lte = fin).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
         return (total["montant__sum"] or 0)
 
     def total_sortie(self, debut = None, fin = None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
         total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.RETRAIT, created_at__lte = fin).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
         return (total["montant__sum"] or 0)
@@ -77,6 +77,33 @@ class Compte(BaseModel):
     def solde_actuel(self, fin = None):
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
         return self.initial_amount + self.total_entree(None, fin) - self.total_sortie(None, fin)
+
+
+    def stats(self, debut=None, fin=None):
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
+        fin = fin or datetime.date.today()
+        tableaux = []
+        delta = fin - debut
+        nb = math.ceil(delta.days / 12)
+        index = debut
+        while index <= fin :
+            debut = index
+            index_fin = index + datetime.timedelta(days=nb)
+
+            data = {}
+            data["year"] = index.year
+            data["month"] = index.month
+            data["day"] = index.day
+            data["nb"] = nb
+
+            data["sortie"] = self.total_sortie(debut, index_fin)
+            data["entree"] = self.total_entree(debut, index_fin)
+            data["solde"] = self.solde_actuel(index_fin)
+
+            tableaux.append(data)
+            index = index_fin
+
+        return tableaux
 
 
 class Mouvement(BaseModel):
@@ -93,12 +120,14 @@ class Mouvement(BaseModel):
     numero    = models.CharField(default=0, max_length = 255, null = True, blank=True)
     comment   = models.TextField(default="",  null = True, blank=True)
 
+    class Meta:
+        ordering = ["created_at"]
 
 
 class ReglementApprovisionnement(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement_appro")
     approvisionnement = models.ForeignKey("approvisionnementApp.Approvisionnement", on_delete = models.CASCADE, related_name="approvisionnement_reglement")
-    restait  = models.IntegerField(default=0)
+    restait  = models.IntegerField(default=0,  null = True, blank=True)
 
     def __str__(self):
         return self.mouvement.reference
@@ -106,7 +135,7 @@ class ReglementApprovisionnement(BaseModel):
 class ReglementCommande(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement_commande")
     commande  = models.ForeignKey("commandeApp.Commande", on_delete = models.CASCADE, related_name="commande_reglement")
-    restait  = models.IntegerField(default=0)
+    restait  = models.IntegerField(default=0,  null = True, blank=True)
 
     def __str__(self):
         return self.mouvement.reference
@@ -114,7 +143,7 @@ class ReglementCommande(BaseModel):
     
     @staticmethod
     def total(agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
         total = ReglementCommande.objects.filter(deleted = False, mouvement__compte__agence = agence, created_at__range = (debut, fin)).aggregate(Sum('mouvement__montant'))
         return total["mouvement__montant__sum"] or 0
@@ -201,6 +230,7 @@ def pre_save_reglement_commande(sender, instance, **kwargs):
 @receiver(post_save, sender = ReglementCommande)
 def post_save_reglement_commande(sender, instance, created, **kwargs):
     if created:
+        instance.restait = instance.commande.reste_a_payer()
         if instance.mouvement.mode.etiquette == ModePayement.PRELEVEMENT:
             CompteClient.objects.create(
                 client = instance.commande.groupecommande.client,
@@ -219,10 +249,11 @@ def pre_save_reglement_approvisionnement(sender, instance, **kwargs):
 @receiver(post_save, sender = ReglementApprovisionnement)
 def post_save_reglement_approvisionnement(sender, instance, created, **kwargs):
     if created:
+        instance.restait = instance.approvisionnement.reste_a_payer()
         if instance.mouvement.mode.etiquette == ModePayement.PRELEVEMENT:
             CompteFournisseur.objects.create(
                 fournisseur = instance.approvisionnement.fournisseur,
-                mouvement = instance.mouvement
+                mouvement = instance.mouvement,
             )
 
 

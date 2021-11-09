@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from authApp.models import AccesAgence
 from comptabilityApp.models import Compte
 import uuid
 from coreApp.models import BaseModel
@@ -64,6 +65,19 @@ def post_save_agence(sender, instance, created, **kwargs):
 @receiver(pre_save, sender = Employe)
 def pre_save_employe(sender, instance, **kwargs):
     if instance._state.adding:
-        instance.username = str(uuid.uuid4()).split("-")[-1]
-        instance.brut = str(uuid.uuid4()).split("-")[-1]
+        if instance.username == "":
+            instance.username = str(uuid.uuid4()).split("-")[-1]
+        if instance.password == "":
+            instance.brut = str(uuid.uuid4()).split("-")[-1]
         instance.set_password(instance.brut)
+
+
+
+
+@receiver(post_save, sender = Employe)
+def post_save_employe(sender, instance, created, **kwargs):
+    if created:
+        AccesAgence.objects.create(
+            employe = instance,
+            agence = instance.agence
+        )

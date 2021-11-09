@@ -25,6 +25,10 @@ class AccesAgence(BaseModel):
     def __str__(self):
         return self.employe.first_name + " " + self.employe.last_name + " dans " + self.agence.name
 
+    
+    def name(self):
+        return self.employe.first_name + " " + self.employe.last_name + " dans " + self.agence.name
+
 
 ######################################################################################################
 ##### SIGNAUX

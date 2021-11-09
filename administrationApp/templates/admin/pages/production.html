@@ -14,9 +14,9 @@
               <div class="ibox-title">
                   <h5 class="text-uppercase">Les produits</h5>
                   <div class="ibox-tools">
-                      <a class="btn_modal btn_modal" data-toggle="modal" data-target="#modal-produit">
+                      <button class="btn_modal btn_modal btn-white" data-toggle="modal" data-target="#modal-produit">
                           <i class="fa fa-plus"></i> Ajouter
-                      </a>
+                      </button>
                   </div>
               </div>
               <div class="ibox-content">
@@ -45,8 +45,8 @@
                                   <td>
                                       <div class="switch">
                                           <div class="onoffswitch">
-                                              <input type="checkbox" {{brique.active|yesno:"checked"}} onchange="changeActive('brique', '{{brique.id}}')" class="onoffswitch-checkbox">
-                                                <label class="onoffswitch-label" for="produit{{brique.id}}">
+                                              <input type="checkbox" {{brique.active|yesno:"checked,"}} id="brique{{brique.id}}" onchange="change_active('brique', '{{brique.id}}')" class="onoffswitch-checkbox">
+                                                <label class="onoffswitch-label" for="brique{{brique.id}}">
                                                     <span class="onoffswitch-inner"></span>
                                                   <span class="onoffswitch-switch"></span>
                                               </label>
@@ -95,8 +95,8 @@
                                   <td>
                                       <div class="switch">
                                           <div class="onoffswitch">
-                                              <input type="checkbox" {{ressource.active|yesno:"checked"}} onchange="changeActive('produit', '{{ressource.id}}')" class="onoffswitch-checkbox" >
-                                              <label class="onoffswitch-label" for="ressource<?= $item->id ?>">
+                                              <input type="checkbox" {{ressource.active|yesno:"checked,"}} onchange="change_active('ressource', '{{ressource.id}}')" id="ressource{{ressource.id}}" class="onoffswitch-checkbox" >
+                                              <label class="onoffswitch-label" for="ressource{{ressource.id}}">
                                                   <span class="onoffswitch-inner"></span>
                                                   <span class="onoffswitch-switch"></span>
                                               </label>
@@ -124,18 +124,22 @@
           <div class="ibox border">
               <div class="ibox-title">
                   <h5 class="text-uppercase">Exigence de production par ressource 
-                      <div class="switch">
-                          <div class="onoffswitch">
-                              <input type="checkbox" {{request.societe.productionAuto|yesno:"checked" }} class="onoffswitch-checkbox maj" model="myapp" name="production_auto" id="{{request.societe.id}}">
-                              <label class="onoffswitch-label" for="{{request.societe.id}}">
-                                  <span class="onoffswitch-inner"></span>
-                                  <span class="onoffswitch-switch"></span>
-                              </label>
-                          </div>
-                      </div>
-                  </h5>
-                  <div class="ibox-tools">
-
+                </h5>
+                <div class="ibox-tools">
+                    <div class="row">
+                        <div class="col-sm-8"><span>Production automatique</span></div>
+                        <div class="col-sm-4">
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" {{request.societe.production_auto|yesno:"checked, " }} onclick="change_production_auto()" class="onoffswitch-checkbox" model="myapp" name="production_auto" id="{{request.societe.id}}">
+                                    <label class="onoffswitch-label" for="{{request.societe.id}}">
+                                          <span class="onoffswitch-inner"></span>
+                                          <span class="onoffswitch-switch"></span>
+                                      </label>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
                   </div>
               </div>
               <div class="ibox-content">

@@ -11,6 +11,7 @@ from . import views
 app_name = "boutique"
 urlpatterns = [
     path('', views.dashboard_boutique, name="dashboard_boutique"),  
+    path('<uuid:id>/', views.dashboard_boutique, name="dashboard_boutique_id"),  
     path('caisse/', comptabilityApp.views.caisse, name="caisse"),  
 
     path('production/', include('productionApp.urls')),

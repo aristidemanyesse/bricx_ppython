@@ -27,7 +27,7 @@
 
 
 
-        $("input.maj").change(function(){
+        $("input.maj, select.maj").change(function(){
             url = "/core/ajax/mise_a_jour/";
             var id = $(this).attr("id")
             var model = $(this).attr("model")
@@ -101,9 +101,9 @@
         }
 
 
-        changeActive = function(table, id){
-            url = "../../composants/dist/shamman/traitement.php";
-            $.post(url, {action:"changeActive", table:table, id:id}, (data)=>{
+        change_active = function(model, id){
+            url = "/core/ajax/change_active/";
+            $.post(url, {model:model, id:id}, (data)=>{
                 if (data.status) {
                     Alerter.success('Mise à jour !', "Modification effectuée avec succès !");
                 }else{

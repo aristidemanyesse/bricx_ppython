@@ -78,7 +78,7 @@
                                     <button onclick="unlock('employe', '{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-unlock text-green"></i> Débloquer</button>
                                     {% endif %}
                                 <button data-toggle="modal" data-target="#modal-employe{{employe.id}}" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-white btn-xs" onclick="suppressionWithPassword('employe', '{{employe.id}}')"><i class="fa fa-close text-red"></i></button>
+                                <button class="btn btn-white btn-xs" onclick="delete_password('employe', '{{employe.id}}')"><i class="fa fa-close text-red"></i></button>
                             </td>
                         </tr>
                         <tr style="height: 20px"></tr>

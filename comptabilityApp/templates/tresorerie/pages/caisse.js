@@ -4,7 +4,7 @@ $(function () {
         $this = $(this);
         var url = "/tresorerie/ajax/operation/";
         alerty.confirm("Voulez-vous vraiment valider cette opération ?", {
-            title: "Recouvrement de la commande",
+            title: "Nouvelle opération de caisse",
             cancelLabel: "Non",
             okLabel: "OUI, valider",
         }, function () {
@@ -27,7 +27,7 @@ $(function () {
         $this = $(this);
         var url = "/tresorerie/ajax/transfert/";
         alerty.confirm("Voulez-vous vraiment valider ce transfert ?", {
-            title: "Recouvrement de la commande",
+            title: "Nouveau transfert de fond",
             cancelLabel: "Non",
             okLabel: "OUI, valider",
         }, function () {

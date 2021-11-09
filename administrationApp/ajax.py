@@ -8,6 +8,7 @@ from django.urls import reverse
 from commandeApp.models import PrixZoneLivraison
 import coreApp.tools as tools
 from organisationApp.models import Employe
+from paramApp.models import MyApp
 from productionApp.models import ExigenceProduction, LigneExigenceProduction, PayeBrique, PayeBriqueFerie
 
 
@@ -31,6 +32,24 @@ def exigence(request):
             print("--------------------", e)
             return JsonResponse({"status": False, "message":"Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
         
+        
+
+def change_production_auto(request):
+    if request.method == "POST":
+        datas = request.POST
+
+        try:
+            obj = MyApp.objects.filter().first()
+            obj.production_auto = not obj.production_auto
+            obj.save()
+
+            return JsonResponse({"status":True, "message":"Suppression effectuée avec succes !"})
+
+        except Exception as e:
+            print("erreur save :", e)
+            return JsonResponse({"status":False, "message":"Erreur lors du processus. Veuillez recommencer : "+str(e)})
+
+
 
 
 def price(request):

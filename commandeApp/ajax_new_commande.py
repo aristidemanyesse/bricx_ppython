@@ -165,9 +165,9 @@ def valider_commande(request):
                     datas["montant"] = commande.avance
                     res = mouvement_pour_sortie_client(request, datas, title, comment)
                     if type(res) is Mouvement:
-                        CompteClient.objects.create(
+                        ReglementCommande.objects.create(
                             mouvement = res,
-                            client = client
+                            commande = commande
                         )
                     else:
                         return JsonResponse(res)

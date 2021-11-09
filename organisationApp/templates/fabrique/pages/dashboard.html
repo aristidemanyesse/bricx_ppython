@@ -70,6 +70,7 @@
             <hr style="border-top: dashed 3px #ddd">
             <hr style="border-top: dashed 3px #ddd">
             <br><br>
+            {% if perms.paramApp.stock %}
             <div class="row">
                 {% for item in datas.keys %}
                 <div class="col-sm-6 col-md border-right " style="margin-bottom: 3%; border-bottom: 2px solid black">
@@ -84,14 +85,21 @@
                         <li class="list-group-item">
                             <i class="fa fa-cubes"></i> <small>Non rangée</small>          
                             <span class="float-right">
-                                <span class="gras text-muted" title="quantité non rangée">{{datas|dict_value:item|dict_value:'attente'|intcomma}}</span>
+                                <span class="gras text-orange" title="quantité non rangée">{{datas|dict_value:item|dict_value:'attente'|intcomma}}</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fa fa-cubes"></i> <small>Commandée</small>          
+                            <span class="float-right">
+                                <span class="gras text-muted" title="quantité non rangée">{{datas|dict_value:item|dict_value:'commandee'|intcomma}}</span>
                             </span>
                         </li>
                         <li class="list-group-item"></li>
                     </ul>
                 </div>
            {% endfor %}
-            </div> 
+        </div> 
+        {% endif %}
         </div>
 
     </div>

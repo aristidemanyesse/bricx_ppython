@@ -1,4 +1,5 @@
-from django.contrib.admin.models import LogEntry, ADDITION, CHANGE, DELETION 
+from django.contrib.admin.models import LogEntry, ADDITION, CHANGE, DELETION
+from django.contrib.auth.models import AnonymousUser 
 from django.db import models
 import uuid,inspect,  os
 from django.db.models.signals import pre_save, post_save
@@ -36,7 +37,7 @@ class Etat(models.Model):
         return self.name
 
 
-class History(LogEntry):
+class History(LogEntry, models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class MyCodeException:
@@ -68,6 +69,34 @@ class MyCodeException:
 ################################################################################################
 
 
+
+@receiver(pre_save)
+def pre_save(sender, instance, **kwargs):
+    if issubclass(sender, BaseModel):
+        user = None
+        for entry in reversed(inspect.stack()):
+            if "request" in entry[0].f_locals:
+                if hasattr(entry[0].f_locals['request'], "user") :
+                    user = entry[0].f_locals['request'].user
+                    break
+        
+
+        if user is not AnonymousUser:
+            if instance._state.adding:
+                if not user.has_perm("paramApp.CCREATE"):
+                    return Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
+            else:
+                if instance.deleted and not user.has_perm("paramApp.DELETE"):
+                    return Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
+
+                else:
+                    if not user.has_perm("paramApp.UPDATE"):
+                        return Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
+    
+
+
+
+
 @receiver(post_save)
 def post_save(sender, instance, created, **kwargs):
     if issubclass(sender, BaseModel):
@@ -78,33 +107,34 @@ def post_save(sender, instance, created, **kwargs):
                     user = entry[0].f_locals['request'].user
                     break
         
-        if user is not None:
+
+        if user is not AnonymousUser:
             if created:
                 if not user.has_perm("paramApp.CCREATE"):
-                    Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
+                    return Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
                 History.objects.log_action(
-                    user_id=user,
+                    user_id=user.id,
                     content_type_id=ContentType.objects.get_for_model(instance).pk,
-                    object_repr=instance, #or any field you wish to represent here
+                    object_repr=str(instance.id), #or any field you wish to represent here
                     object_id=instance.id,
                     action_flag=ADDITION) # assuming it's a new object
             else:
                 if not user.has_perm("paramApp.UPDATE"):
-                    Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
+                    return Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
                 if not instance.deleted:
                     History.objects.log_action(
-                        user_id=user,
-                        content_type_id=ContentType.objects.get_for_model(instance).pk,
-                        object_repr=instance, #or any field you wish to represent here
+                        user_id=user.id,
+                        content_type_id=ContentType.objects.get_for_model(instance).pk ,
+                        object_repr=str(instance.id), #or any field you wish to represent here
                         object_id=instance.id,
                         action_flag=CHANGE) # assuming it's a new object
                 else:
                     if not user.has_perm("paramApp.DELETE"):
-                        Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
+                        return Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
                     History.objects.log_action(
-                        user_id=user,
+                        user_id=user.id,
                         content_type_id=ContentType.objects.get_for_model(instance).pk,
-                        object_repr=instance, #or any field you wish to represent here
+                        object_repr=str(instance.id), #or any field you wish to represent here
                         object_id=instance.id,
                         action_flag=DELETION) # assuming it's a new object
 

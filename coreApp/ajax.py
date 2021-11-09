@@ -126,6 +126,27 @@ def supprimer(request):
 
 
 
+def change_active(request):
+    if request.method == "POST":
+        datas = request.POST
+
+        try:
+            modelform = datas["model"]
+            content_type = ContentType.objects.get(model= modelform.lower())
+            MyModel = content_type.model_class()
+
+            obj = MyModel.objects.get(pk=datas["id"])
+            obj.active = not obj.active
+            obj.save()
+
+            return JsonResponse({"status":True, "message":"Suppression effectuée avec succes !"})
+
+        except Exception as e:
+            print("erreur save :", e)
+            return JsonResponse({"status":False, "message":"Erreur lors du processus. Veuillez recommencer : "+str(e)})
+
+
+
 def session(request):
     if request.method == "POST":
         datas = request.POST

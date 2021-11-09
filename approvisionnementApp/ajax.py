@@ -143,21 +143,23 @@ def valider_approvisionnement(request):
                 acompte = fournisseur.acompte_actuel()
                 appro.avance = montant if acompte >= montant else acompte
                 if appro.avance > 0 :
-                    name = "Avance sur réglement de la facture pour l'Approvisionnement N°"+str(appro.reference);
+                    title = "Avance sur approvisionnement"
+                    comment = "Avance sur réglement de la facture pour l'Approvisionnement N°"+str(appro.reference);
                     datas["montant"] = appro.avance
-                    res = mouvement_pour_sortie_client(request, datas, name)
+                    res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
                     if type(res) is Mouvement:
-                        CompteFournisseur.objects.create(
+                        ReglementApprovisionnement.objects.create(
                             mouvement = res,
-                            fournisseur = fournisseur
+                            approvisionnement = appro
                         )
                     else:
                         return JsonResponse(res)
 
             else:
-                name = "Avance sur réglement de la facture pour l'approvisionnement N°"+str(appro.reference);
+                title = "Avance sur approvisionnement"
+                comment = "Avance sur réglement de la facture pour l'approvisionnement N°"+str(appro.reference);
                 datas["montant"] = avance
-                res = mouvement_pour_sortie(request, datas, name)
+                res = mouvement_pour_sortie(request, datas, title, comment)
                 if type(res) is Mouvement:
                     ReglementApprovisionnement.objects.create(
                         mouvement = res,
@@ -169,9 +171,10 @@ def valider_approvisionnement(request):
 
             if int(datas["transport"]) > 0:
                 datas["modepayement"] = ModePayement.objects.get(etiquette = ModePayement.ESPECES).id
-                name = "Frais de transport pour l'approvisionnement N°"+str(appro.reference);
+                title = "Frais de transport pour approvisionnement"
+                comment = "Frais de transport pour l'approvisionnement N°"+str(appro.reference);
                 datas["montant"] = int(datas["transport"])
-                res = mouvement_pour_sortie(request, datas, name)
+                res = mouvement_pour_sortie(request, datas, title, comment)
                 if type(res) is Mouvement:
                     Operation.objects.create(
                         mouvement = res,
@@ -242,8 +245,9 @@ def regler_appro(request):
         datas = request.POST
         try :
             appro = Approvisionnement.objects.get(pk = datas["appro_id"])
-            name = "Reglement de l'approvisionnement N°"+str(appro.reference)
-            res = mouvement_pour_sortie_fournisseur(request, datas, name)
+            title = "Reglement approvisionnement"
+            comment = "Reglement de l'approvisionnement N°"+str(appro.reference)
+            res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementApprovisionnement.objects.create(
                     mouvement = res,

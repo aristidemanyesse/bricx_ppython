@@ -118,34 +118,33 @@
 
 
                     <div id="tab-3" class="tab-pane"><br>
-                        {% for transaction in transactions %}
+                        {% if perms.paramApp.comptabilite %}
+                        {% for mouvement in mouvements %}
                             <div class="timeline-item">
                                 <div class="row">
                                     <div class="col-2 date" style="padding-right: 1%; padding-left: 1%;">
-                                        <i data-toggle="tooltip" tiitle="Imprimer le bon" class="fa fa-file-text"></i>
-                                        {{transaction.created | time}}
+                                        <i data-toggle="tooltip" tiitle="Imprimer le bon de caisse" class="fa fa-file-text"></i>
+                                        {{mouvement.created_at|date:"H:i"}}
                                         <br/>
-                                        <small class="text-navy">{{transaction.created}}</small>
+                                        <small class="text-navy">{{mouvement.created_at|date:"d l Y"}}</small>
                                     </div>
                                     <div class="col-10 content">
                                         <div>
-                                         <span class="">Bon de caisse N°<strong>{{transaction.reference}}</strong></span>
-                                         <span class="pull-right text-right ">
-                                            <span class="gras" style="font-size: 16px">{{transaction.montant|intcomma}} {{request.societe.devise}}</span> <br>
-                                            <small>Par {{transaction.modepayement.name}}</small><br>
-                                            {% if transaction.mouvement.mode.etiquette|add:0 != request.modepayement.PRELEVEMENT|add:0 %}
-                                                <a href="{% url 'fiches:boncaisse' transaction.id %}" target="_blank" class="simple_tag"><i class="fa fa-file-text-o"></i> Bon de caisse</a>
-                                                {% endif %} 
-                                        </span>
+                                            <span class="">Opération N°<strong>{{mouvement.reference}}</strong></span>
+                                            <span class="pull-right text-right text-{% if mouvement.type.etiquette|add:0 == request.typemouvement.DEPOT|add:0 %}green{% else %}red{% endif %}">
+                                                <span class="gras" style="font-size: 16px">{{mouvement.montant|intcomma}} {{ request.societe.devise }} {% if mouvement.etat.etiquette|add:0 == request.etat.EN_COURS %}*{% endif %}</span> <br>
+                                                <small>Par {{mouvement.mode.name}}</small><br>
+                                                <a href="{% url 'fiches:boncaisse' mouvement.id %}" target="_blank" class="simple_tag"><i class="fa fa-file-text-o"></i> Bon de caisse</a>
+                                            </span>
+                                        </div>
+                                        <p class="m-b-xs mp0">{{mouvement.comment}} </p>
+                                        <p class="m-b-xs">{{mouvement.structure}} - {{mouvement.numero}}</p>
                                     </div>
-                                    <p class="m-b-xs mp0">{{transaction.comment}} </p>
-                                    <p class="m-b-xs">{{transaction.structure}} - {{transaction.numero}}</p>
                                 </div>
                             </div>
+                            {% endfor %}             
+                            {% endif %}             
                         </div>
-                        {% endfor %}                
-                </div>
-
 
         </div>
 

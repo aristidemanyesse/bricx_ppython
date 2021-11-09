@@ -4,7 +4,7 @@ $(function(){
 
     $("#modal-production input").change(function(){
         $this = $(this);
-        var url = "../../production/ajax/calcul_production/";
+        var url = "/fabrique/production/ajax/calcul_production/";
         var formdata = new FormData($("#formProduction")[0]);
         $.post({url:url, data:formdata, contentType:false, processData:false}, function(data){
             $this.parents().find("div.ajax").html(data);
@@ -21,7 +21,7 @@ $(function(){
             okLabel : "OUI, Valider",
         }, function(){
             Loader.start();
-            var url = "../../production/ajax/new_production/";
+            var url = "/fabrique/production/ajax/new_production/";
             $.post({url:url, data:formdata, contentType:false, processData:false}, function(data){
                 if (data.status) {
                     window.location.reload();
@@ -44,7 +44,7 @@ $(function(){
             okLabel : "OUI, Valider",
         }, function(){
             Loader.start();
-            var url = "../../production/ajax/rangement/";
+            var url = "/fabrique/production/ajax/rangement/";
             $.post({url:url, data:formdata, contentType:false, processData:false}, function(data){
                 if (data.status) {
                     window.location.reload();

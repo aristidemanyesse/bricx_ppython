@@ -7,6 +7,7 @@ urlpatterns = [
     path('ajax/save/', ajax.save, name="save"),
     path('ajax/mise_a_jour/', ajax.mise_a_jour, name="mise_a_jour"),
     path('ajax/supprimer/', ajax.supprimer, name="supprimer"),
+    path('ajax/change_active/', ajax.change_active, name="change_active"),
     path('ajax/session/', ajax.session, name="session"),
 
 ]

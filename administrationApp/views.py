@@ -34,7 +34,7 @@ def roles(request):
         context = {
             "employes" : datas,
             "agences" : Agence.objects.filter(deleted = False),
-            "permissions_on" : Permission.objects.filter(name__contains = "BRICX |")
+            "permissions_on" : Permission.objects.filter(name__contains = "~")
         }
         return render(request, "admin/pages/roles.html", context)
 
@@ -94,7 +94,7 @@ def agence(request, id):
             perms = employe.user_permissions.filter()
             data = {}
             data["perms_on"] = perms 
-            items = Permission.objects.filter(name__contains="BRICX")
+            items = Permission.objects.filter(name__contains="~")
             for p in items:
                 if p not in perms: 
                     perms_off.append(p)

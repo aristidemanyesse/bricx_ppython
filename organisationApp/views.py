@@ -16,10 +16,10 @@ from django.contrib.auth import authenticate
 
 def home(request):
     datas = {
-        "nb_users" : Employe.objects.all().count(),
-        "nb_clients" : Client.objects.all().count(),
-        "nb_briques" : Brique.objects.filter(active = True).count(),
-        "nb_agences" : Agence.objects.all().count(),
+        "nb_users" : Employe.objects.filter( deleted=False).count(),
+        "nb_clients" : Client.objects.filter( deleted=False).count(),
+        "nb_briques" : Brique.objects.filter(active = True, deleted=False).count(),
+        "agences" : Agence.objects.filter( deleted=False),
     }
     return render(request, "master/pages/home.html", datas)
 
@@ -35,8 +35,6 @@ def dashboard_boutique(request):
             "commande" : int(brique.commande(request.agence)),
         }
         datas[brique] = data
-
-    
 
     context = {
         "datas" : datas,
@@ -62,8 +60,6 @@ def dashboard_fabrique(request):
             "commande" : int(brique.commande(request.agence)),
         }
         datas[brique] = data
-
-
 
     for ressource in Ressource.objects.filter(active = True, deleted = False):
         data = {

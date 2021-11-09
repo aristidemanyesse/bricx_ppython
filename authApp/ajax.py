@@ -15,14 +15,14 @@ def connexion(request):
         user = authenticate(request, username=datas["login"], password=datas["password"])
         if user is not None:
             try:
-                profile = Employe.objects.get(id = user.id)
+                profile = Employe.objects.get(pk = user.id)
                 if profile.is_never_connected:
                     request.session["user_id"] = profile.id
                     return JsonResponse({"status":True, "new":True})
                 login(request, user)
                 return JsonResponse({"status":True})
             except Exception as e:
-                print("-----------------------------------", e)
+                print("**----------------------------------", e)
                 return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
         else:
             return JsonResponse({"status":False, "message":"Login et/ou mot de passe incorrect !"})
@@ -56,8 +56,9 @@ def first_user(request):
         if len(datas["password"]) >= 4:
             if datas["password1"] == datas["password"]:
                 try:
-                    user = Employe.objects.get(id = request.session["user_id"])
+                    user = Employe.objects.get(pk = request.session["user_id"])
                     user.username = datas["login"]
+                    user.brut = datas["password"]
                     user.set_password(datas["password"])
                     user.is_never_connected = False
                     user.save()
@@ -67,8 +68,8 @@ def first_user(request):
                     res = JsonResponse({"status":True})
 
                 except Exception as e:
-                    print("-----------------------------------", e)
-                    res = JsonResponse({"status":False, "message": e})
+                    print("++++----------------------------------", e)
+                    res = JsonResponse({"status":False, "message": str(e)})
             else:
                 res = JsonResponse({"status":False, "message":"Les mots de passe ne correspondent pas !"})
         else:

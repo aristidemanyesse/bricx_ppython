@@ -159,8 +159,8 @@
                                                     <h6 style="margin-bottom: 3px" class="mp0 text-uppercase gras text-{% if mouvement.type.etiquette|add:0 == request.typemouvement.DEPOT|add:0 %}green {% else %}red{% endif %}">{{mouvement.name}}  
 
                                                         <div class="d-inline-block">
-                                                            &nbsp;&nbsp;<i onclick="modifierOperation(<?= $mouvement->id ?>)" class="cursor fa fa-pencil text-dark"></i> 
-                                                        &nbsp;&nbsp;<i class="cursor fa fa-close text-red" onclick="suppressionWithPassword('operation', <?= $mouvement->id ?>)"></i>
+                                                            &nbsp;&nbsp;<i class="cursor fa fa-pencil text-dark"></i> 
+                                                        &nbsp;&nbsp;<i class="cursor fa fa-close text-red" onclick="delete_password('operation', '{{mouvement.id}}')"></i>
                                                         </div>
 
                                                     <span class="pull-right"><i class="fa fa-clock-o"></i> {{mouvement.created_at}}</span>
@@ -183,8 +183,8 @@
                                     {% endfor %}
                                     <tr style="height: 15px;"></tr>
                                     <tr>
-                                        <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">Total des comptes au <?= datecourt(dateAjoute()) ?></h4></td>
-                                        <td><h3 class="text-center text-green">{{total_depense|add:report |intcomma}} {{request.societe.devise}}</h3></td>
+                                        <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">Total des comptes au {{fin}}</h4></td>
+                                        <td><h3 class="text-center text-green">{{total_entree|add:report |intcomma}} {{request.societe.devise}}</h3></td>
                                         <td><h3 class="text-center text-red">{{total_depense|intcomma}} {{request.societe.devise}}</h3></td>
                                         <td style="background-color: #fafafa"><h3 class="text-center text-blue gras">{{solde_a_la_date|intcomma}} {{request.societe.devise}}</h3></td>
                                     </tr>
@@ -210,10 +210,10 @@
 {% include '../modals/transfert.html' %}
 {% include '../modals/versement_attente.html' with attentes=attentes %}
 
- 
-<?php include($this->rootPath("composants/assets/modals/modal-operation.php")); ?>  
 
 </div>
+
+
 
 {% endblock wrapper %} 
 
@@ -224,6 +224,116 @@
 
 <script type="text/javascript">
     {% include './caisse.js' %}
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var data1 = [{% for item in tableaux %}[gd({{item.year}}, {{item.month}}, {{item.day}}), {{item.entree}}], {% endfor %} ];
+
+        var data2 = [{% for item in tableaux %}[gd({{item.year}}, {{item.month}}, {{item.day}}), {{item.sortie}}], {% endfor %} ];
+        var data3 = [{% for item in tableaux %}[gd({{item.year}}, {{item.month}}, {{item.day}}), {{item.solde}}], {% endfor %} ];
+
+     var dataset = [
+     {
+        label: "Recettes",
+        data: data1,
+        color: "#1ab394",
+        bars: {
+            show: true,
+            align: "left",
+            barWidth: 12 * 60 * 60 * 600,
+            lineWidth:0
+        }
+
+    }, {
+        label: "Charges",
+        data: data2,
+        color: "#cc0000",
+        bars: {
+            show: true,
+            align: "right",
+            barWidth: 12 * 60 * 60 * 600,
+            lineWidth:0
+        }
+
+    },  {
+        label: "Chiffre d'Affaire",
+        data: data3,
+        yaxis: 2,
+        color: "#1C84C6",
+        lines: {
+            lineWidth:1,
+            show: true,
+            fillColor: {
+                colors: [{
+                    opacity: 0.2
+                }, {
+                    opacity: 0.4
+                }]
+            }
+        },
+        splines: {
+            show: false,
+            tension: 0.6,
+            lineWidth: 1,
+            fill: 0.1
+        },
+    }
+    ];
+
+
+    var options = {
+        xaxis: {
+            mode: "time",
+            tickSize: [{{stat.nb}}, "day"],
+            tickLength: 0,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Arial',
+            axisLabelPadding: 10,
+            color: "#d5d5d5"
+        },
+        yaxes: [{
+            position: "left",
+            color: "#d5d5d5",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Arial',
+            axisLabelPadding: 3
+        }, {
+            position: "right",
+            clolor: "#d5d5d5",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: ' Arial',
+            axisLabelPadding: 67
+        }
+        ],
+        legend: {
+            noColumns: 1,
+            labelBoxBorderColor: "#000000",
+            position: "nw"
+        },
+        grid: {
+            hoverable: false,
+            borderWidth: 0
+        }
+    };
+
+    function gd(year, month, day) {
+        return new Date(year, month - 1, day).getTime();
+    }
+
+    var previousPoint = null, previousLabel = null;
+
+    $.plot($("#flot-dashboard-chart"), dataset, options);
+
+});
+
 </script>
 
 {% endblock %} 

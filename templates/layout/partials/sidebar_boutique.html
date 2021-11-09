@@ -31,6 +31,7 @@
             </li>
 
             <ul class="nav metismenu" id="side-menu">
+
                 <li class="" id="dashboard_boutique">
                     <a href="{% url 'boutique:dashboard_boutique' %}"><i class="fa fa-tachometer"></i> <span class="nav-label">Tableau de bord</span></a>
                 </li>
@@ -39,7 +40,7 @@
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
-
+        {% if perms.paramApp.commande %}
                 <li class="" id="commandes">
                     <a href="{% url 'boutique:commandes:commandes' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Commandes de clients</span>
                         {% if request.commandes|length > 0 %}
@@ -47,6 +48,8 @@
                         {% endif %}
                     </a>
                 </li>
+                {% endif %}
+                {% if perms.paramApp.livraison %}
                 <li class="" id="livraisons">
                     <a href="{% url 'boutique:livraisons:livraisons' %}"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> 
                         {% if request.livraisons|length > 0 %}
@@ -54,22 +57,25 @@
                         {% endif %}
                     </a>
                 </li>
+                {% endif %}
+                {% if perms.paramApp.commande %}
                 <li class="" id="conversions">
                     <a href="{% url 'boutique:commandes:conversions' %}"><i class="fa fa-refresh"></i> <span class="nav-label">Conversions de briques </span> </a>
                 </li>
-
+                {% endif %}
+                
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
                 
-
-
+                
+                {% if perms.paramApp.stock %}
                 <li class="" id="stock_brique">
                     <a href="{% url 'boutique:production:stock_brique' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de briques</span></a>
                 </li>
                 <li class="" id="perte_brique">
                     <a href="{% url 'boutique:production:perte_brique' %}"><i class="fa fa-trash"></i> <span class="nav-label">Perte de briques</span></a>
                 </li>
-
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
+                {% endif %}
                 
                 
                 
@@ -82,7 +88,7 @@
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
 
-                
+                {% if perms.paramApp.livraison %}
                 <li class="" id="tricycles">
                     <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> 
                         {% if request.tricycles|length > 0 %}
@@ -90,10 +96,13 @@
                         {% endif %}
                     </a>
                 </li>
+                {% endif %}
+                {% if perms.paramApp.comptabilite %}
                 <li class="" id="caisse">
                     <a href="{% url 'boutique:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
+                {% endif %}
             </ul>
 
         </ul>

@@ -11,6 +11,9 @@ class Command(BaseCommand):
         import coreApp.bootstrap as app
         app.run()
 
+        import paramApp.bootstrap as app
+        app.run()
+        
         import clientApp.bootstrap as app
         app.run()
 
@@ -35,7 +38,5 @@ class Command(BaseCommand):
         import comptabilityApp.bootstrap as app
         app.run()
 
-        import paramApp.bootstrap as app
-        app.run()
 
         self.stdout.write(self.style.SUCCESS('Base de données initialisée avec succes !'))

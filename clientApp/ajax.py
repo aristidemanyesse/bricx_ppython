@@ -17,9 +17,10 @@ def crediter(request):
     if request.method == "POST":
         datas = request.POST
         client = Client.objects.get(pk = request.session["client_id"])
-        name = client.name +" a crédité son compte de "+datas["montant"]
-        
-        res = mouvement_pour_entree(request, datas, name)
+        title = "Dépôt sur acompte"
+        comment = client.name +" a crédité son compte de "+datas["montant"]
+                
+        res = mouvement_pour_entree(request, datas, title, comment)
         if type(res) is Mouvement:
             CompteClient.objects.create(
                     mouvement = res,
@@ -38,12 +39,13 @@ def rembourser(request):
             datas = request.POST
             mode = ModePayement.objects.get(pk = datas["modepayement"])
             client = Client.objects.get(pk = request.session["client_id"])
-            name = "remboursement du client "+client.name
+            title = "Remboursement du client"
+            comment = "remboursement du client "+client.name
 
             if not verify_password(request, datas["password"]):
                 return JsonResponse({"status":False, "message" : "Le mot de passe est incorrect !" })
 
-            res = mouvement_pour_sortie(request, datas, name)
+            res = mouvement_pour_sortie(request, datas, title, comment)
             if type(res) is Mouvement:
                 Operation.objects.create(
                     mouvement = res,
@@ -88,8 +90,9 @@ def regler_toutes_dettes(request):
                     reste =  commande.reste_a_payer()
                     if reste > 0 and acompte > 0:
                         datas["montant"] = reste if acompte >= reste else acompte
-                        name = "reglement de la commande N°"+commande.reference
-                        res = mouvement_pour_sortie_client(request, datas, name)
+                        title = "Reglement de commande"
+                        comment = "reglement de la commande N°"+commande.reference
+                        res = mouvement_pour_sortie_client(request, datas, title, comment)
                         if type(res) is Mouvement:
                             ReglementCommande.objects.create(
                                 mouvement = res,
@@ -102,8 +105,9 @@ def regler_toutes_dettes(request):
                 if acompte > 0:
                     dette = client.dette_totale()
                     datas["montant"] = dette if acompte >= dette else acompte
-                    name = "reglement de la dette de "+client.name
-                    res = mouvement_pour_sortie_client(request, datas, name)
+                    title = "Reglement de dette client"
+                    comment = "reglement de la dette de "+client.name
+                    res = mouvement_pour_sortie_client(request, datas, title, comment)
                     if type(res) is Mouvement:
                         CompteClient.objects.create(
                             mouvement = res,

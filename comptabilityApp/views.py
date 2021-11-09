@@ -10,15 +10,17 @@ import datetime
 
 def caisse(request):
     if request.method == "GET":
+        veille = datetime.date.fromisoformat(request.session["date1"]) - datetime.timedelta(days= 1)
         debut = datetime.date.fromisoformat(request.session["date1"])
-        fin = datetime.date.fromisoformat(request.session["date2"]) + datetime.timedelta(days= 1)
+        fin = datetime.date.fromisoformat(request.session["date2"])
 
         datas = {}
-        report = test = 14523
-        for mouvement in Mouvement.objects.filter(deleted=False, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT,):
-            test = (test - mouvement.montant) if mouvement.type.etiquette == TypeMouvement.RETRAIT else (test + mouvement.montant)
+        report = test = request.agence_compte.solde_actuel(veille)
+        for mouvement in Mouvement.objects.filter(deleted=False, compte__agence = request.agence, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT):
+            test = (test - mouvement.montant) if mouvement.type.etiquette == TypeMouvement.RETRAIT else (test + mouvement.montant) 
             datas[mouvement] = test
 
+        tableaux = request.agence_compte.stats(debut, fin)
         context = {
             "dette_clients" : Client.dette_clients(request.agence),
             "dette_fournisseurs" : Fournisseur.dette_fournisseurs(request.agence),
@@ -29,7 +31,7 @@ def caisse(request):
             "solde_actuel" : request.agence_compte.solde_actuel(),
             "reglement_client" : ReglementCommande.total(request.agence, debut, fin),
 
-            "attentes":Mouvement.objects.filter(deleted=False, etat__etiquette = Etat.EN_COURS, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT,),
+            "attentes":Mouvement.objects.filter(deleted=False, compte__agence = request.agence, etat__etiquette = Etat.EN_COURS, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT,),
             "mouvements":datas,
             "report":report,
             "total_entree" : request.agence_compte.total_entree(debut, fin),
@@ -41,5 +43,9 @@ def caisse(request):
             "modes": ModePayement.objects.filter(deleted = False),
             "comptes": Compte.objects.filter(deleted = False).exclude(pk = request.agence_compte.id),
 
+            "debut": debut,
+            "fin": datetime.date.fromisoformat(request.session["date2"]),
+            "tableaux" : tableaux,
+            "stat" : tableaux[0],
         }
         return render(request, "tresorerie/pages/caisse.html", context)

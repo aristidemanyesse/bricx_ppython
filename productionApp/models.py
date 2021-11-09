@@ -33,7 +33,7 @@ class Brique(BaseModel):
 
     def attente(self, agence, fin=None):
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_ligneproduction.filter(deleted = False, production__created_at__lte = fin, production__etat__etiquette = Etat.EN_COURS).aggregate(Sum('quantite'))
+        res = self.brique_ligneproduction.filter(deleted = False, production__agence = agence, production__created_at__lte = fin, production__etat__etiquette = Etat.EN_COURS).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
     def livrable(self, agence, fin=None):
@@ -44,72 +44,68 @@ class Brique(BaseModel):
     def commande(self, agence, fin=None):
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
         total = 0
-        for groupe in commandeApp.models.GroupeCommande.objects.filter(deleted=False, etat__etiquette = Etat.EN_COURS, created_at__lte = fin):
+        for groupe in commandeApp.models.GroupeCommande.objects.filter(deleted=False, agence = agence, etat__etiquette = Etat.EN_COURS, created_at__lte = fin):
             total += groupe.reste(self)
         return total
 
 
     def production(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_ligneproduction.filter(deleted = False, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
+        res = self.brique_ligneproduction.filter(deleted = False, production__agence = agence, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
 
     def livraison(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_lignelivraison.filter(deleted = False, livraison__created_at__range = (debut, fin)).exclude(livraison__etat__etiquette = Etat.ANNULE).aggregate(Sum('livree'))
+        res = self.brique_lignelivraison.filter(deleted = False, livraison__groupecommande__agence = agence, livraison__created_at__range = (debut, fin)).exclude(livraison__etat__etiquette = Etat.ANNULE).aggregate(Sum('livree'))
         return res["livree__sum"] or 0
 
     def surplus(self, agence, fin=None):
-        res = self.brique_lignelivraison.filter(deleted = False, livraison__created_at__lte = fin, livraison__etat__etiquette = Etat.EN_COURS).aggregate(Sum('surplus'))
+        res = self.brique_lignelivraison.filter(deleted = False, livraison__groupecommande__agence = agence, livraison__created_at__lte = fin, livraison__etat__etiquette = Etat.EN_COURS).aggregate(Sum('surplus'))
         return res["surplus__sum"] or 0
         
     def achat(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_ligneachatstock.filter(deleted = False,  achatstock__created_at__range = (debut, fin)).exclude(achatstock__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite_recu'))
+        res = self.brique_ligneachatstock.filter(deleted = False, achatstock__agence = agence, achatstock__created_at__range = (debut, fin)).exclude(achatstock__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite_recu'))
         return res["quantite_recu__sum"] or 0
 
 
     def perte(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
         return self.perte_livraison(agence, debut, fin) + self.perte_autre(agence, debut, fin) + self.perte_rangement(agence, debut, fin)
 
     def perte_chargement(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_perte.filter(deleted = False, created_at__range = (debut, fin), type__etiquette = TypePerte.CHARGEMENT).aggregate(Sum('quantite'))
+        res = self.brique_perte.filter(deleted = False,  agence=agence, created_at__range = (debut, fin), type__etiquette = TypePerte.CHARGEMENT).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
     def perte_dechargement(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_perte.filter(deleted = False, created_at__range = (debut, fin), type__etiquette = TypePerte.DECHARGEMENT).aggregate(Sum('quantite'))
+        res = self.brique_perte.filter(deleted = False, agence=agence,  created_at__range = (debut, fin), type__etiquette = TypePerte.DECHARGEMENT).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
     def perte_autre(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_perte.filter(deleted = False, created_at__range = (debut, fin)).exclude(type__etiquette = TypePerte.CHARGEMENT).exclude(type__etiquette = TypePerte.DECHARGEMENT).aggregate(Sum('quantite'))
+        res = self.brique_perte.filter(deleted = False, agence=agence,  created_at__range = (debut, fin)).exclude(type__etiquette = TypePerte.CHARGEMENT).exclude(type__etiquette = TypePerte.DECHARGEMENT).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
     def perte_rangement(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.brique_ligneproduction.filter(deleted = False, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('perte'))
+        res = self.brique_ligneproduction.filter(deleted = False, production__agence = agence, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('perte'))
         return res["perte__sum"] or 0
 
     def perte_livraison(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
         return self.perte_chargement(agence, debut, fin) + self.perte_dechargement(agence, debut, fin)
-
-
-    def estimation(self, quantite, ressource):
-        return 100
 
 
     def exigence(self, quantite, ressource):
@@ -172,21 +168,21 @@ class Ressource(BaseModel):
         return (initial["quantite__sum"] or 0) + self.achat(agence, None, fin) - self.consommation(agence, None, fin) - self.perte(agence, None, fin)
 
     def consommation(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.ressource_ligneconsommation.filter(deleted = False, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
+        res = self.ressource_ligneconsommation.filter(deleted = False, production__agence = agence, production__created_at__range = (debut, fin)).exclude(production__etat__etiquette = Etat.ANNULE).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
     def achat(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.ressource_ligneapprovisionnement.filter(deleted = False, approvisionnement__created_at__range = (debut, fin), approvisionnement__etat__etiquette = Etat.TERMINE).aggregate(Sum('quantite_recu'))
+        res = self.ressource_ligneapprovisionnement.filter(deleted = False, approvisionnement__agence = agence, approvisionnement__created_at__range = (debut, fin), approvisionnement__etat__etiquette = Etat.TERMINE).aggregate(Sum('quantite_recu'))
         return res["quantite_recu__sum"] or 0
 
     def perte(self, agence, debut=None, fin=None):
-        debut = debut or datetime.date.fromisoformat("2021-06-01")
+        debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        res = self.ressource_perte.filter(deleted = False, created_at__range = (debut, fin)).aggregate(Sum('quantite'))
+        res = self.ressource_perte.filter(deleted = False, agence=agence, created_at__range = (debut, fin)).aggregate(Sum('quantite'))
         return res["quantite__sum"] or 0
 
 
@@ -230,7 +226,7 @@ class LigneProduction(BaseModel):
 class LigneConsommation(BaseModel):
     production = models.ForeignKey(Production, on_delete = models.CASCADE, related_name="production_ligneconsommation")
     ressource  = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_ligneconsommation")
-    quantite   = models.IntegerField(default = 0)
+    quantite   = models.FloatField(default = 0)
 
     def __str__(self):
         return "consommation du "+str(self.production.date)+" : "+self.ressource.name+" => "+str(self.quantite)

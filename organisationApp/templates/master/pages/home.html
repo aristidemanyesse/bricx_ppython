@@ -22,7 +22,7 @@
                         <div class="p-lg">
                             <i class="fa fa-bank fa-4x text-green"></i>
                             <h1 class="m-xs">{{nb_agences|start0}}</h1>
-                            <h4 class="no-margins text-uppercase gras">Fabrique{{ agences |pluralize }}</h4>
+                            <h4 class="no-margins text-uppercase gras">Fabrique{{ agences|length |pluralize }}</h4>
                             <small>{{request.societe.socialreason}}</small>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
 
 
         {% if perms.paramApp.manager %}
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-12">
             <a href="">
                 <div class="ibox">
                     <div class="ibox-content">
@@ -116,7 +116,7 @@
                     </div>
                 </div>
             </a>
-        </div>
+        </div> -->
         {% endif %}
 
 

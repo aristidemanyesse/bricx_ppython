@@ -1,5 +1,6 @@
 
 
+from django.contrib.auth.models import Permission
 from authApp.models import AccesAgence
 from organisationApp.models import Agence, Employe
 
@@ -17,15 +18,11 @@ def run():
         last_name = "administrateur",
         email = "test@email.com",
         username = "bricx",
-        password = "bricx",
+        brut = "bricx",
         agence = agence,
         protected = True
     )
+    employe.user_permissions.set(Permission.objects.filter(name__contains = "~"))
 
-    AccesAgence.objects.create(
-        employe = employe,
-        agence = agence,
-        protected = True
-    )
     
     print("Initialisation du module d' Organisation")

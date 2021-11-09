@@ -1,4 +1,7 @@
+from django.db.models.aggregates import Sum
 from django.shortcuts import render
+
+from livraisonApp.models import Tricycle
 from .models import Brique, PerteBrique, PerteRessource, Production, Ressource, LigneProduction, LigneConsommation, TypePerte
 import datetime
 # Create your views here.
@@ -168,7 +171,9 @@ def rapport_production(request):
                 "perteL"    : brique.perte_livraison(request.agence, debut, fin), 
                 "perteA"    : brique.perte_autre(request.agence, debut, fin), 
             }
-            data["pct"] = (brique.perte(request.agence, debut, fin) / (data["production"] + data["achat"])) * 100
+            data["pct"] = 0;
+            if data["production"] + data["achat"] > 0:
+                data["pct"] = (brique.perte(request.agence, debut, fin) / (data["production"] + data["achat"])) * 100
             briques[brique] = data
 
 
@@ -188,7 +193,6 @@ def rapport_production(request):
             cout_rangement += prod.montant_rangement
             cout_livraison += prod.montant_livraison
 
-    
         tricycle = Tricycle.objects.filter(deleted = False, created_at__range = (debut, lendemain)).aggregate(Sum("montant"))
 
         context = {

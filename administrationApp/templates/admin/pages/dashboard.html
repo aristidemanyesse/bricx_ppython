@@ -8,6 +8,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
+            {% if perms.paramApp.organisation %}
             <div class="col-md-4 col-sm-6">
                 <a href="{% url 'administration:general' %}">
                     <div class="ibox">
@@ -25,8 +26,9 @@
                     </div>
                 </a>
             </div>
+{% endif %}
 
-            
+                {% if perms.paramApp.role %}
                 <div class="col-md-4 col-sm-6">
                     <a href="{% url 'administration:roles' %}">
                         <div class="ibox">
@@ -44,7 +46,9 @@
                         </div>
                     </a>
                 </div>
-
+                {% endif %}
+                
+                {% if perms.paramApp.organisation %}
                 <div class="col-md-4 col-sm-6">
                     <a href="{% url 'administration:mycompte' %}">
                         <div class="ibox">
@@ -62,15 +66,17 @@
                         </div>
                     </a>
                 </div>
+                {% endif %}
                 
-        </div>
+            </div>
     </div>
     
     
     <hr><hr><br>
-
-
+    
+    
     <div class="row justify-content-center">
+        {% if perms.paramApp.organisation %}
         <div class="col-md-3 col-sm-6 ">
             <a href="{% url 'administration:organisation' %}">
                 <div class="ibox">
@@ -88,6 +94,9 @@
                 </div>
             </a>
         </div>
+        {% endif %}
+        
+        {% if perms.paramApp.production %}
         <div class="col-md-3 col-sm-6 ">
             <a href="{% url 'administration:production' %}">
                 <div class="ibox">
@@ -105,6 +114,9 @@
                 </div>
             </a>
         </div>
+        {% endif %}
+        
+        {% if perms.paramApp.comptabilite %}
         <div class="col-md-3 col-sm-6 ">
             <a href="{% url 'administration:prices' %}">
                 <div class="ibox">
@@ -139,6 +151,7 @@
                 </div>
             </a>
         </div>
+        {% endif %}
     </div><br>
 
 

@@ -107,7 +107,7 @@ if ($action === "annuler") {
 
 
 //disponiblité des elements
-if ($action === "changeActive") {
+if ($action === "change_active") {
 	$class = TABLE::fullyClassName($table);
 	if (class_exists($class)) {
 		$datas = $class::findBy(["id ="=>$id]);

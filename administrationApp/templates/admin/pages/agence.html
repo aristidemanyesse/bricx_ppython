@@ -53,7 +53,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <span class="text-muted">Nombre d'employes</span>
-                                <h4>{{employes|start0}}</h4>
+                                <h4>{{employes|length|start0}}</h4>
                             </div>
     
                             <div class="col-sm-4">
@@ -335,7 +335,15 @@
                                         <td>
                                             <div class="form-group">
                                                 <small>Selectionner l'agence</small>
-                                                {% include 'extra/select_with_empty.html' with name="agence" instances=agences obj=agence %}                                    
+                                                <select class="select2 maj" name="agence" model="employe" id="{{employe.id}}" style="width: 100%">
+                                                    {% for item in agences %}
+                                                        {% if item.id == agence.id %}
+                                                            <option value="{{ item.id }}" id="{{ item.etiquette|default:'' }}" selected="selected">{{ item.name }}</option>
+                                                        {% else %}
+                                                            <option value="{{ item.id }}" id="{{ item.etiquette|default:'' }}" >{{ item.name }}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>                                   
                                             </div>
                                         </td>
                                         <td class="text-right">          
