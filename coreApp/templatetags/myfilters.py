@@ -11,6 +11,8 @@ register = template.Library()
 def start0(number):
     try:
         if 0 <= int(number) <= 9 :
+            if type(number) is float :
+                return round(number, 2)
             return "0"+str(number)
         return number
     except :

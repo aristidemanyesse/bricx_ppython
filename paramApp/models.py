@@ -31,7 +31,7 @@ class MyApp(models.Model):
             ("production", "~ Peut acceder à la gestion de la production"),
             ("organisation", "~ Peut acceder à la gestion de l'organisation"),
             ("commande", "~ Peut acceder à la gestion des commande"),
-            ("livraisons", "~ Peut acceder à la gestion des livraisons"),
+            ("livraison", "~ Peut acceder à la gestion des livraisons"),
             ("stock", "~ Peut acceder à la gestion des stock"),
             ("approvisionnement", "~ Peut acceder à la gestion des approvisionnements"),
             ("comptabilite", "~ Peut acceder à la gestion des comptabilité"),

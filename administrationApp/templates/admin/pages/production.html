@@ -9,7 +9,7 @@
 
     <div class="row">
 
-       <div class="col-sm-6 bloc">
+       <div class="col-md-6 bloc">
           <div class="ibox border">
               <div class="ibox-title">
                   <h5 class="text-uppercase">Les produits</h5>
@@ -64,7 +64,7 @@
       </div>
 
 
-      <div class="col-sm-6 bloc">
+      <div class="col-md-6 bloc">
           <div class="ibox border">
               <div class="ibox-title">
                   <h5 class="text-uppercase">Les matières premières</h5>
@@ -164,7 +164,7 @@
                                     <small>{{brique.comment}}</small>
                                 </td>
                                 {% for ressource in ressources %}
-                                        <td class="text-center"> {{briques|dict_value:brique|dict_value:ressource|start0}} {{ressource.unite}}</td>
+                                        <td class="text-center"> {{briques|dict_value:brique|dict_value:ressource}} {{ressource.unite}}</td>
                                 {% endfor %}
                                 <td>==></td>
                                 <td class="text-blue"> Pour produire <b>{{exi.quantite|start0}}</b> unités</td>

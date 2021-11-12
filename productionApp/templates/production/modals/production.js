@@ -1,6 +1,8 @@
 $(function(){
     
-    $("#modal-production input").trigger("change")
+    declenche = function(){
+        $("#modal-production input").first().trigger("change")
+    }
 
     $("#modal-production input").change(function(){
         $this = $(this);

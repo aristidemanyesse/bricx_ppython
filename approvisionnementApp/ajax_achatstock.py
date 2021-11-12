@@ -83,6 +83,7 @@ def valider_achatstock(request):
         datas = request.POST
         datas._mutable = True
         try:
+            if datas["transport"] == "" : datas["transport"] = 0
             mode = ModePayement.objects.get(pk = datas["modepayement"])
             fournisseur = Fournisseur.objects.get(pk = datas["fournisseur"])
 
@@ -111,10 +112,52 @@ def valider_achatstock(request):
             if not ((mode.etiquette == ModePayement.PRELEVEMENT) or (mode.etiquette != ModePayement.PRELEVEMENT and 0 < avance <= montant)):
                 return JsonResponse({"status": False, "message": "L'avance de la commande est incorrect, verifiez-le!"})
 
-            #if mode.etiquette == ModePayement.PRELEVEMENT:
-            if not (request.agence_compte.solde_actuel() > (avance + int(datas["transport"]))):
-                return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler l'avance et les frais de transport de l'achat de stock !"})
 
+            if mode.etiquette == ModePayement.PRELEVEMENT:
+                if not (request.agence_compte.solde_actuel() >= (avance + int(datas["transport"]))):
+                    return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler l'avance et les frais de transport de l'achat de stock !"})
+            else:
+                if not (request.agence_compte.solde_actuel() >=  int(datas["transport"])):
+                    return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler les frais de transport de l'achat de stock !"})
+
+
+            if int(datas["transport"]) > 0:
+                title = "Frais de transport"
+                comment = "Frais de transport pour l'achat de stock"
+                datas["montant"] = int(datas["transport"])
+                datas["modepayement"] = ModePayement.objects.get(etiquette = ModePayement.ESPECES).id
+                res = mouvement_pour_sortie(request, datas, title, comment)
+                if type(res) is Mouvement:
+                    Operation.objects.create(
+                        mouvement = res,
+                        category = CategoryOperation.objects.get(etiquette = CategoryOperation.TRANSPORT)
+                    )
+                else:
+                    return JsonResponse(res)
+
+
+            res = None
+            if mode.etiquette == ModePayement.PRELEVEMENT :
+                acompte = fournisseur.acompte_actuel()
+                lavance = montant if acompte >= montant else acompte
+                if lavance > 0 :
+                    title = ""
+                    comment = "Avance sur réglement de la facture pour l'achat de stock"
+                    datas["montant"] = lavance
+                    res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
+                    if type(res) is Mouvement:
+                        return JsonResponse(res)
+
+            else:
+                title= ""
+                comment = "Avance sur réglement de la facture pour l'achat de stock"
+                datas["montant"] = avance
+                res = mouvement_pour_sortie(request, datas, title, comment)
+                if type(res) is Mouvement:
+                    return JsonResponse(res)
+
+
+                
             etat = Etat.objects.get(etiquette = datas["etat"]) 
             achat = AchatStock.objects.create(
                 fournisseur = fournisseur,
@@ -140,46 +183,12 @@ def valider_achatstock(request):
 
             
 
-            if mode.etiquette == ModePayement.PRELEVEMENT :
-                acompte = fournisseur.acompte_actuel()
-                achat.avance = montant if acompte >= montant else acompte
-                if achat.avance > 0 :
-                    name = "Avance sur réglement de la facture pour l'achat de stock N°"+str(achat.reference);
-                    datas["montant"] = achat.avance
-                    res = mouvement_pour_sortie_client(request, datas, name)
-                    if type(res) is Mouvement:
-                        CompteFournisseur.objects.create(
-                            mouvement = res,
-                            fournisseur = fournisseur
-                        )
-                    else:
-                        return JsonResponse(res)
+            if type(res) is Mouvement:
+                ReglementAchatStock.objects.create(
+                    mouvement = res,
+                    achatstock = achat
+                )
 
-            else:
-                name = "Avance sur réglement de la facture pour l'achat de stock N°"+str(achat.reference);
-                datas["montant"] = avance
-                res = mouvement_pour_sortie(request, datas, name)
-                if type(res) is Mouvement:
-                    ReglementAchatStock.objects.create(
-                        mouvement = res,
-                        achatstock = achat
-                    )
-                else:
-                    return JsonResponse(res)
-
-
-            if int(datas["transport"]) > 0:
-                name = "Frais de transport pour l'achat de stock N°"+str(achat.reference);
-                datas["montant"] = int(datas["transport"])
-                datas["modepayement"] = ModePayement.objects.get(etiquette = ModePayement.ESPECES).id
-                res = mouvement_pour_sortie(request, datas, name)
-                if type(res) is Mouvement:
-                    Operation.objects.create(
-                        mouvement = res,
-                        category = CategoryOperation.objects.get(etiquette = CategoryOperation.TRANSPORT)
-                    )
-                else:
-                    return JsonResponse(res)
 
 
             achat.acompte_fournisseur = fournisseur.acompte_actuel();
@@ -243,8 +252,9 @@ def regler_achat(request):
         datas = request.POST
         try :
             achat = AchatStock.objects.get(pk = datas["achat_id"])
-            name = "Reglement de l'achat de stock N°"+str(achat.reference)
-            res = mouvement_pour_sortie_fournisseur(request, datas, name)
+            title = "Reglement Achat de brique"
+            comment = "Reglement de l'achat de stock N°"+str(achat.reference)
+            res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementAchatStock.objects.create(
                     mouvement = res,

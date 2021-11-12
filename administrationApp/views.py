@@ -29,7 +29,18 @@ def roles(request):
     if request.method == "GET":
         datas={}
         for employe in Employe.objects.filter(deleted = False):
-            datas[employe] = Permission.objects.filter(codename__in = employe.get_all_permissions()) 
+            perms_off = []
+            perms = employe.user_permissions.filter()
+            data = {}
+            data["perms_on"] = perms 
+            items = Permission.objects.filter(name__contains="~")
+            for p in items:
+                if p not in perms: 
+                    perms_off.append(p)
+
+            data["perms_off"] = perms_off
+            datas[employe] = data
+            
 
         context = {
             "employes" : datas,

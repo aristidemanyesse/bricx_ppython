@@ -1,9 +1,7 @@
-./*/migrations
+./*/migrations/
 ./*/migrations/*
-./*/__pycache__
+./*/__pycache__/
 ./*/__pycache__/*
-./vfs
-./vfs/*
 ./media
 ./node1/
 ./media/*

@@ -31,9 +31,9 @@ class Fournisseur(BaseModel):
     def acompte_actuel(self):
         total = 0
         datas = self.fournisseur_compte.filter(mouvement__type__etiquette = TypeMouvement.DEPOT).aggregate(Sum("mouvement__montant"))
-        total += datas["mouvement__montant__sum"] or 0
-        datas = self.fournisseur_compte.filter(mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
         total -= datas["mouvement__montant__sum"] or 0
+        datas = self.fournisseur_compte.filter(mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
+        total += datas["mouvement__montant__sum"] or 0
         return (self.acompte_initial or 0) + total
 
 
@@ -41,6 +41,9 @@ class Fournisseur(BaseModel):
         total = 0
         for appro in self.fournisseur_approvisionnement.filter(deleted = False).exclude(etat__etiquette = Etat.ANNULE):
             total += appro.reste_a_payer()
+
+        for achat in self.fournisseur_achatstock.filter(deleted = False).exclude(etat__etiquette = Etat.ANNULE):
+            total += achat.reste_a_payer()
 
         datas = self.fournisseur_compte.filter(is_dette = True, mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
         total -= datas["mouvement__montant__sum"] or 0

@@ -115,12 +115,13 @@ def mouvement_pour_sortie_fournisseur(request, datas, title, comment):
         if mode.etiquette == ModePayement.PRELEVEMENT :
             if fournisseur.acompte_actuel() < montant:
                 return {"status":False, "message":"L'acompte du fournisseur est insuffisant pour effectuer cette opération!"}
-        if compte.solde_actuel() < montant:
-            return {"status":False, "message":"Fonds insuffisant pour effectuer cette opération!"}
+        else:
+            if compte.solde_actuel() < montant:
+                return {"status":False, "message":"Fonds insuffisant pour effectuer cette opération!"}
 
         mouvement = Mouvement.objects.create(
             name      = title,
-            comment      = comment,
+            comment   = comment,
             montant   = montant,
             compte    = compte,
             type      = type,

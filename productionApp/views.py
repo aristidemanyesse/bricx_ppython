@@ -25,7 +25,6 @@ def productions(request):
 
         debut = datetime.date.fromisoformat(request.session["date1"])
         fin = datetime.date.fromisoformat(request.session["date2"]) + datetime.timedelta(days= 1)
-
         context = {
             "productions" : Production.objects.filter(deleted = False, date__range = (debut, fin)),
             "productionday" : productionday,
@@ -44,7 +43,6 @@ def stock_brique(request):
         date = datetime.date.fromisoformat(request.session["date1"])
         debut = date
         fin = datetime.date.fromisoformat(request.session["date2"])
-    
         while date <= fin:
             date_ = date + datetime.timedelta(days = 1)
             datas = {}
@@ -163,27 +161,27 @@ def rapport_production(request):
         for brique in Brique.objects.filter(active = True, deleted = False):
             data = {
                 "veille"    : brique.stock(request.agence, veille),
-                "stock"     : brique.stock(request.agence, fin), 
-                "production": brique.production(request.agence, debut, fin), 
-                "achat"     : brique.achat(request.agence, debut, fin), 
-                "livraison": brique.livraison(request.agence, debut, fin), 
-                "perteR"    : brique.perte_rangement(request.agence, debut, fin), 
-                "perteL"    : brique.perte_livraison(request.agence, debut, fin), 
-                "perteA"    : brique.perte_autre(request.agence, debut, fin), 
+                "stock"     : brique.stock(request.agence, lendemain), 
+                "production": brique.production(request.agence, debut, lendemain), 
+                "achat"     : brique.achat(request.agence, debut, lendemain), 
+                "livraison": brique.livraison(request.agence, debut, lendemain), 
+                "perteR"    : brique.perte_rangement(request.agence, debut, lendemain), 
+                "perteL"    : brique.perte_livraison(request.agence, debut, lendemain), 
+                "perteA"    : brique.perte_autre(request.agence, debut, lendemain), 
             }
             data["pct"] = 0;
             if data["production"] + data["achat"] > 0:
-                data["pct"] = (brique.perte(request.agence, debut, fin) / (data["production"] + data["achat"])) * 100
+                data["pct"] = round(((brique.perte(request.agence, debut, lendemain) / (data["production"] + data["achat"])) * 100), 2)
             briques[brique] = data
 
 
         ressources = {}
         for ressource in Ressource.objects.filter(active = True, deleted = False):
             data = {
-                "stock"    : ressource.stock(request.agence, fin), 
-                "achat"    : ressource.achat(request.agence, debut, fin), 
-                "consommee": ressource.consommation(request.agence, debut, fin), 
-                "perte"    : ressource.perte(request.agence, debut, fin), 
+                "stock"    : ressource.stock(request.agence, lendemain), 
+                "achat"    : ressource.achat(request.agence, debut, lendemain), 
+                "consommee": ressource.consommation(request.agence, debut, lendemain), 
+                "perte"    : ressource.perte(request.agence, debut, lendemain), 
             }
             ressources[ressource] = data
 

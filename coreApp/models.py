@@ -108,9 +108,9 @@ def post_save(sender, instance, created, **kwargs):
                     break
         
 
-        if user is not AnonymousUser:
+        if user != None and user is not AnonymousUser:
             if created:
-                if not user.has_perm("paramApp.CCREATE"):
+                if not user.has_perm("paramApp.CREATE"):
                     return Exception("Vous n'avez pas les permissions neccessaires pour effectuer cette opération, veuiller contacter votre administrateur !")
                 History.objects.log_action(
                     user_id=user.id,

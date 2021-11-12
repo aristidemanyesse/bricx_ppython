@@ -1,4 +1,4 @@
-
+{% load l10n %}
 
 {% with exi=brique.brique_exigenceproduction.filter.first %}
 <div class="modal inmodal fade" id="modal-exigence{{element.id}}">
@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     <div class="text-center">
                         <div class="row">
-                            <div class="offset-sm-5 col-sm-2">
+                            <div class=" offset-sm-4offset-md-5 col-sm-4 col-md-2">
                                 <input type="number" name="quantite" class="form-control" step="0.1" value="{{exi.quantite}}">
                             </div>	
                         </div>

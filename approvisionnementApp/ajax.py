@@ -82,6 +82,7 @@ def valider_approvisionnement(request):
         datas = request.POST
         datas._mutable = True
         try:
+            if datas["transport"] == "" : datas["transport"] = 0
             mode = ModePayement.objects.get(pk = datas["modepayement"])
             fournisseur = Fournisseur.objects.get(pk = datas["fournisseur"])
 
@@ -113,7 +114,46 @@ def valider_approvisionnement(request):
             if mode.etiquette == ModePayement.PRELEVEMENT:
                 if not (request.agence_compte.solde_actuel() >= (avance + int(datas["transport"]))):
                     return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler l'avance et les frais de transport de l'approvisionnement !"})
+            else:
+                if not (request.agence_compte.solde_actuel() >=  int(datas["transport"])):
+                    return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler les frais de transport de l'achat de stock !"})
 
+
+            if int(datas["transport"]) > 0:
+                datas["modepayement"] = ModePayement.objects.get(etiquette = ModePayement.ESPECES).id
+                title = "Frais de transport pour approvisionnement"
+                comment = "Frais de transport pour l'approvisionnement";
+                datas["montant"] = int(datas["transport"])
+                res = mouvement_pour_sortie(request, datas, title, comment)
+                if type(res) is Mouvement:
+                    Operation.objects.create(
+                        mouvement = res,
+                        category = CategoryOperation.objects.get(etiquette = CategoryOperation.TRANSPORT)
+                    )
+                else:
+                    return JsonResponse(res)
+              
+            res = None
+            if mode.etiquette == ModePayement.PRELEVEMENT :
+                acompte = fournisseur.acompte_actuel()
+                lavance = montant if acompte >= montant else acompte
+                if lavance > 0 :
+                    title = "Avance sur approvisionnement"
+                    comment = "Avance sur réglement de la facture pour l'Approvisionnement";
+                    datas["montant"] = lavance
+                    res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
+                    if type(res) is not Mouvement:
+                        return JsonResponse(res)
+
+            else:
+                title = "Avance sur approvisionnement"
+                comment = "Avance sur réglement de la facture pour l'approvisionnement";
+                datas["montant"] = avance
+                res = mouvement_pour_sortie(request, datas, title, comment)
+                if type(res) is not Mouvement:
+                    return JsonResponse(res)
+                
+            
             etat = Etat.objects.get(etiquette = datas["etat"]) 
             appro = Approvisionnement.objects.create(
                 fournisseur = fournisseur,
@@ -138,51 +178,11 @@ def valider_approvisionnement(request):
                     );
 
             
-
-            if mode.etiquette == ModePayement.PRELEVEMENT :
-                acompte = fournisseur.acompte_actuel()
-                appro.avance = montant if acompte >= montant else acompte
-                if appro.avance > 0 :
-                    title = "Avance sur approvisionnement"
-                    comment = "Avance sur réglement de la facture pour l'Approvisionnement N°"+str(appro.reference);
-                    datas["montant"] = appro.avance
-                    res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
-                    if type(res) is Mouvement:
-                        ReglementApprovisionnement.objects.create(
-                            mouvement = res,
-                            approvisionnement = appro
-                        )
-                    else:
-                        return JsonResponse(res)
-
-            else:
-                title = "Avance sur approvisionnement"
-                comment = "Avance sur réglement de la facture pour l'approvisionnement N°"+str(appro.reference);
-                datas["montant"] = avance
-                res = mouvement_pour_sortie(request, datas, title, comment)
-                if type(res) is Mouvement:
-                    ReglementApprovisionnement.objects.create(
-                        mouvement = res,
-                        approvisionnement = appro
-                    )
-                else:
-                    return JsonResponse(res)
-
-
-            if int(datas["transport"]) > 0:
-                datas["modepayement"] = ModePayement.objects.get(etiquette = ModePayement.ESPECES).id
-                title = "Frais de transport pour approvisionnement"
-                comment = "Frais de transport pour l'approvisionnement N°"+str(appro.reference);
-                datas["montant"] = int(datas["transport"])
-                res = mouvement_pour_sortie(request, datas, title, comment)
-                if type(res) is Mouvement:
-                    Operation.objects.create(
-                        mouvement = res,
-                        category = CategoryOperation.objects.get(etiquette = CategoryOperation.TRANSPORT)
-                    )
-                else:
-                    return JsonResponse(res)
-
+            if type(res) is Mouvement:
+                 ReglementApprovisionnement.objects.create(
+                    mouvement = res,
+                    approvisionnement = appro
+                )
 
             appro.acompte_fournisseur = fournisseur.acompte_actuel();
             appro.dette_fournisseur = fournisseur.dette_totale();

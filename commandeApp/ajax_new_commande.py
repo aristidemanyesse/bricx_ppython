@@ -237,7 +237,7 @@ def changer_produit(request):
             for item in tableau:
                 if "=" in item:
                     id, qte = item.split("=")
-                    total += int(qte)
+                    total += int(qte) if qte != "" else 0
             if len(tableau) <= 0 :
                 return JsonResponse({"status": False, "message": "Veuillez selectionner des produits et leur quantité pour passer la commande !"})
             if total <= 0 :
@@ -272,6 +272,7 @@ def changer_produit(request):
             for item in tableau:
                 if "=" in item:
                     id, qte = item.split("=")
+                    qte = qte if qte != "" else 0
                     if int(qte) > 0 :
                         brique = Brique.objects.get(pk = id)
                         pz = PrixZoneLivraison.objects.get(brique = brique, zone = commande.zone)
@@ -283,15 +284,15 @@ def changer_produit(request):
                             commande = commande
                         );
 
-                    LigneConversion.objects.create(
-                        brique = brique,
-                        quantite_avant = old.reste(brique),
-                        quantite_apres = qte,
-                        conversion = conversion
-                    );
+                        LigneConversion.objects.create(
+                            brique = brique,
+                            quantite_avant = old.reste(brique),
+                            quantite_apres = qte,
+                            conversion = conversion
+                        );
 
             return JsonResponse({"status":True})
 
         except Exception as e:
             print("Erreur valid conversion", e)
-            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer !"})
+            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer :"+ str(e)})

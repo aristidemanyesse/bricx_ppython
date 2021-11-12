@@ -44,6 +44,14 @@ class GroupeCommande(BaseModel):
         for commande in self.commande_groupecommande.filter(deleted = False):
             total += commande.reste_a_payer()
         return total
+    
+    
+    def all_briques_all(self):
+        briques = {}
+        for brique in Brique.objects.filter(active = True, deleted = False):
+            count =  self.reste(brique)
+            briques[brique] = count
+        return briques
 
     def all_briques(self):
         briques = {}
@@ -70,7 +78,6 @@ class GroupeCommande(BaseModel):
         except Exception as e:
             print("maj grcom ", e)
                 
-
 
 
     def __str__(self):
@@ -184,19 +191,21 @@ def post_save_brique(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender = GroupeCommande)
 def pre_save_groupe_commande(sender, instance, **kwargs):
-    instance.datelivraison = datetime.datetime.now()
-    instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
+    if instance._state.adding:
+        instance.datelivraison = datetime.datetime.now()
+        instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
 
 
 
 @receiver(pre_save, sender = Commande)
 def pre_save_commande(sender, instance, **kwargs):
-    if instance.datelivraison is None:
-        raise Exception("Veuillez notifier une date correcte de livraison pour la commande")
-    if instance.lieu == "":
-        raise Exception("Veuillez préciser le lieu exact de la livraison !")
-    instance.reference = uuid.uuid4()
-    instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
+    if instance._state.adding:
+        if instance.datelivraison is None:
+            raise Exception("Veuillez notifier une date correcte de livraison pour la commande")
+        if instance.lieu == "":
+            raise Exception("Veuillez préciser le lieu exact de la livraison !")
+        instance.reference = uuid.uuid4()
+        instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
 
 
 

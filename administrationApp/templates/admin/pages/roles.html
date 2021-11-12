@@ -51,14 +51,14 @@
                             </td>
                             <td class="" >
                                 <div class="row">
-                                    {% for perm in employes|dict_value:employe %}
+                                    {% for perm in employes|dict_value:employe|dict_value:"perms_on" %}
                                         <div class="col-6 col-sm-4">
-                                            <label class="cursor"><input type="checkbox" class="i-checks" employe_id="" role_id="" checked name="">{{perm.name}}</label>
+                                            <label class="cursor"><input type="checkbox" class="i-checks" employe_id="{{employe.id}}" perm_id="{{perm.id}}" checked name="perm">{{perm.name}}</label>
                                         </div>
                                     {% endfor %}
-                                    {% for perm in permissons_off %}
+                                    {% for perm in employes|dict_value:employe|dict_value:"perms_off" %}
                                         <div class="col-6 col-sm-4">
-                                            <label class="cursor"><input type="checkbox" class="i-checks" employe_id="{{employe.id}}" role_id="<?= $role->id}}" name="<?= $role->name()}}"> <?= $role->name()}}</label>
+                                            <label class="cursor"><input type="checkbox" class="i-checks" employe_id="{{employe.id}}" perm_id="{{perm.id}}" name="perm">{{perm.name}}</label>
                                         </div>
                                     {% endfor %} 
                                 </div>              
@@ -70,15 +70,15 @@
                                 </div>
                             </td>
                             <td class="text-right">          
-                                <button onclick="resetPassword('employe', '{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-refresh text-blue"></i> Init. mot de passe</button><br>
+                                <button onclick="reset_password('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-refresh text-blue"></i> Init. mot de passe</button><br>
 
                                 {% if employe.is_active %}
-                                    <button onclick="lock('employe', '{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-lock text-orange"></i> Bloquer</button>
+                                    <button onclick="lock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-lock text-orange"></i> Bloquer</button>
                                     {% else %}
-                                    <button onclick="unlock('employe', '{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-unlock text-green"></i> Débloquer</button>
+                                    <button onclick="unlock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-unlock text-green"></i> Débloquer</button>
                                     {% endif %}
                                 <button data-toggle="modal" data-target="#modal-employe{{employe.id}}" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-white btn-xs" onclick="delete_password('employe', '{{employe.id}}')"><i class="fa fa-close text-red"></i></button>
+                                <button class="btn btn-white btn-xs" onclick="delete_password('{{employe.id}}')"><i class="fa fa-close text-red"></i></button>
                             </td>
                         </tr>
                         <tr style="height: 20px"></tr>

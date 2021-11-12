@@ -41,7 +41,7 @@ def rapport_du_jour(request, year, month, day):
         for item in AchatStock.objects.filter(deleted = False, created_at__date = date).exclude(etat__etiquette = Etat.ANNULE):
             data = {}
             for ligne in item.achatstock_ligne.all():
-                data[ligne.ressource] = ligne.quantite
+                data[ligne.brique] = ligne.quantite
             achats[item] = data
 
 
@@ -70,15 +70,15 @@ def rapport_du_jour(request, year, month, day):
             "production" :production,
             'employes' : Employe.objects.filter(deleted = False, last_login__date = date),
 
-            "entree_du_jour" : request.agence_compte.total_entree(date, date),
-            "depense_du_jour" : request.agence_compte.total_sortie(date, date),
+            "entree_du_jour" : request.agence_compte.total_entree(date, demain),
+            "depense_du_jour" : request.agence_compte.total_sortie(date, demain),
             "solde_ouverture" : request.agence_compte.solde_actuel(veille),
-            "solde_fermeture" : request.agence_compte.solde_actuel(date),
+            "solde_fermeture" : request.agence_compte.solde_actuel(demain),
 
             "mouvements":datas,
             "report":report,
-            "total_entree" : request.agence_compte.total_entree(date, date),
-            "total_depense" : request.agence_compte.total_sortie(date, date),
+            "total_entree" : request.agence_compte.total_entree(date, demain),
+            "total_depense" : request.agence_compte.total_sortie(date, demain),
             "solde_a_la_date" : request.agence_compte.solde_actuel(date),
         }
         return render(request, "rapports/pages/rapport_du_jour.html", context)

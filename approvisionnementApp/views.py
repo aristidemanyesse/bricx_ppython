@@ -2,7 +2,7 @@ from django.shortcuts import render
 from commandeApp.models import GroupeCommande, ZoneLivraison
 from livraisonApp.models import Chauffeur, ModeLivraison, Vehicule
 from productionApp.models import Brique, Ressource
-from comptabilityApp.models import CompteFournisseur, ModePayement, ReglementApprovisionnement
+from comptabilityApp.models import CompteFournisseur, ModePayement, ReglementAchatStock, ReglementApprovisionnement
 from coreApp.models import Etat
 from .models import AchatStock, Approvisionnement, Fournisseur
 from django.shortcuts import get_object_or_404
@@ -31,6 +31,8 @@ def fournisseur(request, fournisseur_id):
         items = []
         for item in ReglementApprovisionnement.objects.filter(approvisionnement__fournisseur = fournisseur, deleted = False):
             items.append(item.mouvement)
+        for item in ReglementAchatStock.objects.filter(achatstock__fournisseur = fournisseur, deleted = False):
+            items.append(item.mouvement)
         for item in CompteFournisseur.objects.filter(fournisseur = fournisseur, deleted = False):
             if item.mouvement not in items:
                 items.append(item.mouvement)
@@ -52,7 +54,7 @@ def fournisseur(request, fournisseur_id):
 
 def approvisionnements(request):
     context = {
-        'appros' : Approvisionnement.objects.filter(deleted = False),
+        'appros' : Approvisionnement.objects.filter(deleted = False).order_by("etat__etiquette"),
         'fournisseurs' : Fournisseur.objects.filter(deleted = False, agence = request.agence),
         "ressources" : Ressource.objects.filter(active = True, deleted = False),
         "modepayements": ModePayement.objects.filter(deleted = False),

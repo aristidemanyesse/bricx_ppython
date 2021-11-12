@@ -37,6 +37,16 @@ def livraison(request, id):
 
 
 
+def conversion(request, id):
+    if request.method == "GET":
+        conversion = get_object_or_404(Conversion, pk = id)
+        context = {
+                "conversion" : conversion,
+            }
+        return render(request, "fiches/pages/conversion.html", context)
+
+
+
 def production(request, id):
     if request.method == "GET":
         production = get_object_or_404(Production, pk = id)

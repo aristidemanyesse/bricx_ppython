@@ -61,7 +61,7 @@ $(function () {
             $("div.modepayement_facultatif").hide()
         }
 
-        if (option.attr("id") != 1) {
+        if (option.attr("id") != 2) {
             $("div.no_modepayement_facultatif").show()
         } else {
             $("div.no_modepayement_facultatif").hide()

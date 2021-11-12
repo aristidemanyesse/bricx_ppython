@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from django.db.models import Sum, Avg
 import commandeApp.models 
 from coreApp.models import BaseModel, Etat
-import uuid, datetime
+import uuid, datetime, traceback
 
 from organisationApp.models import Agence
 
@@ -114,7 +114,7 @@ class Brique(BaseModel):
             ligne = LigneExigenceProduction.objects.get(exigence = exigence, ressource = ressource)
             if int(quantite) > 0:
                 if exigence.quantite > 0:
-                    return (int(quantite) * ligne.quantite) / exigence.quantite;
+                    return round(((int(quantite) * ligne.quantite) / exigence.quantite), 2);
             return 0
         except Exception as e:
             print("-----------------------------", e)
@@ -190,7 +190,10 @@ class Ressource(BaseModel):
         if self.price <= 0:
             try :
                 data = self.ressource_ligneapprovisionnement.filter(deleted = False).aggregate(Sum("price"))
-                return (data["price__sum"] or 0) / self.achat(agence) * self.stock(agence)
+                price = self.achat(agence) * self.stock(agence)
+                if price > 0:
+                    return round(((data["price__sum"] or 0) / price), 2)
+                return 0
             except Exception as e:
                 print("----------------", e)
                 return self.price * self.stock(agence)
@@ -391,6 +394,15 @@ def post_save_brique(sender, instance, created, **kwargs):
                 quantite = 0
             )
 
+        try:
+            productionday = Production.objects.get(date = datetime.datetime.now().date())
+            LigneProduction.objects.create(
+                brique = instance,
+                production = productionday,
+                quantite = 0
+            )
+        except :
+            print("pas de production du jour")
 
 
 

@@ -1,9 +1,9 @@
 from django.urls import reverse
 from commandeApp.models import Commande
 from django.http import  JsonResponse
-from comptabilityApp.models import CategoryOperation, Operation, ReglementApprovisionnement, Mouvement, ModePayement, CompteFournisseur
+from comptabilityApp.models import CategoryOperation, Operation, ReglementAchatStock, ReglementApprovisionnement, Mouvement, ModePayement, CompteFournisseur
 from comptabilityApp.tools import mouvement_pour_entree, mouvement_pour_sortie, mouvement_pour_sortie_fournisseur
-from approvisionnementApp.models import Approvisionnement, Fournisseur
+from approvisionnementApp.models import AchatStock, Approvisionnement, Fournisseur
 from authApp.tools import verify_password
 from coreApp.models import Etat
 # Create your views here.
@@ -16,12 +16,12 @@ def crediter(request):
         title = "Apport acompte fournisseur"
         comment = "Dépot d'acompte chez le fourniseur "+fournisseur.fullname +" d'un montant de "+datas["montant"]
         
-        res = mouvement_pour_entree(request, datas, title, comment)
+        res = mouvement_pour_sortie(request, datas, title, comment)
         if type(res) is Mouvement:
             CompteFournisseur.objects.create(
-                    mouvement = res,
-                    fournisseur = fournisseur
-                )
+                mouvement = res,
+                fournisseur = fournisseur
+            )
         else:
             return JsonResponse(res)
             
@@ -75,9 +75,9 @@ def regler_toutes_dettes(request):
             if not verify_password(request, datas["password"]):
                 return JsonResponse({"status":False, "message" : "Le mot de passe est incorrect !" })
 
-            acompte = fournisseur.acompte_actuel()
+            acompte = request.agence_compte.solde_actuel()
             dette = fournisseur.dette_totale()
-            while acompte > 0 and dette > 0 :
+            while not (acompte <= 0 or dette <= 0 ):
                 for appro in Approvisionnement.objects.filter(fournisseur = fournisseur, deleted = False).exclude(etat__etiquette = Etat.ANNULE):
                     reste =  appro.reste_a_payer()
                     if reste > 0 and acompte > 0:
@@ -90,27 +90,38 @@ def regler_toutes_dettes(request):
                                 mouvement = res,
                                 approvisionnement = appro
                             )
-                            acompte = fournisseur.acompte_actuel()
+                            acompte = request.agence_compte.solde_actuel()
+                            dette = fournisseur.dette_totale()
+                            if acompte <= 0 or dette <= 0:
+                                break
                         else:
                             return JsonResponse(res)
-
-                if acompte > 0:
-                    dette = fournisseur.dette_totale()
-                    datas["montant"] = dette if acompte >= dette else acompte
-                    title ="Reglement approvisionnement"
-                    comment = "reglement de la dette de "+fournisseur.fullname
-                    res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
-                    if type(res) is Mouvement:
-                        CompteFournisseur.objects.create(
-                            mouvement = res,
-                            fournisseur = fournisseur,
-                            is_dette = True
-                        )
                     else:
-                        return JsonResponse(res)
+                        break
 
-                acompte = fournisseur.acompte_actuel()
-                dette = fournisseur.dette_totale()
+                if acompte <= 0 or dette <= 0:
+                    break
+                            
+                for achat in AchatStock.objects.filter(fournisseur = fournisseur, deleted = False).exclude(etat__etiquette = Etat.ANNULE):
+                    reste =  achat.reste_a_payer()
+                    if reste > 0 and acompte > 0:
+                        datas["montant"] = reste if acompte >= reste else acompte
+                        title ="Reglement achat de stock"
+                        comment = "reglement de l'achat de stock N°"+achat.reference
+                        res = mouvement_pour_sortie(request, datas, title, comment)
+                        if type(res) is Mouvement:
+                            ReglementAchatStock.objects.create(
+                                mouvement = res,
+                                achatstock = achat
+                            )
+                            acompte = request.agence_compte.solde_actuel()
+                            dette = fournisseur.dette_totale()
+                            if acompte <= 0 or dette <= 0:
+                                break
+                        else:
+                            return JsonResponse(res)
+                    else:
+                        break
 
         return JsonResponse({"status":True})
         

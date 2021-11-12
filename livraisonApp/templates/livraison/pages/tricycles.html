@@ -43,7 +43,7 @@
                     {% for tricycle in tricycles %}
                     <tr style="border-bottom: 2px solid black" class="item">
                         <td class="project-status">
-                            <span class="label label-{{tricycle.etat.classe}}">livraison {{tricycle.livraison.etat.name}}</span>
+                            <span class="label label-{{tricycle.livraison.etat.classe}}">livraison {{tricycle.livraison.etat.name}}</span>
                         </td>
                         <td>
                             <span class="text-uppercase gras">Livraison N°{{tricycle.livraison.reference}}</span><br>
@@ -97,19 +97,16 @@
                             </table>
                         </td>
                         <td>
-                            <button data-toggle="modal" data-target="#modal-paye-tricycle-{{tricycle.id}}" class="btn btn-primary btn-sm"><i class="fa fa-money"></i> Payer le tricycle</button>
-                        </td>
-                        <td>
                             {% if reste_a_payer > 0 %}
-                            <a href="{% url 'fiches:tricycle' tricycle.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
+                            <button data-toggle="modal" data-target="#modal-paye-tricycle-{{tricycle.id}}" class="btn btn-primary btn-sm"><i class="fa fa-money"></i> Payer le tricycle</button>
                             {% endif %}
                         </td>
                         <td>
                             {% if not tricycle.deleted %}
-                                <button onclick="supprimer('tricycle', '{{tricycle.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                                <button onclick="delete_password('tricycle', '{{tricycle.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
                             {% endif %}
-                                </td>
-                            </tr>
+                        </td>
+                    </tr>
                             {% endfor %}
                         </tbody>
                         <tfoot>

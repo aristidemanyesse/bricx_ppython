@@ -7,6 +7,6 @@
 	</div>
 	<div>
 		<strong class="text-uppercase"><img style="height: 25px; width: 25px; margin-right: 10px" class="img-circle" src="{% static request.societe.image %}"> {{request.agence.name}}
-		</strong> | <span class=""> Fin d'abonnement: {{ request.mycompte.expiration | naturalday }} </span>
+		</strong> | <span class="" title="Fin de l'abonnement"> <i class="fa fa-calendar"></i> {{ request.mycompte.expiration }} </span>
 	</div>
 </div>

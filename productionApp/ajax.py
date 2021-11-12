@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 import datetime
 from coreApp.models import Etat
 from productionApp.models import Production, Ressource
+import traceback
 
 
 def calcul_production(request):
@@ -62,7 +63,7 @@ def new_production(request):
         montant = 0
         for ligne in productionday.production_ligne.all():
             name = "prod-"+str(ligne.brique.id)
-            ligne.quantite = int(datas[name])
+            ligne.quantite = int(datas[name] or 0)
             ligne.save()
             montant += ligne.brique.cout("production", int(datas[name]))
 

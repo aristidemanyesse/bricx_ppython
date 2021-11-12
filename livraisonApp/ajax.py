@@ -67,7 +67,7 @@ def livraison(request):
                         fullname = datas["nom_tricycle"],
                         contact = datas["contact_tricycle"],
                         montant = datas["paye_tricycle"],
-                        etat = Etat.objects.get(etiquette = Etat.EN_COURS)
+                        # etat = Etat.objects.get(etiquette = Etat.EN_COURS)
                     )
 
 
@@ -155,6 +155,16 @@ def retour_livraison(request):
                     if (ligne.reste > 0 and livraison.groupecommande.etat.etiquette == Etat.TERMINE):
                         livraison.groupecommande.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
                         livraison.groupecommande.save()
+                    
+                    if int(perte) > 0 :
+                        PerteBrique.objects.create(
+                            agence = request.agence,
+                            brique = brique,
+                            quantite = perte,
+                            employe = request.user.employe,
+                            type = TypePerte.objects.get(etiquette = TypePerte.DECHARGEMENT),
+                            comment = "Perte lors du chargement pour la livraison N°"+str(livraison.reference)
+                        );
 
             livraison.comment = datas["comment"]
             livraison.nom_receptionniste = datas["nom_receptionniste"]
@@ -177,8 +187,9 @@ def paye_tricycle(request):
         datas = request.POST
         try :
             tricycle = Tricycle.objects.get(pk = datas["tricycle_id"])
-            name = "Reglement de la paye du  tricycle "+ tricycle.fullname +" pour la livraison N°"+str(tricycle.livraison.reference)
-            res = mouvement_pour_sortie(request, datas, name)
+            title = "Payement du tricyle"
+            comment = "Reglement de la paye du  tricycle "+ tricycle.fullname +" pour la livraison N°"+str(tricycle.livraison.reference)
+            res = mouvement_pour_sortie(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementTricycle.objects.create(
                     mouvement = res,

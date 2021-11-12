@@ -58,8 +58,12 @@ def commandes1(request):
 
 
 def conversions(request):
+    debut = datetime.date.fromisoformat(request.session["date1"])
+    fin = datetime.date.fromisoformat(request.session["date2"])
+    lendemain = fin + datetime.timedelta(days= 1)
+
     context = {
-        "conversions" : Conversion.objects.filter(deleted= False, created_at__range=(request.session["date1"], request.session["date2"]))
+        "conversions" : Conversion.objects.filter(deleted= False, created_at__range=(debut, lendemain))
     }
     return render(request, "commande/pages/conversions.html", context)
 
