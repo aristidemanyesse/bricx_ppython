@@ -6,7 +6,7 @@
 
 <div class="animated fadeInRightBig">
 
-    <div class="container">
+    <div class="container" style="padding-top: 10%">
         <div class="row justify-content-center">
             {% if perms.paramApp.organisation %}
             <div class="col-md-4 col-sm-6">
@@ -155,7 +155,7 @@
     </div><br>
 
 
-
+    {% comment %}
     <div class="row justify-content-center">
         <div class="col-md-3 col-sm-6 ">
             <a href="<?= $this->url("config", "master", "Historiques")  ?>">
@@ -192,7 +192,7 @@
             </a>
         </div>
     </div>
-
+    {% endcomment %}
 </div>
 
 {% endblock body %} 

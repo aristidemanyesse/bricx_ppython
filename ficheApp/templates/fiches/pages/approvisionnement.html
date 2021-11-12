@@ -94,7 +94,7 @@
 
                                 <tr class="border">
                                     <td colspan="3" class="text-right">
-                                        <h3 class="text-uppercase mp0">Avance sur montant = {{000}}</h3>
+                                        <h3 class="text-uppercase mp0">Avance sur montant = </h3>
                                         {% if rgelement is None %}
                                         <small>Réglement par prélèvement sur acompte</small>
                                     {% else %}
@@ -118,12 +118,12 @@
                                         <h4 class="text-uppercase mp0">Solde de l'acompte du fournisseur =</h4>
                                     </td>
                                     <td></td>
-                                    <td colspan="1" class="text-center"><h3 class="gras text-">{{appro.acompte_fournisseur}} {{request.societe.devise}}</h3></td>
+                                    <td colspan="1" class="text-center"><h3 class="gras text-">{{appro.acompte_fournisseur|intcomma}} {{request.societe.devise}}</h3></td>
                                 </tr>
                                 <tr class="border">
                                     <td colspan="3" class="text-uppercase text-right"><h4 class=" text-red ">Dette totale envers le fournisseur = </h4></td>
                                     <td></td>
-                                    <td colspan="1" class="text-center"><h3 class="gras text-danger-muted">{{appro.dette_fournisseur}} {{request.societe.devise}}</h3></td>
+                                    <td colspan="1" class="text-center"><h3 class="gras text-danger-muted">{{appro.dette_fournisseur|intcomma}} {{request.societe.devise}}</h3></td>
                                 </tr>
                             </tbody>
                         </table>
