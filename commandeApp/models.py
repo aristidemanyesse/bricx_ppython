@@ -76,7 +76,7 @@ class GroupeCommande(BaseModel):
                     groupe.etat = Etat.objects.get(etiquette = Etat.TERMINE)
                     groupe.save()
         except Exception as e:
-            print("maj grcom ", e)
+            print("Erreur groupe commande ", e)
                 
 
 

@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import Etat
+from .models import *
 # Register your models here.
 admin.site.register(Etat)
+admin.site.register(History)

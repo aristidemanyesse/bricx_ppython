@@ -158,7 +158,6 @@ def filter_date(request):
 
 def session(request):
     if request.method == "POST":
-        print(dict(request.session))
         datas = request.POST
         request.session[datas["name"]] = datas["value"]
         return JsonResponse(dict(request.session))

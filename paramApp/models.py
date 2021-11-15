@@ -17,7 +17,7 @@ class MyApp(models.Model):
     fax                   = models.CharField(max_length = 255, null = True, blank=True)
     postale               = models.CharField(max_length = 255, null = True, blank=True)
     devise                = models.CharField(max_length = 255, null = True, blank=True)
-    image                  = models.ImageField(upload_to = "images/params/", max_length=255, null=True, blank=True)
+    image                  = models.ImageField(upload_to = "stockage/images/params/", max_length=255, null=True, blank=True)
 
     allow_waiting_payment = models.BooleanField(default=True, null = True, blank=True)
     tva                   = models.IntegerField(default=0, null = True, blank=True)

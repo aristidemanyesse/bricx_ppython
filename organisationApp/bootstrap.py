@@ -14,8 +14,7 @@ def run():
     )
 
     employe = Employe.objects.create(
-        first_name = "Super",
-        last_name = "administrateur",
+        first_name = "Super administrateur",
         email = "test@email.com",
         username = "bricx",
         brut = "bricx",

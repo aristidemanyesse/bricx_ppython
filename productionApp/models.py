@@ -24,7 +24,7 @@ class Brique(BaseModel):
     active = models.BooleanField(default=True)
     comment   = models.TextField(default="", null = True, blank=True)
     alert_stock         = models.IntegerField(default=10, null = True, blank=True)
-    image     = models.ImageField(max_length = 255, upload_to = "images/briques/", default="", null = True, blank=True)
+    image     = models.ImageField(max_length = 255, upload_to = "stockage/images/briques/", default="", null = True, blank=True)
 
 
     def stock(self, agence, fin=None):
@@ -159,7 +159,7 @@ class Ressource(BaseModel):
     active      = models.BooleanField(default=True)
     alert_stock = models.IntegerField(default=10, null = True, blank=True)
     comment     = models.TextField(default="", null = True, blank=True)
-    image       = models.ImageField(max_length = 255, upload_to = "images/ressources/", default="", null = True, blank=True)
+    image       = models.ImageField(max_length = 255, upload_to = "stockage/images/ressources/", default="", null = True, blank=True)
 
     
     def stock(self, agence, fin=None):

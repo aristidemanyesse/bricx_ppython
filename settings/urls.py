@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path
 from django.urls.conf import include
+from django.conf import settings
+from django.conf.urls.static import static
 
 from organisationApp import views as orga
 
@@ -40,7 +42,8 @@ urlpatterns = [
     path('fiches/', include('ficheApp.urls')),
     path('admin/', admin.site.urls),
     path('administration/', include('administrationApp.urls')),
-]
+    
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 handler404 = 'authApp.views.handler404'
