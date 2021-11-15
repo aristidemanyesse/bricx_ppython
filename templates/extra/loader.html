@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="leloader">
     <small>Veuillez patienter </small>
     <span class="loading rhomb"></span>
@@ -38,7 +40,7 @@
 
 
 <div class="imageViewer">
-    <img src="<?= $this->stockage("images", "societe", "logo.png") ?>" >
+    <img src="{% static request.societe.image %}" >
     <br><br>
     <h1 style="font-size: 50px">
         <small>Veuillez patienter </small>

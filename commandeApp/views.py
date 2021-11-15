@@ -40,10 +40,10 @@ def commandes(request):
             "datas" : datas,
             "briques" : Brique.objects.filter(active = True, deleted = False),
             'commandes' : GroupeCommande.objects.filter(etat__etiquette = Etat.EN_COURS, deleted = False),
-            "chauffeurs": Chauffeur.objects.filter(deleted = False),
-            "vehicules": Vehicule.objects.filter(deleted = False),
+            "chauffeurs": Chauffeur.objects.filter(deleted = False, agence = request.agence),
+            "vehicules": Vehicule.objects.filter(deleted = False, agence = request.agence),
             "modepayements": ModePayement.objects.filter(deleted = False),
-            "zonelivraisons": ZoneLivraison.objects.filter(deleted = False),
+            "zonelivraisons": ZoneLivraison.objects.filter(deleted = False, agence = request.agence),
             "modelivraisons": ModeLivraison.objects.filter(deleted = False),
         }
         return render(request, "commande/pages/commandes.html", context)
@@ -74,8 +74,8 @@ def prixparzone(request):
     if request.method == "GET":
         context = {
             "briques" : Brique.objects.filter(active = True),
-            "zones" : ZoneLivraison.objects.filter(),
-            "prixparzones" : PrixZoneLivraison.objects.filter()
+            "zones" : ZoneLivraison.objects.filter(agence = request.agence),
+            "prixparzones" : PrixZoneLivraison.objects.filter(zone__agence = request.agence)
         }
         return render(request, "commande/pages/prixparzone.html", context)
 

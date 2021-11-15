@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('fax', models.CharField(blank=True, max_length=255, null=True)),
                 ('postale', models.CharField(blank=True, max_length=255, null=True)),
                 ('devise', models.CharField(blank=True, max_length=255, null=True)),
-                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='storage/images/params/')),
+                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='images/params/')),
                 ('allow_waiting_payment', models.BooleanField(blank=True, default=True, null=True)),
                 ('tva', models.IntegerField(blank=True, default=0, null=True)),
                 ('seuil_credit', models.IntegerField(blank=True, default=0, null=True)),

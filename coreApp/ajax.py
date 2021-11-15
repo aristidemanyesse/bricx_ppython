@@ -147,8 +147,18 @@ def change_active(request):
 
 
 
+def filter_date(request):
+    if request.method == "POST":
+        datas = request.POST
+        request.session["date1"] = datas["debut"]
+        request.session["date2"] = datas["fin"]
+        return JsonResponse(dict(request.session))
+
+
+
 def session(request):
     if request.method == "POST":
+        print(dict(request.session))
         datas = request.POST
         request.session[datas["name"]] = datas["value"]
         return JsonResponse(dict(request.session))

@@ -285,13 +285,15 @@
             </div>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-striped">
+                        <table class="footable toggle-arrow-tiny table table-striped">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Status</th>
                                     <th>Utilisateur</th>
                                     <th>Identifiants</th>
-                                    <th style="width: 40%">Accès et rôles</th>
+                                    <th>Accès et rôles</th>
+                                    <th data-hide="all"></th>
                                     <th>Affiliation</th>
                                     <th></th>
                                 </tr>
@@ -299,6 +301,7 @@
                             <tbody>
                                 {% for employe in employes.keys %}
                                     <tr>
+                                        <td></td>
                                         <td>
                                             {% if employe.is_active %}
                                                 <span class="label label-success">Actif</span>
@@ -318,15 +321,16 @@
                                                 <span class="">Pass: <b>{{employe.brut}}</b> </span>
                                             {% endif %}
                                         </td>
+                                        <td><button class="btn btn-sm btn-white footable-toggle">Definir les accès</button></td>
                                         <td class="" >
                                             <div class="row">
                                                 {% for perm in employes|dict_value:employe|dict_value:"perms_on" %}
-                                                    <div class="col-6 col-sm-4">
+                                                    <div class="col col-sm-6 col-md-4 col-lg-3">
                                                         <label class="cursor"><input type="checkbox" class="i-checks" employe_id="{{employe.id}}" perm_id="{{perm.id}}" checked name="perm">{{perm.name}}</label>
                                                     </div>
                                                 {% endfor %}
                                                 {% for perm in employes|dict_value:employe|dict_value:"perms_off" %}
-                                                    <div class="col-6 col-sm-4">
+                                                    <div class="col col-sm-6 col-md-4 col-lg-3">
                                                         <label class="cursor"><input type="checkbox" class="i-checks" employe_id="{{employe.id}}" perm_id="{{perm.id}}" name="perm">{{perm.name}}</label>
                                                     </div>
                                                 {% endfor %} 

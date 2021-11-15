@@ -9,12 +9,49 @@ $(function () {
         radioClass: 'iradio_square-green',
     });
 
-
-
     $('.footable').footable({
         "paging": {
             "size": 20
         }
+    });
+
+    $('input[name="daterange"]').daterangepicker();
+    $('#reportrange').daterangepicker({
+        format: 'DD-MM-YYYY',
+        minDate: '01-11-2021',
+        maxDate: moment(),
+        dateLimit: { days: 60 },
+        showDropdowns: true,
+        showWeekNumbers: true,
+        timePicker: false,
+        timePickerIncrement: 1,
+        timePicker12Hour: true,
+        ranges: {
+            "Aujourd'hui": [moment(), moment()],
+            'Hier': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Les 7 derniers jours': [moment().subtract(6, 'days'), moment()],
+            'Les 30 derniers jours': [moment().subtract(29, 'days'), moment()],
+            'Ce mois': [moment().startOf('month'), moment().endOf('month')],
+            'Le mois passé': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+        },
+        opens: 'left',
+        drops: 'down',
+        buttonClasses: ['btn', 'btn-sm'],
+        applyClass: 'btn-primary',
+        cancelClass: 'btn-default',
+        separator: ' au ',
+        locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Cancel',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Modifier',
+            daysOfWeek: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve','Sa'],
+            monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+            firstDay: 1
+        }
+    }, function(start, end, label) {
+        filter_date(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
     });
 
 

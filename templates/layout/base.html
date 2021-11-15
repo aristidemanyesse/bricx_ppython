@@ -1,3 +1,4 @@
+{% load myfilters %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,6 +24,9 @@
 
 <script>
     $(function(){
+        $('#reportrange span').html('{{ request.date1}}' + ' - ' + '{{ request.date2}}');
+
+
             // selecteur des onglets item de page
             var modul = "{{request.module_name}}"
             var url = "{{request.page_name}}"

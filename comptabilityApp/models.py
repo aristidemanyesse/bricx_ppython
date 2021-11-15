@@ -188,7 +188,7 @@ class Operation(BaseModel):
     category         = models.ForeignKey(CategoryOperation,  null = True, blank=True, on_delete = models.CASCADE, related_name="category_operation")
     mouvement        = models.ForeignKey(Mouvement,  null = True, blank=True, on_delete = models.CASCADE, related_name="mouvement_operation")
     etat             = models.ForeignKey("coreApp.Etat",  null = True, blank=True, on_delete = models.CASCADE)
-    image            = models.ImageField(max_length = 255, upload_to = "storage/images/operations/", default="", null = True, blank=True)
+    image            = models.ImageField(max_length = 255, upload_to = "images/operations/", default="", null = True, blank=True)
 
     def __str__(self):
         return self.category.name +" | "+self.mouvement.reference

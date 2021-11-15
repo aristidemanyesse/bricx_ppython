@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('active', models.BooleanField(default=True)),
                 ('comment', models.TextField(blank=True, default='', null=True)),
                 ('alert_stock', models.IntegerField(blank=True, default=10, null=True)),
-                ('image', models.ImageField(blank=True, default='', max_length=255, null=True, upload_to='storage/images/briques/')),
+                ('image', models.ImageField(blank=True, default='', max_length=255, null=True, upload_to='images/briques/')),
             ],
             options={
                 'ordering': ['-created_at'],
@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
                 ('active', models.BooleanField(default=True)),
                 ('alert_stock', models.IntegerField(blank=True, default=10, null=True)),
                 ('comment', models.TextField(blank=True, default='', null=True)),
-                ('image', models.ImageField(blank=True, default='', max_length=255, null=True, upload_to='storage/images/ressources/')),
+                ('image', models.ImageField(blank=True, default='', max_length=255, null=True, upload_to='images/ressources/')),
             ],
             options={
                 'ordering': ['-created_at'],

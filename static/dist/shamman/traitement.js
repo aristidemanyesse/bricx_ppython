@@ -41,17 +41,21 @@
                 }
             },"json");
         })
-
-
+        
 
         filtrer = function(){
             Loader.start()
             session("date1", $("#formFiltrer input[name=date1]").val())
-            session("date2", $("#formFiltrer input[name=date2]").val())
-            setTimeout(()=>{
-                alert("2")
+            window.location.reload();
+        }
+
+
+        filter_date = function(debut, fin){
+            url = "/core/ajax/filter_date/";
+            Loader.start()
+            $.post(url, {debut:debut, fin:fin}, (data)=>{
                 window.location.reload();
-            }, 2000)
+            },"json");
         }
 
 

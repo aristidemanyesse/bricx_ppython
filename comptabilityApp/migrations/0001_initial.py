@@ -121,7 +121,7 @@ class Migration(migrations.Migration):
                 ('update_at', models.DateTimeField(auto_now=True)),
                 ('deleted', models.BooleanField(default=False)),
                 ('protected', models.BooleanField(default=False)),
-                ('image', models.ImageField(blank=True, default='', max_length=255, null=True, upload_to='storage/images/operations/')),
+                ('image', models.ImageField(blank=True, default='', max_length=255, null=True, upload_to='images/operations/')),
             ],
             options={
                 'ordering': ['-created_at'],

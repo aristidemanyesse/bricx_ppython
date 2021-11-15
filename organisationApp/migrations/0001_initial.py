@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('contact', models.CharField(blank=True, max_length=255, null=True)),
                 ('is_never_connected', models.BooleanField(default=True)),
                 ('is_allowed', models.BooleanField(default=True)),
-                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='storage/images/employes/')),
+                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='images/employes/')),
                 ('brut', models.CharField(blank=True, max_length=255, null=True)),
                 ('agence', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='agence_employe', to='organisationApp.agence')),
             ],

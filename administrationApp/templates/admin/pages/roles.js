@@ -58,7 +58,7 @@ $(function(){
     resetPassword = function(table, id){
         url = "../../composants/dist/shamman/traitement.php";
         alerty.confirm("Voulez-vous vraiment reinitialiser les accès de cette personne ?", {
-            title: "Restriction d'accès",
+            title: "Reinitialisation des accès",
             cancelLabel : "Non",
             okLabel : "OUI, reinitialiser",
         }, function(){

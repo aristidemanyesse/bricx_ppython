@@ -72,7 +72,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, default='', null=True)),
                 ('acompte_initial', models.IntegerField(blank=True, default=0, null=True)),
                 ('dette_initial', models.IntegerField(blank=True, default=0, null=True)),
-                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='storage/images/fournisseurs/')),
+                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='images/fournisseurs/')),
             ],
             options={
                 'ordering': ['-created_at'],
