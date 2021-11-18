@@ -6,6 +6,7 @@ from django.utils.timezone import make_aware
 from comptabilityApp.models import ModePayement, TypeMouvement
 from coreApp import tools
 from coreApp.models import Etat
+from livraisonApp.models import ModeLivraison
 from paramApp.models import MyApp, MyCompte
 
 
@@ -56,6 +57,7 @@ class  AccessCheckMiddleware:
             request.now = datetime.datetime.now()
             request.etat = Etat
             request.modepayement = ModePayement
+            request.modelivraison = ModeLivraison
             request.typemouvement = TypeMouvement
             request.isferie = tools.is_ferie(request.now)
             request.uuid = uuid.uuid4()

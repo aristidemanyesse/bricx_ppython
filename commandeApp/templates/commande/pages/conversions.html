@@ -40,7 +40,7 @@
                     {% for conversion in conversions %}
                     <tr style="border-bottom: 2px solid black item">
                         <td>
-                            <span class="text-uppercase gras">Conversion N°{{ conversion.reference }}</span><br>
+                            <span class="text-uppercase gras">Conversion N°{{ conversion.id }}</span><br>
                             <small>{{ conversion.comment }}</small>
                         </td>
                         <td>
@@ -57,8 +57,8 @@
                                         <th></th>
                                         {% for ligne in conversion.conversion_ligne.all %}
                                         <th class="text-center" style="padding: 2px">
-                                            <img style="height: 20px" src="{% static brique.image %}" >
-                                            <span class="small">{{ ligne.brique.name }}</span>
+                                            <img style="height: 20px" src="{% static ligne.brique.image %}" >
+                                            <span class="">{{ ligne.brique.name }}</span>
                                         </th>
                                         {% endfor %}
                                     </tr>

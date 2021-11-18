@@ -33729,7 +33729,7 @@ var Jbig2Image = function Jbig2ImageClosure() {
       codingTemplateX[k] = codingTemplate[k].x;
       codingTemplateY[k] = codingTemplate[k].y;
     }
-    var referenceTemplate = RefinementTemplates[templateIndex].reference;
+    var referenceTemplate = RefinementTemplates[templateIndex].id;
     if (templateIndex === 0) {
       referenceTemplate = referenceTemplate.concat([at[1]]);
     }
@@ -34127,7 +34127,7 @@ var Jbig2Image = function Jbig2ImageClosure() {
         textRegion.huffman = !!(textRegionSegmentFlags & 1);
         textRegion.refinement = !!(textRegionSegmentFlags & 2);
         textRegion.stripSize = 1 << (textRegionSegmentFlags >> 2 & 3);
-        textRegion.referenceCorner = textRegionSegmentFlags >> 4 & 3;
+        textRegion.idCorner = textRegionSegmentFlags >> 4 & 3;
         textRegion.transposed = !!(textRegionSegmentFlags & 64);
         textRegion.combinationOperator = textRegionSegmentFlags >> 7 & 3;
         textRegion.defaultPixelValue = textRegionSegmentFlags >> 9 & 1;
@@ -34349,7 +34349,7 @@ var Jbig2Image = function Jbig2ImageClosure() {
       }
       var symbolCodeLength = (0, _util.log2)(inputSymbols.length);
       var decodingContext = new DecodingContext(data, start, end);
-      var bitmap = decodeTextRegion(region.huffman, region.refinement, regionInfo.width, regionInfo.height, region.defaultPixelValue, region.numberOfSymbolInstances, region.stripSize, inputSymbols, symbolCodeLength, region.transposed, region.dsOffset, region.referenceCorner, region.combinationOperator, huffmanTables, region.refinementTemplate, region.refinementAt, decodingContext);
+      var bitmap = decodeTextRegion(region.huffman, region.refinement, regionInfo.width, regionInfo.height, region.defaultPixelValue, region.numberOfSymbolInstances, region.stripSize, inputSymbols, symbolCodeLength, region.transposed, region.dsOffset, region.idCorner, region.combinationOperator, huffmanTables, region.refinementTemplate, region.refinementAt, decodingContext);
       this.drawBitmap(regionInfo, bitmap);
     },
     onImmediateLosslessTextRegion: function SimpleSegmentVisitor_onImmediateLosslessTextRegion() {

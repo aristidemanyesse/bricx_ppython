@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-sm-7 text-right">
                                 <h2 class="title text-uppercase gras text-blue">réçu de COMMANDE</h2>
-                                <h3 class="text-uppercase">N°{{commande.reference }}</h3>
+                                <h3 class="text-uppercase">N°{{commande.id }}</h3>
                                 <h5>{{commande.created}}</h5>  
                                 <h4><small>Bon édité par :</small> <span class="text-uppercase">{{commande.employe.name}}</span></h4>
                             </div>
@@ -84,7 +84,7 @@
                                     <tr style="background-color: #fff">
                                         <td colspan="3" class="text-uppercase text-right"><h4 class="">TVA ({{commande.taux_tva}}%) = </h4></td>
                                         <td></td>
-                                        <td colspan="1" class="text-center"><h4 class="text-muted">{{commande.tva}} {{request.societe.devise}}</h4></td>
+                                        <td colspan="1" class="text-center"><h4 class="text-muted">{{commande.tva|intcomma}} {{request.societe.devise}}</h4></td>
                                     </tr>
 
                                     <tr style="height: 35px;"></tr>
@@ -98,10 +98,10 @@
                                     <tr class="border">
                                         <td colspan="3" class="text-right">
                                             <h3 class="text-uppercase mp0">Avance sur montant = </h3>
-                                            {% if rgelement is None %}
+                                            {% if reglement is None %}
                                                 <small>Réglement par prélèvement sur acompte</small>
                                             {% else %}
-                                                <small>Réglement par {{reglement.mouvement.modepayement.name}}</small>
+                                                <small>Réglement {{reglement.mouvement.mode.name}}</small>
                                             {% endif %}
                                         </td>
                                         <td></td>

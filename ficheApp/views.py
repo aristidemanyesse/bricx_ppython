@@ -13,11 +13,10 @@ from organisationApp.models import Employe
 def rapport_du_jour(request, year, month, day):
     if request.method == "GET":
         date = datetime.date(year, month, day)
-        veille = date - datetime.timedelta(days=1)
         demain = date + datetime.timedelta(days=1)
 
         commandes = {}
-        for item in Commande.objects.filter(deleted = False, created_at__date = date):
+        for item in Commande.objects.filter(deleted = False, created_at__date = date, is_conversion = False):
             data = {}
             for ligne in item.commande_ligne.all():
                 data[ligne.brique] = ligne.quantite
@@ -54,7 +53,7 @@ def rapport_du_jour(request, year, month, day):
             production[prod] = data
 
         datas = {}
-        report = test = request.agence_compte.solde_actuel(veille)
+        report = test = request.agence_compte.solde_actuel(date)
         for mouvement in Mouvement.objects.filter(deleted=False, compte__agence = request.agence, created_at__range = (date, demain)).exclude(mode__etiquette = ModePayement.PRELEVEMENT):
             test = (test - mouvement.montant) if mouvement.type.etiquette == TypeMouvement.RETRAIT else (test + mouvement.montant) 
             datas[mouvement] = test
@@ -67,12 +66,13 @@ def rapport_du_jour(request, year, month, day):
             'livraisons' : livraisons,
             'appros' : appros,
             'achats' : achats,
+            "prod" : prod,
             "production" :production,
             'employes' : Employe.objects.filter(deleted = False, last_login__date = date),
 
             "entree_du_jour" : request.agence_compte.total_entree(date, demain),
             "depense_du_jour" : request.agence_compte.total_sortie(date, demain),
-            "solde_ouverture" : request.agence_compte.solde_actuel(veille),
+            "solde_ouverture" : request.agence_compte.solde_actuel(date),
             "solde_fermeture" : request.agence_compte.solde_actuel(demain),
 
             "mouvements":datas,

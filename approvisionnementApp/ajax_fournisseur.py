@@ -83,7 +83,7 @@ def regler_toutes_dettes(request):
                     if reste > 0 and acompte > 0:
                         datas["montant"] = reste if acompte >= reste else acompte
                         title ="Reglement approvisionnement"
-                        comment = "reglement de l'approvisonnement N°"+appro.reference
+                        comment = "reglement de l'approvisonnement N°"+appro.id
                         res = mouvement_pour_sortie(request, datas, title, comment)
                         if type(res) is Mouvement:
                             ReglementApprovisionnement.objects.create(
@@ -107,7 +107,7 @@ def regler_toutes_dettes(request):
                     if reste > 0 and acompte > 0:
                         datas["montant"] = reste if acompte >= reste else acompte
                         title ="Reglement achat de stock"
-                        comment = "reglement de l'achat de stock N°"+achat.reference
+                        comment = "reglement de l'achat de stock N°"+achat.id
                         res = mouvement_pour_sortie(request, datas, title, comment)
                         if type(res) is Mouvement:
                             ReglementAchatStock.objects.create(

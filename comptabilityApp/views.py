@@ -10,7 +10,6 @@ import datetime
 
 def caisse(request):
     if request.method == "GET":
-        veille = datetime.date.fromisoformat(request.session["date1"]) - datetime.timedelta(days= 1)
         debut = datetime.date.fromisoformat(request.session["date1"])
         fin = datetime.date.fromisoformat(request.session["date2"])
         
@@ -18,7 +17,7 @@ def caisse(request):
         lendemain = fin + datetime.timedelta(days= 1)
 
         datas = {}
-        report = test = request.agence_compte.solde_actuel(veille)
+        report = test = request.agence_compte.solde_actuel(debut)
         for mouvement in Mouvement.objects.filter(deleted=False, compte__agence = request.agence, created_at__range = (debut, lendemain)).exclude(mode__etiquette = ModePayement.PRELEVEMENT):
             test = (test - mouvement.montant) if mouvement.type.etiquette == TypeMouvement.RETRAIT else (test + mouvement.montant) 
             datas[mouvement] = test

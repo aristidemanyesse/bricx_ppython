@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.template.loader import render_to_string, get_template
 from django.http import HttpResponse, JsonResponse
-from comptabilityApp.tools import mouvement_pour_entree, mouvement_pour_sortie, mouvement_pour_sortie_client
+from comptabilityApp.tools import mouvement_pour_entree, mouvement_pour_entree, mouvement_pour_sortie_client
 from productionApp.models import Brique
 from commandeApp.models import GroupeCommande, Commande, LigneCommande, LigneConversion, ZoneLivraison, PrixZoneLivraison, Conversion
 from comptabilityApp.models import CompteClient, ModePayement, Mouvement, ReglementCommande
@@ -104,7 +104,7 @@ def valider_commande(request):
             mode = ModePayement.objects.get(pk = datas["modepayement"])
 
             tableau = datas["listeproduits"].split(",")
-            total = request.session["montant"]
+            total = request.session["montant"] + request.session["tva"]
             avance = int(datas["avance"])
             
             if len(tableau) <= 0 :
@@ -131,16 +131,40 @@ def valider_commande(request):
                     agence = request.agence
                 )
 
+            if mode.etiquette == ModePayement.PRELEVEMENT :
+                avance = total if avance >= total else avance
+                if avance > 0 :
+                    title = "Avance sur commande"
+                    comment = "Avance sur réglement de la facture pour la commande ";
+                    datas["montant"] = avance
+                    res = mouvement_pour_entree(request, datas, title, comment)
+                    if type(res) is not Mouvement:
+                        return JsonResponse(res)
+                    
+
+            else:
+                title = "Avance sur commande"
+                comment = "Avance sur réglement de la facture pour la commande ";
+                datas["montant"] = avance
+                res = mouvement_pour_entree(request, datas, title, comment)
+                if type(res) is not Mouvement:
+                    return JsonResponse(res)
+                
+            
             commande = Commande.objects.create(
                 groupecommande = groupe,
                 agence = request.agence,
                 employe = request.user.employe,
                 montant = total,
+                avance = avance,
+                taux_tva = request.societe.tva,
                 tva = request.session["tva"],
                 datelivraison = datas["datelivraison"],
                 comment = datas["comment"],
                 lieu = datas["lieu"],
-                zone = ZoneLivraison.objects.get(pk = datas["zone"])
+                zone = ZoneLivraison.objects.get(pk = datas["zone"]),
+                acompte_client = client.acompte_actuel(),
+                dette_client = client.dette_totale()
             )
 
             for item in tableau:
@@ -156,40 +180,17 @@ def valider_commande(request):
                         commande = commande
                     );
 
-
-            if mode.etiquette == ModePayement.PRELEVEMENT :
-                commande.avance = total if avance >= total else avance
-                if commande.avance > 0 :
-                    title = "Avance sur commande"
-                    comment = "Avance sur réglement de la facture pour la commande N°"+str(commande.reference);
-                    datas["montant"] = commande.avance
-                    res = mouvement_pour_sortie_client(request, datas, title, comment)
-                    if type(res) is Mouvement:
-                        ReglementCommande.objects.create(
-                            mouvement = res,
-                            commande = commande
-                        )
-                    else:
-                        return JsonResponse(res)
-
+            if mode.etiquette == ModePayement.PRELEVEMENT :           
+                CompteClient.objects.create(
+                    client = groupe.client,
+                    mouvement = res
+                )
             else:
-                title = "Avance sur commande"
-                comment = "Avance sur réglement de la facture pour la commande N°"+str(commande.reference);
-                datas["montant"] = avance
-                res = mouvement_pour_sortie(request, datas, title, comment)
-                if type(res) is Mouvement:
-                    ReglementCommande.objects.create(
-                        mouvement = res,
-                        commande = commande
-                    )
-                else:
-                    return JsonResponse(res)
-
-
-            commande.acompte_client = client.acompte_actuel();
-            commande.dette_client = client.dette_totale();
-            commande.save();
-
+                ReglementCommande.objects.create(
+                    mouvement = res,
+                    commande = commande
+                )
+            
             return JsonResponse({"status": True, "url1":reverse("fiches:commande", args=[commande.id])})
 
         except Exception as e:
@@ -206,7 +207,7 @@ def regler_commande(request):
         try :
             commande = Commande.objects.get(pk = datas["commande_id"])
             title = "Reglement de facture commande"
-            comment = "Reglement de la commande N°"+str(commande.reference)
+            comment = "Reglement de la commande N°"+str(commande.id)
             res = mouvement_pour_sortie_client(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementCommande.objects.create(
@@ -248,7 +249,7 @@ def changer_produit(request):
             comm = old.commande_groupecommande.filter(deleted = False).first()
             new = GroupeCommande.objects.create(
                     client = old.client,
-                    agence = request.agence
+                    agence = request.agence,
                 )
 
             commande = Commande.objects.create(
@@ -260,6 +261,7 @@ def changer_produit(request):
                 datelivraison = old.datelivraison,
                 lieu = comm.lieu,
                 zone = comm.zone,
+                is_conversion = True
             )
 
             conversion = Conversion.objects.create(

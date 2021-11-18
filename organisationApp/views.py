@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from django.http import  JsonResponse
 from django.shortcuts import get_object_or_404
@@ -36,11 +37,12 @@ def dashboard_boutique(request):
         }
         datas[brique] = data
 
+    demain = request.now + datetime.timedelta(days=1)
     context = {
         "datas" : datas,
         "dette_clients" : Client.dette_clients(request.agence),
-        "entree_du_jour" :request.agence_compte.total_entree(request.now.date(), request.now.date()),
-        "depense_du_jour" : request.agence_compte.total_sortie(request.now.date(), request.now.date()),
+        "entree_du_jour" :request.agence_compte.total_entree(request.now.date(), demain),
+        "depense_du_jour" : request.agence_compte.total_sortie(request.now.date(), demain),
         "solde_actuel" : request.agence_compte.solde_actuel(),
         "rupture_stock_brique" : Brique.en_rupture(request.agence)
     }

@@ -98,7 +98,7 @@ def livraison(request):
                                     quantite = perte,
                                     employe = request.user.employe,
                                     type = TypePerte.objects.get(etiquette = TypePerte.CHARGEMENT),
-                                    comment = "Perte lors du chargement pour la livraison N°"+str(livraison.reference)
+                                    comment = "Perte lors du chargement pour la livraison N°"+str(livraison.id)
                                 );
 
                 if montant > 0:
@@ -163,13 +163,13 @@ def retour_livraison(request):
                             quantite = perte,
                             employe = request.user.employe,
                             type = TypePerte.objects.get(etiquette = TypePerte.DECHARGEMENT),
-                            comment = "Perte lors du chargement pour la livraison N°"+str(livraison.reference)
+                            comment = "Perte lors du chargement pour la livraison N°"+str(livraison.id)
                         );
 
             livraison.comment = datas["comment"]
             livraison.nom_receptionniste = datas["nom_receptionniste"]
             livraison.contact_receptionniste = datas["contact_receptionniste"]
-            livraison.datelivraison = datas["datelivraison"]
+            livraison.datelivraison = request.now
             livraison.etat = Etat.objects.get(etiquette = Etat.TERMINE)
             livraison.save()
 
@@ -188,7 +188,7 @@ def paye_tricycle(request):
         try :
             tricycle = Tricycle.objects.get(pk = datas["tricycle_id"])
             title = "Payement du tricyle"
-            comment = "Reglement de la paye du  tricycle "+ tricycle.fullname +" pour la livraison N°"+str(tricycle.livraison.reference)
+            comment = "Reglement de la paye du  tricycle "+ tricycle.fullname +" pour la livraison N°"+str(tricycle.livraison.id)
             res = mouvement_pour_sortie(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementTricycle.objects.create(

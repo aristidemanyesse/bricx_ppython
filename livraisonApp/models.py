@@ -12,9 +12,9 @@ from productionApp.models import Brique
 # Create your models here.
 
 class ModeLivraison(BaseModel):
-    DEFAUT = "1"
-    TRICYCLE = "2"
-    CLIENT = "3"
+    DEFAUT   = 1
+    TRICYCLE = 2
+    CLIENT   = 3
 
     name      = models.CharField(max_length = 255)
     etiquette = models.CharField(max_length = 255, null = True, blank=True)
@@ -66,7 +66,7 @@ class Livraison(BaseModel):
         ordering = ['etat__etiquette', "-created_at"]
 
     def __str__(self):
-        return "Livraison N°"+self.reference
+        return "Livraison N°"+self.id
 
 
     def all_briques(self):
@@ -117,7 +117,6 @@ def pre_save_livraison(sender, instance, **kwargs):
     if instance._state.adding:
         if instance.lieu == "":
             raise Exception("Veuillez préciser le lieu exact de la livraison !")
-        instance.reference = uuid.uuid4()
         instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
 
 

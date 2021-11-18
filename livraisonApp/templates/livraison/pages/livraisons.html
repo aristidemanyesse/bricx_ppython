@@ -45,7 +45,7 @@
                                 </td>
                                 <td>
                                     <span class="text-uppercase gras">Livraison de commande</span><br>
-                                    <span>{{ livraison.reference }}</span>
+                                    <span>{{ livraison.id }}</span>
                                 </td>
                                 {% if livraison.modelivraison.etiquette|add:'0' == request.modelivraison.DEFAUT|add:'0' %}
                                     <td>

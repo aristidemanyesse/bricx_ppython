@@ -161,7 +161,7 @@
                                              <td title="supprimer la zone">
                                                 <i class="fa fa-trash text-red cursor" onclick="delete_password('zonelivraison', '{{zone.id}}')"></i>
                                             </td>
-                                             <td class="gras">{{ zone.name }}</td>
+                                            <td class="gras">{{ zone.name }}</td>
                                             {% for brique in briques %}
                                             {% for prix in prixparzones %}
                                                 {% if prix.brique.id == brique.id and prix.zone.id == zone.id %}

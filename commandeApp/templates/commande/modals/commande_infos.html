@@ -52,7 +52,7 @@
                                 <i class="fa fa-trash fa-2x d-block text-red cursor" onclick="delete_password('commande', '{{ element.id }}')"></i> 
                             </td>
                             <td>
-                                <h5 class="text-uppercase mp0">Commande N°{{element.reference}}</h5>
+                                <h5 class="text-uppercase mp0">Commande N°{{element.id}}</h5>
                                 <small>{{element.created_at | naturaltime }}</small>
                             </td>
                             <td data-toggle="tooltip" title="imprimer le bon de commande">
@@ -87,7 +87,7 @@
                                 {% endif %}
                             </td>
                             <td>
-                              <h5 class="text-uppercase mp0">Livraison N°{{element.reference}}</h5>
+                              <h5 class="text-uppercase mp0">Livraison N°{{element.id}}</h5>
                               <small>{{element.created_at | naturaltime }}</small>
                             </td>
                           <td data-toggle="tooltip" title="imprimer le bon de livraison">

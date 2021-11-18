@@ -1543,13 +1543,13 @@
 
           var referenceElement = this._element;
 
-          if (this._config.reference === 'parent') {
+          if (this._config.id === 'parent') {
             referenceElement = parent;
-          } else if (Util.isElement(this._config.reference)) {
-            referenceElement = this._config.reference; // Check if it's jQuery element
+          } else if (Util.isElement(this._config.id)) {
+            referenceElement = this._config.id; // Check if it's jQuery element
 
-            if (typeof this._config.reference.jquery !== 'undefined') {
-              referenceElement = this._config.reference[0];
+            if (typeof this._config.id.jquery !== 'undefined') {
+              referenceElement = this._config.id[0];
             }
           } // If boundary is not `scrollParent`, then set position to `static`
           // to allow the menu to "escape" the scroll parent's boundaries

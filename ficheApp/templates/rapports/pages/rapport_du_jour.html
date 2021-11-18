@@ -52,7 +52,10 @@
                                             <i class="d-block fa fa-file-text fa-2x text-orange"></i>
                                         </a>                               
                                     </td>
-                                    <td>{{ commande.groupecommande.client.name }}</td>
+                                    <td>
+                                        <h5 class="mp0">{{ commande.groupecommande.client.name }}</h5>
+                                        <span> {{commande.zone.name}} | {{commande.created_at | date:"H:i"}}</span>
+                                    </td>
                                     {% for brique in briques %}
                                     <td class="text-center">{{commandes|dict_value:commande|dict_value:brique}}</td>
                                     {% endfor %}
@@ -90,7 +93,10 @@
                                            <i class="d-block fa fa-file-text fa-2x text-green"></i>
                                        </a>                               
                                    </td>
-                                   <td>{{ livraison.groupecommande.client.name }}</td>
+                                   <td>
+                                        <h5 class="mp0">{{ livraison.groupecommande.client.name }}</h5>
+                                        <span> {{livraison.zone.name}} | {{livraison.created_at | date:"H:i"}}</span>
+                                    </td>
                                    {% for brique in briques %}
                                    <td class="text-center">{{livraisons|dict_value:livraison|dict_value:brique}}</td>
                                    {% endfor %}
@@ -252,7 +258,23 @@
                                         <li>{{employe.name}}</li>
                                     {% endfor %}
                                     </ul><br>
+                                    
                                     <hr>
+
+                                    {% if perms.paramApp.production %}
+                                    <h4 class="text-uppercase">Coût de la production</h4><br>   
+
+                                    <h6 class="text-uppercase">Coût de production</h6>
+                                    <h3 class="text-info" >{{prod.montant_production|round|intcomma}} {{request.societe.devise}}</h3>
+
+                                    <h6 class="text-uppercase">Coût de Rangement</h6>
+                                    <h3 class="text-blue">{{prod.montant_rangement|round|intcomma}} {{request.societe.devise}}</h3>
+
+                                    <h6 class="text-uppercase">Coût de livraison</h6>
+                                    <h3 class="text-warning">{{prod.montant_livraison|round|intcomma}} {{request.societe.devise}}</h3>
+                                    <hr>
+                                    {% endif %}
+
 
                                     {% if perms.paramApp.comptabilite %}
                                     <h4 class="text-uppercase">SOLDE DU COMPTE</h4>

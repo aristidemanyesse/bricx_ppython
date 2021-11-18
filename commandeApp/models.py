@@ -92,16 +92,17 @@ class Commande(BaseModel):
     agence         = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_commande")
     zone           = models.ForeignKey(ZoneLivraison, on_delete = models.CASCADE, related_name="zone_commande")
     lieu           = models.CharField(max_length = 255)
-    montant        = models.IntegerField(default = 0)
-    avance         = models.IntegerField(default = 0)
-    taux_tva       = models.IntegerField(default = 0)
-    tva            = models.IntegerField(default = 0)
+    montant        = models.FloatField(default = 0)
+    avance         = models.FloatField(default = 0)
+    taux_tva       = models.FloatField(default = 0)
+    tva            = models.FloatField(default = 0)
     employe        = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_commande")
     comment        = models.TextField(default="",  null = True, blank=True);
+    is_conversion      = models.BooleanField(default = False)
 
-    datelivraison  = models.DateTimeField(null = True, blank=True,)
-    acompte_client = models.IntegerField(default = 0)
-    dette_client   = models.IntegerField(default = 0)
+    datelivraison  = models.DateField(null = True, blank=True,)
+    acompte_client = models.FloatField(default = 0)
+    dette_client   = models.FloatField(default = 0)
     class Meta:
         ordering = ['deleted', "-created_at"]
 
@@ -124,7 +125,7 @@ class Commande(BaseModel):
 
 
     def __str__(self):
-        return "Commande N°"+self.reference
+        return "Commande N°"+str(self.id)
 
 
 
@@ -149,7 +150,7 @@ class Conversion(BaseModel):
     employe        = models.ForeignKey("organisationApp.Employe",  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_transfertstock")
 
     def __str__(self):
-        return "Conversion N°"+self.reference
+        return "Conversion N°"+str(self.id)
 
 class LigneConversion(BaseModel):
     conversion      = models.ForeignKey(Conversion, on_delete = models.CASCADE, related_name="conversion_ligne")
@@ -177,17 +178,6 @@ def post_save_zone_livraison(sender, instance, created, **kwargs):
             )
 
 
-@receiver(post_save, sender = Brique)
-def post_save_brique(sender, instance, created, **kwargs):
-    if created:
-        for zone in ZoneLivraison.objects.filter(deleted = False):
-            PrixZoneLivraison.objects.create(
-                brique = instance,
-                zone = zone,
-                price = 0
-            )
-
-
 
 @receiver(pre_save, sender = GroupeCommande)
 def pre_save_groupe_commande(sender, instance, **kwargs):
@@ -204,7 +194,6 @@ def pre_save_commande(sender, instance, **kwargs):
             raise Exception("Veuillez notifier une date correcte de livraison pour la commande")
         if instance.lieu == "":
             raise Exception("Veuillez préciser le lieu exact de la livraison !")
-        instance.reference = uuid.uuid4()
         instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
 
 

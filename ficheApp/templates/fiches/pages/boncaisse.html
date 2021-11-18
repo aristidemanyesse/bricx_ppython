@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-sm-7 text-right">
                                 <h2 class="title text-uppercase gras text-blue">Bon de caisse</h2>
-                                <h3 class="text-uppercase">N°{{mouvement.reference}}</h3>
+                                <h3 class="text-uppercase">N°{{mouvement.id}}</h3>
                                 <h5>{{mouvement.created_at}}</h5>  
                                 <h4><small>Bon délivré par :</small> <span class="text-uppercase">{{mouvement.employe.name}}</span></h4>                                
                             </div>
@@ -49,7 +49,7 @@
                             </div><br><br>
 
                             <div class="text">
-                                <span>Opération de <i>{{mouvement.type.name}} N°{{mouvement.reference}}</i> d'un montant de</span> <span class="lettre text-capitalize">{{mouvement.montant|intword}} {{request.societe.devise }}</span><br>
+                                <span>Opération de <i>{{mouvement.type.name}} N°{{mouvement.id}}</i> d'un montant de</span> <span class="lettre text-capitalize">{{mouvement.montant|intword}} {{request.societe.devise }}</span><br>
                                 <span>pour <i>{{mouvement.comment}}</i>.</span>
                                 <p class="m-b-xs">{{mouvement.structure}} - {{mouvement.numero}}</p><br>
                             </div>

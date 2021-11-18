@@ -42,6 +42,15 @@ def get_value_from_dict(dict_data, key):
 
 
 
+@register.filter('round')
+def round(value):
+    try:
+        return round(value)
+    except :
+        #raise("jhfgkj")
+        return value
+
+
 @register.filter
 def multiply(value, arg):
     try:

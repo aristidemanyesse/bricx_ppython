@@ -91,7 +91,7 @@ def regler_toutes_dettes(request):
                     if reste > 0 and acompte > 0:
                         datas["montant"] = reste if acompte >= reste else acompte
                         title = "Reglement de commande"
-                        comment = "reglement de la commande N°"+commande.reference
+                        comment = "reglement de la commande N°"+commande.id
                         res = mouvement_pour_sortie_client(request, datas, title, comment)
                         if type(res) is Mouvement:
                             ReglementCommande.objects.create(

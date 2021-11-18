@@ -246,7 +246,7 @@ def regler_appro(request):
         try :
             appro = Approvisionnement.objects.get(pk = datas["appro_id"])
             title = "Reglement approvisionnement"
-            comment = "Reglement de l'approvisionnement N°"+str(appro.reference)
+            comment = "Reglement de l'approvisionnement N°"+str(appro.id)
             res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementApprovisionnement.objects.create(

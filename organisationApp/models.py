@@ -67,7 +67,7 @@ def pre_save_employe(sender, instance, **kwargs):
     if instance._state.adding:
         if instance.username == "":
             instance.username = str(uuid.uuid4()).split("-")[-1]
-        if instance.brut == "":
+        if instance.brut == "" or instance.brut is None:
             instance.brut = str(uuid.uuid4()).split("-")[-1]
         instance.set_password(instance.brut)
 

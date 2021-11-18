@@ -42,12 +42,12 @@ class Brique(BaseModel):
         return (initial["quantite__sum"] or 0) + self.production(agence, None, fin) + self.achat(agence, None, fin) - self.livraison(agence, None, fin) - self.perte(agence, None, fin) - self.surplus(agence, fin) - self.attente(agence, fin);
 
     def commande(self, agence, fin=None):
-        fin = fin or datetime.date.today() + datetime.timedelta(days=1)
+        fin = fin or datetime.date.today() + datetime.timedelta(days=1, )
         total = 0
         for groupe in commandeApp.models.GroupeCommande.objects.filter(deleted=False, agence = agence, etat__etiquette = Etat.EN_COURS, created_at__lte = fin):
             total += groupe.reste(self)
         return total
-
+        
 
     def production(self, agence, debut=None, fin=None):
         debut = debut or datetime.date.fromisoformat("2021-11-01")
@@ -322,7 +322,6 @@ class PayeBriqueFerie(BaseModel):
 def pre_save_production(sender, instance, **kwargs):
     if instance._state.adding:
         instance.etat = Etat.objects.get(etiquette = Etat.EN_COURS)
-        instance.reference = uuid.uuid4()
 
 
 

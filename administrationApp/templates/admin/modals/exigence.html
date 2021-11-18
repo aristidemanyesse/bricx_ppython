@@ -12,7 +12,7 @@
             <form method="POST" class="formExigence">
                 <div class="modal-body">
                     <div class="text-center">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <div class=" offset-sm-4offset-md-5 col-sm-4 col-md-2">
                                 <input type="number" name="quantite" class="form-control" step="0.1" value="{{exi.quantite}}">
                             </div>	
@@ -21,7 +21,8 @@
                         <h4>utilise <br><i class=" fa fa-2x fa-long-arrow-right"></i></h4>
                     </div>
 
-                    <div class="row">
+                    {% localize off %}
+                    <div class="row justify-content-center">
                         {% for ligne in exi.exigence_ligne.all %}
                             <div class="col-sm-3 col-md-2 col-xs-6">
                                 <label>{{ligne.ressource.name}} (en {{ligne.ressource.unite}})</label>
@@ -31,7 +32,7 @@
                             </div>					
                         {% endfor %}
                     </div>
-
+                    {% endlocalize %}
                 </div><hr>
                 <div class="container">
                     <input type="hidden" name="id" value="{{exi.id}}">

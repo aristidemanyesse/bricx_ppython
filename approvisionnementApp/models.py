@@ -77,7 +77,7 @@ class AchatStock(BaseModel):
         return self.montant - (data["mouvement__montant__sum"] or 0)
 
     def __str__(self):
-        return "Achat de stock N°"+str(self.reference)
+        return "Achat de stock N°"+str(self.id)
 
 
 class LigneAchatStock(BaseModel):

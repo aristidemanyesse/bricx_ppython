@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-sm-7 text-right">
                         <h2 class="title text-uppercase gras text-blue">Bon de livraison</h2>
-                        <h3 class="text-uppercase">N°{{livraison.reference }}</h3>
+                        <h3 class="text-uppercase">N°{{livraison.id }}</h3>
                         <h5>{{livraison.created_at}}</h5>  
                         <h4><small>Bon édité par :</small> <span class="text-uppercase">{{livraison.employe.name}}</span></h4>                                
                     </div>
@@ -41,20 +41,24 @@
                 <div class="row">
                     <div class="col-6">
                         <h5><span>Zone de livraison :</span> <span class="text-uppercase">{{livraison.zone.name}}</span></h5>   
-                        <h5><span>Lieu de livraison :</span> <span class="text-uppercase">{{livraison.lieu}}</span></h5>                              
+                        <h5><span>Lieu de livraison :</span> <span class="text-uppercase">{{livraison.lieu}}</span></h5> <br>
+                        
+                        <span>Mode de livraison :</span> <br><br>
+                        {% if livraison.modelivraison.etiquette|add:'0' == request.modelivraison.DEFAUT|add:'0' %}
+                                <h6 class="text-uppercase">{{ livraison.chauffeur }}</h6>
+                                <h6 class="text-uppercase mp0">{{ livraison.vehicule }}</h6>
+                        {% elif livraison.modelivraison.etiquette|add:'0' == request.modelivraison.TRICYCLE|add:'0' %}
+                                <h6 class="text-uppercase">{{ livraison.livraison_tricycle.get.fullname }} (Tricycle) </h6>
+                                <h5 class="text-uppercase mp0">{{ livraison.livraison_tricycle.get.contact  }}</h5>
+                        {% else %}
+                            <h6 class="text-uppercase">Par les moyens du client</h6>
+                        {% endif %}
                     </div>
 
                     <div class="col-6 text-right">
                         <h5><span>Client :</span> <span class="text-uppercase">{{livraison.groupecommande.client.name}}</span></h5>
-                        <span>Mode de livraison :</span> {% if livraison.modelivraison.etiquette|add:'0' == request.modelivraison.DEFAUT|add:'0' %}
-                                        <h6 class="text-uppercase">{{ livraison.chauffeur }}</h6>
-                                        <h5 class="text-uppercase mp0">{{ livraison.vehicule }}</h5>
-                                {% elif livraison.modelivraison.etiquette|add:'0' == request.modelivraison.TRICYCLE|add:'0' %}
-                                        <h6 class="text-uppercase">{{ livraison.livraison_tricycle.get.fullname }} (Tricycle) </h6>
-                                        <h5 class="text-uppercase mp0">{{ livraison.livraison_tricycle.get.contact  }}</h5>
-                                {% else %}
-                                    <h6 class="text-uppercase">Par les moyens du client</h6>
-                                {% endif %}
+                        <h5><span>Contact :</span> <span class="text-uppercase">{{livraison.groupecommande.client.contact}}</span></h5>
+                        
                     </div>
                 </div><br><br>
 
@@ -85,7 +89,7 @@
                                     <h3 class="gras mp0">{{ligne.surplus|start0}}</h3>
                                 </td>
                                 {% if livraison.etat.etiquette|add:0 == request.etat.TERMINE %}
-                                <td class="text-center"><h2 class="gras">{{ligne.quantite_livree|start0}}</h2></td>
+                                <td class="text-center"><h2 class="gras">{{ligne.livree|start0}}</h2></td>
                                 <td class="text-center text-red"><br><h3>{{ligne.perte|start0}}</h3></td>
                                 {% else %}
                                 <td class="text-center"><h2 class="gras"></h2></td>
@@ -108,7 +112,7 @@
                             <tbody>
                                 <tr>
                                     <td class="gras">Livraison reçue le : </td>
-                                    <td>{{livraison.datelivraison}}</td>
+                                    <td>{{livraison.datelivraison|default_if_none:""}}</td>
                                 </tr>
                                 <tr style="height: 60px">
                                     <td class="gras">Observation : </td>

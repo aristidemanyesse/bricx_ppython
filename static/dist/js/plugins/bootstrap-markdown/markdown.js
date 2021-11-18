@@ -103,8 +103,8 @@
         var attrs = extract_attr( input ),
             refs = {};
 
-        if ( attrs && attrs.references ) {
-            refs = attrs.references;
+        if ( attrs && attrs.ids ) {
+            refs = attrs.ids;
         }
 
         var html = convert_tree_to_html( input, refs , options );
@@ -706,8 +706,8 @@
                 var attrs = extract_attr( this.tree );
 
                 // make a references hash if it doesn't exist
-                if ( attrs.references === undefined ) {
-                    attrs.references = {};
+                if ( attrs.ids === undefined ) {
+                    attrs.ids = {};
                 }
 
                 var b = this.loop_re_over_block(re, block, function( m ) {
@@ -715,7 +715,7 @@
                     if ( m[2] && m[2][0] == '<' && m[2][m[2].length-1] == '>' )
                         m[2] = m[2].substring( 1, m[2].length - 1 );
 
-                    var ref = attrs.references[ m[1].toLowerCase() ] = {
+                    var ref = attrs.ids[ m[1].toLowerCase() ] = {
                         href: m[2]
                     };
 
@@ -1486,7 +1486,7 @@
                 break;
             case "markdown":
                 jsonml[ 0 ] = "html";
-                if ( attrs ) delete attrs.references;
+                if ( attrs ) delete attrs.ids;
                 break;
             case "code_block":
                 jsonml[ 0 ] = "pre";

@@ -253,7 +253,7 @@ def regler_achat(request):
         try :
             achat = AchatStock.objects.get(pk = datas["achat_id"])
             title = "Reglement Achat de brique"
-            comment = "Reglement de l'achat de stock N°"+str(achat.reference)
+            comment = "Reglement de l'achat de stock N°"+str(achat.id)
             res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementAchatStock.objects.create(

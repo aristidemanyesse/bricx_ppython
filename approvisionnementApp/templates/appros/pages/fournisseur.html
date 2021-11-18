@@ -43,7 +43,7 @@
                                                     <span class="label label-{{appro.etat.classe}}">{{appro.etat.name}}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="text-uppercase gras">Appro N°{{appro.reference}}</span><br>
+                                                    <span class="text-uppercase gras">Appro N°{{appro.id}}</span><br>
                                                     <small>{{appro.created_at | naturaltime }}</small>
                                                 </td>
                                                 <td><i class="fa fa-user"></i> {{appro.employe.get_full_name}}</td>
@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="col-10 content">
                                         <div>
-                                            <span class="">Opération N°<strong>{{mouvement.reference}}</strong></span>
+                                            <span class="">Opération N°<strong>{{mouvement.id}}</strong></span>
                                             <span class="pull-right text-right text-{% if mouvement.type.etiquette|add:0 == request.typemouvement.DEPOT|add:0 %}green{% else %}red{% endif %}">
                                                 <span class="gras" style="font-size: 16px">{{mouvement.montant|intcomma}} {{ request.societe.devise }} {% if mouvement.etat.etiquette|add:0 == request.etat.EN_COURS %}*{% endif %}</span> <br>
                                                 <small>Par {{mouvement.mode.name}}</small><br>

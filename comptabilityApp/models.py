@@ -130,7 +130,7 @@ class ReglementApprovisionnement(BaseModel):
     restait  = models.IntegerField(default=0,  null = True, blank=True)
 
     def __str__(self):
-        return self.mouvement.reference
+        return self.mouvement.id
 
 class ReglementCommande(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement_commande")
@@ -138,7 +138,7 @@ class ReglementCommande(BaseModel):
     restait  = models.IntegerField(default=0,  null = True, blank=True)
 
     def __str__(self):
-        return self.mouvement.reference
+        return self.mouvement.id
 
     
     @staticmethod
@@ -155,7 +155,7 @@ class CompteClient(BaseModel):
     is_dette = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.client.name +" | "+self.mouvement.reference
+        return self.client.name +" | "+self.mouvement.id
 
 
 
@@ -165,7 +165,7 @@ class CompteFournisseur(BaseModel):
     is_dette = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.fournisseur.fullname +" | "+self.mouvement.reference
+        return self.fournisseur.fullname +" | "+self.mouvement.id
 
 
 class ReglementAchatStock(BaseModel):
@@ -174,7 +174,7 @@ class ReglementAchatStock(BaseModel):
     restait  = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.mouvement.reference
+        return self.mouvement.id
 
 class ReglementTricycle(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement")
@@ -182,7 +182,7 @@ class ReglementTricycle(BaseModel):
     restait  = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.mouvement.reference
+        return self.mouvement.id
 
 class Operation(BaseModel):
     category         = models.ForeignKey(CategoryOperation,  null = True, blank=True, on_delete = models.CASCADE, related_name="category_operation")
@@ -191,7 +191,7 @@ class Operation(BaseModel):
     image            = models.ImageField(max_length = 255, upload_to = "stockage/images/operations/", default="", null = True, blank=True)
 
     def __str__(self):
-        return self.category.name +" | "+self.mouvement.reference
+        return self.category.name +" | "+self.mouvement.id
 
 class Transfertfond(BaseModel):
     reference          = models.CharField(max_length = 255)
@@ -203,7 +203,7 @@ class Transfertfond(BaseModel):
     comment            = models.TextField(default="",  null = True, blank=True)
 
     def __str__(self):
-        return str(self.reference)
+        return str(self.id)
 
 
 
@@ -213,7 +213,6 @@ class Transfertfond(BaseModel):
 def pre_save_mouvement(sender, instance, **kwargs):
     if int(instance.montant) > 0:
         if instance._state.adding:
-            instance.reference = uuid.uuid4()
             instance.etat = instance.mode.etat
     else:   
         #verifie si l'invité n'a pas deja un compte
