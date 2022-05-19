@@ -29,9 +29,9 @@ class Client(BaseModel):
 
     def acompte_actuel(self):
         total = 0
-        datas = self.client_compte.filter(mouvement__type__etiquette = TypeMouvement.DEPOT).aggregate(Sum("mouvement__montant"))
+        datas = self.client_compte.filter(mouvement__type__etiquette = TypeMouvement.DEPOT).exclude(deleted = True).aggregate(Sum("mouvement__montant"))
         total += datas["mouvement__montant__sum"] or 0
-        datas = self.client_compte.filter(mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
+        datas = self.client_compte.filter(mouvement__type__etiquette = TypeMouvement.RETRAIT).exclude(deleted = True).aggregate(Sum("mouvement__montant"))
         total -= datas["mouvement__montant__sum"] or 0
         return (self.acompte_initial or 0) + total
 
@@ -41,7 +41,7 @@ class Client(BaseModel):
         for commande in Commande.objects.filter(groupecommande__client = self, deleted = False):
             total += commande.reste_a_payer()
 
-        datas = self.client_compte.filter(is_dette = True, mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
+        datas = self.client_compte.filter(is_dette = True, mouvement__type__etiquette = TypeMouvement.RETRAIT).exclude(deleted = True).aggregate(Sum("mouvement__montant"))
         total -= datas["mouvement__montant__sum"] or 0
         return (self.dette_initial or 0) + total
 

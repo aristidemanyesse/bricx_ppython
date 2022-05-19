@@ -1,0 +1,220 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-19 19:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: authApp/templates/auth/pages/expiration.html:6
+msgid "Renouvellement de mon abonnement"
+msgstr "aboneliğimin yenilenmesi"
+
+#: authApp/templates/auth/pages/expiration.html:22
+msgid "Nouvel abonnement"
+msgstr "Yeni abonelik"
+
+#: authApp/templates/auth/pages/expiration.html:28
+msgid "Quelques points importants"
+msgstr "Bazı önemli noktalar"
+
+#: authApp/templates/auth/pages/expiration.html:31
+msgid "Le code de validation"
+msgstr "Doğrulama kodu"
+
+#: authApp/templates/auth/pages/expiration.html:32
+msgid ""
+"Pour renouveller votre abonnement, il vous faut obligatoirement un code de "
+"validation composé de 5 blocs de caractères.<br> Pour vous en procurer, "
+"veuillez"
+msgstr ""
+"Aboneliğinizi yenilemek için bir kodunuz olmalıdır"
+"5 blok karakterden oluşan doğrulama.<br> Bazılarını elde etmek için, "
+"lütfen"
+
+#: authApp/templates/auth/pages/expiration.html:32
+#: authApp/templates/auth/pages/expiration.html:38
+#: authApp/templates/auth/pages/expiration.html:41
+msgid "nous contacter"
+msgstr "Bize Ulaşın"
+
+#: authApp/templates/auth/pages/expiration.html:34
+msgid "Internet est requis"
+msgstr "İnternet gerekli"
+
+#: authApp/templates/auth/pages/expiration.html:35
+msgid ""
+"La validation du code requiert une connexion à internet. veuillez vous "
+"assurer d'en avoir avant de commencer."
+msgstr ""
+"Kod doğrulama internet bağlantısı gerektirir. Lütfen"
+"Başlamadan önce biraz olduğundan emin ol."
+
+#: authApp/templates/auth/pages/expiration.html:37
+msgid "3 tentavives"
+msgstr "3 deneme"
+
+#: authApp/templates/auth/pages/expiration.html:38
+msgid ""
+"Vous n'aurez droit qu'à un maximum de 3 tentatives pour valider votre code. "
+"Si vous échouer 3 fois de suite, l'application se vérouillera "
+"automatiquement. Vous devriez alors"
+msgstr ""
+"Kodunuzu doğrulamak için yalnızca en fazla 3 deneme hakkınız olacak."
+"Arka arkaya 3 kez başarısız olursanız, uygulama kilitlenir"
+"otomatik olarak. O zaman yapmalısın"
+
+#: authApp/templates/auth/pages/expiration.html:40
+msgid "Besoin d'aide ?"
+msgstr "Yardıma mı ihtiyacınız var?"
+
+#: authApp/templates/auth/pages/expiration.html:41
+msgid ""
+"Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide "
+"ou d'une assistance particulière, veuillez "
+msgstr ""
+"Nasıl yapacağınızı bilmiyorsanız veya yardıma ihtiyacınız varsa"
+"veya özel yardım lütfen"
+
+#: authApp/templates/auth/pages/expiration.html:49
+msgid "Fin d'abonnement le"
+msgstr "Aboneliğin bitiş tarihi"
+
+#: authApp/templates/auth/pages/expiration.html:52
+msgid "L'abonnement de l'application a expiré"
+msgstr "Uygulama aboneliği sona erdi"
+
+#: authApp/templates/auth/pages/expiration.html:55
+msgid "Entrez les 5 blocs de caractères du code de validation."
+msgstr "Doğrulama kodunun 5 karakter bloğunu girin."
+
+#: authApp/templates/auth/pages/expiration.html:79
+msgid "Valider le code !"
+msgstr "Kodu doğrulayın!"
+
+#: authApp/templates/auth/pages/forgetpassword.html:7
+msgid "J'ai oublié mon mot de passe"
+msgstr "Şifremi Unuttum"
+
+#: authApp/templates/auth/pages/forgetpassword.html:17
+msgid "J'ai oublié mon mot de passe !"
+msgstr "Şifremi Unuttum !"
+
+#: authApp/templates/auth/pages/forgetpassword.html:19
+msgid ""
+"Entrer votre adresse email que vous utilisez pour reiniatialiser votre mot "
+"de passe."
+msgstr ""
+"Şifrenizi sıfırlamak için kullandığınız e-posta adresinizi girin"
+"modası geçmiş."
+
+#: authApp/templates/auth/pages/forgetpassword.html:26
+msgid "Adresse email"
+msgstr "e-posta"
+
+#: authApp/templates/auth/pages/forgetpassword.html:33
+#: authApp/templates/auth/pages/reset.html:29
+msgid "Reiniatialiser le mot de passe"
+msgstr "Şifreyi yenile"
+
+#: authApp/templates/auth/pages/forgetpassword.html:36
+#: authApp/templates/auth/pages/reset.html:32
+msgid "Retour à la connexion"
+msgstr "Girişe geri dön"
+
+#: authApp/templates/auth/pages/locked.html:6
+msgid "Session vérouillée"
+msgstr "Oturum kilitlendi"
+
+#: authApp/templates/auth/pages/locked.html:12
+msgid "session vérouillée"
+msgstr "Oturum kilitlendi"
+
+#: authApp/templates/auth/pages/locked.html:20
+msgid "Votre session a été vérouillée pour inactivité."
+msgstr "Oturumunuz hareketsizlik nedeniyle kilitlendi."
+
+#: authApp/templates/auth/pages/locked.html:21
+msgid "Veuillez renseigner votre mot de passe pour retourner à l'application !"
+msgstr "Uygulamaya geri dönmek için lütfen şifrenizi giriniz!"
+
+#: authApp/templates/auth/pages/locked.html:26
+msgid "Votre mot de passe"
+msgstr "Şifreniz"
+
+#: authApp/templates/auth/pages/locked.html:31
+msgid "Nouvelle connexion"
+msgstr "Yeni bağlantı"
+
+#: authApp/templates/auth/pages/locked.html:34
+msgid "Dévérouiller"
+msgstr "Kilidini aç"
+
+#: authApp/templates/auth/pages/login.html:6
+msgid "Espace de connexion"
+msgstr "Giriş alanı"
+
+#: authApp/templates/auth/pages/login.html:14
+msgid "espace de connexion"
+msgstr "Giriş alanı"
+
+#: authApp/templates/auth/pages/login.html:18
+msgid ""
+"Veuillez entrer vos informations de connexion pour avoir accès à la "
+"plateforme de gestion."
+msgstr ""
+"Lütfen erişmek için giriş bilgilerinizi girin"
+"yönetim platformu."
+
+#: authApp/templates/auth/pages/login.html:23
+msgid ""
+"Si vous avez oublié ou perdu votre mot de passe, veuillez contacter votre "
+"administrateur pour qu'il le reinitialise pour vous !"
+msgstr ""
+"Şifrenizi unuttuysanız veya kaybettiyseniz, lütfen bizimle iletişime geçin"
+"yönetici sizin için sıfırlamak için!"
+
+#: authApp/templates/auth/pages/login.html:28
+msgid ""
+"Pour toute autre chose, veuillez contacter votre administrateur système."
+msgstr ""
+"Başka bir şey için lütfen sistem yöneticinize başvurun."
+
+#: authApp/templates/auth/pages/login.html:45
+msgid "Identifiant"
+msgstr "ID"
+
+#: authApp/templates/auth/pages/login.html:48
+msgid "Mot de passe"
+msgstr "Parola"
+
+#: authApp/templates/auth/pages/login.html:55
+msgid "Se connecter"
+msgstr "Giriş yapmak"
+
+#: authApp/templates/auth/pages/reset.html:6
+msgid "Reiniatialisation du mot de passe"
+msgstr "Parola sıfırlama"
+
+#: authApp/templates/auth/pages/reset.html:15
+msgid "Reinitialisation de mon mot de passe !"
+msgstr "Parolamın yeniden başlatılması!"
+
+#: authApp/templates/auth/pages/reset.html:21
+msgid "Nouveau mot de passe"
+msgstr "Yeni Şifre"
+
+#: authApp/templates/auth/pages/reset.html:25
+msgid "Confirmer nouveau mot de passe"
+msgstr "Yeni şifreyi onayla"

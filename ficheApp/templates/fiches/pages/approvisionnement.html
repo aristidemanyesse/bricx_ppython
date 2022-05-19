@@ -62,7 +62,7 @@
                                         </td>
                                         <td></td>
                                         <td class="text-center">
-                                            <h4 class="text-muted">{{ligne.price|div:ligne.quantite|intcomma}} {{request.societe.devise}}</h4>
+                                            <h4 class="text-muted">{{ligne.price|div:ligne.quantite|rounded|intcomma}} {{request.societe.devise}}</h4>
                                         </td>
                                         <td class="text-center">
                                             <h3 class="gras mp0"> <small>x</small> {{ligne.quantite|start0}} {{ligne.ressource.unite }}</h3>
@@ -108,7 +108,7 @@
                                 <tr class="border">
                                     <td colspan="3" class="text-uppercase text-right"><h4 class=" text--warning-muted ">reste à payer pour cette commande = </h4></td>
                                     <td></td>
-                                    <td colspan="1" class="text-center"><h3 class="gras text-warning-muted">{{appro.reste}} {{request.societe.devise}}</h3></td>
+                                    <td colspan="1" class="text-center"><h3 class="gras text-warning-muted">{{appro.reste|intcomma}} {{request.societe.devise}}</h3></td>
                                 </tr>
 
                                 <tr style="height: 45px;"></tr>
@@ -118,12 +118,12 @@
                                         <h4 class="text-uppercase mp0">Solde de l'acompte du fournisseur =</h4>
                                     </td>
                                     <td></td>
-                                    <td colspan="1" class="text-center"><h3 class="gras text-">{{appro.acompte_fournisseur|intcomma}} {{request.societe.devise}}</h3></td>
+                                    <td colspan="1" class="text-center"><h3 class="gras text-">{{appro.acompteFournisseur|intcomma}} {{request.societe.devise}}</h3></td>
                                 </tr>
                                 <tr class="border">
                                     <td colspan="3" class="text-uppercase text-right"><h4 class=" text-red ">Dette totale envers le fournisseur = </h4></td>
                                     <td></td>
-                                    <td colspan="1" class="text-center"><h3 class="gras text-danger-muted">{{appro.dette_fournisseur|intcomma}} {{request.societe.devise}}</h3></td>
+                                    <td colspan="1" class="text-center"><h3 class="gras text-danger-muted">{{appro.detteFournisseur|intcomma}} {{request.societe.devise}}</h3></td>
                                 </tr>
                             </tbody>
                         </table>

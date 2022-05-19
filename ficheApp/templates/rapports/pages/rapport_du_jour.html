@@ -201,7 +201,7 @@
                                             </thead>
                                             <tbody class="tableau">
                                                 <tr>
-                                                    <td colspan="2">Repport du solde </td>
+                                                    <td colspan="2">Report de la caisse </td>
                                                     <td class="text-center">-</td>
                                                     <td class="text-center">-</td>
                                                     <td style="background-color: #fafafa" class="text-center">{{report|intcomma}} {{request.societe.devise}}</td>
@@ -211,13 +211,7 @@
                                                         <td class="text-center" width="15"><a target="_blank" href="{% url 'fiches:boncaisse' mouvement.id %}"><i class="fa fa-file-text-o fa-2x"></i></a> 
                                                         </td>
                                                         <td>
-                                                            <h6 style="margin-bottom: 3px" class="mp0 text-uppercase gras text-{% if mouvement.type.etiquette|add:0 == request.typemouvement.DEPOT|add:0 %}green {% else %}red{% endif %}">{{mouvement.name}}  
-        
-                                                                <div class="d-inline-block">
-                                                                    &nbsp;&nbsp;<i class="cursor fa fa-pencil text-dark"></i> 
-                                                                &nbsp;&nbsp;<i class="cursor fa fa-close text-red" onclick="delete_password('mouvement', '{{mouvement.id}}')"></i>
-                                                                </div>
-        
+                                                            <h6 style="margin-bottom: 3px" class="mp0 text-uppercase gras text-{% if mouvement.type.etiquette|add:0 == request.typemouvement.DEPOT|add:0 %}green {% else %}red{% endif %}">{{mouvement.name}}        
                                                             <span class="pull-right"><i class="fa fa-clock-o"></i> {{mouvement.created_at}}</span>
                                                         </h6>
                                                         <i>{{mouvement.comment}} ## <u style="font-size: 9px; font-style: italic;">{{mouvement.structure}} - {{mouvement.numero}}</u></i>
@@ -265,13 +259,13 @@
                                     <h4 class="text-uppercase">Coût de la production</h4><br>   
 
                                     <h6 class="text-uppercase">Coût de production</h6>
-                                    <h3 class="text-info" >{{prod.montant_production|round|intcomma}} {{request.societe.devise}}</h3>
+                                    <h3 class="text-info" >{{prod.montant_production|rounded|intcomma}} {{request.societe.devise}}</h3>
 
                                     <h6 class="text-uppercase">Coût de Rangement</h6>
-                                    <h3 class="text-blue">{{prod.montant_rangement|round|intcomma}} {{request.societe.devise}}</h3>
+                                    <h3 class="text-blue">{{prod.montant_rangement|rounded|intcomma}} {{request.societe.devise}}</h3>
 
                                     <h6 class="text-uppercase">Coût de livraison</h6>
-                                    <h3 class="text-warning">{{prod.montant_livraison|round|intcomma}} {{request.societe.devise}}</h3>
+                                    <h3 class="text-warning">{{prod.montant_livraison|rounded|intcomma}} {{request.societe.devise}}</h3>
                                     <hr>
                                     {% endif %}
 

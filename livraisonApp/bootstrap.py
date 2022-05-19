@@ -11,7 +11,7 @@ def run():
         protected = True
     )
     ModeLivraison.objects.create(
-        name = "Livraison avec un ttricycle",
+        name = "Livraison avec un tricycle",
         etiquette = ModeLivraison.TRICYCLE,
         protected = True
     )
@@ -20,7 +20,6 @@ def run():
         etiquette = ModeLivraison.CLIENT,
         protected = True
     )
-
 
 
     print("Initialisation du module de Livraison")

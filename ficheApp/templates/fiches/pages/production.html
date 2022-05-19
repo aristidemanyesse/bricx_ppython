@@ -77,7 +77,7 @@
                                             {% for ligne_con in production.production_ligneconsommation.all %}
                                                 {% if ligne_con.quantite > 0 %}
                                                     <div class="col-sm border-right">
-                                                        {{ligne_con.ressource.name}}: <i><b>{{ligne_con.quantite|intcomma}} {{ligne_con.ressource.unite}}</b> ({{ligne_con.quantite|multiply:ligne_con.ressource.estimation}} {{request.societe.devise}})</i>
+                                                        {{ligne_con.ressource.name}}: <i><b>{{ligne_con.quantite|intcomma}} {{ligne_con.ressource.unite}}</b><br> ({{ligne_con.price|intcomma}} {{request.societe.devise}})</i>
                                                     </div>
                                                 {% endif %}
                                             {% endfor %}
@@ -97,7 +97,7 @@
                                                 </div>
                                                 <div class="col-sm border-right text-orange">
                                                     <h3 class="text-uppercase gras">Coût de production total</h3>
-                                                    <h3><i><b>{{production.montant_production|add:total|intcomma|round}} {{request.societe.devise}}</b></i></h3>
+                                                    <h3><i><b>{{production.montant_production|add:total|intcomma|rounded}} {{request.societe.devise}}</b></i></h3>
                                                 </div>
                                             </div>
                                         </td>

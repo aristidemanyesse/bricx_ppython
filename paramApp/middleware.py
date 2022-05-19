@@ -26,7 +26,8 @@ class InjectMyAppDataMiddleware:
             
         request.date1 = datetime.date.fromisoformat(request.session["date1"])
         request.date2 = datetime.date.fromisoformat(request.session["date2"])
-            
+        
+        print("---------------------------------------------", request.path_info, request.user)
         if not request.path_info.startswith('/admin/'):
     
             request.agence = None

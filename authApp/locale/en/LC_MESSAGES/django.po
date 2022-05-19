@@ -1,0 +1,217 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-19 19:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: authApp/templates/auth/pages/expiration.html:6
+msgid "Renouvellement de mon abonnement"
+msgstr "Renewal of my subscription"
+
+#: authApp/templates/auth/pages/expiration.html:22
+msgid "Nouvel abonnement"
+msgstr "New subscription"
+
+#: authApp/templates/auth/pages/expiration.html:28
+msgid "Quelques points importants"
+msgstr "Some importants points"
+
+#: authApp/templates/auth/pages/expiration.html:31
+msgid "Le code de validation"
+msgstr "Validation code"
+
+#: authApp/templates/auth/pages/expiration.html:32
+msgid ""
+"Pour renouveller votre abonnement, il vous faut obligatoirement un code de "
+"validation composé de 5 blocs de caractères.<br> Pour vous en procurer, "
+"veuillez"
+msgstr ""
+"To renew your subscription, you must have a code of validation composed of 5 "
+"blocks of characters.<br> To get some, please"
+
+#: authApp/templates/auth/pages/expiration.html:32
+#: authApp/templates/auth/pages/expiration.html:38
+#: authApp/templates/auth/pages/expiration.html:41
+msgid "nous contacter"
+msgstr "Contact us"
+
+#: authApp/templates/auth/pages/expiration.html:34
+msgid "Internet est requis"
+msgstr "Internet is required"
+
+#: authApp/templates/auth/pages/expiration.html:35
+msgid ""
+"La validation du code requiert une connexion à internet. veuillez vous "
+"assurer d'en avoir avant de commencer."
+msgstr ""
+"Code validation requires an internet connection. Please make sure you have "
+"some before you start."
+
+#: authApp/templates/auth/pages/expiration.html:37
+msgid "3 tentavives"
+msgstr "3 attempts"
+
+#: authApp/templates/auth/pages/expiration.html:38
+msgid ""
+"Vous n'aurez droit qu'à un maximum de 3 tentatives pour valider votre code. "
+"Si vous échouer 3 fois de suite, l'application se vérouillera "
+"automatiquement. Vous devriez alors"
+msgstr ""
+"You will only be allowed a maximum of 3 attempts to validate your code.If "
+"you fail 3 times in a row, the application will lockautomatically. Then you "
+"should"
+
+#: authApp/templates/auth/pages/expiration.html:40
+msgid "Besoin d'aide ?"
+msgstr ""
+
+#: authApp/templates/auth/pages/expiration.html:41
+msgid ""
+"Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide "
+"ou d'une assistance particulière, veuillez "
+msgstr ""
+"If you don't know how to do it or if you need helpor special assistance, "
+"please"
+
+#: authApp/templates/auth/pages/expiration.html:49
+msgid "Fin d'abonnement le"
+msgstr "End of subscription on"
+
+#: authApp/templates/auth/pages/expiration.html:52
+msgid "L'abonnement de l'application a expiré"
+msgstr "App subscription has expired"
+
+#: authApp/templates/auth/pages/expiration.html:55
+msgid "Entrez les 5 blocs de caractères du code de validation."
+msgstr "Enter the 5 character blocks of the validation code."
+
+#: authApp/templates/auth/pages/expiration.html:79
+msgid "Valider le code !"
+msgstr "Validate the code!"
+
+#: authApp/templates/auth/pages/forgetpassword.html:7
+msgid "J'ai oublié mon mot de passe"
+msgstr "I forgot my password"
+
+#: authApp/templates/auth/pages/forgetpassword.html:17
+msgid "J'ai oublié mon mot de passe !"
+msgstr "I forgot my password"
+
+#: authApp/templates/auth/pages/forgetpassword.html:19
+msgid ""
+"Entrer votre adresse email que vous utilisez pour reiniatialiser votre mot "
+"de passe."
+msgstr "Enter your email address that you use to reset your password outmoded."
+
+#: authApp/templates/auth/pages/forgetpassword.html:26
+msgid "Adresse email"
+msgstr "e-mail address"
+
+#: authApp/templates/auth/pages/forgetpassword.html:33
+#: authApp/templates/auth/pages/reset.html:29
+msgid "Reiniatialiser le mot de passe"
+msgstr "Reset password"
+
+#: authApp/templates/auth/pages/forgetpassword.html:36
+#: authApp/templates/auth/pages/reset.html:32
+msgid "Retour à la connexion"
+msgstr "Return to login page"
+
+#: authApp/templates/auth/pages/locked.html:6
+msgid "Session vérouillée"
+msgstr "Session locked"
+
+#: authApp/templates/auth/pages/locked.html:12
+msgid "session vérouillée"
+msgstr "Session locked"
+
+#: authApp/templates/auth/pages/locked.html:20
+msgid "Votre session a été vérouillée pour inactivité."
+msgstr "Your session has been locked for inactivity."
+
+#: authApp/templates/auth/pages/locked.html:21
+msgid "Veuillez renseigner votre mot de passe pour retourner à l'application !"
+msgstr "Please enter your password to return to the application!"
+
+#: authApp/templates/auth/pages/locked.html:26
+msgid "Votre mot de passe"
+msgstr "Your password"
+
+#: authApp/templates/auth/pages/locked.html:31
+msgid "Nouvelle connexion"
+msgstr "New connection"
+
+#: authApp/templates/auth/pages/locked.html:34
+msgid "Dévérouiller"
+msgstr "Unlock"
+
+#: authApp/templates/auth/pages/login.html:6
+msgid "Espace de connexion"
+msgstr "Login Page"
+
+#: authApp/templates/auth/pages/login.html:14
+msgid "espace de connexion"
+msgstr "Login Page"
+
+#: authApp/templates/auth/pages/login.html:18
+msgid ""
+"Veuillez entrer vos informations de connexion pour avoir accès à la "
+"plateforme de gestion."
+msgstr "Please enter your login information to access the management platform."
+
+#: authApp/templates/auth/pages/login.html:23
+msgid ""
+"Si vous avez oublié ou perdu votre mot de passe, veuillez contacter votre "
+"administrateur pour qu'il le reinitialise pour vous !"
+msgstr ""
+"If you have forgotten or lost your password, please contact your "
+"administrator to reset it for you!"
+
+#: authApp/templates/auth/pages/login.html:28
+msgid ""
+"Pour toute autre chose, veuillez contacter votre administrateur système."
+msgstr "For anything else, please contact your system administrator."
+
+#: authApp/templates/auth/pages/login.html:45
+msgid "Identifiant"
+msgstr "username"
+
+#: authApp/templates/auth/pages/login.html:48
+msgid "Mot de passe"
+msgstr "password"
+
+#: authApp/templates/auth/pages/login.html:55
+msgid "Se connecter"
+msgstr "Connexion"
+
+#: authApp/templates/auth/pages/reset.html:6
+#, fuzzy
+#| msgid "Reinitialisation de mon mot de passe !"
+msgid "Reiniatialisation du mot de passe"
+msgstr "Reinitialization of my password!"
+
+#: authApp/templates/auth/pages/reset.html:15
+msgid "Reinitialisation de mon mot de passe !"
+msgstr "Reinitialization of my password!"
+
+#: authApp/templates/auth/pages/reset.html:21
+msgid "Nouveau mot de passe"
+msgstr "New Password"
+
+#: authApp/templates/auth/pages/reset.html:25
+msgid "Confirmer nouveau mot de passe"
+msgstr "Confirm new password"

@@ -114,7 +114,7 @@ class Brique(BaseModel):
             ligne = LigneExigenceProduction.objects.get(exigence = exigence, ressource = ressource)
             if int(quantite) > 0:
                 if exigence.quantite > 0:
-                    return round(((int(quantite) * ligne.quantite) / exigence.quantite), 2);
+                    return round(((int(quantite) * ligne.quantite) / exigence.quantite), 3);
             return 0
         except Exception as e:
             print("-----------------------------", e)
@@ -187,22 +187,27 @@ class Ressource(BaseModel):
 
 
     def estimation(self, agence):
+        return self.cout(agence) * self.stock(agence)
+
+
+
+    def cout(self, agence):
         if self.price <= 0:
             try :
-                data = self.ressource_ligneapprovisionnement.filter(deleted = False).aggregate(Sum("price"))
-                price = self.achat(agence) * self.stock(agence)
-                if price > 0:
-                    return round(((data["price__sum"] or 0) / price), 2)
+                data = self.ressource_ligneapprovisionnement.filter(deleted = False, approvisionnement__agence = agence).exclude(approvisionnement__etat__etiquette = Etat.ANNULE)
+                p = data.aggregate(Sum("price"))
+                q = data.aggregate(Sum("quantite"))
+                if q["quantite__sum"] > 0:
+                    return round((p["price__sum"] / q["quantite__sum"]), 2)
                 return 0
             except Exception as e:
                 print("----------------", e)
-                return self.price * self.stock(agence)
+                return 0
         else:
-            return self.price * self.stock(agence)
+            return self.price 
 
 
 class Production(BaseModel):
-    reference          = models.CharField(max_length = 255)
     agence             = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_production")
     employe            = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_production")
     employe_rangement  = models.ForeignKey("organisationApp.Employe",  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_rangement_production")
@@ -230,6 +235,7 @@ class LigneConsommation(BaseModel):
     production = models.ForeignKey(Production, on_delete = models.CASCADE, related_name="production_ligneconsommation")
     ressource  = models.ForeignKey(Ressource, on_delete = models.CASCADE, related_name="ressource_ligneconsommation")
     quantite   = models.FloatField(default = 0)
+    price      = models.FloatField(default = 0)
 
     def __str__(self):
         return "consommation du "+str(self.production.date)+" : "+self.ressource.name+" => "+str(self.quantite)

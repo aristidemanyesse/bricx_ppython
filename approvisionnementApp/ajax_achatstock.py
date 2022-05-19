@@ -120,7 +120,6 @@ def valider_achatstock(request):
                 if not (request.agence_compte.solde_actuel() >=  int(datas["transport"])):
                     return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler les frais de transport de l'achat de stock !"})
 
-
             if int(datas["transport"]) > 0:
                 title = "Frais de transport"
                 comment = "Frais de transport pour l'achat de stock"
@@ -135,29 +134,27 @@ def valider_achatstock(request):
                 else:
                     return JsonResponse(res)
 
-
             res = None
             if mode.etiquette == ModePayement.PRELEVEMENT :
                 acompte = fournisseur.acompte_actuel()
                 lavance = montant if acompte >= montant else acompte
                 if lavance > 0 :
-                    title = ""
+                    title = "Avance sur achat de stock"
                     comment = "Avance sur réglement de la facture pour l'achat de stock"
                     datas["montant"] = lavance
                     res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
-                    if type(res) is Mouvement:
+                    if type(res) is not Mouvement:
                         return JsonResponse(res)
 
             else:
-                title= ""
+                title= "Avance sur achat de stock"
                 comment = "Avance sur réglement de la facture pour l'achat de stock"
                 datas["montant"] = avance
                 res = mouvement_pour_sortie(request, datas, title, comment)
-                if type(res) is Mouvement:
+                if type(res) is not Mouvement:
                     return JsonResponse(res)
 
 
-                
             etat = Etat.objects.get(etiquette = datas["etat"]) 
             achat = AchatStock.objects.create(
                 fournisseur = fournisseur,
@@ -199,7 +196,6 @@ def valider_achatstock(request):
 
         except Exception as e:
             print("Erreur valid commande", e)
-            #return JsonResponse({"status": False, "message":"Erreur lors de la validation de la commande, veuillez recommencer !"})
             return JsonResponse({"status": False, "message":str(e)})
 
 

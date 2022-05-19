@@ -21,7 +21,7 @@ class Employe(User, BaseModel):
     is_never_connected = models.BooleanField(default = True)
     is_allowed         = models.BooleanField(default = True)
     agence             = models.ForeignKey(Agence, on_delete = models.CASCADE, related_name="agence_employe")
-    image          = models.ImageField(upload_to = "stockage/images/employes/", max_length=255,  null=True, blank=True)
+    image          = models.ImageField(default="default.png", upload_to = "stockage/images/employes/", max_length=255,  null=True, blank=True)
     brut            = models.CharField(max_length = 255, null = True, blank=True)
 
     def __str__(self):

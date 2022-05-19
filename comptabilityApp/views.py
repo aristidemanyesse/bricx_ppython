@@ -18,7 +18,7 @@ def caisse(request):
 
         datas = {}
         report = test = request.agence_compte.solde_actuel(debut)
-        for mouvement in Mouvement.objects.filter(deleted=False, compte__agence = request.agence, created_at__range = (debut, lendemain)).exclude(mode__etiquette = ModePayement.PRELEVEMENT):
+        for mouvement in Mouvement.objects.filter(deleted=False, compte__agence = request.agence, created_at__range = (debut, lendemain)).exclude(mode__etiquette = ModePayement.PRELEVEMENT).exclude(etat = Etat.objects.get(etiquette = Etat.ANNULE)):
             test = (test - mouvement.montant) if mouvement.type.etiquette == TypeMouvement.RETRAIT else (test + mouvement.montant) 
             datas[mouvement] = test
 

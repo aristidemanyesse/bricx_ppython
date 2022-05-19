@@ -53,6 +53,7 @@ def actualise(request):
             fournisseur = Fournisseur.objects.get(pk = datas["fournisseur"])
             acompte = fournisseur.acompte_actuel()
             avance =  montant if acompte >= montant else acompte
+            # avance =  0
 
         total = montant - avance;
 
@@ -184,8 +185,8 @@ def valider_approvisionnement(request):
                     approvisionnement = appro
                 )
 
-            appro.acompte_fournisseur = fournisseur.acompte_actuel();
-            appro.dette_fournisseur = fournisseur.dette_totale();
+            appro.acompteFournisseur = fournisseur.acompte_actuel();
+            appro.detteFournisseur = fournisseur.dette_totale();
             appro.save();
 
             return JsonResponse({"status": True, "url1":reverse("fiches:approvisionnement", args=[appro.id])})

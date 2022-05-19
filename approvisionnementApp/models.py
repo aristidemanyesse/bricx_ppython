@@ -19,7 +19,7 @@ class Fournisseur(BaseModel):
     description     = models.TextField(default="",  null = True, blank=True)
     acompte_initial = models.IntegerField(default=0, null = True, blank=True)
     dette_initial   = models.IntegerField(default=0, null = True, blank=True)
-    image          = models.ImageField(upload_to = "stockage/images/fournisseurs/", max_length=255, null=True, blank=True)
+    image          = models.ImageField(default="default.png", upload_to = "stockage/images/fournisseurs/", max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.fullname
@@ -30,10 +30,10 @@ class Fournisseur(BaseModel):
 
     def acompte_actuel(self):
         total = 0
-        datas = self.fournisseur_compte.filter(mouvement__type__etiquette = TypeMouvement.DEPOT).aggregate(Sum("mouvement__montant"))
-        total -= datas["mouvement__montant__sum"] or 0
-        datas = self.fournisseur_compte.filter(mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
+        datas = self.fournisseur_compte.filter(mouvement__type__etiquette = TypeMouvement.RETRAIT).exclude(deleted = True).aggregate(Sum("mouvement__montant"))
         total += datas["mouvement__montant__sum"] or 0
+        datas = self.fournisseur_compte.filter(mouvement__type__etiquette = TypeMouvement.DEPOT).exclude(deleted = True).aggregate(Sum("mouvement__montant"))
+        total -= datas["mouvement__montant__sum"] or 0
         return (self.acompte_initial or 0) + total
 
 
@@ -45,7 +45,7 @@ class Fournisseur(BaseModel):
         for achat in self.fournisseur_achatstock.filter(deleted = False).exclude(etat__etiquette = Etat.ANNULE):
             total += achat.reste_a_payer()
 
-        datas = self.fournisseur_compte.filter(is_dette = True, mouvement__type__etiquette = TypeMouvement.RETRAIT).aggregate(Sum("mouvement__montant"))
+        datas = self.fournisseur_compte.filter(is_dette = True, mouvement__type__etiquette = TypeMouvement.RETRAIT).exclude(deleted = True).aggregate(Sum("mouvement__montant"))
         total -= datas["mouvement__montant__sum"] or 0
         return (self.dette_initial or 0) + total
 
@@ -59,7 +59,6 @@ class Fournisseur(BaseModel):
         
 
 class AchatStock(BaseModel):
-    reference         = models.CharField(max_length = 255)
     agence            = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_achatstock")
     montant           = models.IntegerField(default = 0)
     avance            = models.IntegerField(default = 0)    
@@ -73,7 +72,7 @@ class AchatStock(BaseModel):
     datelivraison     = models.DateTimeField(null = True, blank=True)
 
     def reste_a_payer(self):
-        data = ReglementAchatStock.objects.filter(achatstock = self).aggregate(Sum("mouvement__montant"))
+        data = ReglementAchatStock.objects.filter(achatstock = self, deleted = False).aggregate(Sum("mouvement__montant"))
         return self.montant - (data["mouvement__montant__sum"] or 0)
 
     def __str__(self):
@@ -93,7 +92,6 @@ class LigneAchatStock(BaseModel):
 
 
 class Approvisionnement(BaseModel):
-    reference          = models.CharField(max_length = 255)
     montant            = models.IntegerField(default = 0)
     avance             = models.IntegerField(default = 0)
     reste              = models.IntegerField(default = 0)
@@ -114,7 +112,7 @@ class Approvisionnement(BaseModel):
 
     
     def reste_a_payer(self):
-        data = ReglementApprovisionnement.objects.filter(approvisionnement = self).aggregate(Sum("mouvement__montant"))
+        data = ReglementApprovisionnement.objects.filter(approvisionnement = self, deleted = False).aggregate(Sum("mouvement__montant"))
         return self.montant - (data["mouvement__montant__sum"] or 0)
 
 

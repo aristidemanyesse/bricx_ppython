@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "corsheaders.middleware.CorsMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
     "django.middleware.common.CommonMiddleware",
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -103,7 +104,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bricx',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': '12345678',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     },
@@ -146,6 +147,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGES = (
+    ('fr', 'Français'),
+    ('en-us', 'English (US)'),
+    ('tr', 'Turkish'),
+    ('ar', 'عربى'),
+)
+
+print(BASE_DIR)
+LOCALE_PATHS = [
+   os.path.join(BASE_DIR, 'locales'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

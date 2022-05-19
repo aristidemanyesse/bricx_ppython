@@ -1,8 +1,9 @@
 {% extends "layout/base_auth.html" %} 
 {% load static %} 
+{% load i18n %} 
 
 {% block title %}
-<title>Espace de connexion | BRICX</title>
+<title>{% translate 'Renouvellement de mon abonnement' %} | BRICX</title>
 {% endblock title %}
 
 {% block body %}
@@ -18,26 +19,26 @@
         </div>
     </div>
     <div class="ibox-content text-center">
-        <h2 style="font-size: 30px;" class="text-green text-uppercase">Nouvel abonnement</h2>
+        <h2 style="font-size: 30px;" class="text-green text-uppercase">{% translate 'Nouvel abonnement' %}</h2>
         
         <div class="hr-line-dashed"></div>
         
         <div class="row">
             <div class="col-sm-5 border-right">
-                <h4 class="m-b-lg text-center text-uppercase">Quelques points importants</h4>
+                <h4 class="m-b-lg text-center text-uppercase">{% translate 'Quelques points importants' %}</h4>
                 <div id="animation_box text-left" class="animated">
                     <dl class="text-left">
-                        <dt>Le code de validation</dt>
-                        <dd>Pour renouveller votre abonnement, il vous faut obligatoirement un code de validation composé de 5 blocs de caractères.<br> Pour vous en procurer, veuillez <a href="">nous contacter</a> !</dd><br>
+                        <dt>{% translate 'Le code de validation' %}</dt>
+                        <dd>{% translate 'Pour renouveller votre abonnement, il vous faut obligatoirement un code de validation composé de 5 blocs de caractères.<br> Pour vous en procurer, veuillez' %} <a href="">{% translate 'nous contacter' %}</a> !</dd><br>
                         
-                        <dt>Internet est requis</dt>
-                        <dd>La validation du code requiert une connexion à internet. veuillez vous assurer d'en avoir avant de commencer.</dd><br>
+                        <dt>{% translate 'Internet est requis' %}</dt>
+                        <dd>{% translate "La validation du code requiert une connexion à internet. veuillez vous assurer d'en avoir avant de commencer." %}</dd><br>
                         
-                        <dt>4 tentavives</dt>
-                        <dd>Vous n'aurez droit qu'à un maximum de 4 tentatives pour valider votre ceode. Si vous échouer 5 fois de suite, l'application se vérouillera automatiquement. Vous devriez alors <a href="">nous contacter</a> !</dd><br>
+                        <dt>{% translate "3 tentavives" %}</dt>
+                        <dd>{% translate "Vous n'aurez droit qu'à un maximum de 3 tentatives pour valider votre code. Si vous échouer 3 fois de suite, l'application se vérouillera automatiquement. Vous devriez alors" %} <a href="">{% translate "nous contacter" %}</a> !</dd><br>
                         
-                        <dt>Besoin d'aide ?</dt>
-                        <dd>Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide ou d'une assistance particulière, veuillez <a href="">nous contacter</a> !</dd>
+                        <dt>{% translate "Besoin d'aide ?" %}</dt>
+                        <dd>{% translate "Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide ou d'une assistance particulière, veuillez " %}<a href="">{% translate "nous contacter" %}</a> !</dd>
                     </dl>
                 </div>
             </div>
@@ -45,37 +46,37 @@
             <div class="col-lg-7 animation-efect-links text-center">
                 <br><br>
                 <div>
-                    <p>Fin d'abonnement le</p>
+                    <p>{% translate "Fin d'abonnement le" %}</p>
                     <h2 class="text-uppercase" style="font-size: 32px">{{request.mycompte.expiration}}</h2>
                 </div><br>
-                <h3 class="text-red">L'application a expiré</h3>
+                <h3 class="text-red">{% translate "L'abonnement de l'application a expiré" %}</h3>
                 <br>
                 <h4 class="m-b-lg text-uppercase">
-                    Entrer les 5 blocs de caractères du code de validation.
+                    {% translate "Entrez les 5 blocs de caractères du code de validation." %}
                 </h4><br>
                 <form id="formAbonnement" method="post">
                     <div class="row">
                         <div class="col-sm">
-                            <input type="text" name="bloc1" maxlength="5" uppercase autofocus="on" class="text-center gras form-control input-sm" name="">
+                            <input type="text" placeholder="_ _ _ _ _" name="bloc1" maxlength="5" uppercase autofocus="on" class="text-center gras form-control input-sm" name="">
                         </div>
                         <div class="col-sm">
-                            <input type="text" name="bloc2" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
+                            <input type="text" placeholder="_ _ _ _ _" name="bloc2" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
                         </div>
                         <div class="col-sm">
-                            <input type="text" name="bloc3" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
+                            <input type="text" placeholder="_ _ _ _ _" name="bloc3" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
                         </div>
                         <div class="col-sm">
-                            <input type="text" name="bloc4" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
+                            <input type="text" placeholder="_ _ _ _ _" name="bloc4" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
                         </div>
                         <div class="col-sm">
-                            <input type="text" name="bloc5" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
+                            <input type="text" placeholder="_ _ _ _ _" name="bloc5" maxlength="5" uppercase class="text-center gras form-control input-sm" name="">
                         </div>
                     </div>
                     <br>
                     <br>
                     <hr>
                     <div>
-                        <button class="btn btn-primary dim"><i class="fa fa-check"></i> Valider le code !</button>
+                        <button class="btn btn-primary dim"><i class="fa fa-check"></i> {% translate "Valider le code !" %}</button>
                     </div>
                 </form>
             </div>

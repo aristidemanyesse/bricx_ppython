@@ -12,11 +12,11 @@ class MyCompte(models.Model):
 class MyApp(models.Model):
     socialreason          = models.CharField(max_length = 255)
     email                 = models.CharField(max_length = 255)
-    contact               = models.CharField(max_length = 255, null = True, blank=True)
-    adresse               = models.CharField(max_length = 255, null = True, blank=True)
-    fax                   = models.CharField(max_length = 255, null = True, blank=True)
-    postale               = models.CharField(max_length = 255, null = True, blank=True)
-    devise                = models.CharField(max_length = 255, null = True, blank=True)
+    contact               = models.CharField(max_length = 255, default="", null = True, blank=True)
+    adresse               = models.CharField(max_length = 255, default="", null = True, blank=True)
+    fax                   = models.CharField(max_length = 255, default="", null = True, blank=True)
+    postale               = models.CharField(max_length = 255, default="", null = True, blank=True)
+    devise                = models.CharField(max_length = 255, default="", null = True, blank=True)
     image                  = models.ImageField(upload_to = "stockage/images/params/", max_length=255, null=True, blank=True)
 
     allow_waiting_payment = models.BooleanField(default=True, null = True, blank=True)

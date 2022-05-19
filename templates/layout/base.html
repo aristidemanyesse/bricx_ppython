@@ -1,4 +1,6 @@
 {% load myfilters %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,35 +24,38 @@
 {% include "../extra/loader.html" %}
 
 
+<script type="text/javascript" src="../pages/i18n/fr.js" />
+
 <script>
     $(function(){
+
         $('#reportrange span').html('{{ request.date1}}' + ' - ' + '{{ request.date2}}');
 
 
-            // selecteur des onglets item de page
-            var modul = "{{request.module_name}}"
-            var url = "{{request.page_name}}"
-                
-            if (url == "clients" || url == "client") {
-                url = "clients";
+        // selecteur des onglets item de page
+        var modul = "{{request.module_name}}"
+        var url = "{{request.page_name}}"
+            
+        if (url == "clients" || url == "client") {
+            url = "clients";
+        }
+    
+        $("nav ul.metismenu li").removeClass('active');
+        $("nav ul.metismenu li").each(function (index, el) {
+            if ($(this).attr("id") == url) {
+                $(this).addClass("active")
+                $(this).parent("ul").addClass("in");
+                $(this).parent("ul").parent("li.groupe").addClass("active");
             }
-        
-            $("nav ul.metismenu li").removeClass('active');
-            $("nav ul.metismenu li").each(function (index, el) {
-                if ($(this).attr("id") == url) {
-                    $(this).addClass("active")
-                    $(this).parent("ul").addClass("in");
-                    $(this).parent("ul").parent("li.groupe").addClass("active");
-                }
-            });
-        
-            $("a.onglets").each(function () {
-                if ($(this).attr("id") == "onglet-" + modul) {
-                    $("a.onglets").removeClass("active btn-warning")
-                    $("a.onglets").addClass("btn-white");
-                    $(this).addClass("active btn-warning").removeClass("btn-white");
-                }
-            })
+        });
+    
+        $("a.onglets").each(function () {
+            if ($(this).attr("id") == "onglet-" + modul) {
+                $("a.onglets").removeClass("active btn-warning")
+                $("a.onglets").addClass("btn-white");
+                $(this).addClass("active btn-warning").removeClass("btn-white");
+            }
+        })
         
     })
     </script>

@@ -87,7 +87,6 @@ class GroupeCommande(BaseModel):
 
 
 class Commande(BaseModel):
-    reference      = models.CharField(max_length = 255)
     groupecommande = models.ForeignKey(GroupeCommande, on_delete = models.CASCADE, related_name="commande_groupecommande")
     agence         = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_commande")
     zone           = models.ForeignKey(ZoneLivraison, on_delete = models.CASCADE, related_name="zone_commande")
@@ -107,7 +106,7 @@ class Commande(BaseModel):
         ordering = ['deleted', "-created_at"]
 
     def reste_a_payer(self):
-        data = ReglementCommande.objects.filter(commande = self).aggregate(Sum("mouvement__montant"))
+        data = ReglementCommande.objects.filter(commande = self, deleted =False).aggregate(Sum("mouvement__montant"))
         return self.montant - (data["mouvement__montant__sum"] or 0)
     
 
@@ -143,7 +142,6 @@ class LigneCommande(BaseModel):
 
 
 class Conversion(BaseModel):
-    reference          = models.CharField(max_length = 255)
     agence             = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_conversion")
     groupecommande_old = models.ForeignKey(GroupeCommande, on_delete = models.CASCADE, related_name="old_groupecommande_conversion")
     groupecommande_new = models.ForeignKey(GroupeCommande, on_delete = models.CASCADE, related_name="new_groupecommande_conversion")

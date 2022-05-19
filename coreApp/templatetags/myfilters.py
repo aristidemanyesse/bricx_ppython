@@ -42,12 +42,11 @@ def get_value_from_dict(dict_data, key):
 
 
 
-@register.filter('round')
-def round(value):
+@register.filter('rounded')
+def rounded(value):
     try:
-        return round(value)
+        return round(value, 2)
     except :
-        #raise("jhfgkj")
         return value
 
 

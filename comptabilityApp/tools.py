@@ -103,7 +103,7 @@ def mouvement_pour_sortie_client(request, datas, title, comment):
 def mouvement_pour_sortie_fournisseur(request, datas, title, comment):
     try:
         mode = ModePayement.objects.get(pk = datas["modepayement"])
-        type = TypeMouvement.objects.get(etiquette = TypeMouvement.RETRAIT)
+        type = TypeMouvement.objects.get(etiquette = TypeMouvement.DEPOT)
         fournisseur = Fournisseur.objects.get(pk = request.session["fournisseur_id"])
         compte = request.agence_compte
 
@@ -114,7 +114,7 @@ def mouvement_pour_sortie_fournisseur(request, datas, title, comment):
             return {"status":False, "message":"Le montant de l'opération est incorrect !"}
         if mode.etiquette == ModePayement.PRELEVEMENT :
             if fournisseur.acompte_actuel() < montant:
-                return {"status":False, "message":"L'acompte du fournisseur est insuffisant pour effectuer cette opération!"}
+                return {"status":False, "message":"Votre acompte chez le fournisseur est insuffisant pour effectuer cette opération!"}
         else:
             if compte.solde_actuel() < montant:
                 return {"status":False, "message":"Fonds insuffisant pour effectuer cette opération!"}

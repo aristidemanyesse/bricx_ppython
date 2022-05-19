@@ -52,10 +52,10 @@ def production(request, id):
         production = get_object_or_404(Production, pk = id)
         total = 0
         for ligne in production.production_ligneconsommation.all() :
-            total += ligne.ressource.estimation(production.agence) * ligne.quantite
+            total += ligne.ressource.cout(production.agence) * ligne.quantite
 
         context = {
-                "total" : total,
+                "total" : round(total),
                 "production" : production,
             }
         return render(request, "fiches/pages/production.html", context)

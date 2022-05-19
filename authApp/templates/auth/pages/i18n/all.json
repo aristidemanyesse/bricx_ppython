@@ -1,0 +1,4 @@
+{
+    "fr" : require("./fr.json"),
+    "tr" : require("./tr.json")
+}

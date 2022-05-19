@@ -44,7 +44,6 @@ class Vehicule(BaseModel):
 
 
 class Livraison(BaseModel):
-    reference      = models.CharField(max_length = 255)
     groupecommande = models.ForeignKey("commandeApp.GroupeCommande", on_delete = models.CASCADE, related_name="groupecommande_livraison")
     agence         = models.ForeignKey("organisationApp.Agence", on_delete = models.CASCADE, related_name="agence_livraison")
     modelivraison  = models.ForeignKey(ModeLivraison, on_delete = models.CASCADE, related_name="mode_livraison")
@@ -66,7 +65,7 @@ class Livraison(BaseModel):
         ordering = ['etat__etiquette', "-created_at"]
 
     def __str__(self):
-        return "Livraison N°"+self.id
+        return "Livraison N°" + str(self.id)
 
 
     def all_briques(self):
@@ -103,7 +102,7 @@ class Tricycle(BaseModel):
 
 
     def reste_a_payer(self):
-        data = ReglementTricycle.objects.filter(tricycle = self).aggregate(Sum("mouvement__montant"))
+        data = ReglementTricycle.objects.filter(tricycle = self, deleted = False).aggregate(Sum("mouvement__montant"))
         return self.montant - (data["mouvement__montant__sum"] or 0)
 
 ######################################################################################################

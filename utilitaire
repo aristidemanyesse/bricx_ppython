@@ -4,7 +4,8 @@
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 find . -path "*/migrations/*.pyc"  -delete
 
-
+git fetch --all
+git reset --hard origin/{{your branch name}}
 # Demarrer un cluster single node cockroachdb en local
 cockroach start-single-node \
 --insecure \
@@ -79,3 +80,4 @@ liste des operations dans caisse et dans rapport
 
 
 
+https://phrase.com/blog/posts/step-step-guide-javascript-localization/

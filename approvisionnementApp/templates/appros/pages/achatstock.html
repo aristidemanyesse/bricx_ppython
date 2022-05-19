@@ -11,7 +11,7 @@
     <div class="col-sm-9">
         <h2 class="text-uppercase text-warning gras">Les achats de stocks </h2>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 text-right">
         <button style="margin-top: 5%" data-toggle='modal' data-target="#modal-achatstock" class="btn btn-warning dim"><i class="fa fa-plus"></i> Nouvel Achat de stock</button>
     </div>
 </div>
@@ -96,9 +96,9 @@
                             {% if achat.reste_a_payer > 0 %}
                                 <button data-toggle="modal" data-target="#modal-regler-achatstock-{{ achat.id }}" onclick="session('fournisseur_id', '{{achat.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Payer</button>
                             {% endif %}
-                            <?php if (employe.isAutoriser("modifier-supprimer") && achat.etat_id != Home\ETAT::ANNULEE) {}}
-                                <button onclick="delete_password('achatstock', '{{achat.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
-                            <?php }}}
+                            {% if achat.etat.etiquette|add:0 != request.etat.ANNULE|add:0 and perms.paramApp.boutique %}
+                            <button onclick="delete_password('achatstock', '{{achat.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}

@@ -3,10 +3,9 @@ from django.shortcuts import render
 from django.template.loader import render_to_string, get_template
 from django.http import HttpResponse, JsonResponse
 from comptabilityApp.models import Mouvement, ReglementTricycle
-from livraisonApp.models import LigneLivraison, Livraison, ModeLivraison, Tricycle
+from livraisonApp.models import Chauffeur, LigneLivraison, Livraison, ModeLivraison, Tricycle, Vehicule
 from productionApp.models import Brique, PerteBrique, Production, TypePerte
-from commandeApp.models import GroupeCommande, Commande, LigneCommande, LigneConversion, ZoneLivraison, PrixZoneLivraison, Conversion
-from clientApp.models import Client
+from commandeApp.models import GroupeCommande, ZoneLivraison
 from coreApp.models import Etat
 from django.urls import reverse
 from comptabilityApp.tools import mouvement_pour_sortie
@@ -37,7 +36,7 @@ def livraison(request):
                 if "=" in item:
                     id, livree, surplus, perte = item.split("=")
                     brique = Brique.objects.get(pk = id)
-                    stock = brique.stock(request.agence)
+                    stock = brique.livrable(request.agence)
                     livree = int(livree)
                     if not ((0 < livree <= groupe.reste(brique)) and (livree <= stock >= (livree + int(surplus) + int(perte)))):
                         test = False
@@ -45,7 +44,7 @@ def livraison(request):
 
             if test :
                 mode = ModeLivraison.objects.get(pk = datas["modelivraison"])
-                if mode.etiquette != ModeLivraison.DEFAUT :
+                if int(mode.etiquette) != ModeLivraison.DEFAUT :
                     datas._mutable = True
                     datas["chauffeur"] = None
                     datas["vehicule"] = None
@@ -55,8 +54,8 @@ def livraison(request):
                     agence = request.agence,
                     employe = request.user.employe,
                     lieu = datas["lieu"],
-                    chauffeur_id = datas["chauffeur"],
-                    vehicule_id = datas["vehicule"],
+                    chauffeur = Chauffeur.objects.get(id = datas["chauffeur"]),
+                    vehicule = Vehicule.objects.get(id = datas["vehicule"]),
                     modelivraison = mode,
                     zone = ZoneLivraison.objects.get(pk = datas["zone"]),
                 )

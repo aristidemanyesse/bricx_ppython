@@ -1,7 +1,7 @@
 
 from django.db import models
 
-from coreApp.models import BaseModel, MyCodeException
+from coreApp.models import BaseModel, Etat, MyCodeException
 from django.db import models, transaction
 import uuid, datetime, json, random
 from django.db.models.signals import pre_save, post_save
@@ -65,13 +65,13 @@ class Compte(BaseModel):
     def total_entree(self, debut = None, fin = None):
         debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.DEPOT, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
+        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.DEPOT, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT).exclude(etat = Etat.objects.get(etiquette = Etat.ANNULE)).aggregate(Sum('montant'))
         return (total["montant__sum"] or 0)
 
     def total_sortie(self, debut = None, fin = None):
         debut = debut or datetime.date.fromisoformat("2021-11-01")
         fin = fin or datetime.date.today() + datetime.timedelta(days=1)
-        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.RETRAIT, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT).aggregate(Sum('montant'))
+        total =  self.compte_mouvement.filter(deleted=False, type__etiquette = TypeMouvement.RETRAIT, created_at__range = (debut, fin)).exclude(mode__etiquette = ModePayement.PRELEVEMENT).exclude(etat = Etat.objects.get(etiquette = Etat.ANNULE)).aggregate(Sum('montant'))
         return (total["montant__sum"] or 0)
 
     def solde_actuel(self, fin = None):
@@ -109,7 +109,6 @@ class Compte(BaseModel):
 class Mouvement(BaseModel):
     name      = models.CharField(max_length = 255)
     type      = models.ForeignKey(TypeMouvement,  on_delete = models.CASCADE, related_name="type_mouvement")
-    reference = models.CharField(max_length = 255, null = True, blank=True)
     montant   = models.IntegerField(default=0)
     compte    = models.ForeignKey(Compte, on_delete = models.CASCADE, related_name="compte_mouvement")
     employe   = models.ForeignKey("organisationApp.Employe", on_delete = models.CASCADE, related_name="employe_payetricycle")
@@ -130,7 +129,7 @@ class ReglementApprovisionnement(BaseModel):
     restait  = models.IntegerField(default=0,  null = True, blank=True)
 
     def __str__(self):
-        return self.mouvement.id
+        return self.mouvement.name+ " | "+ str(self.mouvement.montant)
 
 class ReglementCommande(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement_commande")
@@ -138,7 +137,7 @@ class ReglementCommande(BaseModel):
     restait  = models.IntegerField(default=0,  null = True, blank=True)
 
     def __str__(self):
-        return self.mouvement.id
+        return self.mouvement.name+ " | "+ str(self.mouvement.montant)
 
     
     @staticmethod
@@ -155,7 +154,7 @@ class CompteClient(BaseModel):
     is_dette = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.client.name +" | "+self.mouvement.id
+        return self.client.name +" -pour- "+ self.mouvement.name
 
 
 
@@ -165,7 +164,7 @@ class CompteFournisseur(BaseModel):
     is_dette = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.fournisseur.fullname +" | "+self.mouvement.id
+        return self.fournisseur.fullname +" -pour- "+ self.mouvement.name
 
 
 class ReglementAchatStock(BaseModel):
@@ -174,7 +173,7 @@ class ReglementAchatStock(BaseModel):
     restait  = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.mouvement.id
+        return self.mouvement.name+ " | "+ str(self.mouvement.montant)
 
 class ReglementTricycle(BaseModel):
     mouvement    = models.ForeignKey(Mouvement, on_delete = models.CASCADE, related_name="mouvement_reglement")
@@ -182,7 +181,7 @@ class ReglementTricycle(BaseModel):
     restait  = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.mouvement.id
+        return self.mouvement.name+ " | "+ str(self.mouvement.montant)
 
 class Operation(BaseModel):
     category         = models.ForeignKey(CategoryOperation,  null = True, blank=True, on_delete = models.CASCADE, related_name="category_operation")
@@ -191,10 +190,9 @@ class Operation(BaseModel):
     image            = models.ImageField(max_length = 255, upload_to = "stockage/images/operations/", default="", null = True, blank=True)
 
     def __str__(self):
-        return self.category.name +" | "+self.mouvement.id
+        return self.category.name +" -pour- "+ self.mouvement.name
 
 class Transfertfond(BaseModel):
-    reference          = models.CharField(max_length = 255)
     montant            = models.IntegerField(default=0)
     compte_source      = models.ForeignKey(Compte,  null = True, blank=True, on_delete = models.CASCADE, related_name="compte_source_transfert")
     compte_destination = models.ForeignKey(Compte,  null = True, blank=True, on_delete = models.CASCADE, related_name="compte_destination_transfert")
@@ -215,10 +213,24 @@ def pre_save_mouvement(sender, instance, **kwargs):
         if instance._state.adding:
             instance.etat = instance.mode.etat
     else:   
-        #verifie si l'invité n'a pas deja un compte
         raise Exception(MyCodeException.INCORRECT_MONTANT)
     
 
+@receiver(post_save, sender = Mouvement)
+def post_save_mouvement(sender, instance, created, **kwargs):
+    if not created and int(instance.etat.etiquette) == Etat.ANNULE:
+        ReglementApprovisionnement.objects.filter(mouvement=instance).update(deleted=True)
+        ReglementCommande.objects.filter(mouvement=instance).update(deleted=True)
+        ReglementAchatStock.objects.filter(mouvement=instance).update(deleted=True)
+        ReglementTricycle.objects.filter(mouvement=instance).update(deleted=True)
+        CompteClient.objects.filter(mouvement=instance).update(deleted=True)
+        CompteFournisseur.objects.filter(mouvement=instance).update(deleted=True)
+        Operation.objects.filter(mouvement=instance).update(deleted=True)
+        
+    
+    
+    
+    
 
 @receiver(pre_save, sender = ReglementCommande)
 def pre_save_reglement_commande(sender, instance, **kwargs):

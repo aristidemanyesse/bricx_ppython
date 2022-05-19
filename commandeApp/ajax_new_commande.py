@@ -64,7 +64,7 @@ def actualise(request):
                 }
                 html += render_to_string("commande/extra/ligne_commande.html", context, request)
 
-        avance = int(datas["avance"])
+        avance = int(datas["avance"] if datas["avance"] != "" else 0)
 
         tva = (montant * request.societe.tva) / 100
         total = montant + tva;
@@ -105,7 +105,7 @@ def valider_commande(request):
 
             tableau = datas["listeproduits"].split(",")
             total = request.session["montant"] + request.session["tva"]
-            avance = int(datas["avance"])
+            avance = int(datas["avance"] if datas["avance"] != "" else 0)
             
             if len(tableau) <= 0 :
                 return JsonResponse({"status": False, "message": "Veuillez selectionner des produits et leur quantité pour passer la commande !"})
@@ -133,11 +133,12 @@ def valider_commande(request):
 
             if mode.etiquette == ModePayement.PRELEVEMENT :
                 avance = total if avance >= total else avance
+                print("--------------------------", avance)
                 if avance > 0 :
                     title = "Avance sur commande"
                     comment = "Avance sur réglement de la facture pour la commande ";
                     datas["montant"] = avance
-                    res = mouvement_pour_entree(request, datas, title, comment)
+                    res = mouvement_pour_sortie_client(request, datas, title, comment)
                     if type(res) is not Mouvement:
                         return JsonResponse(res)
                     
@@ -179,13 +180,14 @@ def valider_commande(request):
                         price = price,
                         commande = commande
                     );
-
-            if mode.etiquette == ModePayement.PRELEVEMENT :           
-                CompteClient.objects.create(
-                    client = groupe.client,
-                    mouvement = res
-                )
-            else:
+                    
+            if avance > 0:
+                # if mode.etiquette == ModePayement.PRELEVEMENT :           
+                #     CompteClient.objects.create(
+                #         client = groupe.client,
+                #         mouvement = res
+                #     )
+                # else:
                 ReglementCommande.objects.create(
                     mouvement = res,
                     commande = commande

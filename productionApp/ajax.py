@@ -69,6 +69,7 @@ def new_production(request):
 
         for ligne in productionday.production_ligneconsommation.all():
             ligne.quantite = tab[str(ligne.ressource.id)]
+            ligne.price = tab[str(ligne.ressource.id)] * ligne.ressource.cout(request.agence)
             ligne.save()
 
         productionday.comment = datas["comment"]

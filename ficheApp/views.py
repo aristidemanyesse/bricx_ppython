@@ -79,7 +79,7 @@ def rapport_du_jour(request, year, month, day):
             "report":report,
             "total_entree" : request.agence_compte.total_entree(date, demain),
             "total_depense" : request.agence_compte.total_sortie(date, demain),
-            "solde_a_la_date" : request.agence_compte.solde_actuel(date),
+            "solde_a_la_date" : request.agence_compte.solde_actuel(demain),
         }
         return render(request, "rapports/pages/rapport_du_jour.html", context)
 

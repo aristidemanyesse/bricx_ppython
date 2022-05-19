@@ -41,6 +41,7 @@ $(function () {
                 $(".montant").html(data.montant);
                 $(".avance").html(data.avance);
                 $(".total").html(data.total);
+                montant = data.montant;
                 total = data.total;
             }, 'json')
         }, 'html')
@@ -60,7 +61,7 @@ $(function () {
             cancelLabel: "Non",
             okLabel: "OUI, confirmer",
         }, function () {
-            if (parseInt(total) == 0) {
+            if (parseInt(montant) == 0) {
                 alerty.confirm("Le montant total de cet achat de briques est de 0F ! Est-il vraiment exact?", {
                     title: "Attention",
                     cancelLabel: "Non",
