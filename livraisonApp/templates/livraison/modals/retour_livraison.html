@@ -5,8 +5,8 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">Validation de la livraison</h4>
-            <small class="font-bold">Renseigner ces champs pour terminer la livraison</small>
+            <h4 class="modal-title">{% translate "Validation de la livraison" %}</h4>
+            <small class="font-bold">{% translate "Renseigner ces champs pour terminer la livraison" %}</small>
         </div>
         
         <form class="formValiderLivraison">
@@ -14,7 +14,7 @@
                 <div class="col-md-8">
                     <div class="ibox">
                         <div class="ibox-title">
-                            <h5 class="text-uppercase">Les produits effectivement réçus</h5>
+                            <h5 class="text-uppercase">{% translate "Les produits effectivement réçus" %}</h5>
                         </div>
                         <div class="ibox-content"><br>
                             <div class="table-responsive">
@@ -30,13 +30,13 @@
                                                     <small>{{ligne.brique.comment}}</small>
                                                 </td>
                                                 <td width="135" class="text-red">
-                                                    <label>Perte enregistrée</label>
+                                                    <label>{% translate "Perte enregistrée" %}</label>
                                                     <input type="number" number class="form-control text-center gras" value="0" max="{{ligne.quantite}}" min="0">
                                                 </td>
                                                 <td width="50"></td>
                                                 <td> 
                                                     <br> <h4><b>/ {{ ligne.quantite|add:ligne.surplus }}</b></h4>
-                                                    <small class="italic">Qté envoyée + surplus</small>
+                                                    <small class="italic">{% translate "Qté envoyée + surplus" %}</small>
                                                 </td>
                                             </tr>
                                        {% endfor %}
@@ -50,37 +50,37 @@
                 <div class="col-md-4 ">
                     <div class="ibox"  style="background-color: #eee">
                         <div class="ibox-title" style="padding-right: 2%; padding-left: 3%; ">
-                            <h5 class="text-uppercase">Finaliser la livraison</h5>
+                            <h5 class="text-uppercase">{% translate "Finaliser la livraison" %}</h5>
                         </div>
                         <div class="ibox-content"  style="background-color: #fafafa">
                         <div>
-                                <label>date de livraison <span style="color: red">*</span> </label>
+                                <label>{% translate "date de livraison" %} <span style="color: red">*</span> </label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                     <input type="date" name="datelivraison" class="form-control" value="{% now 'Y-m-d' %}" required>
                                 </div>
                             </div><br> -.
                             <div>
-                                <label>Nom du receptionniste <span style="color: red">*</span> </label>
+                                <label>{% translate "Nom du receptionniste" %} <span style="color: red">*</span> </label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     <input type="text" value="{{livraison.groupecommande.client.name}}" name="nom_receptionniste" class="form-control" required>
                                 </div>
                             </div><br>
                             <div>
-                                <label>Contact du receptionniste </label>
+                                <label>{% translate "Contact du receptionniste" %} </label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                     <input type="text" value="{{livraison.groupecommande.client.contact}}" name="contact_receptionniste" class="form-control">
                                 </div>
                             </div><br>
                             <div>
-                                <label>Commentaire </label>
+                                <label>{% translate "Commentaire" %} </label>
                                 <textarea class="form-control" rows="4" name="comment"></textarea>
                             </div><br>
 
                             <input type="hidden" name="livraison" value="{{livraison.id}}">
-                            <button class="btn btn-primary btn-block dim"><i class="fa fa-check"></i> Terminer la livraison</button>
+                            <button class="btn btn-primary btn-block dim"><i class="fa fa-check"></i> {% translate "Terminer la livraison" %}</button>
                         </div>
                     </div>
 

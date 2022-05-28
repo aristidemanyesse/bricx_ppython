@@ -5,25 +5,25 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title">Prix de paye du produit</h4>
+				<h4 class="modal-title">{% translate "Prix de paye du produit" %}</h4>
 			</div>
 			<form method="POST" class="formPayeProduit">
 				<div class="modal-body">
 					<div class="row">
 						{% for ligne in payes %}
 							<div class="col-sm-6 col-md-4 border-right border-bottom" style="margin-bottom: 2%;">
-								<p class="text-center text-uppercase gras">1 {{ligne.brique.name}} est payé à</p>
+								<p class="text-center text-uppercase gras">1 {{ligne.brique.name}} {% translate "est payé à" %}</p>
 								<div class="row">
 									<div class="col-sm">
-										<label>Production</label>
+										<label>{% translate "Production" %}</label>
 										<input type="number"  style="font-size: 13px; padding: 3px" data-id="{{ligne.id}}" number class="form-control text-center" name="price" value="{{ligne.price}}">
 									</div>
 									<div class="col-sm">
-										<label>Rangement</label>
+										<label>{% translate "Rangement" %}</label>
 										<input type="number"  style="font-size: 13px; padding: 3px" data-id="{{ligne.id}}" number class="form-control text-center" name="price_rangement" value="{{ligne.price_rangement}}">
 									</div>
 									<div class="col-sm">
-										<label>Livraison</label>
+										<label>{% translate "Livraison" %}</label>
 										<input type="number"  style="font-size: 13px; padding: 3px" data-id="{{ligne.id}}" number class="form-control text-center" name="price_livraison" value="{{ligne.price_livraison}}">
 									</div>
 								</div><br>
@@ -33,8 +33,8 @@
 				</div><hr>
 				<div class="container">
 					<input type="hidden" name="id">
-					<button type="button" class="btn btn-sm  btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Annuler</button>
-					<button class="btn btn-sm btn-primary pull-right dim"><i class="fa fa-check"></i> enregistrer</button>
+					<button type="button" class="btn btn-sm  btn-default" data-dismiss="modal"><i class="fa fa-close"></i> {% translate "Annuler" %}</button>
+					<button class="btn btn-sm btn-primary pull-right dim"><i class="fa fa-check"></i> {% translate "Enregistrer" %}</button>
 				</div>
 				<br>
 			</form>
@@ -49,7 +49,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title text-red">Prix de paye du produit les jours fériés</h4>
+				<h4 class="modal-title text-red">{% translate "Prix de paye du produit les jours fériés" %}</h4>
 			</div>
 			<form method="POST" class="formPayeProduitFerie">
 				<div class="modal-body">
@@ -59,15 +59,15 @@
 								<p class="text-center text-uppercase gras text-red">1 {{ligne.brique.name}} est payé à</p>
 								<div class="row">
 									<div class="col-sm">
-										<label>Production</label>
+										<label>{% translate "Production" %}</label>
 										<input type="number"  style="font-size: 13px; padding: 3px" data-id="{{ligne.id}}" number class="form-control text-center" name="price" value="{{ligne.price}}">
 									</div>
 									<div class="col-sm">
-										<label>Rangement</label>
+										<label>{% translate "Rangement" %}</label>
 										<input type="number"  style="font-size: 13px; padding: 3px" data-id="{{ligne.id}}" number class="form-control text-center" name="price_rangement" value="{{ligne.price_rangement}}">
 									</div>
 									<div class="col-sm">
-										<label>Livraison</label>
+										<label>{% translate "Livraison" %}</label>
 										<input type="number"  style="font-size: 13px; padding: 3px" data-id="{{ligne.id}}" number class="form-control text-center" name="price_livraison" value="{{ligne.price_livraison}}">
 									</div>
 								</div><br>
@@ -77,8 +77,8 @@
 				</div><hr>
 				<div class="container">
 					<input type="hidden" name="id">
-					<button type="button" class="btn btn-sm  btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Annuler</button>
-					<button class="btn btn-sm btn-primary pull-right dim"><i class="fa fa-check"></i> enregistrer</button>
+					<button type="button" class="btn btn-sm  btn-default" data-dismiss="modal"><i class="fa fa-close"></i> {% translate "Annuler" %}</button>
+					<button class="btn btn-sm btn-primary pull-right dim"><i class="fa fa-check"></i> {% translate "Enregistrer" %}</button>
 				</div>
 				<br>
 			</form>

@@ -7,9 +7,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Liste des versements en attentes</h4>
+                <h4 class="modal-title">{% translate "Liste des versements en attentes" %}</h4>
                 <div class="offset-md-4 col-md-4">
-                   <input type="text" id="search" class="form-control text-center" placeholder="Rechercher un versements"> 
+                   <input type="text" id="search" class="form-control text-center" placeholder="{% translate 'Rechercher un versements' %}"> 
                </div>
            </div>
            <div class="modal-body">
@@ -30,7 +30,8 @@
                                 <small>{{mouvement.numero}}</small>
                             </td>
                             <td class="text-center">
-                                <button onclick="valider_mouvement('{{mouvement.id}}')" class="cursor simple_tag"><i class="fa fa-file-text-o"></i> Valider</button><span style="display: none">en attente</span>
+                                <button onclick="valider_mouvement('{{mouvement.id}}')" class="cursor simple_tag"><i class="fa fa-file-text-o"></i> {% translate "Valider" %}</button>
+                                <span style="display: none">{% translate "en attente" %}</span>
                             </td>
                         </tr>
                     {% endfor %}

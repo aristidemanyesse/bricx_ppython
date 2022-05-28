@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="col-sm-7 text-right">
-                      <h2 class="title text-uppercase gras">Fiche de commande</h2>
+                      <h2 class="title text-uppercase gras">{% translate "Fiche de commande" %}</h2>
                       <h3 class="text-uppercase">{{ item.groupe.client.name}} // <span style="font-weight: normal;"><{{ item.groupe.client.type.name}}</span></h3>
                         <h5>{{ item.groupe.client.contact}} // {{ item.groupe.client.email }}</h5>
                     </div>
@@ -40,22 +40,22 @@
                                     <span class="small">{{ brique.name }}</span>
                                 </th>
                                 {% endfor %}
-                                <th style="width: 150px" class="text-center">RESTE A PAYER</th>
-                                <th class="text-center">OPTIONS</th>
+                                <th style="width: 150px" class="text-center">{% translate "RESTE A PAYER" %}</th>
+                                <th class="text-center">{% translate "OPTIONS" %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for element in item.sort_lignes %}
                             {% if element.tipe == "commande" %}
                             <tr>
-                              <td data-toggle="tooltip" title="Supprimer la commande">
+                              <td data-toggle="tooltip" title="{% translate 'Supprimer la commande' %}">
                                 <i class="fa fa-trash fa-2x d-block text-red cursor" onclick="delete_password('commande', '{{ element.id }}')"></i> 
                             </td>
                             <td>
-                                <h5 class="text-uppercase mp0">Commande N°{{element.id}}</h5>
+                                <h5 class="text-uppercase mp0">{% translate "Commande N°" %}{{element.id}}</h5>
                                 <small>{{element.created_at | naturaltime }}</small>
                             </td>
-                            <td data-toggle="tooltip" title="imprimer le bon de commande">
+                            <td data-toggle="tooltip" title="{% translate 'imprimer le bon de commande' %}">
                                 <a target="_blank" href="{% url 'fiches:commande' element.id %}">
                                     <i class="d-block fa fa-file-text fa-2x text-orange"></i>
                                 </a>                               
@@ -73,7 +73,7 @@
                             <td class="text-center">
                                 <button class="btn btn-info btn-xs dim" title="Voir la liste des versements pour cette commande" data-toggle="modal" data-target="#modal-versements-commande-{{ element.id }}"><i class="fa fa-list"></i> </button>
                                 {% if element.reste_a_payer > 0 %}
-                                <button class="btn btn-danger btn-xs dim" data-toggle="modal" data-target="#modal-regler-commande-{{ element.id }}"><i class="fa fa-money"></i> Regler le reste</button>
+                                <button class="btn btn-danger btn-xs dim" data-toggle="modal" data-target="#modal-regler-commande-{{ element.id }}"><i class="fa fa-money"></i> {% translate "Regler le reste" %}</button>
                                 {% endif %}
                             </td>
                         </tr>
@@ -87,10 +87,10 @@
                                 {% endif %}
                             </td>
                             <td>
-                              <h5 class="text-uppercase mp0">Livraison N°{{element.id}}</h5>
+                              <h5 class="text-uppercase mp0">{% translate "Livraison N°" %}{{element.id}}</h5>
                               <small>{{element.created_at | naturaltime }}</small>
                             </td>
-                          <td data-toggle="tooltip" title="imprimer le bon de livraison">
+                          <td data-toggle="tooltip" title="{% translate 'imprimer le bon de livraison' %}">
                               <a target="_blank" href="{% url 'fiches:livraison' element.id %}">
                                   <i class="d-block fa fa-file-text fa-2x text-green"></i>
                                 </a>                               
@@ -117,7 +117,7 @@
                         <tr style="height: 20px;"></tr>
     
                         <tr>
-                            <td colspan="3"><h2 class="text-uppercase text-right">Reste à livrer : </h2></td>
+                            <td colspan="3"><h2 class="text-uppercase text-right">{% translate "Reste à livrer" %} : </h2></td>
                             {% for brique in item.briques %}
                             <td widtd="90" class="text-center">
                                     <h2 class="gras">{{ item.briques|dict_value:brique | start0 }}</h2>
@@ -131,13 +131,13 @@
             <div class="row text-center" style="font-size: 12px">
                 {% if item.groupe.etat.etiquette|add:"0" == request.etat.EN_COURS|add:"0" %}
                     <div class="col-md">
-                        <button class="btn btn-primary dim" data-toggle=modal data-target='#modal-newcommande'><i class="fa fa-cart-plus"></i> Nouvelle commande</button>
+                        <button class="btn btn-primary dim" data-toggle=modal data-target='#modal-newcommande'><i class="fa fa-cart-plus"></i> {% translate "Nouvelle commande" %}</button>
                     </div>
                     <div class="col-md">
-                        <button class="btn btn-default dim" data-toggle="modal" data-target='#modal-changement-{{item.groupe.id}}'><i class="fa fa-refresh"></i> Changement de produits </button>
+                        <button class="btn btn-default dim" data-toggle="modal" data-target='#modal-changement-{{item.groupe.id}}'><i class="fa fa-refresh"></i> {% translate "Changement de produits" %} </button>
                     </div>
                     <div class="col-md">
-                        <button class="btn btn-warning dim" data-toggle="modal" data-target='#modal-livraison-{{item.groupe.id}}'><i class="fa fa-truck"></i> Faire livraison aujourd'hui</button>
+                        <button class="btn btn-warning dim" data-toggle="modal" data-target='#modal-livraison-{{item.groupe.id}}'><i class="fa fa-truck"></i> {% translate "Faire livraison aujourd'hui" %}</button>
                     </div>
                 {% endif %}
             </div>

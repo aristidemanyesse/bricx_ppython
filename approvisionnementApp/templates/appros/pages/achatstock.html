@@ -1,6 +1,7 @@
 {% extends "layout/base_sidebar_fabrique.html" %} 
 {% load static %} 
 {% load humanize %} 
+{% load i18n %} 
 {% load myfilters %} 
 
 {% block wrapper %} 
@@ -9,17 +10,17 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-9">
-        <h2 class="text-uppercase text-warning gras">Les achats de stocks </h2>
+        <h2 class="text-uppercase text-warning gras">{% translate "Les achats de stocks" %} </h2>
     </div>
     <div class="col-sm-3 text-right">
-        <button style="margin-top: 5%" data-toggle='modal' data-target="#modal-achatstock" class="btn btn-warning dim"><i class="fa fa-plus"></i> Nouvel Achat de stock</button>
+        <button style="margin-top: 5%" data-toggle='modal' data-target="#modal-achatstock" class="btn btn-warning dim"><i class="fa fa-plus"></i> {% translate "Nouvel Achat de stock" %}</button>
     </div>
 </div>
 
 <div class="wrapper wrapper-content">
     <div class="ibox">
         <div class="ibox-title">
-            <h5>Tous les achats de stocks</h5>
+            <h5>{% translate "Tous les achats de stocks" %}</h5>
 
             <div class="ibox-tools">
                 {% include 'extra/filter_form.html' %}
@@ -31,13 +32,13 @@
                 <table class="footable table table-stripped toggle-arrow-tiny">
                     <thead>
                         <tr>
-                            <th data-toggle="true">Status</th>
-                            <th>Reference</th>
-                            <th>Fournisseur</th>
-                            <th>Montant</th>
-                            <th>Reste</th>
+                            <th data-toggle="true">{% translate "Status" %}</th>
+                            <th>{% translate "Reference" %}</th>
+                            <th>{% translate "Fournisseur" %}</th>
+                            <th>{% translate "Montant" %}</th>
+                            <th>{% translate "Reste" %}</th>
                             <th data-hide="all"></th>
-                            <th>Action</th>
+                            <th>{% translate "Action" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,12 +48,12 @@
                                 <span class="label label-{{achat.etat.classe}}">{{achat.etat.name}}</span>
                             </td>
                             <td>
-                                <span class="text-uppercase gras">Achat de Stock</span><br>
+                                <span class="text-uppercase gras">{% translate "Achat de Stock" %}</span><br>
                                 <span>{{achat.id}}</span>
                             </td>
                             <td>
                                 <h6 class="text-uppercase text-muted gras" style="margin: 0">{{achat.fournisseur.name}}</h6>
-                                <small>Effectué {{achat.created_at|naturaltime}}</small>
+                                <small>{% translate "Effectué" %} {{achat.created_at|naturaltime}}</small>
                             </td>
                             <td>
                                 <h4 class="gras text-muted">{{achat.montant|intcomma}} {{request.societe.devise}}</h4>
@@ -72,14 +73,14 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class='gras'>Commandé</td>
+                                            <td class='gras'>{% translate "Commandé" %}</td>
                                             {% for ligne in achat.achatstock_ligne.all %}
                                             <td class="text-center">{{ligne.quantite|start0}} {{ligne.brique.unite}}</td>
                                             {% endfor %}
                                         </tr>
                                         {% if achat.etat.etiquette|add:0 == request.etat.TERMINE|add:0 %}
                                         <tr>
-                                            <td class='gras'>Livrée</td>
+                                            <td class='gras'>{% translate "Livrée" %}</td>
                                             {% for ligne in achat.achatstock_ligne.all %}
                                             <td class="text-center">{{ligne.quantite_recu|start0}} {{ligne.brique.unite}}</td>
                                             {% endfor %}
@@ -91,10 +92,10 @@
                          <td>
                             <a href="{% url 'fiches:achatstock' achat.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
                             {% if achat.etat.etiquette|add:0 == request.etat.EN_COURS|add:0 %}
-                                <button data-toggle='modal' data-target="#modal-terminer-achatstock-{{achat.id}}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Valider</button>
+                                <button data-toggle='modal' data-target="#modal-terminer-achatstock-{{achat.id}}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> {% translate "Valider" %}</button>
                             {% endif %}
                             {% if achat.reste_a_payer > 0 %}
-                                <button data-toggle="modal" data-target="#modal-regler-achatstock-{{ achat.id }}" onclick="session('fournisseur_id', '{{achat.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Payer</button>
+                                <button data-toggle="modal" data-target="#modal-regler-achatstock-{{ achat.id }}" onclick="session('fournisseur_id', '{{achat.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> {% translate "Payer" %}</button>
                             {% endif %}
                             {% if achat.etat.etiquette|add:0 != request.etat.ANNULE|add:0 and perms.paramApp.boutique %}
                             <button onclick="delete_password('achatstock', '{{achat.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>

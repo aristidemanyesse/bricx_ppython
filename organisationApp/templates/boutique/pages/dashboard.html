@@ -18,10 +18,10 @@
                     </div>
                     <ul class="list-group clear-list m-t">
                         <li class="list-group-item fist-item">
-                            Commandes en cours <span class="label label-success float-right">{{ request.commandes | length |start0}}</span> 
+                            {% translate "Commandes en cours" %} <span class="label label-success float-right">{{ request.commandes | length |start0}}</span> 
                         </li>
                         <li class="list-group-item">
-                            Livraisons en cours <span class="label label-success float-right">{{ request.livraisons | length |start0}}</span> 
+                            {% translate "Livraisons en cours" %} <span class="label label-success float-right">{{ request.livraisons | length |start0}}</span> 
                         </li>
                         <li class="list-group-item"></li>
                     </ul>
@@ -34,31 +34,31 @@
                         <div class="row container text-center">
                             <div class="col text-center">
                                 <div class="carre bg-green"></div>
-                                <label>Qte livrable</label>
+                                <label>{% translate "Qté livrable" %}</label>
                             </div>
                             <div class="col text-center">
                                 <div class="carre bg-orange"></div>
-                                <label>Qte non rangée</label>
+                                <label>{% translate "Qté non rangée" %}</label>
                             </div>
                             <div class="col text-center">
                                 <div class="carre bg-gray"></div>
-                                <label>Qte commandée</label>
+                                <label>{% translate "Qté commandée" %}</label>
                             </div>
                         </div>
-                        <small class="text-uppercase">Courbe représentative du stock de produits en fonction des commandes actuelles</small>
+                        <small class="text-uppercase">{% translate "Courbe représentative du stock de produits en fonction des commandes actuelles" %}</small>
                     </div><hr>
                     <div class="row stat-list text-center">
                         <div class="col-4 ">
                             <h3 class="no-margins text-green">{{entree_du_jour | intcomma}} <small>{{request.societe.devise}}</small></h3>
-                            <small>Entrées du jour</small>
+                            <small>{% translate "Entrées du jour"  %}</small>
                         </div>
                         <div class="col-4 border-left border-right">
                             <h2 class="no-margins gras">{{solde_actuel | intcomma}} <small>{{request.societe.devise}}</small></h2>
-                            <small>En caisse actuellement</small>
+                            <small>{% translate "En caisse actuellement" %}</small>
                         </div>
                         <div class="col-4">
                             <h3 class="no-margins text-red">{{depense_du_jour | intcomma}} <small>{{request.societe.devise}}</small></h3>
-                            <small>Dépenses du jour</small>
+                            <small>{% translate "Dépenses du jour" %}</small>
                         </div>
                     </div>
                 </div>
@@ -66,12 +66,12 @@
                     <div class="statistic-box" style="margin-top: 0%">
                         <div class="ibox">
                          <div class="ibox-content">
-                             <h5>Dette chez les clients</h5>
+                             <h5>{% translate "Dette chez les clients" %}</h5>
                              <h2 class="no-margins">{{ dette_clients|intcomma}} {{request.societe.devise}}</h2>
                          </div>
  
                          <div class="ibox-content">
-                             <h5>Briques en rupture de Stock</h5>
+                             <h5>{% translate "Briques en rupture de Stock" %}</h5>
                              <h2 class="no-margins">{{rupture_stock_brique|length|start0}} produit(s)</h2>
                          </div>
                      </div>
@@ -86,22 +86,22 @@
         <div class="row justify-content-center">
             {% for item in datas.keys %}
                 <div class="col-sm-6 col-md border-right " style="margin-bottom: 3%; border-bottom: 2px solid black">
-                    <h6 class="text-uppercase text-center"><img class="border" src="{% static item.image %}" style="height: 20px;"> Stock de <u class="gras">{{item.name}}</u></h6>
+                    <h6 class="text-uppercase text-center"><img class="border" src="{% static item.image %}" style="height: 20px;"> {% translate "Stock de" %} <u class="gras">{{item.name}}</u></h6>
                     <ul class="list-group clear-list m-t">
                         <li class="list-group-item">
-                            <i class="fa fa-cubes"></i> <small>Livrable</small>          
+                            <i class="fa fa-cubes"></i> <small>{% translate "Livrable" %}</small>          
                             <span class="float-right">
                                 <span title="quantité prête à être livrer" class="gras text-{% if datas|dict_value:item|dict_value:'livrable' >= item.alert_stock %}green {% else %}red clignote{% endif %} ?>">{{datas|dict_value:item|dict_value:'livrable'|intcomma}}</span>
                             </span>
                         </li>
                         <li class="list-group-item">
-                            <i class="fa fa-cubes"></i> <small>Non rangée</small>          
+                            <i class="fa fa-cubes"></i> <small>{% translate "Non rangée" %}</small>          
                             <span class="float-right">
                                 <span class="gras text-orange" title="quantité non rangée">{{datas|dict_value:item|dict_value:'attente'|intcomma}}</span>
                             </span>
                         </li>
                         <li class="list-group-item">
-                            <i class="fa fa-cubes"></i> <small>Commandée</small>          
+                            <i class="fa fa-cubes"></i> <small>{% translate "Commandée" %}</small>          
                             <span class="float-right">
                                 <span class="gras text-muted" title="quantité non rangée">{{datas|dict_value:item|dict_value:'commande'|intcomma}}</span>
                             </span>

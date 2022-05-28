@@ -11,7 +11,7 @@
     <div class="ibox">                                
         <ul class="nav nav-tabs">
             {% for agence in agences.keys %}
-            <li><a class="nav-link" data-toggle="tab" href="#tab-{{agence.id}}"><i class="fa fa-user"></i> Prix chez {{agence.name}}</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#tab-{{agence.id}}"><i class="fa fa-user"></i> {% translate "Prix chez" %} {{agence.name}}</a></li>
             {% endfor %}
         </ul>
         <div class="tab-content ibox-content" style="min-height: 300px;">
@@ -21,7 +21,7 @@
                 <div class=" bloc">
                     <div class="ibox border">
                         <div class="ibox-title">
-                            <h5 class="text-uppercase">Prix des produits par zone de livraison</h5>
+                            <h5 class="text-uppercase">{% translate "Prix des produits par zone de livraison" %}</h5>
                             <div class="ibox-tools">
                                 <!-- <a class="btn_modal" data-toggle="modal" data-target="#modal-zonelivraison">
                                     <i class="fa fa-plus"></i> Ajouter nouvelle zone
@@ -83,10 +83,10 @@
         <div class="col-sm-6 bloc">
             <div class="ibox border">
                 <div class="ibox-title">
-                    <h5 class="text-uppercase">Paye par production</h5>
+                    <h5 class="text-uppercase">{% translate "Paye par production" %}</h5>
                     <div class="ibox-tools">
                         <a data-toggle="modal" data-target="#modal-paye_produit">
-                            <i class="fa fa-plus"></i> Modifier les prix
+                            <i class="fa fa-plus"></i>{% translate "Modifier les prix" %}
                         </a>
                     </div>
                 </div>
@@ -94,10 +94,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Produit</th>
-                                <th class="text-center">Production</th>
-                                <th class="text-center">Rangement</th>
-                                <th class="text-center">Livraison</th>
+                                <th>{% translate "Briques" %}</th>
+                                <th class="text-center">{% translate "Production" %}</th>
+                                <th class="text-center">{% translate "Rangement" %}</th>
+                                <th class="text-center">{% translate "Livraison" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,10 +119,10 @@
         <div class="col-sm-6 bloc">
             <div class="ibox border">
                 <div class="ibox-title">
-                    <h5 class="text-uppercase">Paye par production <span class="text-red">dimanches & jours fériés</span></h5>
+                    <h5 class="text-uppercase">{% translate "Paye par production" %} <span class="text-red">{% translate "dimanches & jours fériés" %}</span></h5>
                     <div class="ibox-tools">
                         <a data-toggle="modal" data-target="#modal-paye_produit_ferie">
-                            <i class="fa fa-plus"></i> Modifier les prix
+                            <i class="fa fa-plus"></i> {% translate "Modifier les prix" %}
                         </a>
                     </div>
                 </div>
@@ -130,10 +130,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Produit</th>
-                                <th class="text-center">Production</th>
-                                <th class="text-center">Rangement</th>
-                                <th class="text-center">Livraison</th>
+                                <th>{% translate "Briques" %}</th>
+                                <th class="text-center">{% translate "Production" %}</th>
+                                <th class="text-center">{% translate "Rangement" %}</th>
+                                <th class="text-center">{% translate "Livraison" %}</th>
                             </tr>
                         </thead>
                         <tbody>

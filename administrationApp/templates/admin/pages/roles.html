@@ -1,5 +1,6 @@
 {% extends "layout/base_top.html" %} 
 {% load static %} 
+{% load i18n %} 
 {% load myfilters %} 
 
 {% block body %} 
@@ -8,7 +9,7 @@
 
     <div class="ibox border">
         <div class="ibox-title">
-            <h5 class="text-uppercase">Personnes ayant accès et leur roles</h5>
+            <h5 class="text-uppercase">{% translate "Personnes ayant accès et leur roles" %}</h5>
             <div class="ibox-tools">
                 <!-- <a class="btn_modal" data-toggle="modal" data-target="#modal-employe">
                     <i class="fa fa-plus"></i> Ajouter
@@ -20,12 +21,12 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Status</th>
-                        <th>Utilisateur</th>
-                        <th>Identifiants</th>
-                        <th>Accès et rôles</th>
+                        <th>{% translate "Status" %}</th>
+                        <th>{% translate "Utilisateur" %}</th>
+                        <th>{% translate "Identifiants" %}</th>
+                        <th>{% translate "Accès et rôles" %}</th>
                         <th data-hide="all"></th>>
-                        <th>Affiliation</th>
+                        <th>{% translate "Affiliation" %}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -35,9 +36,9 @@
                             <td></td>
                             <td>
                                 {% if employe.is_active %}
-                                    <span class="label label-success">Actif</span>
+                                    <span class="label label-success">{% translate "Actif" %}</span>
                                 {% else %}
-                                    <span class="label label-danger">Bloqué</span>
+                                    <span class="label label-danger">{% translate "Bloqué" %}</span>
                                {% endif %}
                             </td>
                             <td >
@@ -48,11 +49,11 @@
                             </td>
                             <td>
                                 {% if employe.last_login == None %}
-                                    <span class="">Login: <b>{{employe.username}}</b></span><br>
-                                    <span class="">Pass: <b>{{employe.brut}}</b></span>
+                                    <span class="">{% translate "Login:" %} <b>{{employe.username}}</b></span><br>
+                                    <span class="">{% translate "Pass:" %} <b>{{employe.brut}}</b></span>
                                 {% endif %}
                             </td>
-                            <td><button class="btn btn-sm btn-white footable-toggle">Definir les accès</button></td>
+                            <td><button class="btn btn-sm btn-white footable-toggle">{% translate "Definir les accès" %}</button></td>
                             <td class="" >
                                 <div class="row">
                                     {% for perm in employes|dict_value:employe|dict_value:"perms_on" %}
@@ -69,17 +70,17 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <small>Selectionner l'agence</small>
+                                    <small>{% translate "Selectionner l'agence" %}</small>
                                     {% include 'extra/select.html' with name="agence" instances=agences item=request.agence %}                                    
                                 </div>
                             </td>
                             <td class="text-right">          
-                                <button onclick="reset_password('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-refresh text-blue"></i> Init. mot de passe</button><br>
+                                <button onclick="reset_password('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-refresh text-blue"></i> {% translate "Init. mot de passe" %}</button><br>
 
                                 {% if employe.is_active %}
-                                    <button onclick="lock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-lock text-orange"></i> Bloquer</button>
+                                    <button onclick="lock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-lock text-orange"></i> {% translate "Bloquer" %}</button>
                                     {% else %}
-                                    <button onclick="unlock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-unlock text-green"></i> Débloquer</button>
+                                    <button onclick="unlock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-unlock text-green"></i> {% translate "Débloquer" %}</button>
                                     {% endif %}
                                 <button data-toggle="modal" data-target="#modal-employe{{employe.id}}" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-white btn-xs" onclick="delete_password('{{employe.id}}')"><i class="fa fa-close text-red"></i></button>

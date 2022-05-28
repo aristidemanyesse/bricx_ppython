@@ -12,8 +12,8 @@
 					<p></p>
 					<div class="">                                
 						<ul class="nav nav-tabs">
-							<li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> Les commandes en cours</a></li>
-							<li><a class="nav-link" data-toggle="tab" href="#tab-3"><i class="fa fa-money"></i> Transactions de caisse</a></li>
+							<li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> {% translate "Les commandes en cours" %}</a></li>
+							<li><a class="nav-link" data-toggle="tab" href="#tab-3"><i class="fa fa-money"></i> {% translate "Transactions de caisse" %}</a></li>
 						</ul>
 						<div class="tab-content" style="min-height: 300px;">
 
@@ -21,7 +21,7 @@
 							<div id="tab-1" class="tab-pane active"><br>
 								{% if perms.paramApp.commande %}
 								<div class="row container-fluid">
-									<button type="button" data-toggle=modal data-target='#modal-newcommande' class="btn btn-primary btn-sm dim float-right" onclick="delete_session('groupecommande_id')"><i class="fa fa-plus"></i> Nouvelle commande </button>
+									<button type="button" data-toggle=modal data-target='#modal-newcommande' class="btn btn-primary btn-sm dim float-right" onclick="delete_session('groupecommande_id')"><i class="fa fa-plus"></i> {% translate "Nouvelle commande" %} </button>
 								</div>
 								{% endif %}
 								<div class="">
@@ -32,10 +32,10 @@
 											<thead>
 												<tr>
 													<th data-toggle="true">Status</th>
-													<th>Reference</th>
-													<th>Livraison pour</th>
-													<th>Reste</th>
-													<th>Action</th>
+													<th>{% translate "Reference" %}</th>
+													<th>{% translate "Livraison pour" %}</th>
+													<th>{% translate "Reste" %}</th>
+													<th>{% translate "Action" %}</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -45,10 +45,10 @@
 														<span class="label label-{{ item.groupe.etat.classe }}">{{ item.groupe.etat.name }}</span>
 													</td>
 													<td>
-														<small class="text-uppercase gras">Commande ({{ item.commandes | length}})</small><br>
+														<small class="text-uppercase gras">{% translate "Commande" %} ({{ item.commandes | length}})</small><br>
 														<small>{{ item.groupe.created_at|naturalday}}</small>
 														{% if item.livraisons_encours|length > 0 %}
-														<p class="text-blue">{{ item.livraisons_encours | length }} livraison{{ item.livraisons_encours|pluralize }} en cours pour cette commande</p>
+														<p class="text-blue">{{ item.livraisons_encours | length }} {% translate "livraison{{ item.livraisons_encours|pluralize }}" %} {% translate "en cours pour cette commande" %}</p>
 														{% endif %}
 													</td>
 													<td>{{ item.groupe.datelivraison | naturalday }}</td>
@@ -56,7 +56,7 @@
 														<h5 class="gras text-orange">{{ item.groupe.reste_a_payer | intcomma }} {{ request.societe.devise }}</h5>
 													</td>                                                            
 													<td>
-														<button data-toggle="modal" data-target="#infos-groupecommande-{{item.groupe.id}}" class="btn-white cursor" onclick="session('groupecommande_id', '{{item.groupe.id}}')"  >Options</button>
+														<button data-toggle="modal" data-target="#infos-groupecommande-{{item.groupe.id}}" class="btn-white cursor" onclick="session('groupecommande_id', '{{item.groupe.id}}')"  >{% translate "Options" %}</button>
 													</td>
 												</tr>
 												{% endfor %}
@@ -94,11 +94,11 @@
 											</div>
 											<div class="col-10 content">
 												<div>
-													<span class="">Opération N°<strong>{{mouvement.id}}</strong></span>
+													<span class="">{% translate "Opération N°" %}<strong>{{mouvement.id}}</strong></span>
 													<span class="pull-right text-right text-{% if mouvement.type.etiquette|add:0 == request.typemouvement.DEPOT|add:0 %}green{% else %}red{% endif %}">
 														<span class="gras" style="font-size: 16px">{{mouvement.montant|intcomma}} {{ request.societe.devise }} {% if mouvement.etat.etiquette|add:0 == request.etat.EN_COURS %}*{% endif %}</span> <br>
-														<small>Par {{mouvement.mode.name}}</small><br>
-														<a href="{% url 'fiches:boncaisse' mouvement.id %}" target="_blank" class="simple_tag"><i class="fa fa-file-text-o"></i> Bon de caisse</a>
+														<small>{% translate "Par" %} {{mouvement.mode.name}}</small><br>
+														<a href="{% url 'fiches:boncaisse' mouvement.id %}" target="_blank" class="simple_tag"><i class="fa fa-file-text-o"></i> {% translate "Bon de caisse" %}</a>
 													</span>
 												</div>
 												<p class="m-b-xs mp0">{{mouvement.comment}} </p>
@@ -143,19 +143,19 @@
 
 								{% if perms.paramApp.comptabilite %}
 								<div class="m-b-lg">
-									<span>Acompte actuel du client</span><br>
+									<span>{% translate "Acompte actuel du client" %}</span><br>
 									<h1 class="font-bold d-inline">{{client.acompte_actuel | intcomma}} {{ request.societe.devise }}</h1><br><br>
 
 									<div class="row">
 										<div class="col-6">
 											<button type="button" data-toggle="modal" data-target="#modal-crediter" class="btn btn-info dim btn-block btn-xs"><i
-												class="fa fa-plus"></i> Créditer
+												class="fa fa-plus"></i> {% translate "Créditer" %}
 											</button>
 										</div>
 										{% if client.acompte_actuel > 0 %}
 										<div class="col-6">
 											<button type="button" data-toggle="modal" data-target="#modal-rembourser" class="btn btn-danger dim btn-block btn-xs"><i
-												class="fa fa-minus"></i> Rembourser
+												class="fa fa-minus"></i> {% translate "Rembourser" %}
 											</button>
 										</div>
 										{% endif %}
@@ -163,12 +163,12 @@
 
 									<hr>
 
-									<span>Dette actuelle du client</span><br>
+									<span>{% translate "Dette actuelle du client" %}</span><br>
 									<h1 class="font-bold d-inline text-red">{{client.dette_totale | intcomma}} {{ request.societe.devise }}</h1> <br><br>
 									
 									{% if client.dette_totale > 0 %}
 									<button type="button" onclick="reglerToutesDettes()" class="btn btn-danger dim btn-block"><i
-										class="fa fa-money"></i> Régler toute la dette
+										class="fa fa-money"></i> {% translate "Régler toute la dette" %}
 									</button>
 									{% endif %}                 
 									{% endif %}                 

@@ -6,9 +6,9 @@
 {% block wrapper %} 
 <div class="ibox">
     <div class="ibox-title">
-        <h5 class="text-uppercase">Stock de ressources</h5>
+        <h5 class="text-uppercase">{% translate "Stock de ressources" %}</h5>
         <div class="ibox-tools">
-             <button style="margin-top: -3%;" type="button" data-toggle=modal data-target='#modal-perteressource' class="btn btn-danger btn-xs dim"><i class="fa fa-trash"></i> Enregistrer une perte </button>
+             <button style="margin-top: -3%;" type="button" data-toggle=modal data-target='#modal-perteressource' class="btn btn-danger btn-xs dim"><i class="fa fa-trash"></i> {% translate "Enregistrer une perte" %} </button>
         </div>
     </div>
     <div class="ibox-content">
@@ -34,7 +34,7 @@
     <div class=" animated fadeInRightBig">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5 class="float-left text-uppercase">Historiques du {{debut}} au {{fin}}</h5>
+                <h5 class="float-left text-uppercase">{% translate "Historiques du" %} {{debut}} {% translate "au" %} {{fin}}</h5>
                 <div class="ibox-tools">
                     {% include 'extra/filter_form.html' %}
                 </div>

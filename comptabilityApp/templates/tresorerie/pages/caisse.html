@@ -15,7 +15,7 @@
         <div class="col-lg-9">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5 class="float-left">Du {{debut}} au {{fin}}</h5>
+                    <h5 class="float-left">{% translate "Du" %} {{debut}} {% translate "au" %} {{fin}}</h5>
                     <div class="ibox-tools">
                         {% include 'extra/filter_form.html' %}
                     </div>
@@ -27,29 +27,29 @@
                             <div class="row stat-list text-center">
                                 <div class="col-4 ">
                                     <h3 class="no-margins text-green">{{entree_du_jour | intcomma}} <small>{{request.societe.devise}}</small></h3>
-                                    <small>Entrées du jour</small>
+                                    <small>{% translate "Entrées du jour" %}</small>
                                 </div>
                                 <div class="col-4 border-left border-right">
                                     <h2 class="no-margins gras">{{solde_actuel | intcomma}} <small>{{request.societe.devise}}</small></h2>
-                                    <small>En caisse actuellement</small>
+                                    <small>{% translate "En caisse actuellement" %}</small>
                                 </div>
                                 <div class="col-4">
                                     <h3 class="no-margins text-red">{{depense_du_jour | intcomma}} <small>{{request.societe.devise}}</small></h3>
-                                    <small>Dépenses du jour</small>
+                                    <small>{% translate "Dépenses du jour" %}</small>
                                 </div>
                             </div><hr>
                             <div class="row" style="font-size: 10px">
                                 <div class="col-sm">
-                                    <button data-toggle="modal" data-target="#modal-entree" class="btn btn-xs btn-primary dim"><i class="fa fa-plus"></i> Faire Nouvelle entrée</button>
+                                    <button data-toggle="modal" data-target="#modal-entree" class="btn btn-xs btn-primary dim"><i class="fa fa-plus"></i> {% translate "Faire Nouvelle entrée" %}</button>
                                 </div>
                                 <div class="col-sm text-center">
-                                    <button data-toggle="modal" data-target="#modal-depense" class="btn btn-xs btn-danger dim"><i class="fa fa-minus"></i> Faire Nouvelle dépense</button>
+                                    <button data-toggle="modal" data-target="#modal-depense" class="btn btn-xs btn-danger dim"><i class="fa fa-minus"></i> {% translate "Faire Nouvelle dépense" %}</button>
                                 </div>
                                 <div class="col-sm text-center">
-                                    <button data-toggle="modal" data-target="#modal-attente" class="btn btn-xs btn-success dim" ><i class="fa fa-eye"></i> Voir les versemments en attente</button>
+                                    <button data-toggle="modal" data-target="#modal-attente" class="btn btn-xs btn-success dim" ><i class="fa fa-eye"></i> {% translate "Voir les versemments en attente" %}</button>
                                 </div>
                                 <div class="col-sm">
-                                    <button data-toggle="modal" data-target="#modal-transfert" class="btn btn-xs btn-warning dim pull-right"><i class="fa fa-refresh"></i> Transferts de caisse</button>
+                                    <button data-toggle="modal" data-target="#modal-transfert" class="btn btn-xs btn-warning dim pull-right"><i class="fa fa-refresh"></i> {% translate "Transferts de caisse" %}</button>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-9">
-                            <h5 class="text-uppercase">Chiffre d'affaire</h5>
+                            <h5 class="text-uppercase">{% translate "Chiffre d'affaire" %}</h5>
                             <h2 class="no-margins">{{chiffre_affaire|intcomma}}  <small>{{request.societe.devise }}</small></h2>
                         </div>
                         <div class="col-3 text-right">
@@ -77,7 +77,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-9">
-                            <h5 class="text-uppercase">Résultat brut</h5>
+                            <h5 class="text-uppercase">{% translate "Résultat brut" %}</h5>
                             <h2 class="no-margins">{{resultat|intcomma}} <small>{{request.societe.devise }}</small></h2>
                         </div>
                         <div class="col-3 text-right">
@@ -92,7 +92,7 @@
                 <div class="ibox-content bg-navy">
                     <div class="row">
                         <div class="col-9">
-                            <h5 class="text-uppercase">Dette clientèle</h5>
+                            <h5 class="text-uppercase">{% translate "Dette clientèle" %}</h5>
                             <h2 class="no-margins">{{dette_clients|intcomma}} <small>{{request.societe.devise }}</small></h2>
                         </div>
                         <div class="col-3 text-right">
@@ -107,7 +107,7 @@
                 <div class="ibox-content bg-red">
                     <div class="row">
                         <div class="col-9">
-                            <h5 class="text-uppercase">Dette Fournisseur</h5>
+                            <h5 class="text-uppercase">{% translate "Dette Fournisseur" %}</h5>
                             <h2 class="no-margins">{{dette_fournisseurs|intcomma}} <small>{{request.societe.devise }}</small></h2>
                         </div>
                         <div class="col-3 text-right">
@@ -127,7 +127,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5 class="text-uppercase">Tableau des compte</h5>
+                    <h5 class="text-uppercase">{% translate "Tableau des compte" %}</h5>
                     <div class="ibox-tools">
                     </div>
                 </div>
@@ -139,14 +139,14 @@
                                     <thead>
                                         <tr class="text-center text-uppercase">
                                             <th colspan="2" style="visibility: hidden; width: 65%"></th>
-                                            <th>Entrée</th>
-                                            <th>Sortie</th>
-                                            <th>Résultats</th>
+                                            <th>{% translate "Entrée" %}</th>
+                                            <th>{% translate "Sortie" %}</th>
+                                            <th>{% translate "Résultats" %}</th>
                                         </tr>
                                     </thead>
                                     <tbody class="tableau">
                                         <tr>
-                                            <td colspan="2">Report de la caisse </td>
+                                            <td colspan="2">{% translate "Report de la caisse" %} </td>
                                             <td class="text-center">-</td>
                                             <td class="text-center">-</td>
                                             <td style="background-color: #fafafa" class="text-center">{{report|intcomma}} {{request.societe.devise}}</td>
@@ -183,7 +183,7 @@
                                     {% endfor %}
                                     <tr style="height: 15px;"></tr>
                                     <tr>
-                                        <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">Total des comptes au {{fin}}</h4></td>
+                                        <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">{% translate "Total des comptes au" %} {{fin}}</h4></td>
                                         <td><h3 class="text-center text-green">{{total_entree |intcomma}} {{request.societe.devise}}</h3></td>
                                         <td><h3 class="text-center text-red">{{total_depense|intcomma}} {{request.societe.devise}}</h3></td>
                                         <td style="background-color: #fafafa"><h3 class="text-center text-blue gras">{{solde_a_la_date|intcomma}} {{request.societe.devise}}</h3></td>

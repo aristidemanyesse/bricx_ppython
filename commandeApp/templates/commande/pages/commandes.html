@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-9">
-        <h2 class="text-uppercase text-green gras">Les commandes en cours</h2>
+        <h2 class="text-uppercase text-green gras">{% translate "Les commandes en cours" %}</h2>
     </div>
     <div class="col-sm-3">
         <!-- <a class="pull-right btn btn-white btn-sm" style="margin-top: 5%" href="{% url 'boutique:commandes:commandes1' %}"><i class="fa fa-list"></i> Affichage en tableau</a> -->
@@ -28,9 +28,9 @@
             <div class="social-avatar">
                 <div class="media-body">
                     <a class="text-capitalize text-dark gras" href="{% url 'boutique:clients:client' item.groupe.client.id  %}">{{ item.groupe.client.name }} ({{ item.commandes | length}})</a>
-                    <small class="text-muted">Livraison prévue pour le {{ item.groupe.datelivraison | naturalday }}</small><br>
+                    <small class="text-muted">{% translate "Livraison prévue pour le" %} {{ item.groupe.datelivraison | naturalday }}</small><br>
                     {% if item.livraisons_encours|length > 0 %}
-                    <p class="text-blue">{{ item.livraisons_encours | length }} livraison{{ item.livraisons_encours|pluralize }} en cours pour cette commande</p>
+                    <p class="text-blue">{{ item.livraisons_encours | length }} {% translate "livraison{{ item.livraisons_encours|pluralize }} en cours pour cette commande" %}</p>
                     {% endif %}
                 </div>
             </div>

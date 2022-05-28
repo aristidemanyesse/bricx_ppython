@@ -1,6 +1,7 @@
 {% extends "layout/base_sidebar_fabrique.html" %} 
 {% load static %} 
 {% load humanize %} 
+{% load i18n %} 
 {% load myfilters %} 
 
 {% block wrapper %} 
@@ -13,8 +14,8 @@
                     <p></p>
                     <div class="">                                
                        <ul class="nav nav-tabs">
-                        <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> Approvision. en cours</a></li>
-                        <li><a class="nav-link" data-toggle="tab" href="#tab-3"><i class="fa fa-money"></i> Transactions de caisse</a></li>
+                        <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> {% translate "Approvision. en cours" %}</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#tab-3"><i class="fa fa-money"></i> {% translate "Transactions de caisse" %}</a></li>
                     </ul>
                     <div class="tab-content" style="min-height: 300px;">
 
@@ -27,13 +28,13 @@
                                 <table class="footable table table-stripped toggle-arrow-tiny">
                                     <thead>
                                         <tr>
-                                            <th data-toggle="true">Status</th>
-                                            <th>Reference</th>
-                                            <th>Enregistré par</th>
-                                            <th>Montant</th>
-                                            <th>Reste à payer</th>
+                                            <th data-toggle="true">{% translate "Status" %}</th>
+                                            <th>{% translate "Reference" %}</th>
+                                            <th>{% translate "Enregistré par" %}</th>
+                                            <th>{% translate "Montant" %}</th>
+                                            <th>{% translate "Reste à payer" %}</th>
                                             <th data-hide="all"></th>
-                                            <th>Action</th>
+                                            <th>{% translate "Action" %}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,7 +44,7 @@
                                                     <span class="label label-{{appro.etat.classe}}">{{appro.etat.name}}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="text-uppercase gras">Appro N°{{appro.id}}</span><br>
+                                                    <span class="text-uppercase gras">{% translate "Appro N°" %}{{appro.id}}</span><br>
                                                     <small>{{appro.created_at | naturaltime }}</small>
                                                 </td>
                                                 <td><i class="fa fa-user"></i> {{appro.employe.get_full_name}}</td>
@@ -69,14 +70,14 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td class='gras'>Demandé</td>
+                                                                <td class='gras'>{% translate "Demandé" %}</td>
                                                                 {% for ligne in appro.approvisionnement_ligne.all %}
                                                                     <td class="text-center">{{ligne.quantite|start0}} {{ligne.ressource.unite}}</td>
                                                                 {% endfor %}
                                                             </tr>
                                                             {% if appro.etat.etiquette|add:0 == request.etat.TERMINE|add:0 %}
                                                             <tr>
-                                                                <td class='gras'>livrée</td>
+                                                                <td class='gras'>{% translate "livrée" %}</td>
                                                                 {% for ligne in appro.approvisionnement_ligne.all %}
                                                                 <td class="text-center">{{ligne.quantite_recu|start0}} {{ligne.ressource.unite}}</td>
                                                                 {% endfor %}
@@ -88,14 +89,14 @@
                                                 <td>
                                                     <a href="{% url 'fiches:approvisionnement' appro.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
                                                     {% if appro.reste_a_payer > 0 %}
-                                                        <button data-toggle="modal" data-target="#modal-regler-appro-{{appro.id }}" onclick="session('fournisseur_id', '{{appro.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Payer</button>
+                                                        <button data-toggle="modal" data-target="#modal-regler-appro-{{appro.id }}" onclick="session('fournisseur_id', '{{appro.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> {% translate "Payer" %}</button>
                                                     {% endif %}
                                                     {% if appro.etat.etiquette|add:0 == request.etat.EN_COURS|add:0 %}
                                                     <button data-toggle='modal' data-target="#modal-approvisionnement-{{appro.id}}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Valider</button>
                                                     {% endif %}
                                                     {% if appro.etat.etiquette|add:0 != request.etat.ANNULE|add:0 %}
-                            <button onclick="delete_password('approvisionnement', '{{appro.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
-                            {% endif %}
+                                                    <button onclick="delete_password('approvisionnement', '{{appro.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
+                                                    {% endif %}
                                                 </td>
                                             </tr>
                                             {% endfor %}
@@ -130,11 +131,11 @@
                                     </div>
                                     <div class="col-10 content">
                                         <div>
-                                            <span class="">Opération N°<strong>{{mouvement.id}}</strong></span>
+                                            <span class="">{% translate "Opération N°" %}<strong>{{mouvement.id}}</strong></span>
                                             <span class="pull-right text-right text-{% if mouvement.type.etiquette|add:0 == request.typemouvement.DEPOT|add:0 %}green{% else %}red{% endif %}">
                                                 <span class="gras" style="font-size: 16px">{{mouvement.montant|intcomma}} {{ request.societe.devise }} {% if mouvement.etat.etiquette|add:0 == request.etat.EN_COURS %}*{% endif %}</span> <br>
                                                 <small>Par {{mouvement.mode.name}}</small><br>
-                                                <a href="{% url 'fiches:boncaisse' mouvement.id %}" target="_blank" class="simple_tag"><i class="fa fa-file-text-o"></i> Bon de caisse</a>
+                                                <a href="{% url 'fiches:boncaisse' mouvement.id %}" target="_blank" class="simple_tag"><i class="fa fa-file-text-o"></i> {% translate "Bon de caisse" %}</a>
                                             </span>
                                         </div>
                                         <p class="m-b-xs mp0">{{mouvement.comment}} </p>
@@ -169,22 +170,22 @@
         </address><hr>
 
         <div class="m-b-lg">
-            <span>Acompte actuel chez le fournisseur</span><br>
+            <span>{% translate "Acompte actuel chez le fournisseur" %}</span><br>
             <h2 class="font-bold d-inline">{{fournisseur.acompte_actuel|intcomma}} {{request.societe.devise }}</h2> 
-            <button data-toggle="modal" data-target="#modal-crediter" class="cursor simple_tag pull-right"><i class="fa fa-plus"></i> Crediter acompte</button><br><br>
+            <button data-toggle="modal" data-target="#modal-crediter" class="cursor simple_tag pull-right"><i class="fa fa-plus"></i> {% translate "Crediter acompte" %}</button><br><br>
 
             {% if fournisseur.acompte_actuel > 0 %}
                 <button style="font-size: 11px" type="button" data-toggle="modal" data-target="#modal-rembourser" class="btn btn-danger dim btn-block"><i
-                    class="fa fa-minus"></i> Se faire rembourser par le fournisseur
+                    class="fa fa-minus"></i> {% translate "Se faire rembourser par le fournisseur" %}
                 </button>
             {% endif %} 
 
             <hr>
 
-            <span>Dette actuelle chez le fournisseur</span><br>
+            <span>{% translate "Dette actuelle chez le fournisseur" %}</span><br>
             <h2 class="font-bold d-inline text-red">{{fournisseur.dette_totale|intcomma}} {{request.societe.devise }}</h2> 
             {% if fournisseur.dette_totale > 0 %}
-                <button onclick="reglerToutesDettes('{{fournisseur.id}}')" class="btn btn-xs dim btn-outline-danger pull-right"><i class="fa fa-money"></i> Régler toutes les dettes</button>
+                <button onclick="reglerToutesDettes('{{fournisseur.id}}')" class="btn btn-xs dim btn-outline-danger pull-right"><i class="fa fa-money"></i> {% translate "Régler toutes les dettes" %}</button>
             {% endif %}                   
 
         </div>

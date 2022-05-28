@@ -7,17 +7,17 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-9">
-        <h2 class="text-uppercase text-blue gras">Productions & rangements</h2>
+        <h2 class="text-uppercase text-blue gras">{% translate "Productions & rangements" %}</h2>
     </div>
     <div class="col-sm-3">
-        <button style="margin-top: 5%" onclick="declenche()" data-toggle="modal" data-target="#modal-production" class="btn btn-success pull-right dim"><i class="fa fa-plus"></i> Production du jour</button>
+        <button style="margin-top: 5%" onclick="declenche()" data-toggle="modal" data-target="#modal-production" class="btn btn-success pull-right dim"><i class="fa fa-plus"></i> {% translate "Production du jour" %}</button>
     </div>
 </div>
 
 <div class="wrapper wrapper-content">
     <div class="ibox">
         <div class="ibox-title">
-            <h5>Toutes les productions non rangées</h5>
+            <h5>{% translate "Toutes les productions non rangées" %}</h5>
             <div class="ibox-tools">
                 {% include 'extra/filter_form.html' %}
             </div>
@@ -27,12 +27,12 @@
             <table class="footable table table-stripped toggle-arrow-tiny">
                 <thead>
                     <tr>
-                        <th data-toggle="true">Status</th>
+                        <th data-toggle="true">{% translate "Status" %}</th>
                         <th></th>
-                        <th>Date</th>
-                        <th>Enregistré par</th>
+                        <th>{% translate "Date" %}</th>
+                        <th>{% translate "Enregistré par" %}</th>
                         <th data-hide="all"></th>
-                        <th colspan="2">Action</th>
+                        <th colspan="2">{% translate "Action" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,9 +43,9 @@
                         </td>
                         <td>
                             {% if production.etat.etiquette|add:'0' == request.etat.EN_COURS|add:'0' %}
-                            <h5 class="text-uppercase">Production non rangé</h5>
+                            <h5 class="text-uppercase">{% translate "Production non rangé" %}</h5>
                             {% else %}
-                            <h5 class="text-uppercase">Production déjà rangé</h5>
+                            <h5 class="text-uppercase">{% translate "Production déjà rangé" %}</h5>
                             {% endif %}
                         </td>
                         <td>
@@ -66,20 +66,20 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><h4 class="mp0 text-muted">Produite : </h4></td>
+                                        <td><h4 class="mp0 text-muted">{% translate "Produite" %} : </h4></td>
                                         {% for ligne in production.production_ligne.all %}
                                         <th class="text-center " style="color: #ccc">{{ ligne.quantite |start0 }}</th>
                                         {% endfor %}
                                     </tr>
                                     {% if production.etat.etiquette|add:'0' != request.etat.EN_COURS|add:'0' %}
                                     <tr>
-                                        <td><h4 class="mp0">Rangées : </h4></td>
+                                        <td><h4 class="mp0">{% translate "Rangées" %} : </h4></td>
                                         {% for ligne in production.production_ligne.all %}
                                         <th class="text-center">{{ ligne.quantite|sub:ligne.perte |start0 }}</th>
                                         {% endfor %}
                                     </tr>
                                     <tr>
-                                        <td><h4 class="mp0 text-red">Perte : </h4></td>
+                                        <td><h4 class="mp0 text-red">{% translate "Perte" %} : </h4></td>
                                         {% for ligne in production.production_ligne.all %}
                                         <th class="text-center text-red">{{ ligne.perte|start0 }}</th>
                                         {% endfor %}
@@ -93,7 +93,7 @@
                         </td>
                         <td>
                             {% if production.etat.etiquette|add:'0' == request.etat.EN_COURS|add:'0' %}
-                            <button data-toggle="modal" data-target="#modal-rangement-{{ production.id }}" class="btn btn-white btn-xs"><i class="fa fa-plus"></i> Faire le rangement </button>
+                            <button data-toggle="modal" data-target="#modal-rangement-{{ production.id }}" class="btn btn-white btn-xs"><i class="fa fa-plus"></i> {% translate "Faire le rangement" %} </button>
                             <button onclick="delete_password('production', '{{ production.id }}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>
                             {% endif %}
                         </td>

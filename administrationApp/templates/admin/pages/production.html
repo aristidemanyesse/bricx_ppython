@@ -2,6 +2,7 @@
 {% load static %} 
 {% load myfilters %} 
 {% load humanize %} 
+{% load i18n %} 
 
 {% block body %} 
 
@@ -12,10 +13,10 @@
        <div class="col-md-6 bloc">
           <div class="ibox border">
               <div class="ibox-title">
-                  <h5 class="text-uppercase">Les produits</h5>
+                  <h5 class="text-uppercase">{% translate "Les briques" %}</h5>
                   <div class="ibox-tools">
                       <button class="btn_modal btn_modal btn-white" data-toggle="modal" data-target="#modal-produit">
-                          <i class="fa fa-plus"></i> Ajouter
+                          <i class="fa fa-plus"></i> {% translate "Ajouter" %}
                       </button>
                   </div>
               </div>
@@ -24,9 +25,9 @@
                       <thead>
                           <tr>
                               <th></th>
-                              <th>Libéllé</th>
-                              <th>Seuil d'alerte</th>
-                              <th>Actif ?</th>
+                              <th>{% translate "Libéllé" %}</th>
+                              <th>{% translate "Seuil d'alerte" %}</th>
+                              <th>{% translate "Actif ?" %}</th>
                               <th></th>
                               <th></th>
                           </tr>
@@ -67,10 +68,10 @@
       <div class="col-md-6 bloc">
           <div class="ibox border">
               <div class="ibox-title">
-                  <h5 class="text-uppercase">Les matières premières</h5>
+                  <h5 class="text-uppercase">{% translate "Les matières premières" %}</h5>
                   <div class="ibox-tools">
                       <button class="btn_modal btn btn-xs btn-white" data-toggle="modal" data-target="#modal-ressource">
-                          <i class="fa fa-plus"></i> Ajouter
+                          <i class="fa fa-plus"></i> {% translate "Ajouter" %}
                       </button>
                   </div>
               </div>
@@ -78,11 +79,11 @@
                   <table class="table table-striped">
                       <thead>
                           <tr>
-                              <th>Libéllé</th>
-                              <th>Unité</th>
-                              <th>stockable ?</th>
-                              <th>Prix d'achat</th>
-                              <th>Seuil d'alerte</th>
+                              <th>{% translate "Libéllé" %}</th>
+                              <th>{% translate "Unité" %}</th>
+                              <th>{% translate "stockable ?" %}</th>
+                              <th>{% translate "Prix d'achat" %}</th>
+                              <th>{% translate "Seuil d'alerte" %}</th>
                               <th></th>
                               <th></th>
                           </tr>
@@ -123,11 +124,11 @@
       <div class="col-md-12 bloc">
           <div class="ibox border">
               <div class="ibox-title">
-                  <h5 class="text-uppercase">Exigence de production par ressource 
+                  <h5 class="text-uppercase">{% translate "Exigence de production par ressource" %}
                 </h5>
                 <div class="ibox-tools">
                     <div class="row">
-                        <div class="col-sm-8"><span>Production automatique</span></div>
+                        <div class="col-sm-8"><span>{% translate "Production automatique" %}</span></div>
                         <div class="col-sm-4">
                             <div class="switch">
                                 <div class="onoffswitch">
@@ -167,7 +168,7 @@
                                         <td class="text-center"> {{briques|dict_value:brique|dict_value:ressource}} {{ressource.unite}}</td>
                                 {% endfor %}
                                 <td>==></td>
-                                <td class="text-blue"> Pour produire <b>{{exi.quantite|start0}}</b> unités</td>
+                                <td class="text-blue"> {% translate "Pour produire" %} <b>{{exi.quantite|start0}}</b> {% translate "unités" %}</td>
                                 <td>
                                     <i class="fa fa-pencil cursor" data-toggle="modal" data-target="#modal-exigence{{brique.id}}"> </i>
                                 </td>

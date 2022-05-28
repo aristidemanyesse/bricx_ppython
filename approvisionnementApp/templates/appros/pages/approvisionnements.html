@@ -1,23 +1,24 @@
 {% extends "layout/base_sidebar_fabrique.html" %} 
 {% load static %} 
 {% load humanize %} 
+{% load i18n %} 
 {% load myfilters %} 
 
 {% block wrapper %} 
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-9">
-        <h2 class="text-uppercase text-warning gras">Tous les approvisionnements</h2>
+        <h2 class="text-uppercase text-warning gras">{% translate "Tous les approvisionnements" %}</h2>
     </div>
     <div class="col-sm-3">
-        <button style="margin-top: 5%" data-toggle='modal' data-target="#modal-approvisionnement" class="btn btn-warning dim"><i class="fa fa-plus"></i> Nouvel Approvisionnement</button>
+        <button style="margin-top: 5%" data-toggle='modal' data-target="#modal-approvisionnement" class="btn btn-warning dim"><i class="fa fa-plus"></i> {% translate "Nouvel Approvisionnement" %}</button>
     </div>
 </div>
 
 <div class="wrapper wrapper-content">
     <div class="ibox">
         <div class="ibox-title">
-            <h5>Tous les approvisionnements</h5>
+            <h5>{% translate "Tous les approvisionnements" %}</h5>
             <div class="ibox-tools">
                 {% include 'extra/filter_form.html' %}
             </div>
@@ -29,15 +30,15 @@
                 <thead>
                     <tr>
 
-                        <th data-toggle="true">Status</th>
-                        <th>Reference</th>
-                        <th>Entrepôt</th>
-                        <th>Enregistré par</th>
-                        <th>Montant</th>
-                        <th>Reste à payer</th>
-                        <th>Fournisseur</th>
+                        <th data-toggle="true">{% translate "Status" %}</th>
+                        <th>{% translate "Reference" %}</th>
+                        <th>{% translate "Entrepôt" %}</th>
+                        <th>{% translate "Enregistré par" %}</th>
+                        <th>{% translate "Montant" %}</th>
+                        <th>{% translate "Reste à payer" %}</th>
+                        <th>{% translate "Fournisseur" %}</th>
                         <th data-hide="all"></th>
-                        <th>Action</th>
+                        <th>{% translate "Action" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +48,7 @@
                             <span class="label label-{{appro.etat.classe}}">{{appro.etat.name}}</span>
                         </td>
                         <td>
-                            <span class="text-uppercase gras">Appro N°{{appro.id}}</span><br>
+                            <span class="text-uppercase gras">{% translate "Appro N°" %}{{appro.id}}</span><br>
                             <small>{{appro.created_at | naturaltime }}</small>
                         </td>
                         <td>
@@ -77,14 +78,14 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class='gras'>Demandé</td>
+                                        <td class='gras'>{% translate "Demandé" %}</td>
                                         {% for ligne in appro.approvisionnement_ligne.all %}
                                         <td class="text-center">{{ligne.quantite|start0}} {{ligne.ressource.unite}}</td>
                                         {% endfor %}
                                     </tr>
                                     {% if appro.etat.etiquette|add:0 == request.etat.TERMINE|add:0 %}
                                     <tr>
-                                        <td class='gras'>Livrée</td>
+                                        <td class='gras'>{% translate "Livrée" %}</td>
                                         {% for ligne in appro.approvisionnement_ligne.all %}
                                         <td class="text-center">{{ligne.quantite_recu|start0}} {{ligne.ressource.unite}}</td>
                                         {% endfor %}
@@ -96,10 +97,10 @@
                         <td>
                             <a href="{% url 'fiches:approvisionnement' appro.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
                             {% if appro.etat.etiquette|add:0 == request.etat.EN_COURS|add:0 %}
-                            <button data-toggle='modal' data-target="#modal-approvisionnement-{{appro.id}}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Valider</button>
+                            <button data-toggle='modal' data-target="#modal-approvisionnement-{{appro.id}}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> {% translate "Valider" %}</button>
                             {% endif %}
                             {% if appro.reste_a_payer > 0 %}
-                                <button data-toggle="modal" data-target="#modal-regler-appro-{{ appro.id }}" onclick="session('fournisseur_id', '{{appro.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Payer</button>
+                                <button data-toggle="modal" data-target="#modal-regler-appro-{{ appro.id }}" onclick="session('fournisseur_id', '{{appro.fournisseur.id}}')" class="btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> {% translate "Payer" %}</button>
                             {% endif %}
                             {% if appro.etat.etiquette|add:0 != request.etat.ANNULE|add:0 %}
                             <button onclick="delete_password('approvisionnement', '{{appro.id}}')" class="btn btn-white btn-sm"><i class="fa fa-trash text-red"></i></button>

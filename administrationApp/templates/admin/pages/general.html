@@ -7,60 +7,60 @@
 
     <div class="ibox">
         <div class="ibox-title">
-            <h5 class="text-uppercase">Configuration des informations générales de la structure</h5>
+            <h5 class="text-uppercase">{% translate "Configuration des informations générales de la structure" %}</h5>
         </div>
         <div class="ibox-content"><br>
             <div class="row">
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-sm-12">
-                            <span class="text-muted">Raison sociale ou nom de la société</span>
+                            <span class="text-muted">{% translate "Raison sociale ou nom de la société" %}</span>
                             <h2 class="gras text-uppercase text-primary">{{request.societe.socialreason}}</h2>
                         </div>
                     </div><br><br>
 
                     <div class="row">
                         <div class="col-sm-4">
-                            <span class="text-muted">Situation Géographique</span>
+                            <span class="text-muted">{% translate "Situation Géographique" %}</span>
                             <h4>{{request.societe.adresse}}</h4>
                         </div>
 
                         <div class="col-sm-4">
-                            <span class="text-muted">Contacts</span>
+                            <span class="text-muted">{% translate "Contacts" %}</span>
                             <h4>{{request.societe.contact}}</h4>
                         </div>
 
                         <div class="col-sm-4">
-                            <span class="text-muted">Email</span>
+                            <span class="text-muted">{% translate "Email" %}</span>
                             <h4>{{request.societe.email}}</h4>
                         </div>
                     </div><br><br>
 
                     <div class="row">
                         <div class="col-sm-4">
-                            <span class="text-muted">Boite Postale</span>
+                            <span class="text-muted">{% translate "Boite Postale" %}</span>
                             <h4>{{request.societe.postale}}</h4>
                         </div>
 
                         <div class="col-sm-4">
-                            <span class="text-muted">Fax</span>
+                            <span class="text-muted">{% translate "Fax" %}</span>
                             <h4>{{request.societe.fax}}</h4>
                         </div>
 
                         <div class="col-sm-4">
-                            <span class="text-muted">Devise</span>
+                            <span class="text-muted">{% translate "Devise" %}</span>
                             <h4>{{request.societe.devise}}</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 border-left text-center">
-                    <h4 class="text-muted text-uppercase">Votre logo</h4><br>
+                    <h4 class="text-muted text-uppercase">{% translate "Votre logo" %}</h4><br>
                     <img src="{% static request.societe.image %}" class="img-circle lelogo" alt=""><br><br>
                 </div>
             </div>
         </div>
         <div class="ibox-footer text-right">
-            <button class="btn btn-primary dim " data-toggle="modal" data-target="#modal-infos"><i class="fa fa-pencil"></i> Modifier les informations</button>
+            <button class="btn btn-primary dim " data-toggle="modal" data-target="#modal-infos"><i class="fa fa-pencil"></i> {% translate "Modifier les informations" %}</button>
         </div>
     </div>
 

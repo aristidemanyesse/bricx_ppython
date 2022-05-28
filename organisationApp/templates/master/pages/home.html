@@ -22,7 +22,7 @@
                         <div class="p-lg">
                             <i class="fa fa-bank fa-4x text-green"></i>
                             <h1 class="m-xs">{{nb_agences|start0}}</h1>
-                            <h4 class="no-margins text-uppercase gras">Fabrique{{ agences|length |pluralize }}</h4>
+                            <h4 class="no-margins text-uppercase gras">{% translate "Fabrique{{ agences|length |pluralize }}" %}</h4>
                             <small>{{request.societe.socialreason}}</small>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                         <div class="p-lg">
                             <i class="fa fa-cube fa-4x text-orange"></i>
                             <h1 class="m-xs">{{nb_briques|start0}}</h1>
-                            <h4 class="no-margins text-uppercase gras">Brique{{ briques |pluralize }}</h4>
+                            <h4 class="no-margins text-uppercase gras">{% translate "Brique{{ briques |pluralize }}" %}</h4>
                             <small>{{request.societe.socialreason}}</small>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         <div class="p-lg">
                             <i class="fa fa-users fa-4x text-green"></i>
                             <h1 class="m-xs">{{nb_clients|start0}}</h1>
-                            <h4 class="no-margins text-uppercase gras">CLient{{ clients|pluralize }}</h4>
+                            <h4 class="no-margins text-uppercase gras">{% translate "CLient{{ clients|pluralize }}" %}</h4>
                             <small>{{request.societe.socialreason}}</small>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                         <div class="p-lg">
                             <i class="fa fa-male fa-4x text-green"></i>
                             <h1 class="m-xs">{{nb_users|start0}}</h1>
-                            <h4 class="no-margins text-uppercase gras">Utilisateur{{ users|pluralize }}</h4>
+                            <h4 class="no-margins text-uppercase gras">{% translate "Utilisateur{{ users|pluralize }}" %}</h4>
                             <small>{{request.societe.socialreason}}</small>
                         </div>
                     </div>
@@ -65,8 +65,8 @@
                     <div class="ibox-content">
                         <div class="row">
                             <div class="col-7">
-                                <h5 class="text-uppercase">A la fabrique</h5>
-                                <h4 class="no-margins text-dark">Production</h4>
+                                <h5 class="text-uppercase">{% translate "A la fabrique" %}</h5>
+                                <h4 class="no-margins text-dark">{% translate "Production" %}</h4>
                             </div>
                             <div class="col-5 text-right">
                                 <i class="fa fa-hospital-o fa-4x text-green"></i>
@@ -85,8 +85,8 @@
                     <div class="ibox-content">
                         <div class="row">
                             <div class="col-7">
-                                <h5 class="text-uppercase">A la boutique</h5>
-                                <h4 class="no-margins text-dark">Vente</h4>
+                                <h5 class="text-uppercase">{% translate "A la boutique" %}</h5>
+                                <h4 class="no-margins text-dark">{% translate "Vente" %}</h4>
                             </div>
                             <div class="col-5 text-right">
                                 <i class="fa fa-pied-piper-alt fa-4x text-warning"></i>
@@ -127,8 +127,8 @@
                     <div class="ibox-content">
                         <div class="row">
                             <div class="col-7">
-                                <h5 class="text-uppercase">Configuration</h5>
-                                <h4 class="no-margins text-dark">paramétrage</h4>
+                                <h5 class="text-uppercase">{% translate "Configuration" %}</h5>
+                                <h4 class="no-margins text-dark">{% translate "paramétrage" %}</h4>
                             </div>
                             <div class="col-5 text-right">
                                 <i class="fa fa-gears fa-4x text-danger" style="color: #ddd"></i>

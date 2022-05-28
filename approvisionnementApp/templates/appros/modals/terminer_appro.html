@@ -6,8 +6,8 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">Validation de l'approvisionnement</h4>
-            <small class="font-bold">Renseigner ces champs pour terminer l'approvisionnement</small>
+            <h4 class="modal-title">{% translate "Validation de l'approvisionnement" %}</h4>
+            <small class="font-bold">{% translate "Renseigner ces champs pour terminer l'approvisionnement" %}</small>
         </div>
         
             <form class="formValiderApprovisionnement">
@@ -15,7 +15,7 @@
                 <div class="col-md-8">
                     <div class="ibox">
                         <div class="ibox-title">
-                            <h5 class="text-uppercase">Les ressources effectivement reçus</h5>
+                            <h5 class="text-uppercase">{% translate "Les ressources effectivement reçus" %}</h5>
                         </div>
                         <div class="ibox-content"><br>
                             <div class="table-responsive">
@@ -31,7 +31,7 @@
                                                     <small>{{ligne.ressource.unite}}</small>
                                                 </td>
                                                 <td width="125">
-                                                    <label>Quantité livrée</label>
+                                                    <label>{% translate "Quantité livrée" %}</label>
                                                     <input type="number" number class="form-control text-center gras" value="{{ligne.quantite}}" max="{{ligne.quantite}}">
                                                 </td>
                                                 <td> / {{ligne.quantite|start0}}</td>
@@ -47,14 +47,14 @@
                 <div class="col-md-4 ">
                     <div class="ibox"  style="background-color: #eee">
                         <div class="ibox-title" style="padding-right: 2%; padding-left: 3%; ">
-                            <h5 class="text-uppercase">Finaliser l'approvisionnement</h5>
+                            <h5 class="text-uppercase">{% translate "Finaliser l'approvisionnement" %}</h5>
                         </div>
                         <div class="ibox-content"  style="background-color: #fafafa">
                             <div>
-                                <label>Commentaire </label>
+                                <label>{% translate "Commentaire" %} </label>
                                 <textarea class="form-control" rows="4" name="comment"></textarea>
                             </div><br>
-                            <button class="btn btn-primary btn-block dim"><i class="fa fa-check"></i> Terminer l'approvisionnement</button>
+                            <button class="btn btn-primary btn-block dim"><i class="fa fa-check"></i> {% translate "Terminer l'approvisionnement" %}</button>
                         </div>
                     </div>
 

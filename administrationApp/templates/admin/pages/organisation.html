@@ -2,6 +2,7 @@
 {% load static %} 
 {% load myfilters %} 
 {% load humanize %} 
+{% load i18n %} 
 
 {% block body %} 
 
@@ -11,10 +12,10 @@
         <div class="col-sm-12 bloc">
             <div class="ibox border">
                 <div class="ibox-title">
-                    <h5 class="text-uppercase">Liste de vos Agences</h5>
+                    <h5 class="text-uppercase">{% translate "Liste de vos Agences" %}</h5>
                     <div class="ibox-tools">
                         <a class="btn_modal btn btn-xs btn-white" data-toggle="modal" data-target="#modal-agence">
-                            <i class="fa fa-plus"></i> Ajouter
+                            <i class="fa fa-plus"></i> {% translate "Ajouter" %}
                         </a>
                     </div>
                 </div>

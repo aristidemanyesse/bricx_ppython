@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-9">
-        <h2 class="text-uppercase text-blue gras">Les conversions de produits</h2>
+        <h2 class="text-uppercase text-blue gras">{% translate "Les conversions de produits" %}</h2>
         <div class="container">
         </div>
     </div>
@@ -18,7 +18,7 @@
 <div class="wrapper wrapper-content">
     <div class="ibox">
         <div class="ibox-title">
-            <h5>Toutes les conversions de produits survenues dans cette agence</h5>
+            <h5>{% translate "Toutes les conversions de produits survenues dans cette agence" %}</h5>
             <div class="ibox-tools">
              {% include 'extra/filter_form.html' %}
         </div>
@@ -28,24 +28,24 @@
             <table class="footable table table-stripped toggle-arrow-tiny">
                 <thead>
                     <tr>
-                        <th data-toggle="true">Status</th>
-                        <th>Agence</th>
-                        <th>Client</th>
-                        <th data-hide="all">Produits</th>
-                        <th>Effectué par</th>
-                        <th>Action</th>
+                        <th data-toggle="true">{% translate "Status" %}</th>
+                        <th>{% translate "Agence" %}</th>
+                        <th>{% translate "Client" %}</th>
+                        <th data-hide="all">{% translate "Produits" %}</th>
+                        <th>{% translate "Effectué par" %}</th>
+                        <th>{% translate "Action" %}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for conversion in conversions %}
                     <tr style="border-bottom: 2px solid black item">
                         <td>
-                            <span class="text-uppercase gras">Conversion N°{{ conversion.id }}</span><br>
+                            <span class="text-uppercase gras">{% translate "Conversion N°" %}{{ conversion.id }}</span><br>
                             <small>{{ conversion.comment }}</small>
                         </td>
                         <td>
                             <h6 class="text-uppercase text-muted mp0"> {{ conversion.agence.name }}</h6>
-                            <small>effectué {{ conversion.created_at | naturaltime }}</small>
+                            <small>{% translate "effectué" %} {{ conversion.created_at | naturaltime }}</small>
                         </td>
                         <td>
                             <h5 class="text-uppercase">{{ conversion.groupecommande_new.client.name }}</h5>
@@ -65,13 +65,13 @@
                                 </thead>
                                 <tbody>
                                     <tr class="no">
-                                        <td><h4 class="mp0">Qté avant conversion: </h4></td>
+                                        <td><h4 class="mp0">{% translate "Qté avant conversion" %}: </h4></td>
                                         {% for ligne in conversion.conversion_ligne.all %}
                                         <td class="text-center">{{ ligne.quantite_avant | start0 }}</td>
                                         {% endfor %}
                                     </tr>
                                     <tr class="no">
-                                        <td><h4 class="mp0">Qté après conversion: </h4></td>
+                                        <td><h4 class="mp0">{% translate "Qté après conversion" %}: </h4></td>
                                             {% for ligne in conversion.conversion_ligne.all %}
                                             <td class="text-center gras">{{ ligne.quantite_apres | start0 }}</td>
                                             {% endfor %}
@@ -84,7 +84,6 @@
                         </td>
                         <td>
                             <a href="{% url 'fiches:conversion' conversion.id %}" target="_blank" class="btn btn-white btn-sm"><i class="fa fa-file-text text-blue"></i></a>
-                          
                         </td>
                     </tr>
                     {% endfor %}

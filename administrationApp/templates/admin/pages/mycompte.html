@@ -2,6 +2,7 @@
 {% load static %} 
 {% load myfilters %} 
 {% load humanize %} 
+{% load i18n %} 
 
 {% block body %} 
 <div class=" animated fadeInRight">
@@ -14,45 +15,45 @@
                 <div class="col-12">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5 class="text-uppercase">Licence AMB</h5>
+                            <h5 class="text-uppercase">{% translate "Licence AMB" %}</h5>
                         </div>
                         <div class="ibox-content">
                             <h2 class="no-margins text-uppercase">{{settings.licence}} - {{settings.version}}</small>
-                                <small>Licence de l'application</small>
+                                <small>{% translate "Licence de l'application" %}</small>
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>Identifiant</h5>
+                            <h5>{% translate "Identifiant" %}</h5>
                         </div>
                         <div class="ibox-content">
                             <h2 class="no-margins">{{mycompte.identifiant}}</h2>
-                            <small>Votre identifiant unique</small>
+                            <small>{% translate "Votre identifiant unique" %}</small>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 cursor" data-toggle="modal" data-target="#modal-abonnement">
                     <div class="ibox">
                         <div class="ibox-title">
-                            <h5>Expiration</h5>
+                            <h5>{% translate "Expiration" %}</h5>
                         </div>
                         <div class="ibox-content">
                             <h2 class="no-margins">{{mycompte.expiration}}</h2>
                             <div class="stat-percent font-bold ">{{mycompte.expiration|naturaltime}} <i class="fa fa-calendar"></i></div>
-                            <small>Nombre de jours restants</small>
+                            <small>{% translate "Nombre de jours restants" %}</small>
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>Agences / Utilisateurs</h5>
+                            <h5>{% translate "Agences / Utilisateurs" %}</h5>
                         </div>
                         <div class="ibox-content">
-                            <h2 class="no-margins">{{agences|length}} agences</h2>
-                            <small>{{employes|length}} utilisateurs</small>
+                            <h2 class="no-margins">{{agences|length}} {% translate "agences" %}</h2>
+                            <small>{{employes|length}} {% translate "utilisateurs" %}</small>
                         </div>
                     </div>
                 </div>
@@ -63,26 +64,26 @@
 
         <div class="col-md-8">
 <div class="ibox-content text-center">
-				<h2 style="font-size: 30px;" class="text-green text-uppercase">Nouvel abonnement</h2>
+				<h2 style="font-size: 30px;" class="text-green text-uppercase">{% translate "Nouvel abonnement" %}</h2>
 
 				<div class="hr-line-dashed"></div>
 
 				<div class="row">
 					<div class="col-sm-5 border-right">
-						<h4 class="m-b-lg text-center text-uppercase">Quelques points importants</h4>
+						<h4 class="m-b-lg text-center text-uppercase">{% translate "Quelques points importants" %}</h4>
 						<div id="animation_box text-left" class="animated">
 							<dl class="text-left">
-								<dt>Le code de validation</dt>
-								<dd>Pour renouveller votre abonnement, il vous faut obligatoirement un code de validation composé de 5 blocs de caractères.<br> Pour vous en procurer, veuillez <a href="">nous contacter</a> !</dd><br>
+								<dt>{% translate "Le code de validation" %}</dt>
+								<dd>{% translate "Pour renouveller votre abonnement, il vous faut obligatoirement un code de validation composé de 5 blocs de caractères.<br> Pour vous en procurer, veuillez" %} <a href="">{% translate "nous contacter" %}</a> !</dd><br>
 
-								<dt>Internet est requis</dt>
-								<dd>La validation du code requiert une connexion à internet. veuillez vous assurer d'en avoir avant de commencer.</dd><br>
+								<dt>{% translate "Internet est requis" %}</dt>
+								<dd>{% translate "La validation du code requiert une connexion à internet. veuillez vous assurer d'en avoir avant de commencer." %}</dd><br>
 
-								<dt>4 tentavives</dt>
-								<dd>Vous n'aurez droit qu'à un maximum de 4 tentatives pour valider votre code. Si vous échouer 5 fois de suite, l'application se vérouillera automatiquement. Vous devriez alors <a href="">nous contacter</a> !</dd><br>
+								<dt>{% translate "3 tentavives" %}</dt>
+								<dd>{% translate "Vous n'aurez droit qu'à un maximum de 3 tentatives pour valider votre code. Si vous échouer 5 fois de suite, l'application se vérouillera automatiquement. Vous devriez alors " %}<a href="">{% translate "nous contacter" %}</a> !</dd><br>
 
-								<dt>Besoin d'aide ?</dt>
-								<dd>Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide ou d'une assistance particulière, veuillez <a href="">nous contacter</a> !</dd>
+								<dt>{% translate "Besoin d'aide ?" %}</dt>
+								<dd>{% translate "Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide ou d'une assistance particulière, veuillez " %}<a href="">{% translate "nous contacter" %}</a> !</dd>
 							</dl>
 						</div>
 					</div>
@@ -90,11 +91,11 @@
 					<div class="col-lg-7 animation-efect-links text-center">
 						<br><br>
 						<div>
-							<p>Fin d'abonnement le</p>
+							<p>{% translate "Fin d'abonnement le" %}</p>
 							<h2 class="text-uppercase" style="font-size: 32px">{{mycompte.expiration}}</h2>
 						</div><br><br>
 						<h4 class="m-b-lg text-uppercase">
-							Entrer les 5 blocs de caractères du code de validation.
+							{% translate "Entrer les 5 blocs de caractères du code de validation." %}
 						</h4><br>
 						<form id="formAbonnement" method="post">
 							<div class="row">
@@ -118,7 +119,7 @@
                             <br>
                             <hr>
 							<div>
-								<button class="btn btn-primary dim"><i class="fa fa-check"></i> Valider le code !</button>
+								<button class="btn btn-primary dim"><i class="fa fa-check"></i> {% translate "Valider le code !" %}</button>
 							</div>
 						</form>
 					</div>

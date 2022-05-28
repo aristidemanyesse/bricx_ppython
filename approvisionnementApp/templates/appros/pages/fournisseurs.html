@@ -1,22 +1,23 @@
 {% extends "layout/base_sidebar_fabrique.html" %} 
 {% load static %} 
+{% load i18n %} 
 {% load myfilters %} 
 
 {% block wrapper %} 
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-9">
-        <h2 class="text-uppercase text-green gras">Liste des fournisseurs</h2>
+        <h2 class="text-uppercase text-green gras">{% translate "Liste des fournisseurs" %}</h2>
     </div>
     <div class="col-sm-3 text-right">
-     <button data-toggle="modal" data-target="#modal-fournisseur" style="margin-top: 5%" class="btn btn-primary dim"><i class="fa fa-plus"></i> Nouveau fournisseur</button>
+     <button data-toggle="modal" data-target="#modal-fournisseur" style="margin-top: 5%" class="btn btn-primary dim"><i class="fa fa-plus"></i> {% translate "Nouveau fournisseur" %}</button>
  </div>
 </div>
 
 <div class="wrapper wrapper-content">
     <div class="ibox">
         <div class="ibox-title">
-            <h5>Tous les fournisseurs ({{ fournisseurs|length|start0 }})</h5>
+            <h5>{% translate "Tous les fournisseurs" %} ({{ fournisseurs|length|start0 }})</h5>
         </div>
         <div class="ibox-content">
             {% if fournisseurs|length > 0 %}
@@ -37,7 +38,7 @@
                             {{fournisseur.contact}}
                         </td>
                         <td class="text-right">
-                            <a href="{% url 'fabrique:appros:fournisseur' fournisseur.id %}" class="btn btn-white btn-xs"><i class="fa fa-eye"></i> Voir le compte</a>
+                            <a href="{% url 'fabrique:appros:fournisseur' fournisseur.id %}" class="btn btn-white btn-xs"><i class="fa fa-eye"></i> {% translate "Voir le compte" %}</a>
                         </td>
                     </tr>
                     {% endfor %}

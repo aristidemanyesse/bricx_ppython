@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Versements pour la commande</h4>
+                <h4 class="modal-title">{% translate "Versements pour la commande" %}</h4>
             </div>
             <div class="modal-body">
                 {% if reglements|length > 0 %}
@@ -15,11 +15,11 @@
                             <div class="row">
                                 <div class="col-sm-7">
                                     <h4>{{ reglement.mouvement.created_at | date:"d F Y à H:i:s" }}</h4>
-                                    <h5 class="text-muted">Payement par {{ reglement.mouvement.mode.name }}</h5>
+                                    <h5 class="text-muted">{% translate "Payement par" %} {{ reglement.mouvement.mode.name }}</h5>
                                 </div>
                                 <div class="col-sm-5 text-right">
                                     <h3>{{ reglement.mouvement.montant | intcomma }} {{request.societe.devise }}</h3>
-                                    <h5 class="text-danger">Restait à payer : {{ reglement.restait | intcomma }} {{request.societe.devise }}</h5>
+                                    <h5 class="text-danger">{% translate "Restait à payer" %} : {{ reglement.restait | intcomma }} {{request.societe.devise }}</h5>
                                 </div>
                             </div>
                         </div>

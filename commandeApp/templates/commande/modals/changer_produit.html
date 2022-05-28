@@ -5,15 +5,15 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">Nouveau interchangement de produit</h4>
-            <small class="font-bold">Renseigner ces champs pour enregistrer le changement</small>
+            <h4 class="modal-title">{% translate "Nouveau interchangement de produit" %}</h4>
+            <small class="font-bold">{% translate "Renseigner ces champs pour enregistrer le changement" %}</small>
         </div>
         
         <div class="row">
             <div class="col-md-8">
                 <div class="ibox">
                     <div class="ibox-title">
-                        <h5 class="text-uppercase">Définissez le changement de briques</h5>
+                        <h5 class="text-uppercase">{% translate "Définissez le changement de briques" %}</h5>
                     </div>
                     <div class="ibox-content"><br>
                         <div class="table-responsive">
@@ -22,9 +22,9 @@
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td class="text-center">Qté actuelle</td>
+                                        <td class="text-center">{% translate "Qté actuelle" %}</td>
                                         <td></td>
-                                        <td>Nouvelle Qté</td>
+                                        <td>{% translate "Nouvelle Qté" %}</td>
                                     </tr>
                                 </thead>
                                 <tbody class="commande">
@@ -51,16 +51,16 @@
         <div class="col-md-4 ">
             <div class="ibox"  style="background-color: #eee">
                 <div class="ibox-title" style="padding-right: 2%; padding-left: 3%; ">
-                    <h5 class="text-uppercase">Finaliser le changement</h5>
+                    <h5 class="text-uppercase">{% translate "Finaliser le changement" %}</h5>
                 </div>
                 <div class="ibox-content"  style="background-color: #fafafa">
                     <form class="formChangement">
                         <div>
-                            <label>Motif du changement </label>
+                            <label>{% translate "Motif du changement" %} </label>
                             <textarea class="form-control" rows="4" name="comment"></textarea>
                         </div><br>
                         <hr/>
-                        <button type="submit" class="btn btn-default btn-block dim"><i class="fa fa-check"></i> Valider le changement</button>
+                        <button type="submit" class="btn btn-default btn-block dim"><i class="fa fa-check"></i> {% translate "Valider le changement" %}</button>
                     </form>
                 </div>
             </div>

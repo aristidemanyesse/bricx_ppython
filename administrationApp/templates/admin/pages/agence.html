@@ -2,6 +2,7 @@
 {% load static %} 
 {% load myfilters %} 
 {% load humanize %} 
+{% load i18n %} 
 
 {% block body %} 
 
@@ -12,11 +13,11 @@
 
     <div class="ibox">                                
         <ul class="nav nav-tabs">
-            <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> Infos de l'agence</a></li>
-            <li><a class="nav-link" data-toggle="tab" href="#tab-2"><i class="fa fa-cubes"></i> Stocks initiaux de briques</a></li>
-            <li><a class="nav-link" data-toggle="tab" href="#tab-3"><i class="fa fa-map-marker"></i> Prix / Zones de livraison</a></li>
-            <li><a class="nav-link" data-toggle="tab" href="#tab-4"><i class="fa fa-car"></i> Véhicules & Chauffeurs</a></li>
-            <li><a class="nav-link" data-toggle="tab" href="#tab-5"><i class="fa fa-users"></i> Gestion des employés</a></li>
+            <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> {% translate "Infos de l'agence" %}</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#tab-2"><i class="fa fa-cubes"></i> {% translate "Stocks initiaux de briques" %}</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#tab-3"><i class="fa fa-map-marker"></i> {% translate "Prix / Zones de livraison" %}</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#tab-4"><i class="fa fa-car"></i> {% translate "Véhicules & Chauffeurs" %}</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#tab-5"><i class="fa fa-users"></i> {% translate "Gestion des employés" %}</a></li>
         </ul>
         <div class="tab-content ibox-content" style="min-height: 300px;">
 
@@ -27,24 +28,24 @@
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col-sm-12">
-                                <span class="text-muted">Raison sociale de l'agence</span>
+                                <span class="text-muted">{% translate "Raison sociale de l'agence" %}</span>
                                 <h2 class="gras text-uppercase text-primary">{{agence.name}}</h2>
                             </div>
                         </div><br><br>
     
                         <div class="row">
                             <div class="col-sm-4">
-                                <span class="text-muted">Situation Géographique</span>
+                                <span class="text-muted">{% translate "Situation Géographique" %}</span>
                                 <h4>{{agence.lieu}}</h4>
                             </div>
 
                             <div class="col-sm-4">
-                                <span class="text-muted">Compte lié</span>
+                                <span class="text-muted">{% translate "Compte lié" %}</span>
                                 <h4>{{compte.name}}</h4>
                             </div>
                             
                             <div class="col-sm-4">
-                                <span class="text-muted">Solde initial</span>
+                                <span class="text-muted">{% translate "Solde initial" %}</span>
                                 <h4>{{compte.initial_amount|intcomma}} {{request.societe.devise}}</h4>
                             </div>
                             
@@ -52,29 +53,29 @@
     
                         <div class="row">
                             <div class="col-sm-4">
-                                <span class="text-muted">Nombre d'employes</span>
+                                <span class="text-muted">{% translate "Nombre d'employes" %}</span>
                                 <h4>{{employes|length|start0}}</h4>
                             </div>
     
                             <div class="col-sm-4">
-                                <span class="text-muted">Nombre de véhicules</span>
+                                <span class="text-muted">{% translate "Nombre de véhicules" %}</span>
                                 <h4>{{vehicules|length|start0}}</h4>
                             </div>
     
                             <div class="col-sm-4">
-                                <span class="text-muted">Nombre de chauffeurs</span>
+                                <span class="text-muted">{% translate "Nombre de chauffeurs" %}</span>
                                 <h4>{{chauffeurs|length|start0}}</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 border-left text-center">
-                        <h4 class="text-muted text-uppercase">Logo de l'entreprise</h4><br>
+                        <h4 class="text-muted text-uppercase">{% translate "Logo de l'entreprise" %}</h4><br>
                         <img src="{% static request.societe.image %}" class="img-circle lelogo" alt=""> 
                         <br><br>
 
                         <div>
-                            <button class="btn btn-primary dim " data-toggle="modal" data-target="#modal-agence{{agence.id}}"><i class="fa fa-pencil"></i> Modifier</button>
-                            <button class="btn btn-danger dim " onclick="delete_password('agence', '{{agence.id}}')" ><i class="fa fa-trash"></i> Supprimer</button>
+                            <button class="btn btn-primary dim " data-toggle="modal" data-target="#modal-agence{{agence.id}}"><i class="fa fa-pencil"></i> {% translate "Modifier" %}</button>
+                            <button class="btn btn-danger dim " onclick="delete_password('agence', '{{agence.id}}')" ><i class="fa fa-trash"></i> {% translate "Supprimer" %}</button>
                         </div>
                     </div>
                 </div>
@@ -87,13 +88,13 @@
             <div id="tab-2" class="tab-pane">
                 <div class="row" style="margin-bottom: 5%">
                     <div class="col-md-6">
-                        <h4>Définir le stock de ressources initial</h4><br>
+                        <h4>{% translate "Définir le stock de ressources initial" %}</h4><br>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Libéllé</th>
-                                    <th>Unité</th>
-                                    <th>Stock initial</th>
+                                    <th>{% translate "Libéllé" %}</th>
+                                    <th>{% translate "Unité" %}</th>
+                                    <th>{% translate "Stock initial" %}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -103,7 +104,7 @@
                                         <td>{{ligne.ressource.unite}}</td>
                                         <td width="110px">
                                             {% if ligne.ressource.active %}
-                                                <input type="text" title="Stock initial" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" model="initialressourceagence" name="quantite" id="{{ligne.id}}">
+                                                <input type="text" title="{% translate 'Stock initial' %}" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" model="initialressourceagence" name="quantite" id="{{ligne.id}}">
                                             {% endif %}
                                         </td>
                                     </tr>
@@ -112,14 +113,14 @@
                         </table>
                     </div>
                     <div class="col-md-6 border-left text-center">
-                        <h4>Définir le stock de briques initial</h4><br>
+                        <h4>{% translate "Définir le stock de briques initial" %}</h4><br>
                         <div class="row">
                             {% for ligne in agence.agence_initialbrique.all %}
                             <div class="col-sm-6 col-md-4 border-left border-bottom">
                                 <div class="p-xs">
                                     <i class="fa fa-cube fa-2x text-dark"></i>
                                     <h6 class="text-uppercase gras">{{ligne.brique.name}}</h6>
-                                    <input type="text" title="Stock initial" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" model="initialbriqueagence" name="quantite" id="{{ligne.id}}">
+                                    <input type="text" title="{% translate 'Stock initial' %}" number class="form-control input-xs text-center maj" value="{{ligne.quantite}}" model="initialbriqueagence" name="quantite" id="{{ligne.id}}">
                                 </div>
                             </div>
                         {% endfor %}
@@ -136,10 +137,10 @@
                 <div class=" bloc">
                     <div class="ibox border">
                         <div class="ibox-title">
-                            <h5 class="text-uppercase">Prix des produits par zone de livraison</h5>
+                            <h5 class="text-uppercase">{% translate "Prix des produits par zone de livraison" %}</h5>
                             <div class="ibox-tools">
                                 <a class="btn_modal" data-toggle="modal" data-target="#modal-zonelivraison">
-                                    <i class="fa fa-plus"></i> Ajouter nouvelle zone
+                                    <i class="fa fa-plus"></i> {% translate "Ajouter nouvelle zone" %}
                                 </a>
                             </div>
                         </div>
@@ -169,7 +170,7 @@
                                                 {% endif  %}
                                             {% endfor  %}
                                         {% endfor  %}
-                                        <td data-toggle="modal" data-target="#modal-prix{{zone.id}}" title="modifier les prix"><i class="fa fa-pencil text-blue cursor"></i></td>
+                                        <td data-toggle="modal" data-target="#modal-prix{{zone.id}}" title="{% translate 'modifier les prix' %}"><i class="fa fa-pencil text-blue cursor"></i></td>
                                     </tr>
                                     {% endfor  %}
                                 </tbody>
@@ -189,10 +190,10 @@
       <div class="col-md-6">
         <div class="ibox border" >
             <div class="ibox-title">
-                <h5 class="text-uppercase"><i class="fa fa-car"></i> Tous les véhicules </h5>
+                <h5 class="text-uppercase"><i class="fa fa-car"></i> {% translate "Tous les véhicules" %} </h5>
                 <div class="ibox-tools">
                     <a class="btn_modal" data-toggle="modal" data-target="#modal-vehicule">
-                        <i class="fa fa-plus"></i> Ajouter
+                        <i class="fa fa-plus"></i> {% translate "Ajouter" %}
                     </a>
                 </div>
             </div>
@@ -200,8 +201,8 @@
                 <table class="table table-striped">
                  <thead>
                     <tr>
-                        <th>Marque/modèle</th>
-                        <th>Immatriculation</th>
+                        <th>{% translate "Marque/modèle" %}</th>
+                        <th>{% translate "Immatriculation" %}</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -215,8 +216,8 @@
                             <td class="">
                                 <h5 class="">{{vehicule.immatriculation}}</h5>
                             </td>    
-                            <td data-toggle="modal" data-target="#modal-vehicule{{vehicule.id}}" title="modifier l'élément" ><i class="fa fa-pencil text-blue cursor"></i></td>
-                            <td title="supprimer l'élément" onclick="delate_password('vehicule','{{vehicule.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
+                            <td data-toggle="modal" data-target="#modal-vehicule{{vehicule.id}}" title="{% translate 'modifier l élément' %}" ><i class="fa fa-pencil text-blue cursor"></i></td>
+                            <td title="{% translate 'supprimer l élément' %}" onclick="delate_password('vehicule','{{vehicule.id}}')"><i class="fa fa-close cursor text-danger"></i></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -228,10 +229,10 @@
 <div class="col-md-6">
     <div class="ibox border" >
         <div class="ibox-title">
-            <h5 class="text-uppercase"><i class="fa fa-user"></i> Liste des chauffeurs </h5>
+            <h5 class="text-uppercase"><i class="fa fa-user"></i> {% translate "Liste des chauffeurs" %} </h5>
             <div class="ibox-tools">
                 <a class="btn_modal" data-toggle="modal" data-target="#modal-chauffeur">
-                    <i class="fa fa-plus"></i> Ajouter
+                    <i class="fa fa-plus"></i> {% translate "Ajouter" %}
                 </a>
             </div>
         </div>
@@ -239,9 +240,9 @@
             <table class="table table-striped">
              <thead>
                 <tr>
-                    <th>Nom complet</th>
-                    <th>Adresse</th>
-                    <th>Contact</th>
+                    <th>{% translate "Nom complet" %}</th>
+                    <th>{% translate "Adresse" %}</th>
+                    <th>{% translate "Contact" %}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -277,10 +278,10 @@
             <div id="tab-5" class="tab-pane">
                 <div class="ibox border">
                     <div class="ibox-title">
-                        <h5 class="text-uppercase">Attribution des accès des agences</h5>
+                        <h5 class="text-uppercase">{% translate "Attribution des accès des agences" %}</h5>
                                   <div class="ibox-tools">
                 <a class="btn_modal" data-toggle="modal" data-target="#modal-employe">
-                    <i class="fa fa-plus"></i> Ajouter un employé
+                    <i class="fa fa-plus"></i> {% translate "Ajouter un employé" %}
                 </a>
             </div>
                     </div>
@@ -289,12 +290,12 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Status</th>
-                                    <th>Utilisateur</th>
-                                    <th>Identifiants</th>
-                                    <th>Accès et rôles</th>
+                                    <th>{% translate "Status" %}</th>
+                                    <th>{% translate "Utilisateur" %}</th>
+                                    <th>{% translate "Identifiants" %}</th>
+                                    <th>{% translate "Accès et rôles" %}</th>
                                     <th data-hide="all"></th>
-                                    <th>Affiliation</th>
+                                    <th>{% translate "Affiliation" %}</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -304,9 +305,9 @@
                                         <td></td>
                                         <td>
                                             {% if employe.is_active %}
-                                                <span class="label label-success">Actif</span>
+                                                <span class="label label-success">{% translate "Actif" %}</span>
                                             {% else %}
-                                                <span class="label label-danger">Bloqué</span>
+                                                <span class="label label-danger">{% translate "Bloqué" %}</span>
                                            {% endif %}
                                         </td>
                                         <td >
@@ -317,11 +318,11 @@
                                         </td>
                                         <td>
                                             {% if employe.last_login == None %}
-                                                <span class="">Login: <b>{{employe.username}}</b></span><br>
-                                                <span class="">Pass: <b>{{employe.brut}}</b> </span>
+                                                <span class="">{% translate "Login:" %} <b>{{employe.username}}</b></span><br>
+                                                <span class="">{% translate "Pass:" %} <b>{{employe.brut}}</b> </span>
                                             {% endif %}
                                         </td>
-                                        <td><button class="btn btn-sm btn-white footable-toggle">Definir les accès</button></td>
+                                        <td><button class="btn btn-sm btn-white footable-toggle">{% translate "Definir les accès" %}</button></td>
                                         <td class="" >
                                             <div class="row">
                                                 {% for perm in employes|dict_value:employe|dict_value:"perms_on" %}
@@ -338,7 +339,7 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <small>Selectionner l'agence</small>
+                                                <small>{% translate "Selectionner l'agence" %}</small>
                                                 <select class="select2 maj" name="agence" model="employe" id="{{employe.id}}" style="width: 100%">
                                                     {% for item in agences %}
                                                         {% if item.id == agence.id %}
@@ -351,12 +352,12 @@
                                             </div>
                                         </td>
                                         <td class="text-right">          
-                                            <button onclick="reset_password('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-refresh text-blue"></i> Init. mot de passe</button><br>
+                                            <button onclick="reset_password('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-refresh text-blue"></i> {% translate "Init. mot de passe" %}</button><br>
             
                                             {% if employe.is_active %}
-                                                <button onclick="lock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-lock text-orange"></i> Bloquer</button>
+                                                <button onclick="lock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-lock text-orange"></i> {% translate "Bloquer" %}</button>
                                                 {% else %}
-                                                <button onclick="unlock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-unlock text-green"></i> Débloquer</button>
+                                                <button onclick="unlock('{{employe.id}}')" class="btn btn-white btn-xs"><i class="fa fa-unlock text-green"></i> {% translate "Débloquer" %}</button>
                                                 {% endif %}
                                             <button data-toggle="modal" data-target="#modal-employe{{employe.id}}" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i></button>
                                             <button class="btn btn-white btn-xs" onclick="delete_password('{{employe.id}}')"><i class="fa fa-close text-red"></i></button>

@@ -2,6 +2,7 @@
 {% load static %} 
 {% load myfilters %} 
 {% load humanize %} 
+{% load i18n %} 
 
 {% block body %} 
 
@@ -11,10 +12,10 @@
         <div class="col-sm-6 bloc">
             <div class="ibox border">
                 <div class="ibox-title">
-                    <h5 class="text-uppercase">Opérations d'entrée de caisse</h5>
+                    <h5 class="text-uppercase">{% translate "Opérations d'entrée de caisse" %}</h5>
                     <div class="ibox-tools">
                         <a class="btn_modal" data-toggle="modal" data-target="#modal-categorieoperation">
-                            <i class="fa fa-plus"></i> Ajouter
+                            <i class="fa fa-plus"></i> {% translate "Ajouter" %}
                         </a>
                     </div>
                 </div>
@@ -23,8 +24,8 @@
                         <thead>
                             <tr>
                                 <th><i class="fa fa-ticket"></i></th>
-                                <th>Libéllé</th>
-                                <th>Type</th>
+                                <th>{% translate "Libéllé" %}</th>
+                                <th>{% translate "Type" %}</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -49,7 +50,7 @@
                     <div class="row">
                         <div class="col-sm-8 text-center border-right">
                             <div class="row">
-                                <div class="col-7 gras">Autoriser Versements en attente</div>
+                                <div class="col-7 gras">{% translate "Autoriser Versements en attente" %}</div>
                                 <div class="offset-1"></div>
                                 <div class="col-4">
                                     <div class="switch d-block">
@@ -66,11 +67,11 @@
                         </div>
                         <div class="col-sm-4">
                             <div >
-                                <label>% tva sur les ventes</label>
+                                <label>{% translate "% tva sur les ventes" %}</label>
                                 <input type="number" number class="form-control" name="tva" value="{{request.societe.tva}}">
                             </div><br>
                             <div>
-                                <label>Seuil de tolérance du crédit client </label>
+                                <label>{% translate "Seuil de tolérance du crédit client" %}</label>
                                 <input type="number" number class="form-control" name="seuil_credit" value="{{request.societe.seuil_credit}}">
                             </div>
                             <div>
@@ -84,7 +85,7 @@
                                 <input type="hidden" name="contact" value="{{request.societe.contact}}">
 
                                 <input type="hidden" name="email" value="{{request.societe.email}}">
-                                <button class="btn btn-primary dim "><i class="fa fa-check"></i> Mettre à jour</button>
+                                <button class="btn btn-primary dim "><i class="fa fa-check"></i>{% translate "Mettre à jour" %}</button>
                             </div>
                         </div>
                     </div>
@@ -95,10 +96,10 @@
         <div class="col-sm-6 bloc">
             <div class="ibox border">
                 <div class="ibox-title">
-                    <h5 class="text-uppercase">Opérations de sortie de caisse</h5>
+                    <h5 class="text-uppercase">{% translate "Opérations de sortie de caisse" %}</h5>
                     <div class="ibox-tools">
                         <a class="btn_modal" data-toggle="modal" data-target="#modal-categorieoperation">
-                            <i class="fa fa-plus"></i> Ajouter
+                            <i class="fa fa-plus"></i> {% translate "Ajouter" %}
                         </a>
                     </div>
                 </div>
@@ -108,8 +109,8 @@
                             <tr>
                                 <th>#</th>
                                 <th><i class="fa fa-ticket"></i></th>
-                                <th>Libéllé</th>
-                                <th>Type</th>
+                                <th>{% translate "Libéllé" %}</th>
+                                <th>{% translate "Type" %}</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -133,10 +134,10 @@
 
             <div class="ibox border">
                 <div class="ibox-title">
-                    <h5 class="text-uppercase">Creation & attribution des caisses</h5>
+                    <h5 class="text-uppercase">{% translate "Creation & attribution des caisses" %}</h5>
                     <div class="ibox-tools">
                         <a class="btn_modal" data-toggle="modal" data-target="#modal-compte">
-                            <i class="fa fa-plus"></i> Nouveau compte
+                            <i class="fa fa-plus"></i> {% translate "Nouveau compte" %}
                         </a>
                     </div>
                 </div>
@@ -144,10 +145,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Libéllé du compte</th>
-                                <th>Etablissement</th>
-                                <th>N° de compte</th>
-                                <th>Solde initial</th>
+                                <th>{% translate "Libéllé du compte" %}</th>
+                                <th>{% translate "Etablissement" %}</th>
+                                <th>{% translate "N° de compte" %}</th>
+                                <th>{% translate "Solde initial" %}</th>
                                 <th></th>
                                 <th></th>
                             </tr>

@@ -8,19 +8,19 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-9">
-        <h2 class="text-uppercase text-red gras">Les pertes de ressources</h2>
+        <h2 class="text-uppercase text-red gras">{% translate "Les pertes de ressources" %}</h2>
         <div class="container">
         </div>
     </div>
     <div class="col-sm-3 text-right">
-        <button style="margin-top: 5%;" type="button" data-toggle=modal data-target='#modal-perteressource' class="btn btn-danger btn-xs dim"><i class="fa fa-trash"></i> Enregistrer une perte </button>
+        <button style="margin-top: 5%;" type="button" data-toggle=modal data-target='#modal-perteressource' class="btn btn-danger btn-xs dim"><i class="fa fa-trash"></i> {% translate "Enregistrer une perte" %} </button>
     </div>
 </div>
 
 <div class="wrapper wrapper-content">
     <div class="ibox">
         <div class="ibox-title">
-            <h5>Toutes les pertes survenues dans cette agence</h5>
+            <h5>{% translate "Toutes les pertes survenues dans cette agence" %}</h5>
             <div class="ibox-tools">
                 {% include 'extra/filter_form.html' %}
             </div>
@@ -30,11 +30,11 @@
             <table class="footable table table-stripped toggle-arrow-tiny">
                 <thead>
                     <tr>
-                        <th>Brique</th>
-                        <th>Qté</th>
-                        <th>Agence</th>
-                        <th>Enregistré par</th>
-                        <th>Action</th>
+                        <th>{% translate "Brique" %}</th>
+                        <th>{% translate "Qté" %}</th>
+                        <th>{% translate "Agence" %}</th>
+                        <th>{% translate "Enregistré par" %}</th>
+                        <th>{% translate "Action" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +47,7 @@
                         <td>{{ perte.quantite }} {{ perte.ressource.unite }}</td>
                         <td>
                             <h6 class="text-uppercase text-muted gras" style="margin: 0">{{ perte.agence.name }}</h6>
-                            <small>Emise {{ perte.created_at|naturaltime }}</small>
+                            <small>{% translate "Emise" %} {{ perte.created_at|naturaltime }}</small>
                         </td>
                         <td><i class="fa fa-user"></i> {{ perte.employe.name }}</td>
                         <td>

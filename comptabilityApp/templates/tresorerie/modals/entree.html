@@ -3,20 +3,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title text-green">Nouvelle entrée</h4>
-                <small class="font-bold text-green">Renseigner ces champs pour enregistrer les informations</small>
+                <h4 class="modal-title text-green">{% translate "Nouvelle entrée" %}</h4>
+                <small class="font-bold text-green">{% translate "Renseigner ces champs pour enregistrer les informations" %}</small>
             </div>
             <form method="POST" id="FormEntree">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-8">
-                            <label>Catégorie d'opération <span1>*</span1></label>
+                            <label>{% translate "Catégorie d'opération" %} <span1>*</span1></label>
                             <div class="form-group">
                                 {% include 'extra/select.html' with name='category' instances=categories_entrees  %}   
                             </div>
                         </div> 
                         <div class="col-sm-4">
-                            <label>Montant de l'opération <span1>*</span1></label>
+                            <label>{% translate "Montant de l'opération" %} <span1>*</span1></label>
                             <div class="form-group">
                                 <input type="number" number class="form-control" name="montant" required>
                             </div>
@@ -25,13 +25,13 @@
 
                     <div class="row">
                         <div class="col-sm-6">
-                            <label>Mode d'encaissement</label>
+                            <label>{% translate "Mode d'encaissement"  %}</label>
                             <div class="form-group">
                                 {% include 'extra/select.html' with name='modepayement' instances=modes  %}   
                             </div>
                         </div> 
                         <div class="col-sm-6">
-                            <label>Plus de détails sur l'opération <span1>*</span1></label>
+                            <label>{% translate "Plus de détails sur l'opération" %} <span1>*</span1></label>
                             <div class="form-group">
                                 <textarea class="form-control" rows="3" name="comment"></textarea>
                             </div>
@@ -40,13 +40,13 @@
 
                     <div class="modepayement_facultatif row">
                         <div>
-                            <label>Structure d'encaissement <span style="color: red">*</span> </label>
+                            <label>{% translate "Structure d'encaissement" %} <span style="color: red">*</span> </label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-bank"></i></span><input type="text" name="structure" class="form-control">
                             </div>
                         </div><br>
                         <div>
-                            <label>N° numero dédié <span style="color: red">*</span> </label>
+                            <label>{% translate "N° numero dédié" %} <span style="color: red">*</span> </label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span><input type="text" name="numero" class="form-control">
                             </div>
@@ -54,7 +54,7 @@
                     </div>
 
                     <div>
-                        <label>Ajouter une image du reçu</label>
+                        <label>{% translate "Ajouter une image du reçu" %}</label>
                         <div class="">
                             <img style="width: 80px;" src="" class="img-thumbnail logo">
                             <input class="hide" type="file" name="image">
@@ -63,7 +63,7 @@
                     </div>                   
                 </div><hr>
                 <div class="container">
-                    <button class="btn dim btn-primary btn-xs"><i class="fa fa-refresh"></i> Valider l'opération</button>
+                    <button class="btn dim btn-primary btn-xs"><i class="fa fa-refresh"></i> {% translate "Valider l'opération" %}</button>
                 </div>
                 <br>
             </form>
