@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-19 19:33+0000\n"
+"POT-Creation-Date: 2022-06-14 18:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: authApp/ajax.py:29 authApp/ajax.py:49
+msgid "Une erreur s'est produite lors de l'opération, veuillez recommencer !"
+msgstr ""
+
+#: authApp/ajax.py:31
+msgid "Login et/ou mot de passe incorrect !"
+msgstr ""
+
+#: authApp/ajax.py:51
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Mot de passe incorrect !"
+msgstr "Parola"
+
+#: authApp/ajax.py:77 authApp/ajax.py:123
+msgid "Les mots de passe ne correspondent pas !"
+msgstr ""
+
+#: authApp/ajax.py:79
+msgid "Le nouveau mot de passe est trop court, minimum 8 caractères !"
+msgstr ""
+
+#: authApp/ajax.py:98
+msgid "Désolé, cette adresse email n'est pas connu par le ssytème !"
+msgstr ""
+
+#: authApp/ajax.py:118
+msgid ""
+"La période pour changer le mot de passe avec ce mail a expiré, veuillez "
+"recommencer la procédure !"
+msgstr ""
+
+#: authApp/ajax.py:121
+msgid "Une erreur s'est produite lors del'opération, veuillez recommencer !"
+msgstr ""
+
 #: authApp/templates/auth/pages/expiration.html:6
 msgid "Renouvellement de mon abonnement"
 msgstr "aboneliğimin yenilenmesi"
@@ -39,9 +76,8 @@ msgid ""
 "validation composé de 5 blocs de caractères.<br> Pour vous en procurer, "
 "veuillez"
 msgstr ""
-"Aboneliğinizi yenilemek için bir kodunuz olmalıdır"
-"5 blok karakterden oluşan doğrulama.<br> Bazılarını elde etmek için, "
-"lütfen"
+"Aboneliğinizi yenilemek için bir kodunuz olmalıdır5 blok karakterden oluşan "
+"doğrulama.<br> Bazılarını elde etmek için, lütfen"
 
 #: authApp/templates/auth/pages/expiration.html:32
 #: authApp/templates/auth/pages/expiration.html:38
@@ -58,8 +94,8 @@ msgid ""
 "La validation du code requiert une connexion à internet. veuillez vous "
 "assurer d'en avoir avant de commencer."
 msgstr ""
-"Kod doğrulama internet bağlantısı gerektirir. Lütfen"
-"Başlamadan önce biraz olduğundan emin ol."
+"Kod doğrulama internet bağlantısı gerektirir. LütfenBaşlamadan önce biraz "
+"olduğundan emin ol."
 
 #: authApp/templates/auth/pages/expiration.html:37
 msgid "3 tentavives"
@@ -71,9 +107,9 @@ msgid ""
 "Si vous échouer 3 fois de suite, l'application se vérouillera "
 "automatiquement. Vous devriez alors"
 msgstr ""
-"Kodunuzu doğrulamak için yalnızca en fazla 3 deneme hakkınız olacak."
-"Arka arkaya 3 kez başarısız olursanız, uygulama kilitlenir"
-"otomatik olarak. O zaman yapmalısın"
+"Kodunuzu doğrulamak için yalnızca en fazla 3 deneme hakkınız olacak.Arka "
+"arkaya 3 kez başarısız olursanız, uygulama kilitlenirotomatik olarak. O "
+"zaman yapmalısın"
 
 #: authApp/templates/auth/pages/expiration.html:40
 msgid "Besoin d'aide ?"
@@ -84,8 +120,8 @@ msgid ""
 "Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide "
 "ou d'une assistance particulière, veuillez "
 msgstr ""
-"Nasıl yapacağınızı bilmiyorsanız veya yardıma ihtiyacınız varsa"
-"veya özel yardım lütfen"
+"Nasıl yapacağınızı bilmiyorsanız veya yardıma ihtiyacınız varsaveya özel "
+"yardım lütfen"
 
 #: authApp/templates/auth/pages/expiration.html:49
 msgid "Fin d'abonnement le"
@@ -116,8 +152,8 @@ msgid ""
 "Entrer votre adresse email que vous utilisez pour reiniatialiser votre mot "
 "de passe."
 msgstr ""
-"Şifrenizi sıfırlamak için kullandığınız e-posta adresinizi girin"
-"modası geçmiş."
+"Şifrenizi sıfırlamak için kullandığınız e-posta adresinizi girinmodası "
+"geçmiş."
 
 #: authApp/templates/auth/pages/forgetpassword.html:26
 msgid "Adresse email"
@@ -173,23 +209,20 @@ msgstr "Giriş alanı"
 msgid ""
 "Veuillez entrer vos informations de connexion pour avoir accès à la "
 "plateforme de gestion."
-msgstr ""
-"Lütfen erişmek için giriş bilgilerinizi girin"
-"yönetim platformu."
+msgstr "Lütfen erişmek için giriş bilgilerinizi girinyönetim platformu."
 
 #: authApp/templates/auth/pages/login.html:23
 msgid ""
 "Si vous avez oublié ou perdu votre mot de passe, veuillez contacter votre "
 "administrateur pour qu'il le reinitialise pour vous !"
 msgstr ""
-"Şifrenizi unuttuysanız veya kaybettiyseniz, lütfen bizimle iletişime geçin"
-"yönetici sizin için sıfırlamak için!"
+"Şifrenizi unuttuysanız veya kaybettiyseniz, lütfen bizimle iletişime "
+"geçinyönetici sizin için sıfırlamak için!"
 
 #: authApp/templates/auth/pages/login.html:28
 msgid ""
 "Pour toute autre chose, veuillez contacter votre administrateur système."
-msgstr ""
-"Başka bir şey için lütfen sistem yöneticinize başvurun."
+msgstr "Başka bir şey için lütfen sistem yöneticinize başvurun."
 
 #: authApp/templates/auth/pages/login.html:45
 msgid "Identifiant"

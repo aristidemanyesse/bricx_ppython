@@ -19,8 +19,8 @@
                                 <span class="text-muted text-xs block">{{ request.societe.socialreason }}</span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="{% url 'auth:locked' %}">Vérouiller la session</a></li>
-                                <li><a class="dropdown-item" href="#" id="btn-deconnexion" >Déconnexion</a></li>
+                                <li><a class="dropdown-item" href="{% url 'auth:locked' %}">{% translate "Vérouiller la session" %}</a></li>
+                                <li><a class="dropdown-item" href="#" id="btn-deconnexion" >{% translate "Déconnexion" %}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -32,27 +32,27 @@
 
             <ul class="nav metismenu" id="side-menu">
                 <li class="" id="dashboard_fabrique">
-                    <a href="{% url 'fabrique:dashboard_fabrique' %}"><i class="fa fa-tachometer"></i> <span class="nav-label">Tableau de bord</span></a>
+                    <a href="{% url 'fabrique:dashboard_fabrique' %}"><i class="fa fa-tachometer"></i> <span class="nav-label">{% translate "Tableau de bord" %}</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
 
                 {% if perms.paramApp.stock %}
                 <li class="" id="stock_brique">
-                    <a href="{% url 'fabrique:production:stock_brique' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de briques</span></a>
+                    <a href="{% url 'fabrique:production:stock_brique' %}"><i class="fa fa-cubes"></i> <span class="nav-label">{% translate "Stock de briques" %}</span></a>
                 </li>
                 <li class="" id="stock_ressource">
-                    <a href="{% url 'fabrique:production:stock_ressource' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de ressources </span></a>
+                    <a href="{% url 'fabrique:production:stock_ressource' %}"><i class="fa fa-cubes"></i> <span class="nav-label">{% translate "Stock de ressources" %}</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
                 {% endif %}
 
                 {% if perms.paramApp.production %}
                 <li class="" id="productions">
-                    <a href="{% url 'fabrique:production:productions' %}"><i class="fa fa-building-o"></i> <span class="nav-label">Les productions </span></a>
+                    <a href="{% url 'fabrique:production:productions' %}"><i class="fa fa-building-o"></i> <span class="nav-label">{% translate "Les productions" %}</span></a>
                 </li>
                 <li class="" id="achatstock">
-                    <a href="{% url 'fabrique:appros:achatstock' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Achat de briques </span> 
+                    <a href="{% url 'fabrique:appros:achatstock' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">{% translate "Achat de briques </span> 
                         {% if request.achats|length > 0 %}
                         <span class="label label-warning float-right">{{request.achats|length|start0}}</span>
                         {% endif %}
@@ -61,10 +61,10 @@
                 {% endif %}
                 {% if perms.paramApp.stock %}
                 <li >
-                    <a href="#"><i class="fa fa-trash"></i> <span class="nav-label">Les pertes</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-trash"></i> <span class="nav-label">{% translate "Les pertes</span><span class="fa arrow">" %}</span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li id="perte_brique"><a href="{% url 'fabrique:production:perte_brique' %}">Perte de briques</a></li>
-                        <li id="perte_ressource"><a href="{% url 'fabrique:production:perte_ressource' %}">Perte de ressources</a></li>
+                        <li id="perte_brique"><a href="{% url 'fabrique:production:perte_brique' %}">{% translate "Perte de briques" %}</a></li>
+                        <li id="perte_ressource"><a href="{% url 'fabrique:production:perte_ressource' %}">{% translate "Perte de ressources" %}</a></li>
                     </ul>
                 </li>
                 {% endif %}
@@ -73,10 +73,10 @@
 
                 {% if perms.paramApp.approvisionnement %}
                 <li class="" id="fournisseurs">
-                    <a href="{% url 'fabrique:appros:fournisseurs' %}"><i class="fa fa-address-book-o"></i> <span class="nav-label">Liste des Fournisseurs</span></a>
+                    <a href="{% url 'fabrique:appros:fournisseurs' %}"><i class="fa fa-address-book-o"></i> <span class="nav-label">{% translate "Liste des Fournisseurs" %}</span></a>
                 </li>
                 <li class="" id="appros">
-                    <a href="{% url 'fabrique:appros:approvisionnements' %}"><i class="fa fa-bus"></i> <span class="nav-label">Approvisionnements </span> 
+                    <a href="{% url 'fabrique:appros:approvisionnements' %}"><i class="fa fa-bus"></i> <span class="nav-label">{% translate "Approvisionnements" %} </span> 
                         {% if request.appros|length > 0 %}
                         <span class="label label-warning float-right">{{request.appros|length|start0}}</span>
                         {% endif %}
@@ -87,11 +87,11 @@
                 
                 
                 <li class="" id="rapport_du_jour">
-                    <a href="{% url 'fabrique:rapport_du_jour' request.now|date:'Y' request.now|date:'m' request.now|date:'d' %}"><i class="fa fa-calendar"></i> <span class="nav-label">Rapport du Jour</span></a>
+                    <a href="{% url 'fabrique:rapport_du_jour' request.now|date:'Y' request.now|date:'m' request.now|date:'d' %}"><i class="fa fa-calendar"></i> <span class="nav-label">{% translate "Rapport du Jour" %}</span></a>
                 </li>
                 {% if perms.paramApp.production %}
                 <li class="" id="rapport_production">
-                    <a href="{% url 'fabrique:production:rapport_production' %}"><i class="fa fa-file-text-o"></i> <span class="nav-label">Rapport de production</span></a>
+                    <a href="{% url 'fabrique:production:rapport_production' %}"><i class="fa fa-file-text-o"></i> <span class="nav-label">{% translate "Rapport de production" %}</span></a>
                 </li>
                 {% endif %}
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
@@ -99,7 +99,7 @@
                 
                 {% if perms.paramApp.comptabilite %}
                 <li class="" id="caisse">
-                    <a href="{% url 'fabrique:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
+                    <a href="{% url 'fabrique:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">{% translate "La Caisse" %}</span></a>
                 </li>
                 {% endif %}
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>

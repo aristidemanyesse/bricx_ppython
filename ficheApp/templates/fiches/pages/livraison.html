@@ -12,8 +12,6 @@
         <div class="col-lg-10">
             <div class="ibox"  >
                 <div class="ibox-content"  style="height: 33cm; background-image: url ; background-size: 50%; background-position: center center; background-repeat: no-repeat;">
-
-
                  <div>
                   <div class="row">
                     <div class="col-sm-5">
@@ -25,25 +23,25 @@
                                 <h5 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h5>
                                 <h5 class="mp0">{{ request.societe.adresse }}</h5>
                                 <h5 class="mp0">{{ request.societe.postale }}</h5>
-                                <h5 class="mp0">Tél: {{ request.societe.contact }}</h5>
-                                <h5 class="mp0">Email: {{ request.societe.email }}</h5>
+                                <h5 class="mp0">{% translate "Tél" %}: {{ request.societe.contact }}</h5>
+                                <h5 class="mp0">{% translate "Email" %}: {{ request.societe.email }}</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-7 text-right">
-                        <h2 class="title text-uppercase gras text-blue">Bon de livraison</h2>
+                        <h2 class="title text-uppercase gras text-blue">{% translate "Bon de livraison" %}</h2>
                         <h3 class="text-uppercase">N°{{livraison.id }}</h3>
                         <h5>{{livraison.created_at}}</h5>  
-                        <h4><small>Bon édité par :</small> <span class="text-uppercase">{{livraison.employe.name}}</span></h4>                                
+                        <h4><small>{% translate "Bon édité par" %} :</small> <span class="text-uppercase">{{livraison.employe.name}}</span></h4>                                
                     </div>
                 </div><hr class="mp3">
 
                 <div class="row">
                     <div class="col-6">
-                        <h5><span>Zone de livraison :</span> <span class="text-uppercase">{{livraison.zone.name}}</span></h5>   
-                        <h5><span>Lieu de livraison :</span> <span class="text-uppercase">{{livraison.lieu}}</span></h5> <br>
+                        <h5><span>{% translate "Zone de livraison" %} :</span> <span class="text-uppercase">{{livraison.zone.name}}</span></h5>   
+                        <h5><span>{% translate "Lieu de livraison" %} :</span> <span class="text-uppercase">{{livraison.lieu}}</span></h5> <br>
                         
-                        <span>Mode de livraison :</span> <br><br>
+                        <span>{% translate "Mode de livraison" %} :</span> <br><br>
                         {% if livraison.modelivraison.etiquette|add:'0' == request.modelivraison.DEFAUT|add:'0' %}
                                 <h6 class="text-uppercase">{{ livraison.chauffeur }}</h6>
                                 <h6 class="text-uppercase mp0">{{ livraison.vehicule }}</h6>
@@ -51,7 +49,7 @@
                                 <h6 class="text-uppercase">{{ livraison.livraison_tricycle.get.fullname }} (Tricycle) </h6>
                                 <h5 class="text-uppercase mp0">{{ livraison.livraison_tricycle.get.contact  }}</h5>
                         {% else %}
-                            <h6 class="text-uppercase">Par les moyens du client</h6>
+                            <h6 class="text-uppercase">{% translate "Par les moyens du client" %}</h6>
                         {% endif %}
                     </div>
 
@@ -66,10 +64,10 @@
                     <thead class="text-uppercase" style="background-color: #dfdfdf">
                         <tr>
                             <th colspan="2"></th>
-                            <th class="text-center">Quantité à livrer</th>
-                            <th class="text-center">Surplus</th>
-                            <th class="text-center">Quantité livrées</th>
-                            <th class="text-center text-red" width="120">perte</th>
+                            <th class="text-center">{% translate "Quantité à livrer" %}</th>
+                            <th class="text-center">{% translate "Surplus" %}</th>
+                            <th class="text-center">{% translate "Quantité livrées" %}</th>
+                            <th class="text-center text-red" width="120">{% translate "perte" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -106,20 +104,20 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th colspan="4"><h4 class="gras text-uppercase">Observation du client</h4></th>
+                                    <th colspan="4"><h4 class="gras text-uppercase">{% translate "Observation du client" %}</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="gras">Livraison reçue le : </td>
+                                    <td class="gras">{% translate "Livraison reçue le" %} : </td>
                                     <td>{{livraison.datelivraison|default_if_none:""}}</td>
                                 </tr>
                                 <tr style="height: 60px">
-                                    <td class="gras">Observation : </td>
+                                    <td class="gras">{% translate "Observation" %} : </td>
                                     <td>{{livraison.comment}}</td>
                                 </tr>
                                 <tr style="height: 80px">
-                                    <td class="gras">Noms, contacts & signature : </td>
+                                    <td class="gras">{% translate "Noms, contacts & signature" %} : </td>
                                     <td>
                                         <span>{{livraison.nom_receptionniste}}</span><br>
                                         <span>{{livraison.contact_receptionniste}}</span>
@@ -130,7 +128,7 @@
                     </div>
                     <div class="col-5">
                         <div class="text-right" style="margin-top: 14%;">
-                            <span><u>Signature & Cachet</u></span>
+                            <span><u>{% translate "Signature & Cachet" %}</u></span>
                         </div>
                     </div>
                 </div>
@@ -138,7 +136,7 @@
 
 
             <hr>
-            <p class="text-center"><small><i>* Nous vous prions de vérifier l'exactitude de toutes les informations qui ont été mentionnées sur cette facture avant de quitter la boutique !</i></small></p>
+            <p class="text-center"><small><i>* {% translate "Nous vous prions de vérifier l'exactitude de toutes les informations qui ont été mentionnées sur cette facture avant de quitter la boutique !" %}</i></small></p>
 
 
 

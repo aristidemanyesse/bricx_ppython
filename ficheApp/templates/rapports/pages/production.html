@@ -9,14 +9,14 @@
 
     <div class="ibox ">
         <div class="ibox-title d-print-none">
-            <h5 class="float-left">Du {{debut}} au {{fin}}</h5>
+            <h5 class="float-left">{% translate "Du" %} {{debut}} {% translate "au" %} {{fin}}</h5>
                 <div class="ibox-tools">
                     {% include 'extra/filter_form.html' %}
                 </div>
             </div><br>
 
             <div class="ibox-title">
-                <h5 class="float-left">Tableau comparatif des productions par rapport aux pertes sur la période</h5>
+                <h5 class="float-left">{% translate "Tableau comparatif des productions par rapport aux pertes sur la période" %}</h5>
                 <div class="ibox-tools">
 
                 </div>
@@ -28,18 +28,18 @@
                         <thead>
                             <tr class="text-uppercase text-center" style="font-size: 11px;">
                                 <th rowspan="2"></th>
-                                <th rowspan="2">Stock au {{veille}}</th>
-                                <th rowspan="2">Production</th>
-                                <th rowspan="2">acheté</th>
-                                <th rowspan="2">Livraison</th>
-                                <th colspan="4">Perte</th>
-                                <th rowspan="2">Stock au {{fin}}</th>
+                                <th rowspan="2">{% translate "Stock au {{veille}}" %}</th>
+                                <th rowspan="2">{% translate "Production" %}</th>
+                                <th rowspan="2">{% translate "acheté" %}</th>
+                                <th rowspan="2">{% translate "Livraison" %}</th>
+                                <th colspan="4">{% translate "Perte" %}</th>
+                                <th rowspan="2">{% translate "Stock au {{fin}}" %}</th>
                             </tr>
                             <tr class="text-uppercase text-center" style="font-size: 11px;">
-                                <th width="15">Livr.</th>
-                                <th width="15">Rang.</th>
-                                <th width="15">Autre</th>
-                                <th width="15">Prct%</th>
+                                <th width="15">{% translate "Livr." %}</th>
+                                <th width="15">{% translate "Rang." %}</th>
+                                <th width="15">{% translate "Autre" %}</th>
+                                <th width="15">{% translate "Prct%" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,19 +66,19 @@
                     <div class="row stat-list text-center">
                         <div class="col-sm-6 col-md-3 ">
                             <h3 class="no-margins text-green">{{cout_production|intcomma}} <small>{{request.societe.devise}}</small></h3>
-                            <small>Coût de production</small>
+                            <small>{% translate "Coût de production" %}</small>
                         </div>
                         <div class="col-sm-6 col-md-3 border-left border-right">
                             <h3 class="no-margins gras">{{cout_rangement|intcomma}} <small>{{request.societe.devise}}</small></h3>
-                            <small>Coût de rangement</small>
+                            <small>{% translate "Coût de rangement" %}</small>
                         </div>
                         <div class="col-sm-6 col-md-3 border-right">
                             <h3 class="no-margins text-blue">{{cout_livraison|intcomma}} <small>{{request.societe.devise}}</small></h3>
-                            <small>Coût de livraison</small>
+                            <small>{% translate "Coût de livraison" %}</small>
                         </div>
                         <div class="col-sm-6 col-md-3">
                             <h3 class="no-margins text-red">{{cout_tricycle|intcomma}} <small>{{request.societe.devise}}</small></h3>
-                            <small>Paye des tricycles</small>
+                            <small>{% translate "Paye des tricycles" %}</small>
                         </div>
                     </div><hr>
                 </div>

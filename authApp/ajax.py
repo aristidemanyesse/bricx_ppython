@@ -8,6 +8,9 @@ from django.http import  JsonResponse
 import uuid, datetime
 from django.contrib.sessions.backends.db import SessionStore
 # Create your views here.
+from django.utils.translation import ugettext as _
+
+
 
 def connexion(request):
     if request.method == "POST":
@@ -23,9 +26,9 @@ def connexion(request):
                 return JsonResponse({"status":True})
             except Exception as e:
                 print("**----------------------------------", e)
-                return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
+                return JsonResponse({"status":False, "message":_("Une erreur s'est produite lors de l'opération, veuillez recommencer !")})
         else:
-            return JsonResponse({"status":False, "message":"Login et/ou mot de passe incorrect !"})
+            return JsonResponse({"status":False, "message":_("Login et/ou mot de passe incorrect !")})
 
 
 
@@ -43,9 +46,9 @@ def unlocked(request):
                 return JsonResponse({"status":True, "url":url})
             except Exception as e:
                 print("-----------------------------------", e)
-                return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
+                return JsonResponse({"status":False, "message":_("Une erreur s'est produite lors de l'opération, veuillez recommencer !")})
         else:
-            return JsonResponse({"status":False, "message":"Mot de passe incorrect !"})
+            return JsonResponse({"status":False, "message":_("Mot de passe incorrect !")})
 
 
 
@@ -71,9 +74,9 @@ def first_user(request):
                     print("++++----------------------------------", e)
                     res = JsonResponse({"status":False, "message": str(e)})
             else:
-                res = JsonResponse({"status":False, "message":"Les mots de passe ne correspondent pas !"})
+                res = JsonResponse({"status":False, "message":_("Les mots de passe ne correspondent pas !")})
         else:
-            res = JsonResponse({"status":False, "message":"Le nouveau mot de passe est trop court, minimum 8 caractères !"})
+            res = JsonResponse({"status":False, "message":_("Le nouveau mot de passe est trop court, minimum 8 caractères !")})
 
         return res
 
@@ -92,7 +95,7 @@ def forgetpassword(request):
             return JsonResponse({"status":True, "url":"/auth/reset/"})
         except Exception as e:
             print(e)
-            return JsonResponse({"status":False, "message":"Désolé, cette adresse email n'est pas connu par le ssytème !"})
+            return JsonResponse({"status":False, "message":_("Désolé, cette adresse email n'est pas connu par le ssytème !")})
 
 
 
@@ -112,12 +115,12 @@ def reset(request):
                     fp.save()
                     return JsonResponse({"status":True, "url":"/auth/login/"})
                 else:
-                    return JsonResponse({"status":False, "message":"La période pour changer le mot de passe avec ce mail a expiré, veuillez recommencer la procédure !"})
+                    return JsonResponse({"status":False, "message":_("La période pour changer le mot de passe avec ce mail a expiré, veuillez recommencer la procédure !")})
             except Exception as e:
                 print(e)
-                return JsonResponse({"status":False, "message":"Une erreur s'est produite lors del'opération, veuillez recommencer !"})
+                return JsonResponse({"status":False, "message":_("Une erreur s'est produite lors del'opération, veuillez recommencer !")})
         else:
-            return JsonResponse({"status":False, "message":"Les mots de passe ne correspondent pas !"})
+            return JsonResponse({"status":False, "message":_("Les mots de passe ne correspondent pas !")})
 
 
 

@@ -10,7 +10,7 @@
     <div class="animated fadeInRightBig">
         <div class="ibox">
          <div class="ibox-title">
-            <h5>Recapitulatif de la journée</h5>
+            <h5>{% translate "Recapitulatif de la journée" %}</h5>
             <div class="ibox-tools">
                 {% include 'extra/filter_form_day.html' %}
             </div>
@@ -21,8 +21,8 @@
                     <img style="width: 20%" src="{% static request.societe.image %}">
                 </div>
                 <div class="col-sm-8 text-right">
-                    <h2 class="title text-uppercase gras">Recapitulatif de la journée</h2>
-                    <h3>du {{date|date:"l d F Y"}}</h3>
+                    <h2 class="title text-uppercase gras">{% translate "Recapitulatif de la journée" %}</h2>
+                    <h3>{% translate "du" %} {{date|date:"l d F Y"}}</h3>
                 </div>
             </div><hr><br>
 
@@ -31,7 +31,7 @@
 
                     {% if perms.paramApp.commande %}
                     <div>
-                     <h2 class="text-uppercase text-center">Commandes du jour</h2>
+                     <h2 class="text-uppercase text-center">{% translate "Commandes du jour" %}</h2>
                      <div class="">
                         <table class="table table-bordered mp0">
                             <thead>
@@ -61,7 +61,7 @@
                                     {% endfor %}
                                 </tr>
                                 {% empty %}
-                                <p class="text-center text-muted italic">Aucune commande ce jour </p>
+                                <p class="text-center text-muted italic">{% translate "Aucune commande ce jour" %} </p>
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -72,7 +72,7 @@
                 {% if perms.paramApp.livraison %}
                 <hr><br><br>
                 <div>
-                    <h2 class="text-uppercase text-center">Livraisons du jour</h2>
+                    <h2 class="text-uppercase text-center">{% translate "Livraisons du jour" %}</h2>
                     <div class="">
                        <table class="table table-bordered mp0">
                            <thead>
@@ -102,7 +102,7 @@
                                    {% endfor %}
                                </tr>
                                {% empty %}
-                               <p class="text-center text-muted italic">Aucune livraison ce jour </p>
+                               <p class="text-center text-muted italic">{% translate "Aucune livraison ce jour" %} </p>
                                {% endfor %}
                             </tbody>
                         </table>
@@ -114,7 +114,7 @@
                {% if perms.paramApp.production %}
                <hr><br><br>
                <div>
-                   <h2 class="text-uppercase text-center">Production du jour</h2>
+                   <h2 class="text-uppercase text-center">{% translate "Production du jour" %}</h2>
                    <div class="">
                       <table class="table table-bordered mp0">
                           <thead>
@@ -146,7 +146,7 @@
               {% if perms.paramApp.approvisionnement %}
               <hr><br><br>
               <div>
-                  <h2 class="text-uppercase text-center">Approvisionnements du jour</h2>
+                  <h2 class="text-uppercase text-center">{% translate "Approvisionnements du jour" %}</h2>
                   <div class="">
                      <table class="table table-bordered mp0">
                          <thead>
@@ -176,7 +176,7 @@
                                  {% endfor %}
                              </tr>
                              {% empty %}
-                             <p class="text-center text-muted italic">Aucune approvisionnement ce jour </p>
+                             <p class="text-center text-muted italic">{% translate "Aucune approvisionnement ce jour" %} </p>
                              {% endfor %}
                          </tbody>
                      </table>
@@ -194,14 +194,14 @@
                                             <thead>
                                                 <tr class="text-center text-uppercase">
                                                     <th colspan="2" style="visibility: hidden; width: 65%"></th>
-                                                    <th>Entrée</th>
-                                                    <th>Sortie</th>
-                                                    <th>Résultats</th>
+                                                    <th>{% translate "Entrée" %}</th>
+                                                    <th>{% translate "Sortie" %}</th>
+                                                    <th>{% translate "Résultats" %}</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="tableau">
                                                 <tr>
-                                                    <td colspan="2">Report de la caisse </td>
+                                                    <td colspan="2">{% translate "Report de la caisse" %} </td>
                                                     <td class="text-center">-</td>
                                                     <td class="text-center">-</td>
                                                     <td style="background-color: #fafafa" class="text-center">{{report|intcomma}} {{request.societe.devise}}</td>
@@ -232,7 +232,7 @@
                                             {% endfor %}
                                             <tr style="height: 15px;"></tr>
                                             <tr>
-                                                <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">Total des comptes au {{date}}</h4></td>
+                                                <td style="border-right: 2px dashed grey" colspan="2"><h4 class="text-uppercase mp0 text-right">{% translate "Total des comptes au {{date}}" %}</h4></td>
                                                 <td><h3 class="text-center text-green">{{total_entree |intcomma}} {{request.societe.devise}}</h3></td>
                                                 <td><h3 class="text-center text-red">{{total_depense|intcomma}} {{request.societe.devise}}</h3></td>
                                                 <td style="background-color: #fafafa"><h3 class="text-center text-blue gras">{{solde_a_la_date|intcomma}} {{request.societe.devise}}</h3></td>
@@ -246,7 +246,7 @@
 
                             </div>
                             <div class="col-sm-4 text-right">
-                                <h4 class="text-uppercase">Employés connectés</h4>
+                                <h4 class="text-uppercase">{% translate "Employés connectés" %}</h4>
                                 <ul>
                                     {% for employe in employes %}
                                         <li>{{employe.name}}</li>
@@ -256,47 +256,47 @@
                                     <hr>
 
                                     {% if perms.paramApp.production %}
-                                    <h4 class="text-uppercase">Coût de la production</h4><br>   
+                                    <h4 class="text-uppercase">{% translate "Coût de la production" %}</h4><br>   
 
-                                    <h6 class="text-uppercase">Coût de production</h6>
+                                    <h6 class="text-uppercase">{% translate "Coût de production" %}</h6>
                                     <h3 class="text-info" >{{prod.montant_production|rounded|intcomma}} {{request.societe.devise}}</h3>
 
-                                    <h6 class="text-uppercase">Coût de Rangement</h6>
+                                    <h6 class="text-uppercase">{% translate "Coût de Rangement" %}</h6>
                                     <h3 class="text-blue">{{prod.montant_rangement|rounded|intcomma}} {{request.societe.devise}}</h3>
 
-                                    <h6 class="text-uppercase">Coût de livraison</h6>
+                                    <h6 class="text-uppercase">{% translate "Coût de livraison" %}</h6>
                                     <h3 class="text-warning">{{prod.montant_livraison|rounded|intcomma}} {{request.societe.devise}}</h3>
                                     <hr>
                                     {% endif %}
 
 
                                     {% if perms.paramApp.comptabilite %}
-                                    <h4 class="text-uppercase">SOLDE DU COMPTE</h4>
+                                    <h4 class="text-uppercase">{% translate "SOLDE DU COMPTE" %}</h4>
                                     <br>
                                     <div class="">
-                                        <small>Solde en Ouverture</small>
+                                        <small>{% translate "Solde en Ouverture" %}</small>
                                         <h2 class="no-margins">{{solde_ouverture|intcomma}} {{request.societe.devise}}</h2>
                                         <div class="progress progress-mini">
                                             <div class="progress-bar" style="width: 100%;"></div>
                                         </div>
                                     </div><br>
 
-                                    <small>Entrées du jour</small>
+                                    <small>{% translate "Entrées du jour" %}</small>
                                     <h3 class="no-margins text-green">{{entree_du_jour|intcomma}} {{request.societe.devise}}</h3>
                                     <br>
 
-                                    <small>Dépenses du jour</small>
+                                    <small>{% translate "Dépenses du jour" %}</small>
                                     <h3 class="no-margins text-red">{{depense_du_jour|intcomma}} {{request.societe.devise}}</h3>
                                     <br>
 
                                     <div class="">
-                                        <small>Solde à la fermeture</small>
+                                        <small>{% translate "Solde à la fermeture" %}</small>
                                         <h2 class="no-margins">{{solde_fermeture|intcomma}} {{request.societe.devise}}</h2>
                                         <div class="progress progress-mini">
                                             <div class="progress-bar" style="width: 100%;"></div>
                                         </div>
                                     </div>
-{% endif %}
+                                {% endif %}
                                     <br>
                                 </div>
                             </div>

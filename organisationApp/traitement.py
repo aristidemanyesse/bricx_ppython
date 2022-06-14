@@ -24,9 +24,9 @@ def connexion(request):
                 return JsonResponse({"status":True})
             except Exception as e:
                 print("-----------------------------------", e)
-                return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
+                return JsonResponse({"status":False, "message": _("Une erreur s'est produite lors de l'opération, veuillez recommencer !")})
         else:
-            return JsonResponse({"status":False, "message":"Login et/ou mot de passe incorrect !"})
+            return JsonResponse({"status":False, "message": _("Login et/ou mot de passe incorrect !")})
 
 
 
@@ -47,9 +47,9 @@ def first_user(request):
                 print("-----------------------------------", e)
                 res = JsonResponse({"status":False, "message": e})
         else:
-            res = JsonResponse({"status":False, "message":"Les mots de passe ne correspondent pas !"})
+            res = JsonResponse({"status":False, "message": _("Les mots de passe ne correspondent pas !")})
     else:
-        res = JsonResponse({"status":False, "message":"Le nouveau mot de passe est trop court, minimum 8 caractères !"})
+        res = JsonResponse({"status":False, "message": _("Le nouveau mot de passe est trop court, minimum 8 caractères !")})
 
     return res
 

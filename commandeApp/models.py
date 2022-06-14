@@ -23,7 +23,7 @@ class PrixZoneLivraison(BaseModel):
     price  = models.IntegerField(default=0)
 
     def __str__(self):
-        return "Prix de livraison de "+self.brique.name+" à " +self.zone.name
+        return _("Prix de livraison de ")+self.brique.name+" à " +self.zone.name
 
 
 
@@ -81,7 +81,7 @@ class GroupeCommande(BaseModel):
 
 
     def __str__(self):
-        return "Groupe de commande de "+self.client.name
+        return _("Groupe de commande de ")+self.client.name
 
 
 
@@ -124,7 +124,7 @@ class Commande(BaseModel):
 
 
     def __str__(self):
-        return "Commande N°"+str(self.id)
+        return _("Commande N°")+str(self.id)
 
 
 
@@ -148,7 +148,7 @@ class Conversion(BaseModel):
     employe        = models.ForeignKey("organisationApp.Employe",  null = True, blank=True, on_delete = models.CASCADE, related_name="employe_transfertstock")
 
     def __str__(self):
-        return "Conversion N°"+str(self.id)
+        return _("Conversion N°")+str(self.id)
 
 class LigneConversion(BaseModel):
     conversion      = models.ForeignKey(Conversion, on_delete = models.CASCADE, related_name="conversion_ligne")

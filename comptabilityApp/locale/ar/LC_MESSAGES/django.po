@@ -1,0 +1,186 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: comptabilityApp/ajax.py:32 comptabilityApp/ajax.py:80
+#: comptabilityApp/ajax.py:103
+msgid "Erreur lors de l'opération', veuillez recommencer !"
+msgstr ""
+
+#: comptabilityApp/ajax.py:43 comptabilityApp/ajax.py:92
+msgid "Le mot de passe est incorrect !"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:6
+msgid "Nouvelle sortie"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:7
+#: comptabilityApp/templates/tresorerie/modals/entree.html:7
+#: comptabilityApp/templates/tresorerie/modals/transfert-tresorerie.html:7
+msgid "Renseigner ces champs pour enregistrer les informations"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:14
+msgid "Type d'opération"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:20
+#: comptabilityApp/templates/tresorerie/modals/entree.html:19
+msgid "Montant de l'opération"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:29
+#: comptabilityApp/templates/tresorerie/modals/entree.html:28
+msgid "Mode d'encaissement"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:35
+#: comptabilityApp/templates/tresorerie/modals/entree.html:34
+msgid "Plus de détails sur l'opération"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:44
+#: comptabilityApp/templates/tresorerie/modals/entree.html:43
+msgid "Structure d'encaissement"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:50
+#: comptabilityApp/templates/tresorerie/modals/entree.html:49
+msgid "N° numero dédié"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:57
+#: comptabilityApp/templates/tresorerie/modals/entree.html:57
+msgid "Ajouter une image du reçu"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/depense.html:66
+#: comptabilityApp/templates/tresorerie/modals/entree.html:66
+msgid "Valider l'opération"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/entree.html:6
+msgid "Nouvelle entrée"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/entree.html:13
+msgid "Catégorie d'opération"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/transfert-tresorerie.html:6
+msgid "Transfert de fond"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/transfert-tresorerie.html:13
+msgid "Du compte"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/versement_attente.html:10
+msgid "Liste des versements en attentes"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/versement_attente.html:12
+msgid "Rechercher un versements"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/versement_attente.html:33
+msgid "Valider"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/modals/versement_attente.html:34
+msgid "en attente"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:18
+msgid "Du"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:18
+msgid "au"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:30
+msgid "Entrées du jour"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:34
+msgid "En caisse actuellement"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:38
+msgid "Dépenses du jour"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:43
+msgid "Faire Nouvelle entrée"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:46
+msgid "Faire Nouvelle dépense"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:49
+msgid "Voir les versemments en attente"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:52
+msgid "Transferts de caisse"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:65
+msgid "Chiffre d'affaire"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:80
+msgid "Résultat brut"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:95
+msgid "Dette clientèle"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:110
+msgid "Dette Fournisseur"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:130
+msgid "Tableau des compte"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:142
+msgid "Entrée"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:143
+msgid "Sortie"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:144
+msgid "Résultats"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:149
+msgid "Report de la caisse"
+msgstr ""
+
+#: comptabilityApp/templates/tresorerie/pages/caisse.html:186
+msgid "Total des comptes au"
+msgstr ""

@@ -17,8 +17,8 @@
                             <div class="col-9">
                                 <h5 class="gras text-uppercase text-orange">{{ request.societe.name }}</h5>
                                 <h5 class="mp0">{{ request.societe.postale }}</h5>
-                                <h5 class="mp0">Tél: {{ request.societe.contact }}</h5>
-                                <h5 class="mp0">Email: {{ request.societe.email }}</h5>
+                                <h5 class="mp0">{% translate "Tél" %}: {{ request.societe.contact }}</h5>
+                                <h5 class="mp0">{% translate "Email" %}: {{ request.societe.email }}</h5>
                             </div>
                         </div>
                     </div>

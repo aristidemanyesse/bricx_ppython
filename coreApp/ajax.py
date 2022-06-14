@@ -51,7 +51,7 @@ def save(request):
                         return JsonResponse({"status":True, "url" : reverse("boutique:clients:client", args=[item.id])})
                     if modelform == "FournisseurForm":
                         return JsonResponse({"status":True, "url" : reverse("fabrique:appros:fournisseur", args=[item.id])})
-                    return JsonResponse({"status":True, "message":"Opération effectuée avec succes !"})
+                    return JsonResponse({"status":True, "message": _("Opération effectuée avec succes !")})
                 
                 else:
                     errors = form.errors.get_json_data()
@@ -61,7 +61,7 @@ def save(request):
    
         except Exception as e:
             print("erreur save :", e)
-            return JsonResponse({"status":False, "message":"Erreur lors du processus. Veuillez recommencer : "+str(e)})
+            return JsonResponse({"status":False, "message": _("Erreur lors du processus. Veuillez recommencer : ")+str(e)})
 
 
 
@@ -91,7 +91,7 @@ def mise_a_jour(request):
 
         except Exception as e:
             print("--------------------", e)
-            return JsonResponse({"status": False, "message": "Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
+            return JsonResponse({"status": False, "message": _("Une erreur s'est produite lors de l'opération, veuillez recommencer !")})
 
 
 
@@ -106,22 +106,22 @@ def supprimer(request):
             MyModel = content_type.model_class()
 
             if "password" in datas and not request.user.check_password(datas["password"]):
-                return JsonResponse({"status":False, "message":"Le mot de passe est incorrect !"})
+                return JsonResponse({"status":False, "message": _("Le mot de passe est incorrect !")})
 
             obj = MyModel.objects.get(pk=datas["id"])
             if obj.protected:
-                return JsonResponse({"status":False, "message":"Vous ne pouvez pas supprimer cet element, il est protégé !"})
+                return JsonResponse({"status":False, "message": _("Vous ne pouvez pas supprimer cet element, il est protégé !")})
 
             if hasattr(obj, "etat"):
                 obj.etat = Etat.objects.get(etiquette = Etat.ANNULE)
             else:
                 obj.deleted = True
             obj.save()
-            return JsonResponse({"status":True, "message":"Suppression effectuée avec succes !"})
+            return JsonResponse({"status":True, "message": _("Suppression effectuée avec succes !")})
 
         except Exception as e:
             print("erreur save :", e)
-            return JsonResponse({"status":False, "message":"Erreur lors du processus. Veuillez recommencer : "+str(e)})
+            return JsonResponse({"status":False, "message": _("Erreur lors du processus. Veuillez recommencer : ")+str(e)})
 
 
 
@@ -139,11 +139,11 @@ def change_active(request):
             obj.active = not obj.active
             obj.save()
 
-            return JsonResponse({"status":True, "message":"Suppression effectuée avec succes !"})
+            return JsonResponse({"status":True, "message": _("Suppression effectuée avec succes !")})
 
         except Exception as e:
             print("erreur save :", e)
-            return JsonResponse({"status":False, "message":"Erreur lors du processus. Veuillez recommencer : "+str(e)})
+            return JsonResponse({"status":False, "message": _("Erreur lors du processus. Veuillez recommencer : ")+str(e)})
 
 
 

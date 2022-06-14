@@ -23,8 +23,8 @@
                                         <h5 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h5>
                                         <h5 class="mp0">{{ request.societe.adresse }}</h5>
                                         <h5 class="mp0">{{ request.societe.postale }}</h5>
-                                        <h5 class="mp0">Tél: {{ request.societe.contact }}</h5>
-                                        <h5 class="mp0">Email: {{ request.societe.email }}</h5>
+                                        <h5 class="mp0">{% translate "Tél" %}: {{ request.societe.contact }}</h5>
+                                        <h5 class="mp0">{% translate "Email" %}: {{ request.societe.email }}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                                 <h2 class="title text-uppercase gras text-blue">Bon de caisse</h2>
                                 <h3 class="text-uppercase">N°{{mouvement.id}}</h3>
                                 <h5>{{mouvement.created_at}}</h5>  
-                                <h4><small>Bon délivré par :</small> <span class="text-uppercase">{{mouvement.employe.name}}</span></h4>                                
+                                <h4><small>{% translate "Bon délivré par" %} :</small> <span class="text-uppercase">{{mouvement.employe.name}}</span></h4>                                
                             </div>
                         </div><hr class="mp3">
 
@@ -41,10 +41,10 @@
                             <div class="row" style="margin-top: 1%;">
                                 <div class="col-6">
                                     <br>
-                                    <span class="text-uppercase gras">Opération par {{mouvement.mode.name}}</span>
+                                    <span class="text-uppercase gras">{% translate "Opération par" %} {{mouvement.mode.name}}</span>
                                 </div>
                                 <div class="col-6 text-right">
-                                    <span>Montant :</span> <span class="prix text-uppercase">{{mouvement.montant|intcomma}} {{request.societe.devise}}</span>
+                                    <span>{% translate "Montant" %} :</span> <span class="prix text-uppercase">{{mouvement.montant|intcomma}} {{request.societe.devise}}</span>
                                 </div>
                             </div><br><br>
 
@@ -59,18 +59,18 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="text-left" style="height: 120px">
-                                        <span><u>Signature du bénéficiaire</u></span>
+                                        <span><u>{% translate "Signature du bénéficiaire" %}</u></span>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right" style="height: 120px">
-                                        <span><u>Signature & Cachet</u></span>
+                                        <span><u>{% translate "Signature & Cachet" %}</u></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr>
-                        <p class="text-center"><small><i>* Aucun remboursement n'est admis après réglement !</i></small></p>
+                        <p class="text-center"><small><i>* {% translate "Aucun remboursement n'est admis après réglement !" %}</i></small></p>
                     </div><br><hr><br>
 
                     <div class="facture2">

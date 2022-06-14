@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: clientApp/ajax.py:22
+msgid "Dépôt sur acompte"
+msgstr ""
+
+#: clientApp/ajax.py:23
+msgid " a crédité son compte de "
+msgstr ""
+
+#: clientApp/ajax.py:44
+msgid "Remboursement du client"
+msgstr ""
+
+#: clientApp/ajax.py:45
+msgid "Remboursement du client "
+msgstr ""
+
+#: clientApp/ajax.py:48 clientApp/ajax.py:86
+msgid "Le mot de passe est incorrect !"
+msgstr ""
+
+#: clientApp/ajax.py:95
+msgid "Reglement de commande"
+msgstr ""
+
+#: clientApp/ajax.py:96
+msgid "Reglement de la commande N°"
+msgstr ""
+
+#: clientApp/ajax.py:110
+msgid "Reglement de dette client"
+msgstr ""
+
+#: clientApp/ajax.py:111
+msgid "Reglement de la dette de "
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:9
+msgid "Formulaire de la clientèle"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:10
+msgid "Renseigner ces champs pour enregistrer les informations"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:17
+msgid "Type de client"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:23
+msgid "Nom complet de client"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:32
+msgid "Contact"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:38
+msgid "Situation géographique"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:44
+msgid "Email"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:54
+msgid "Acompte intial"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:60
+msgid "Dette initiale"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:67
+msgid "Seuil de crédit"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:78
+#: clientApp/templates/clients/modals/crediter.html:40
+#: clientApp/templates/clients/modals/rembourser.html:38
+msgid "Annuler"
+msgstr ""
+
+#: clientApp/templates/clients/modals/client.html:79
+msgid "Valider le formulaire"
+msgstr ""
+
+#: clientApp/templates/clients/modals/crediter.html:6
+msgid "Créditer mon compte"
+msgstr ""
+
+#: clientApp/templates/clients/modals/crediter.html:12
+msgid "Montant à créditer"
+msgstr ""
+
+#: clientApp/templates/clients/modals/crediter.html:18
+#: clientApp/templates/clients/modals/rembourser.html:17
+msgid "Mode de payement"
+msgstr ""
+
+#: clientApp/templates/clients/modals/crediter.html:26
+#: clientApp/templates/clients/modals/rembourser.html:24
+msgid "Structure d'encaissement"
+msgstr ""
+
+#: clientApp/templates/clients/modals/crediter.html:32
+#: clientApp/templates/clients/modals/rembourser.html:30
+msgid "N° numero dédié"
+msgstr ""
+
+#: clientApp/templates/clients/modals/crediter.html:41
+msgid "Créditer le compte"
+msgstr ""
+
+#: clientApp/templates/clients/modals/rembourser.html:6
+msgid "Rembourser le client"
+msgstr ""
+
+#: clientApp/templates/clients/modals/rembourser.html:11
+msgid "Montant pour le reglement"
+msgstr ""
+
+#: clientApp/templates/clients/modals/rembourser.html:39
+msgid "Valider"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:15
+msgid "Les commandes en cours"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:16
+msgid "Transactions de caisse"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:24
+msgid "Nouvelle commande"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:35
+msgid "Reference"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:36
+msgid "Livraison pour"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:37
+msgid "Reste"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:38
+msgid "Action"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:48
+msgid "Commande"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:51
+msgid "livraison{{ item.livraisons_encours|pluralize }}"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:51
+msgid "en cours pour cette commande"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:59
+msgid "Options"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:97
+msgid "Opération N°"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:100
+msgid "Par"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:101
+msgid "Bon de caisse"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:146
+msgid "Acompte actuel du client"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:152
+msgid "Créditer"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:158
+msgid "Rembourser"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:166
+msgid "Dette actuelle du client"
+msgstr ""
+
+#: clientApp/templates/clients/pages/client.html:171
+msgid "Régler toute la dette"
+msgstr ""
+
+#: clientApp/templates/clients/pages/clients.html:9
+msgid "Liste des clients"
+msgstr ""
+
+#: clientApp/templates/clients/pages/clients.html:10
+msgid "Ajouter un client"
+msgstr ""
+
+#: clientApp/templates/clients/pages/clients.html:18
+msgid "Tous les clients"
+msgstr ""
+
+#: clientApp/templates/clients/pages/clients.html:28
+msgid "Ajoutés cette semaine"
+msgstr ""

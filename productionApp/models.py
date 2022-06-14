@@ -220,7 +220,7 @@ class Production(BaseModel):
     comment            = models.TextField(default="", null = True, blank=True)
 
     def __str__(self):
-        return "production du "+str(self.date)
+        return _("production du ")+str(self.date)
 
 class LigneProduction(BaseModel):
     production = models.ForeignKey(Production, on_delete = models.CASCADE, related_name="production_ligne")
@@ -229,7 +229,7 @@ class LigneProduction(BaseModel):
     quantite   = models.IntegerField(default=0)
 
     def __str__(self):
-        return "production du "+str(self.production.date)+" : "+self.brique.name+" => "+str(self.quantite)
+        return _("production du ")+str(self.production.date)+" : "+self.brique.name+" => "+str(self.quantite)
 
 class LigneConsommation(BaseModel):
     production = models.ForeignKey(Production, on_delete = models.CASCADE, related_name="production_ligneconsommation")
@@ -238,7 +238,7 @@ class LigneConsommation(BaseModel):
     price      = models.FloatField(default = 0)
 
     def __str__(self):
-        return "consommation du "+str(self.production.date)+" : "+self.ressource.name+" => "+str(self.quantite)
+        return _("consommation du ")+str(self.production.date)+" : "+self.ressource.name+" => "+str(self.quantite)
 
 
 class ConsommationJour(BaseModel):
@@ -253,7 +253,7 @@ class ExigenceProduction(BaseModel):
     quantite = models.IntegerField(default=0, null = True, blank=True)
 
     def __str__(self):
-        return "Exigence de "+str(self.quantite)+" "+self.brique.name
+        return _("Exigence de ")+str(self.quantite)+" "+self.brique.name
 
 class LigneExigenceProduction(BaseModel):
     exigence  = models.ForeignKey(ExigenceProduction, on_delete = models.CASCADE, related_name="exigence_ligne")

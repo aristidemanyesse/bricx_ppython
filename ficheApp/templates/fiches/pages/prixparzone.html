@@ -23,28 +23,28 @@
                                     <h5 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h5>
                                     <h5 class="mp0">{{ request.societe.adresse }}</h5>
                                     <h5 class="mp0">{{ request.societe.postale }}</h5>
-                                    <h5 class="mp0">Tél: {{ request.societe.contact }}</h5>
-                                    <h5 class="mp0">Email: {{ request.societe.email }}</h5>
+                                    <h5 class="mp0">{% translate "Tél" %}: {{ request.societe.contact }}</h5>
+                                    <h5 class="mp0">{% translate "Email" %}: {{ request.societe.email }}</h5>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-7 text-right">
-                            <h2 class="title text-uppercase gras text-blue">Proforma de prix</h2>
+                            <h2 class="title text-uppercase gras text-blue">{% translate "Proforma de prix" %}</h2>
 
                         </div>
                     </div><br><hr>
                     <br><br><br>
 
                     <div class="">
-                        <h2 class="gras text-center text-uppercase"><span>Pour la zone de livraison de </span> <span class="text-uppercase">{{ zone.name }}</span></h2>  
+                        <h2 class="gras text-center text-uppercase"><span>{% translate "Pour la zone de livraison de" %} </span> <span class="text-uppercase">{{ zone.name }}</span></h2>  
                     </div><br><br><br>
 
                     <table class="table table-bordered">
                         <thead class="text-uppercase" style="background-color: #dfdfdf">
                             <tr>
                                 <th></th>
-                                <th class="text-center">Brique</th>
-                                <th class="text-center">Prix unitaire</th>
+                                <th class="text-center">{% translate "Brique" %}</th>
+                                <th class="text-center">{% translate "Prix unitaire" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,8 +72,8 @@
                 <h3 class="gras text-uppercase text-orange">{{ request.societe.societe }}</h3>
                 <h4 class="mp0">{{ request.societe.adresse }}</h4>
                 <h4 class="mp0">{{ request.societe.postale }}</h4>
-                <h4 class="mp0">Tél: {{ request.societe.contact }}</h4>
-                <h4 class="mp0">Email: {{ request.societe.email }}</h4>
+                <h4 class="mp0">{% translate "Tél" %}: {{ request.societe.contact }}</h4>
+                <h4 class="mp0">{% translate "Email" %}: {{ request.societe.email }}</h4>
             </div>
 
 

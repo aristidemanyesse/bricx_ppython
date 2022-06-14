@@ -1,6 +1,7 @@
 {% load myfilters %}
+{% load i18n %}
 
 <div class="col-sm text-center border-right">
-    <label>Quantité de <b>{{ ressource.name }}</b></label>
+    <label>{% translate "Quantité de" %} <b>{{ ressource.name }}</b></label>
     <h4 class="mp0">{{ tab|dict_value:ressource.id }} {{ ressource.unite }}</h4>
 </div>	

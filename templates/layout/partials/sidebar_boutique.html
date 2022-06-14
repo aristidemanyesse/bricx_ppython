@@ -19,8 +19,8 @@
                                 <span class="text-muted text-xs block">{{ request.societe.socialreason }}</span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="{% url 'auth:locked' %}">Vérouiller la session</a></li>
-                                <li><a class="dropdown-item" href="#" id="btn-deconnexion" >Déconnexion</a></li>
+                                <li><a class="dropdown-item" href="{% url 'auth:locked' %}">{% translate "Vérouiller la session" %}</a></li>
+                                <li><a class="dropdown-item" href="#" id="btn-deconnexion" >{% translate "Déconnexion" %}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -33,16 +33,16 @@
             <ul class="nav metismenu" id="side-menu">
 
                 <li class="" id="dashboard_boutique">
-                    <a href="{% url 'boutique:dashboard_boutique' %}"><i class="fa fa-tachometer"></i> <span class="nav-label">Tableau de bord</span></a>
+                    <a href="{% url 'boutique:dashboard_boutique' %}"><i class="fa fa-tachometer"></i> <span class="nav-label">{% translate "Tableau de bord" %}</span></a>
                 </li>
                 <li class="" id="clients">
-                    <a href="{% url 'boutique:clients:clients' %}"><i class="fa fa-users"></i> <span class="nav-label">Liste des clients</span></a>
+                    <a href="{% url 'boutique:clients:clients' %}"><i class="fa fa-users"></i> <span class="nav-label">{% translate "Liste des clients" %}</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
         {% if perms.paramApp.commande %}
                 <li class="" id="commandes">
-                    <a href="{% url 'boutique:commandes:commandes' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">Commandes de clients</span>
+                    <a href="{% url 'boutique:commandes:commandes' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">{% translate "Commandes de clients" %}</span>
                         {% if request.commandes|length > 0 %}
                         <span class="label label-warning float-right">{{request.commandes|length|start0}}</span>
                         {% endif %}
@@ -51,7 +51,7 @@
                 {% endif %}
                 {% if perms.paramApp.livraison %}
                 <li class="" id="livraisons">
-                    <a href="{% url 'boutique:livraisons:livraisons' %}"><i class="fa fa-truck"></i> <span class="nav-label">Livraisons en cours</span> 
+                    <a href="{% url 'boutique:livraisons:livraisons' %}"><i class="fa fa-truck"></i> <span class="nav-label">{% translate "Livraisons en cours" %}</span> 
                         {% if request.livraisons|length > 0 %}
                         <span class="label label-warning float-right">{{request.livraisons|length|start0}}</span>
                         {% endif %}
@@ -60,7 +60,7 @@
                 {% endif %}
                 {% if perms.paramApp.commande %}
                 <li class="" id="conversions">
-                    <a href="{% url 'boutique:commandes:conversions' %}"><i class="fa fa-refresh"></i> <span class="nav-label">Conversions de briques </span> </a>
+                    <a href="{% url 'boutique:commandes:conversions' %}"><i class="fa fa-refresh"></i> <span class="nav-label">{% translate "Conversions de briques" %} </span> </a>
                 </li>
                 {% endif %}
                 
@@ -69,10 +69,10 @@
                 
                 {% if perms.paramApp.stock %}
                 <li class="" id="stock_brique">
-                    <a href="{% url 'boutique:production:stock_brique' %}"><i class="fa fa-cubes"></i> <span class="nav-label">Stock de briques</span></a>
+                    <a href="{% url 'boutique:production:stock_brique' %}"><i class="fa fa-cubes"></i> <span class="nav-label">{% translate "Stock de briques" %}</span></a>
                 </li>
                 <li class="" id="perte_brique">
-                    <a href="{% url 'boutique:production:perte_brique' %}"><i class="fa fa-trash"></i> <span class="nav-label">Perte de briques</span></a>
+                    <a href="{% url 'boutique:production:perte_brique' %}"><i class="fa fa-trash"></i> <span class="nav-label">{% translate "Perte de briques" %}</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
                 {% endif %}
@@ -80,17 +80,17 @@
                 
                 
                 <li class="" id="prixparzone">
-                    <a href="{% url 'boutique:commandes:prixparzone' %}"><i class="fa fa-truck"></i> <span class="nav-label">Proforma par zone</span></a>
+                    <a href="{% url 'boutique:commandes:prixparzone' %}"><i class="fa fa-truck"></i> <span class="nav-label">{% translate "Proforma par zone" %}</span></a>
                 </li>
                 <li class="" id="rapport_du_jour">
-                    <a href="{% url 'boutique:rapport_du_jour' request.now|date:'Y' request.now|date:'m' request.now|date:'d' %}"><i class="fa fa-calendar"></i> <span class="nav-label">Rapport du Jour</span></a>
+                    <a href="{% url 'boutique:rapport_du_jour' request.now|date:'Y' request.now|date:'m' request.now|date:'d' %}"><i class="fa fa-calendar"></i> <span class="nav-label">{% translate "Rapport du Jour" %}</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
 
 
                 {% if perms.paramApp.livraison %}
                 <li class="" id="tricycles">
-                    <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">Payements tricycles</span> 
+                    <a href="{% url 'boutique:livraisons:tricycles' %}"><i class="fa fa-bicycle"></i> <span class="nav-label">{% translate "Payements tricycles" %}</span> 
                         {% if request.tricycles|length > 0 %}
                         <span class="label label-warning float-right">{{request.tricycles|length|start0}}</span>
                         {% endif %}
@@ -99,7 +99,7 @@
                 {% endif %}
                 {% if perms.paramApp.comptabilite %}
                 <li class="" id="caisse">
-                    <a href="{% url 'boutique:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">La Caisse</span></a>
+                    <a href="{% url 'boutique:caisse' %}"><i class="fa fa-money"></i> <span class="nav-label">{% translate "La Caisse" %}</span></a>
                 </li>
                 <li style="margin: 3% auto"><hr class="mp0" style="background-color: #000; "></li>
                 {% endif %}

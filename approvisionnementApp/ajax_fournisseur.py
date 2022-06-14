@@ -7,14 +7,15 @@ from approvisionnementApp.models import AchatStock, Approvisionnement, Fournisse
 from authApp.tools import verify_password
 from coreApp.models import Etat
 # Create your views here.
+from django.utils.translation import ugettext as _
 
 
 def crediter(request):
     if request.method == "POST":
         datas = request.POST
         fournisseur = Fournisseur.objects.get(pk = request.session["fournisseur_id"])
-        title = "Apport acompte fournisseur"
-        comment = "Dépot d'acompte chez le fourniseur "+fournisseur.fullname +" d'un montant de "+datas["montant"]
+        title = _("Apport acompte fournisseur")
+        comment = _("Dépot d'acompte chez le fourniseur ")+fournisseur.fullname +_(" d'un montant de ")+datas["montant"]
         
         res = mouvement_pour_sortie(request, datas, title, comment)
         if type(res) is Mouvement:
@@ -34,8 +35,8 @@ def rembourser(request):
         datas = request.POST
         try:
             fournisseur = Fournisseur.objects.get(pk = request.session["fournisseur_id"])
-            title = "Remboursement par fourniseur"
-            comment = "Remboursement par le fournisseur "+fournisseur.fullname
+            title = _("Remboursement par fourniseur")
+            comment = _("Remboursement par le fournisseur ")+fournisseur.fullname
 
             res = mouvement_pour_entree(request, datas, title, comment)
             if type(res) is Mouvement:
@@ -73,7 +74,7 @@ def regler_toutes_dettes(request):
             datas["numero"] = ""
 
             if not verify_password(request, datas["password"]):
-                return JsonResponse({"status":False, "message" : "Le mot de passe est incorrect !" })
+                return JsonResponse({"status":False, "message" : _("Le mot de passe est incorrect !") })
 
             acompte = request.agence_compte.solde_actuel()
             dette = fournisseur.dette_totale()
@@ -82,8 +83,8 @@ def regler_toutes_dettes(request):
                     reste =  appro.reste_a_payer()
                     if reste > 0 and acompte > 0:
                         datas["montant"] = reste if acompte >= reste else acompte
-                        title ="Reglement approvisionnement"
-                        comment = "reglement de l'approvisonnement N°"+appro.id
+                        title =_("Reglement approvisionnement")
+                        comment = _("reglement de l'approvisonnement N°")+appro.id
                         res = mouvement_pour_sortie(request, datas, title, comment)
                         if type(res) is Mouvement:
                             ReglementApprovisionnement.objects.create(
@@ -106,8 +107,8 @@ def regler_toutes_dettes(request):
                     reste =  achat.reste_a_payer()
                     if reste > 0 and acompte > 0:
                         datas["montant"] = reste if acompte >= reste else acompte
-                        title ="Reglement achat de stock"
-                        comment = "reglement de l'achat de stock N°"+achat.id
+                        title =_("Reglement achat de stock")
+                        comment = _("reglement de l'achat de stock N°") +achat.id
                         res = mouvement_pour_sortie(request, datas, title, comment)
                         if type(res) is Mouvement:
                             ReglementAchatStock.objects.create(

@@ -8,6 +8,7 @@ from comptabilityApp.models import CompteClient, ModePayement, Mouvement, Reglem
 from clientApp.models import Client
 from coreApp.models import Etat
 from django.urls import reverse
+from django.utils.translation import ugettext as _
 
 from django.contrib.humanize.templatetags.humanize import intcomma
 # Create your views here.
@@ -108,20 +109,20 @@ def valider_commande(request):
             avance = int(datas["avance"] if datas["avance"] != "" else 0)
             
             if len(tableau) <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez selectionner des produits et leur quantité pour passer la commande !"})
+                return JsonResponse({"status": False, "message": _("Veuillez selectionner des produits et leur quantité pour passer la commande !")})
 
             if total <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez verifier le montant de la commande ! "})
+                return JsonResponse({"status": False, "message": _("Veuillez verifier le montant de la commande ! ")})
 
             if not ((mode.etiquette == ModePayement.PRELEVEMENT) or (mode.etiquette != ModePayement.PRELEVEMENT and 0 < avance <= total)):
-                return JsonResponse({"status": False, "message": "L'avance de la commande est incorrect, verifiez-le!"})
+                return JsonResponse({"status": False, "message": _("L'avance de la commande est incorrect, verifiez-le!")})
 
             if mode.etiquette == ModePayement.PRELEVEMENT :
                 avance = client.acompte_actuel()
 
             seuil = (client.seuil_credit or 0) if (client.seuil_credit or 0) > 0 else request.societe.seuil_credit
             if not (seuil == 0 or avance == total or ((total - avance + client.dette_totale()) <= seuil)):
-                return JsonResponse({"status": False, "message": "Le crédit restant pour la commande ne doit pas excéder "+intcomma(seuil)+" "+request.societe.devise+" pour ce client "})
+                return JsonResponse({"status": False, "message": _("Le crédit restant pour la commande ne doit pas excéder ")+intcomma(seuil)+" "+request.societe.devise+_(" pour ce client ")})
 
             if "groupecommande_id" in request.session:
                 groupe = GroupeCommande.objects.get(pk = request.session["groupecommande_id"])
@@ -135,8 +136,8 @@ def valider_commande(request):
                 avance = total if avance >= total else avance
                 print("--------------------------", avance)
                 if avance > 0 :
-                    title = "Avance sur commande"
-                    comment = "Avance sur réglement de la facture pour la commande ";
+                    title = _("Avance sur commande")
+                    comment = _("Avance sur réglement de la facture pour la commande ")
                     datas["montant"] = avance
                     res = mouvement_pour_sortie_client(request, datas, title, comment)
                     if type(res) is not Mouvement:
@@ -144,8 +145,8 @@ def valider_commande(request):
                     
 
             else:
-                title = "Avance sur commande"
-                comment = "Avance sur réglement de la facture pour la commande ";
+                title = _("Avance sur commande")
+                comment = _("Avance sur réglement de la facture pour la commande ")
                 datas["montant"] = avance
                 res = mouvement_pour_entree(request, datas, title, comment)
                 if type(res) is not Mouvement:
@@ -222,7 +223,7 @@ def regler_commande(request):
 
         except Exception as e:
             print("Erreur valid commande", e)
-            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer !"})
+            return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer !")})
 
 
 
@@ -233,7 +234,7 @@ def changer_produit(request):
         datas = request.POST
         try :
             if "groupecommande_id" not in request.session:
-                return JsonResponse({"status": False, "message": "Erreur lors de l'opération', veuillez recommencer !"})
+                return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer !"))})
 
             total = 0
             tableau = datas["tableau"].split(",")
@@ -242,9 +243,9 @@ def changer_produit(request):
                     id, qte = item.split("=")
                     total += int(qte) if qte != "" else 0
             if len(tableau) <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez selectionner des produits et leur quantité pour passer la commande !"})
+                return JsonResponse({"status": False, "message": _("Veuillez selectionner des produits et leur quantité pour passer la commande !")})
             if total <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez entrer des quantités valides pour la conversion !"})
+                return JsonResponse({"status": False, "message": _("Veuillez entrer des quantités valides pour la conversion !")})
             
             GroupeCommande.objects.filter(pk = request.session["groupecommande_id"]).update(etat = Etat.objects.get(etiquette = Etat.TERMINE))
             old = GroupeCommande.objects.get(pk = request.session["groupecommande_id"])
@@ -299,4 +300,4 @@ def changer_produit(request):
 
         except Exception as e:
             print("Erreur valid conversion", e)
-            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer :"+ str(e)})
+            return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer :")+ str(e)})

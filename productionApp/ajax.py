@@ -46,7 +46,7 @@ def new_production(request):
         datas = request.POST
 
         if "tab" not in request.session:
-            return JsonResponse({"status": False, "message": "Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
+            return JsonResponse({"status": False, "message": _("Une erreur s'est produite lors de l'opération, veuillez recommencer !")})
         
         tab = request.session["tab"]
         productionday = Production.objects.get(date = datetime.datetime.now().date())
@@ -58,7 +58,7 @@ def new_production(request):
                 break
             
         if not test:
-            return JsonResponse({"status": False, "message": "Vous ne pouvez pas consommer plus de quantité de <b>"+ligne.ressource.name+"</b> que ce que vous n'en possédez !"})
+            return JsonResponse({"status": False, "message": _("Vous ne pouvez pas consommer plus de quantité de <b>"+ligne.ressource.name+"</b> que ce que vous n'en possédez !")})
             
         montant = 0
         for ligne in productionday.production_ligne.all():
@@ -96,7 +96,7 @@ def rangement(request):
                     break
 
             if not test:
-                return JsonResponse({"status": False, "message": "Vous ne pouvez pas rangé plus de quantité que ce que vous en avez produit !"})
+                return JsonResponse({"status": False, "message": _("Vous ne pouvez pas rangé plus de quantité que ce que vous en avez produit !")})
 
             montant = 0
             for ligne in production.production_ligne.all():
@@ -115,4 +115,4 @@ def rangement(request):
 
         except Exception as e:
             print("erreur :", e)
-            return JsonResponse({"status": False, "message": "Une erreur s'est produite lors de l'opération, veuillez recommencer !"})
+            return JsonResponse({"status": False, "message": _("Une erreur s'est produite lors de l'opération, veuillez recommencer !")})

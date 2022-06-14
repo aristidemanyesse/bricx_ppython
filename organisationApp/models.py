@@ -40,7 +40,7 @@ class Employe(User, BaseModel):
 def post_save_agence(sender, instance, created, **kwargs):
     if created:
         Compte.objects.create(
-            name = "Compte de "+instance.name,
+            name = _("Compte de ")+instance.name,
             agence = instance,
             initial_amount = 0
         )

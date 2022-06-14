@@ -5,7 +5,7 @@ from comptabilityApp.tools import mouvement_pour_entree, mouvement_pour_sortie, 
 from django.urls import reverse
 from authApp.tools import verify_password
 from coreApp.models import Etat
-
+from django.utils.translation import ugettext as _
 
 def operation(request):
     if request.method == "POST":
@@ -29,7 +29,7 @@ def operation(request):
 
         except Exception as e:
             print("Erreur valid commande", e)
-            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer !"})
+            return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer !")})
 
 
 
@@ -40,7 +40,7 @@ def transfert(request):
         try :
 
             if not verify_password(request, datas["password"]):
-                return JsonResponse({"status":False, "message" : "Le mot de passe est incorrect !" })
+                return JsonResponse({"status":False, "message" : _("Le mot de passe est incorrect !") })
 
             datas._mutable = True
             datas["modepayement"] = ModePayement.objects.get(etiquette = ModePayement.ESPECES).id
@@ -77,7 +77,7 @@ def transfert(request):
 
         except Exception as e:
             print("Erreur valid commande", e)
-            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer !"})
+            return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer !")})
 
 
 
@@ -89,7 +89,7 @@ def valider_mouvement(request):
         try :
 
             if not verify_password(request, datas["password"]):
-                return JsonResponse({"status":False, "message" : "Le mot de passe est incorrect !" })
+                return JsonResponse({"status":False, "message" : _("Le mot de passe est incorrect !") })
 
             mouvement = Mouvement.objects.get(pk = datas["id"])
             mouvement.etat = Etat.objects.get(etiquette = Etat.TERMINE)
@@ -100,4 +100,4 @@ def valider_mouvement(request):
 
         except Exception as e:
             print("Erreur valid commande", e)
-            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer !"})
+            return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer !")})

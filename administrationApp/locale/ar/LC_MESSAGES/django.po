@@ -1,0 +1,857 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: administrationApp/ajax.py:33 administrationApp/ajax.py:69
+#: administrationApp/ajax.py:101 administrationApp/ajax.py:130
+#: administrationApp/ajax.py:157 administrationApp/ajax.py:183
+#: administrationApp/ajax.py:206 administrationApp/ajax.py:235
+msgid "Une erreur s'est produite lors de l'opération, veuillez recommencer !"
+msgstr ""
+
+#: administrationApp/ajax.py:46
+msgid "Suppression effectuée avec succes !"
+msgstr ""
+
+#: administrationApp/ajax.py:50
+msgid "Erreur lors du processus. Veuillez recommencer : "
+msgstr ""
+
+#: administrationApp/ajax.py:144
+msgid "L'accès est déjà refusé à cet employé !"
+msgstr ""
+
+#: administrationApp/ajax.py:146
+msgid "Vous ne pouvez pas supprimer cet accès, il est protégé !"
+msgstr ""
+
+#: administrationApp/ajax.py:171 administrationApp/ajax.py:194
+#: administrationApp/ajax.py:218
+msgid "Le mot de passe est incorrect !"
+msgstr ""
+
+#: administrationApp/ajax.py:174 administrationApp/ajax.py:197
+#: administrationApp/ajax.py:221
+msgid "Vous ne pouvez pas supprimer cet utilisateur, il est protégé !"
+msgstr ""
+
+#: administrationApp/ajax.py:223
+msgid "L'accès est déjà refusé à cet employé, veuillez d'abor le débloquer !"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/agence.html:6
+msgid "Formulaire de agences"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/agence.html:7
+#: administrationApp/templates/admin/modals/chauffeur.html:7
+#: administrationApp/templates/admin/modals/compte.html:7
+#: administrationApp/templates/admin/modals/produit.html:8
+msgid "Renseigner ces champs pour enregistrer les informations"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/agence.html:13
+msgid "Nom du l'agence"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/agence.html:19
+#: administrationApp/templates/admin/modals/chauffeur.html:19
+#: administrationApp/templates/admin/modals/infos.html:27
+msgid "Situation géographique"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/agence.html:28
+#: administrationApp/templates/admin/modals/categorie_operation.html:26
+#: administrationApp/templates/admin/modals/chauffeur.html:44
+#: administrationApp/templates/admin/modals/compte.html:43
+#: administrationApp/templates/admin/modals/employe.html:55
+#: administrationApp/templates/admin/modals/exigence.html:39
+#: administrationApp/templates/admin/modals/infos.html:72
+#: administrationApp/templates/admin/modals/payes_produits.html:36
+#: administrationApp/templates/admin/modals/payes_produits.html:80
+#: administrationApp/templates/admin/modals/prix.html:25
+#: administrationApp/templates/admin/modals/produit.html:40
+#: administrationApp/templates/admin/modals/ressource.html:28
+#: administrationApp/templates/admin/modals/vehicule.html:39
+#: administrationApp/templates/admin/modals/zone.html:22
+msgid "Annuler"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/agence.html:29
+#: administrationApp/templates/admin/modals/chauffeur.html:45
+#: administrationApp/templates/admin/modals/compte.html:44
+#: administrationApp/templates/admin/modals/employe.html:56
+msgid "Valider le formulaire"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/categorie_operation.html:7
+msgid "Formulaire des type d'operations"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/categorie_operation.html:13
+msgid "Type d'opération"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/categorie_operation.html:17
+#: administrationApp/templates/admin/modals/ressource.html:13
+#: administrationApp/templates/admin/modals/zone.html:13
+#: administrationApp/templates/admin/pages/agence.html:95
+#: administrationApp/templates/admin/pages/caisse.html:27
+#: administrationApp/templates/admin/pages/caisse.html:112
+#: administrationApp/templates/admin/pages/production.html:28
+#: administrationApp/templates/admin/pages/production.html:82
+msgid "Libéllé"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/categorie_operation.html:27
+#: administrationApp/templates/admin/modals/exigence.html:40
+#: administrationApp/templates/admin/modals/payes_produits.html:37
+#: administrationApp/templates/admin/modals/payes_produits.html:81
+#: administrationApp/templates/admin/modals/prix.html:26
+#: administrationApp/templates/admin/modals/produit.html:41
+#: administrationApp/templates/admin/modals/ressource.html:29
+#: administrationApp/templates/admin/modals/vehicule.html:40
+#: administrationApp/templates/admin/modals/zone.html:23
+msgid "Enregistrer"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/chauffeur.html:6
+msgid "Formulaire pour le personnel roulant"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/chauffeur.html:13
+msgid "Nom & Prenom"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/chauffeur.html:25
+#: administrationApp/templates/admin/modals/employe.html:37
+#: administrationApp/templates/admin/pages/agence.html:245
+msgid "Contact"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/chauffeur.html:31
+msgid "Photo du chauffeur"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/chauffeur.html:35
+#: administrationApp/templates/admin/modals/employe.html:47
+#: administrationApp/templates/admin/modals/infos.html:64
+#: administrationApp/templates/admin/modals/produit.html:33
+#: administrationApp/templates/admin/modals/vehicule.html:30
+msgid "Ajouter une image"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/compte.html:6
+msgid "Formulaire des comptes & banques"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/compte.html:13
+msgid "Nom du compte"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/compte.html:19
+msgid "Solde du compte"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/compte.html:27
+msgid "Etablissement si banque"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/compte.html:33
+#: administrationApp/templates/admin/pages/caisse.html:150
+msgid "N° de compte"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/employe.html:7
+msgid "Formulaire des employés"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/employe.html:8
+msgid "Renseigner ces champs pour enregistrer l'employé"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/employe.html:15
+msgid "Nom"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/employe.html:21
+msgid "Lieu d'habitation"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/employe.html:27
+msgid "Adresse email"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/employe.html:43
+msgid "Photo de l'employé"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/exigence.html:9
+msgid "Formulaire des exigence de production"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/exigence.html:10
+msgid ""
+"Veuillez saisir les quantités de chaque ressources néccessaire pour la "
+"production"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/exigence.html:21
+msgid "utilise"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/infos.html:6
+msgid "Informations générales"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/infos.html:12
+msgid "Raison sociale"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/infos.html:18
+#: administrationApp/templates/admin/pages/general.html:34
+msgid "Email"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/infos.html:33
+#: administrationApp/templates/admin/pages/general.html:29
+msgid "Contacts"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/infos.html:39
+#: administrationApp/templates/admin/pages/general.html:46
+msgid "Fax"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/infos.html:48
+msgid "Boîte postale"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/infos.html:54
+#: administrationApp/templates/admin/pages/general.html:51
+msgid "Devise"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/infos.html:60
+#: administrationApp/templates/admin/pages/general.html:57
+msgid "Votre logo"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/infos.html:73
+msgid "Mettre à jour les infos"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/payes_produits.html:8
+msgid "Prix de paye du produit"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/payes_produits.html:15
+msgid "est payé à"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/payes_produits.html:18
+#: administrationApp/templates/admin/modals/payes_produits.html:62
+#: administrationApp/templates/admin/pages/prices.html:98
+#: administrationApp/templates/admin/pages/prices.html:134
+msgid "Production"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/payes_produits.html:22
+#: administrationApp/templates/admin/modals/payes_produits.html:66
+#: administrationApp/templates/admin/pages/prices.html:99
+#: administrationApp/templates/admin/pages/prices.html:135
+msgid "Rangement"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/payes_produits.html:26
+#: administrationApp/templates/admin/modals/payes_produits.html:70
+#: administrationApp/templates/admin/pages/prices.html:100
+#: administrationApp/templates/admin/pages/prices.html:136
+msgid "Livraison"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/payes_produits.html:52
+msgid "Prix de paye du produit les jours fériés"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/prix.html:6
+msgid "Formulaire des prix"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/prix.html:10
+msgid "Pour la zone"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/produit.html:7
+msgid "Formulaire de produits"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/produit.html:14
+msgid "Nom du produit"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/produit.html:20
+msgid "Description du produit"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/produit.html:29
+msgid "Image"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/ressource.html:6
+msgid "Formulaire de ressource"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/ressource.html:7
+msgid "Veuillez renseigner les champs pour enregistrer la ressource"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/ressource.html:19
+msgid "Unité de mesure"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/vehicule.html:6
+msgid "Formulaire du véhicule"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/vehicule.html:7
+msgid "Renseigner ces champs pour enregistrer le véhicule"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/vehicule.html:14
+#: administrationApp/templates/admin/pages/agence.html:205
+msgid "Immatriculation"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/vehicule.html:20
+msgid "Le modèle & marque du vehicule"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/vehicule.html:26
+msgid "Image du véhicule"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/zone.html:8
+msgid "Zone de livraison"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:16
+msgid "Infos de l'agence"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:17
+msgid "Stocks initiaux de briques"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:18
+msgid "Prix / Zones de livraison"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:19
+msgid "Véhicules & Chauffeurs"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:20
+msgid "Gestion des employés"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:31
+msgid "Raison sociale de l'agence"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:38
+#: administrationApp/templates/admin/pages/general.html:24
+msgid "Situation Géographique"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:43
+msgid "Compte lié"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:48
+#: administrationApp/templates/admin/pages/caisse.html:151
+msgid "Solde initial"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:56
+msgid "Nombre d'employes"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:61
+msgid "Nombre de véhicules"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:66
+msgid "Nombre de chauffeurs"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:72
+msgid "Logo de l'entreprise"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:77
+msgid "Modifier"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:78
+msgid "Supprimer"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:91
+msgid "Définir le stock de ressources initial"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:96
+#: administrationApp/templates/admin/pages/production.html:83
+msgid "Unité"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:97
+#: administrationApp/templates/admin/pages/agence.html:107
+#: administrationApp/templates/admin/pages/agence.html:123
+msgid "Stock initial"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:116
+msgid "Définir le stock de briques initial"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:140
+#: administrationApp/templates/admin/pages/prices.html:24
+msgid "Prix des produits par zone de livraison"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:143
+msgid "Ajouter nouvelle zone"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:173
+msgid "modifier les prix"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:193
+msgid "Tous les véhicules"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:196
+#: administrationApp/templates/admin/pages/agence.html:235
+#: administrationApp/templates/admin/pages/caisse.html:18
+#: administrationApp/templates/admin/pages/caisse.html:102
+#: administrationApp/templates/admin/pages/organisation.html:18
+#: administrationApp/templates/admin/pages/production.html:19
+#: administrationApp/templates/admin/pages/production.html:74
+msgid "Ajouter"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:204
+msgid "Marque/modèle"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:219
+msgid "modifier l élément"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:220
+msgid "supprimer l élément"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:232
+msgid "Liste des chauffeurs"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:243
+msgid "Nom complet"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:244
+msgid "Adresse"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:281
+msgid "Attribution des accès des agences"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:284
+msgid "Ajouter un employé"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:293
+#: administrationApp/templates/admin/pages/roles.html:24
+msgid "Status"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:294
+#: administrationApp/templates/admin/pages/roles.html:25
+msgid "Utilisateur"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:295
+#: administrationApp/templates/admin/pages/roles.html:26
+msgid "Identifiants"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:296
+#: administrationApp/templates/admin/pages/roles.html:27
+msgid "Accès et rôles"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:298
+#: administrationApp/templates/admin/pages/roles.html:29
+msgid "Affiliation"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:308
+#: administrationApp/templates/admin/pages/roles.html:39
+msgid "Actif"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:310
+#: administrationApp/templates/admin/pages/roles.html:41
+msgid "Bloqué"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:321
+#: administrationApp/templates/admin/pages/roles.html:52
+msgid "Login:"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:322
+#: administrationApp/templates/admin/pages/roles.html:53
+msgid "Pass:"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:325
+#: administrationApp/templates/admin/pages/roles.html:56
+msgid "Definir les accès"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:342
+#: administrationApp/templates/admin/pages/roles.html:73
+msgid "Selectionner l'agence"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:355
+#: administrationApp/templates/admin/pages/roles.html:78
+msgid "Init. mot de passe"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:358
+#: administrationApp/templates/admin/pages/roles.html:81
+msgid "Bloquer"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/agence.html:360
+#: administrationApp/templates/admin/pages/roles.html:83
+msgid "Débloquer"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:15
+msgid "Opérations d'entrée de caisse"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:28
+#: administrationApp/templates/admin/pages/caisse.html:113
+msgid "Type"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:53
+msgid "Autoriser Versements en attente"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:70
+#, python-format
+msgid "%% tva sur les ventes"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:74
+msgid "Seuil de tolérance du crédit client"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:88
+msgid "Mettre à jour"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:99
+msgid "Opérations de sortie de caisse"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:137
+msgid "Creation & attribution des caisses"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:140
+msgid "Nouveau compte"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:148
+msgid "Libéllé du compte"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/caisse.html:149
+msgid "Etablissement"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:18
+msgid "Infos générales"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:19
+msgid "Nom, adresse, contact, logo de sté"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:38
+msgid "Roles & accès"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:39
+msgid "Définir les droits et les accès"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:58
+msgid "Mon compte"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:59
+msgid "Info compte, Abonnement, formule"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:86
+msgid "Unité d'organisation"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:87
+msgid "Agences, stocks initiaux"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:106
+msgid "Elements de production"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:107
+msgid "Produits, ressources, Exigence de production"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:126
+msgid "Barème des prix"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:127
+msgid "Etablir vos barèmes de prix et de paye"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:143
+msgid "Config de la caisse"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/dashboard.html:144
+msgid "Compte en banque, caisse, gestion"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/general.html:10
+msgid "Configuration des informations générales de la structure"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/general.html:17
+msgid "Raison sociale ou nom de la société"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/general.html:41
+msgid "Boite Postale"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/general.html:63
+msgid "Modifier les informations"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:18
+msgid "Licence AMB"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:22
+msgid "Licence de l'application"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:29
+msgid "Identifiant"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:33
+msgid "Votre identifiant unique"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:40
+msgid "Expiration"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:45
+msgid "Nombre de jours restants"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:52
+msgid "Agences / Utilisateurs"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:55
+msgid "agences"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:56
+msgid "utilisateurs"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:67
+msgid "Nouvel abonnement"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:73
+msgid "Quelques points importants"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:76
+msgid "Le code de validation"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:77
+msgid ""
+"Pour renouveller votre abonnement, il vous faut obligatoirement un code de "
+"validation composé de 5 blocs de caractères.<br> Pour vous en procurer, "
+"veuillez"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:77
+#: administrationApp/templates/admin/pages/mycompte.html:83
+#: administrationApp/templates/admin/pages/mycompte.html:86
+msgid "nous contacter"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:79
+msgid "Internet est requis"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:80
+msgid ""
+"La validation du code requiert une connexion à internet. veuillez vous "
+"assurer d'en avoir avant de commencer."
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:82
+msgid "3 tentavives"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:83
+msgid ""
+"Vous n'aurez droit qu'à un maximum de 3 tentatives pour valider votre code. "
+"Si vous échouer 5 fois de suite, l'application se vérouillera "
+"automatiquement. Vous devriez alors "
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:85
+msgid "Besoin d'aide ?"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:86
+msgid ""
+"Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide "
+"ou d'une assistance particulière, veuillez "
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:94
+msgid "Fin d'abonnement le"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:98
+msgid "Entrer les 5 blocs de caractères du code de validation."
+msgstr ""
+
+#: administrationApp/templates/admin/pages/mycompte.html:122
+msgid "Valider le code !"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/organisation.html:15
+msgid "Liste de vos Agences"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/prices.html:14
+msgid "Prix chez"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/prices.html:86
+#: administrationApp/templates/admin/pages/prices.html:122
+msgid "Paye par production"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/prices.html:89
+#: administrationApp/templates/admin/pages/prices.html:125
+msgid "Modifier les prix"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/prices.html:97
+#: administrationApp/templates/admin/pages/prices.html:133
+msgid "Briques"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/prices.html:122
+msgid "dimanches & jours fériés"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:16
+msgid "Les briques"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:29
+#: administrationApp/templates/admin/pages/production.html:86
+msgid "Seuil d'alerte"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:30
+msgid "Actif ?"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:71
+msgid "Les matières premières"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:84
+msgid "stockable ?"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:85
+msgid "Prix d'achat"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:127
+msgid "Exigence de production par ressource"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:131
+msgid "Production automatique"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:171
+msgid "Pour produire"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/production.html:171
+msgid "unités"
+msgstr ""
+
+#: administrationApp/templates/admin/pages/roles.html:12
+msgid "Personnes ayant accès et leur roles"
+msgstr ""

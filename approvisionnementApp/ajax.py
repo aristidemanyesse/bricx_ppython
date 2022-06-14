@@ -9,6 +9,8 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse, JsonResponse
 from django.contrib.humanize.templatetags.humanize import intcomma
 import datetime
+from django.utils.translation import ugettext as _
+
 
 def new_ressource(request):
     if request.method == "POST":
@@ -94,7 +96,7 @@ def valider_approvisionnement(request):
                 avance = 0
 
             if len(tableau) <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez selectionner des ressources et leur quantité pour passer la commande !"})
+                return JsonResponse({"status": False, "message": _("Veuillez selectionner des ressources et leur quantité pour passer la commande !")})
 
             total = 0
             for item in tableau:
@@ -104,26 +106,26 @@ def valider_approvisionnement(request):
                     total += int(qte)
 
             if total <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez selectionner des ressources et leur quantité pour passer la commande ! "})
+                return JsonResponse({"status": False, "message": _("Veuillez selectionner des ressources et leur quantité pour passer la commande ! ")})
 
             if not (0 <= montant >= avance) :
-                return JsonResponse({"status": False, "message": "Veuillez verifier le montant et l'avance pour cet approvisionnement ! "})
+                return JsonResponse({"status": False, "message": _("Veuillez verifier le montant et l'avance pour cet approvisionnement ! ")})
 
             if not ((mode.etiquette == ModePayement.PRELEVEMENT) or (mode.etiquette != ModePayement.PRELEVEMENT and 0 < avance <= montant)):
-                return JsonResponse({"status": False, "message": "L'avance de la commande est incorrect, verifiez-le!"})
+                return JsonResponse({"status": False, "message": _("L'avance de la commande est incorrect, verifiez-le!")})
 
             if mode.etiquette == ModePayement.PRELEVEMENT:
                 if not (request.agence_compte.solde_actuel() >= (avance + int(datas["transport"]))):
-                    return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler l'avance et les frais de transport de l'approvisionnement !"})
+                    return JsonResponse({"status": False, "message": _("Le solde du compte est insuffisant pour regler l'avance et les frais de transport de l'approvisionnement !")})
             else:
                 if not (request.agence_compte.solde_actuel() >=  int(datas["transport"])):
-                    return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler les frais de transport de l'achat de stock !"})
+                    return JsonResponse({"status": False, "message": _("Le solde du compte est insuffisant pour regler les frais de transport de l'achat de stock !")})
 
 
             if int(datas["transport"]) > 0:
                 datas["modepayement"] = ModePayement.objects.get(etiquette = ModePayement.ESPECES).id
-                title = "Frais de transport pour approvisionnement"
-                comment = "Frais de transport pour l'approvisionnement";
+                title = _("Frais de transport pour approvisionnement")
+                comment = _("Frais de transport pour l'approvisionnement")
                 datas["montant"] = int(datas["transport"])
                 res = mouvement_pour_sortie(request, datas, title, comment)
                 if type(res) is Mouvement:
@@ -139,16 +141,16 @@ def valider_approvisionnement(request):
                 acompte = fournisseur.acompte_actuel()
                 lavance = montant if acompte >= montant else acompte
                 if lavance > 0 :
-                    title = "Avance sur approvisionnement"
-                    comment = "Avance sur réglement de la facture pour l'Approvisionnement";
+                    title = _("Avance sur approvisionnement")
+                    comment = _("Avance sur réglement de la facture pour l'Approvisionnement")
                     datas["montant"] = lavance
                     res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
                     if type(res) is not Mouvement:
                         return JsonResponse(res)
 
             else:
-                title = "Avance sur approvisionnement"
-                comment = "Avance sur réglement de la facture pour l'approvisionnement";
+                title = _("Avance sur approvisionnement")
+                comment = _("Avance sur réglement de la facture pour l'approvisionnement")
                 datas["montant"] = avance
                 res = mouvement_pour_sortie(request, datas, title, comment)
                 if type(res) is not Mouvement:
@@ -213,10 +215,10 @@ def terminer_appro(request):
                     ligne = LigneApprovisionnement.objects.get(pk = id)
                     total += int(qte)
                     if not (ligne.quantite >= int(qte)):
-                        return JsonResponse({"status": False, "message": "La quantité pour "+ligne.ressource.name+" est incorrecte ! "})
+                        return JsonResponse({"status": False, "message": _("La quantité pour est incorrecte pour ")+ligne.ressource.name})
 
             if total <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez renseigner les quantités des ressources qui ont été livrées! "})
+                return JsonResponse({"status": False, "message": _("Veuillez renseigner les quantités des ressources qui ont été livrées! ")})
 
 
             for item in tableau:
@@ -246,8 +248,8 @@ def regler_appro(request):
         datas = request.POST
         try :
             appro = Approvisionnement.objects.get(pk = datas["appro_id"])
-            title = "Reglement approvisionnement"
-            comment = "Reglement de l'approvisionnement N°"+str(appro.id)
+            title = _("Reglement approvisionnement")
+            comment = _("Reglement de l'approvisionnement N°")+str(appro.id)
             res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementApprovisionnement.objects.create(
@@ -260,4 +262,4 @@ def regler_appro(request):
 
         except Exception as e:
             print("Erreur valid appro", e)
-            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer !"})
+            return JsonResponse({"status": False, "message":_("Erreur lors de l'opération', veuillez recommencer !")})

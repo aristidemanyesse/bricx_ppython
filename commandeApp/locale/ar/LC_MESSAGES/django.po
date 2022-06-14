@@ -1,0 +1,308 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: commandeApp/ajax_new_commande.py:112 commandeApp/ajax_new_commande.py:246
+msgid ""
+"Veuillez selectionner des produits et leur quantité pour passer la commande !"
+msgstr ""
+
+#: commandeApp/ajax_new_commande.py:115
+msgid "Veuillez verifier le montant de la commande ! "
+msgstr ""
+
+#: commandeApp/ajax_new_commande.py:118
+msgid "L'avance de la commande est incorrect, verifiez-le!"
+msgstr ""
+
+#: commandeApp/ajax_new_commande.py:125
+msgid "Le crédit restant pour la commande ne doit pas excéder "
+msgstr ""
+
+#: commandeApp/ajax_new_commande.py:125
+msgid " pour ce client "
+msgstr ""
+
+#: commandeApp/ajax_new_commande.py:139 commandeApp/ajax_new_commande.py:148
+msgid "Avance sur commande"
+msgstr ""
+
+#: commandeApp/ajax_new_commande.py:140 commandeApp/ajax_new_commande.py:149
+msgid "Avance sur réglement de la facture pour la commande "
+msgstr ""
+
+#: commandeApp/ajax_new_commande.py:226 commandeApp/ajax_new_commande.py:237
+msgid "Erreur lors de l'opération', veuillez recommencer !"
+msgstr ""
+
+#: commandeApp/ajax_new_commande.py:248
+msgid "Veuillez entrer des quantités valides pour la conversion !"
+msgstr ""
+
+#: commandeApp/ajax_new_commande.py:303
+msgid "Erreur lors de l'opération', veuillez recommencer :"
+msgstr ""
+
+#: commandeApp/models.py:26
+msgid "Prix de livraison de "
+msgstr ""
+
+#: commandeApp/models.py:84
+msgid "Groupe de commande de "
+msgstr ""
+
+#: commandeApp/models.py:127
+#: commandeApp/templates/commande/modals/commande_infos.html:55
+msgid "Commande N°"
+msgstr ""
+
+#: commandeApp/models.py:151
+#: commandeApp/templates/commande/pages/conversions.html:43
+msgid "Conversion N°"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/changer_produit.html:8
+msgid "Nouveau interchangement de produit"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/changer_produit.html:9
+msgid "Renseigner ces champs pour enregistrer le changement"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/changer_produit.html:16
+msgid "Définissez le changement de briques"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/changer_produit.html:25
+msgid "Qté actuelle"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/changer_produit.html:27
+msgid "Nouvelle Qté"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/changer_produit.html:54
+msgid "Finaliser le changement"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/changer_produit.html:59
+msgid "Motif du changement"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/changer_produit.html:63
+msgid "Valider le changement"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:20
+msgid "Tél"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:21
+msgid "Email"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:26
+msgid "Fiche de commande"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:43
+msgid "RESTE A PAYER"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:44
+msgid "OPTIONS"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:51
+msgid "Supprimer la commande"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:58
+msgid "imprimer le bon de commande"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:76
+msgid "Regler le reste"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:90
+msgid "Livraison N°"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:93
+msgid "imprimer le bon de livraison"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:120
+msgid "Reste à livrer"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:134
+msgid "Nouvelle commande"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:137
+msgid "Changement de produits"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/commande_infos.html:140
+msgid "Faire livraison aujourd'hui"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/liste_versement.html:8
+msgid "Versements pour la commande"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/liste_versement.html:18
+msgid "Payement par"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/liste_versement.html:22
+msgid "Restait à payer"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:8
+msgid "Nouvelle commande de briques"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:9
+msgid "Renseigner ces champs pour enregistrer la commande"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:16
+msgid "Les produits de la commande"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:40
+msgid "Finaliser la commande"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:45
+msgid "zone de livraison"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:51
+msgid "Date prévue pour livraison"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:58
+msgid "Lieu exact de livraison"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:65
+msgid "Mode de payement"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:72
+msgid "Montant avancé"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:80
+msgid "Structure d'encaissement"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:86
+msgid "N° numero dédié"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:93
+msgid "Ajouter une note"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:98
+msgid "Montant brut"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:99
+msgid "TVA"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:101
+msgid "Avance"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:102
+msgid "Reste"
+msgstr ""
+
+#: commandeApp/templates/commande/modals/new_commande.html:104
+msgid "Valider la commande"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/commandes.html:10
+msgid "Les commandes en cours"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/commandes.html:31
+msgid "Livraison prévue pour le"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/commandes.html:33
+msgid ""
+"livraison{{ item.livraisons_encours|pluralize }} en cours pour cette commande"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:10
+msgid "Les conversions de produits"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:21
+msgid "Toutes les conversions de produits survenues dans cette agence"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:31
+msgid "Status"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:32
+msgid "Agence"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:33
+msgid "Client"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:34
+msgid "Produits"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:35
+msgid "Effectué par"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:36
+msgid "Action"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:48
+msgid "effectué"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:68
+msgid "Qté avant conversion"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/conversions.html:74
+msgid "Qté après conversion"
+msgstr ""
+
+#: commandeApp/templates/commande/pages/prixparzone.html:9
+msgid "Prix par zone de livraison"
+msgstr ""

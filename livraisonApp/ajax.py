@@ -9,14 +9,14 @@ from commandeApp.models import GroupeCommande, ZoneLivraison
 from coreApp.models import Etat
 from django.urls import reverse
 from comptabilityApp.tools import mouvement_pour_sortie
-
+from django.utils.translation import ugettext as _
 
 def livraison(request):
     if request.method == "POST":
         datas = request.POST
         try :
             if "groupecommande_id" not in request.session:
-                return JsonResponse({"status": False, "message": "Erreur lors de l'opération', veuillez recommencer !"})
+                return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer !")})
 
             total = 0
             tableau = datas["listeproduits"].split(",")
@@ -25,9 +25,9 @@ def livraison(request):
                     id, livree, surplus, perte = item.split("=")
                     total += int(livree)
             if len(tableau) <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez selectionner des produits et leur quantité pour faire la livraison !"})
+                return JsonResponse({"status": False, "message": _("Veuillez selectionner des produits et leur quantité pour faire la livraison !")})
             if total <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez entrer des quantités valides pour la loivraison !"})
+                return JsonResponse({"status": False, "message": _("Veuillez entrer des quantités valides pour la loivraison !")})
             
             
             groupe =  GroupeCommande.objects.get(pk = request.session["groupecommande_id"])
@@ -109,11 +109,11 @@ def livraison(request):
                 return JsonResponse({"status":True, "url":reverse("fiches:livraison", args=[livraison.id])})
 
             else:
-                return JsonResponse({"status":False, "message":"Veuillez verifier la quantité de <b>"+brique.name+"</b> et/ou vous assurer qu'il y a suffisement de stock pour cette livraison !"})
+                return JsonResponse({"status":False, "message": _("Veuillez verifier la quantité de <b>")+brique.name+_("</b> et/ou vous assurer qu'il y a suffisement de stock pour cette livraison !")})
         
         except Exception as e:
             print("----------------------------------------", e)
-            return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'operation, veuillez recommencer !"})
+            return JsonResponse({"status":False, "message": _("Une erreur s'est produite lors de l'operation, veuillez recommencer !")})
 
 
 
@@ -128,7 +128,7 @@ def retour_livraison(request):
             tableau = datas["tableau"].split(",")
 
             if len(tableau) <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez selectionner des produits et leur quantité pour faire la livraison !"})
+                return JsonResponse({"status": False, "message": _("Veuillez selectionner des produits et leur quantité pour faire la livraison !")})
 
             for item in tableau:
                 if "=" in item:
@@ -137,7 +137,7 @@ def retour_livraison(request):
                     brique = Brique.objects.get(pk = id)
                     ligne = LigneLivraison.objects.get(livraison = livraison, brique = brique)
                     if not (ligne.quantite + ligne.surplus >= perte) :
-                        return JsonResponse({"status": False, "message": "Veuillez à bien vérifier les quantités des différents produits livrés, certaines sont incorrectes (<b>"+brique.name+"</b>) !"})
+                        return JsonResponse({"status": False, "message": _("Veuillez à bien vérifier les quantités des différents produits livrés, certaines sont incorrectes (<b>"+brique.name+"</b>) !")})
 
 
             for item in tableau:
@@ -176,7 +176,7 @@ def retour_livraison(request):
 
         except Exception as e:
             print("----------------------------------------", e)
-            return JsonResponse({"status":False, "message":"Une erreur s'est produite lors de l'operation, veuillez recommencer !"})
+            return JsonResponse({"status":False, "message": _("Une erreur s'est produite lors de l'operation, veuillez recommencer !")})
 
 
 
@@ -186,8 +186,8 @@ def paye_tricycle(request):
         datas = request.POST
         try :
             tricycle = Tricycle.objects.get(pk = datas["tricycle_id"])
-            title = "Payement du tricyle"
-            comment = "Reglement de la paye du  tricycle "+ tricycle.fullname +" pour la livraison N°"+str(tricycle.livraison.id)
+            title = _("Payement du tricyle")
+            comment = _("Reglement de la paye du  tricycle "+ tricycle.fullname +" pour la livraison N°"+str(tricycle.livraison.id))
             res = mouvement_pour_sortie(request, datas, title, comment)
             if type(res) is Mouvement:
                 ReglementTricycle.objects.create(
@@ -200,5 +200,5 @@ def paye_tricycle(request):
 
         except Exception as e:
             print("Erreur valid tricycle", e)
-            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer !"})
+            return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer !")})
 

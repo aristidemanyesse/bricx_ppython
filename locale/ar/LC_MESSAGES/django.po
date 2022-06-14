@@ -1,0 +1,661 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: coreApp/ajax.py:54
+msgid "Opération effectuée avec succes !"
+msgstr ""
+
+#: coreApp/ajax.py:64 coreApp/ajax.py:124 coreApp/ajax.py:146
+msgid "Erreur lors du processus. Veuillez recommencer : "
+msgstr ""
+
+#: coreApp/ajax.py:94
+msgid "Une erreur s'est produite lors de l'opération, veuillez recommencer !"
+msgstr ""
+
+#: coreApp/ajax.py:109
+msgid "Le mot de passe est incorrect !"
+msgstr ""
+
+#: coreApp/ajax.py:113
+msgid "Vous ne pouvez pas supprimer cet element, il est protégé !"
+msgstr ""
+
+#: coreApp/ajax.py:120 coreApp/ajax.py:142
+msgid "Suppression effectuée avec succes !"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:25
+#: ficheApp/templates/fiches/pages/approvisionnement.html:25
+#: ficheApp/templates/fiches/pages/boncaisse.html:26
+#: ficheApp/templates/fiches/pages/commande.html:26
+#: ficheApp/templates/fiches/pages/livraison.html:26
+#: ficheApp/templates/fiches/pages/prixparzone.html:26
+#: ficheApp/templates/fiches/pages/prixparzone.html:75
+#: ficheApp/templates/fiches/pages/production.html:24
+msgid "Tél"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:26
+#: ficheApp/templates/fiches/pages/approvisionnement.html:26
+#: ficheApp/templates/fiches/pages/boncaisse.html:27
+#: ficheApp/templates/fiches/pages/commande.html:27
+#: ficheApp/templates/fiches/pages/livraison.html:27
+#: ficheApp/templates/fiches/pages/prixparzone.html:27
+#: ficheApp/templates/fiches/pages/prixparzone.html:76
+#: ficheApp/templates/fiches/pages/production.html:25
+msgid "Email"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:31
+msgid "Reçu d'achat de stock"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:34
+#: ficheApp/templates/fiches/pages/approvisionnement.html:34
+#: ficheApp/templates/fiches/pages/commande.html:35
+#: ficheApp/templates/fiches/pages/livraison.html:35
+msgid "Bon édité par"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:40
+#: ficheApp/templates/fiches/pages/approvisionnement.html:40
+msgid "Fournisseur"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:44
+#: ficheApp/templates/fiches/pages/approvisionnement.html:44
+#: ficheApp/templates/fiches/pages/commande.html:46
+msgid "Livraison prévue pour le"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:52
+#: ficheApp/templates/fiches/pages/approvisionnement.html:52
+#: ficheApp/templates/fiches/pages/commande.html:54
+#: ficheApp/templates/fiches/pages/prixparzone.html:47
+msgid "Prix unitaire"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:53
+#: ficheApp/templates/fiches/pages/approvisionnement.html:53
+#: ficheApp/templates/fiches/pages/commande.html:55
+msgid "Quantité"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:54
+#: ficheApp/templates/fiches/pages/achatstock.html:77
+#: ficheApp/templates/fiches/pages/approvisionnement.html:54
+#: ficheApp/templates/fiches/pages/approvisionnement.html:77
+#: ficheApp/templates/fiches/pages/commande.html:56
+msgid "Total"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:82
+#: ficheApp/templates/fiches/pages/approvisionnement.html:82
+#: ficheApp/templates/fiches/pages/commande.html:85
+msgid "TVA"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:90
+#: ficheApp/templates/fiches/pages/approvisionnement.html:90
+msgid "Montant total à payer"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:97
+#: ficheApp/templates/fiches/pages/approvisionnement.html:97
+#: ficheApp/templates/fiches/pages/commande.html:100
+msgid "Avance sur montant"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:99
+#: ficheApp/templates/fiches/pages/approvisionnement.html:99
+#: ficheApp/templates/fiches/pages/commande.html:102
+msgid "Réglement par prélèvement sur acompte"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:101
+#: ficheApp/templates/fiches/pages/approvisionnement.html:101
+msgid "Réglement par"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:109
+#: ficheApp/templates/fiches/pages/approvisionnement.html:109
+#: ficheApp/templates/fiches/pages/commande.html:111
+msgid "Reste à payer pour cette commande"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:118
+#: ficheApp/templates/fiches/pages/approvisionnement.html:118
+msgid "Solde de l'acompte du fournisseur"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:126
+#: ficheApp/templates/fiches/pages/approvisionnement.html:124
+msgid "Dette totale envers le fournisseur"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:136
+#: ficheApp/templates/fiches/pages/boncaisse.html:67
+#: ficheApp/templates/fiches/pages/commande.html:136
+#: ficheApp/templates/fiches/pages/livraison.html:131
+msgid "Signature & Cachet"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/achatstock.html:143
+#: ficheApp/templates/fiches/pages/commande.html:143
+msgid ""
+"Nous vous prions de vérifier l'exactitude de toutes les informations qui ont "
+"été mentionnées sur cette facture avant de quitter nos locaux !"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/approvisionnement.html:31
+msgid "Bon d'approvisionnement"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/boncaisse.html:35
+msgid "Bon délivré par"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/boncaisse.html:44
+msgid "Opération par"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/boncaisse.html:47
+msgid "Montant"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/boncaisse.html:62
+msgid "Signature du bénéficiaire"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/boncaisse.html:73
+msgid "Aucun remboursement n'est admis après réglement !"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/commande.html:32
+msgid "Réçu de commande"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/commande.html:41
+#: ficheApp/templates/fiches/pages/livraison.html:41
+msgid "Zone de livraison"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/commande.html:42
+#: ficheApp/templates/fiches/pages/livraison.html:42
+msgid "Lieu de livraison"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/commande.html:45
+msgid "Client"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/commande.html:80
+msgid "Montant Total"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/commande.html:93
+msgid "Net à payer"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/commande.html:104
+msgid "Réglement"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/commande.html:120
+msgid "Solde de l'acompte du client"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/commande.html:126
+msgid "Dette totale du client"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:32
+msgid "Bon de livraison"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:44
+msgid "Mode de livraison"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:52
+msgid "Par les moyens du client"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:67
+msgid "Quantité à livrer"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:68
+msgid "Surplus"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:69
+msgid "Quantité livrées"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:70
+msgid "perte"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:107
+msgid "Observation du client"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:112
+msgid "Livraison reçue le"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:116
+#: ficheApp/templates/fiches/pages/production.html:120
+msgid "Observation"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:120
+msgid "Noms, contacts & signature"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/livraison.html:139
+msgid ""
+"Nous vous prions de vérifier l'exactitude de toutes les informations qui ont "
+"été mentionnées sur cette facture avant de quitter la boutique !"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/prixparzone.html:32
+msgid "Proforma de prix"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/prixparzone.html:39
+msgid "Pour la zone de livraison de"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/prixparzone.html:46
+msgid "Brique"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:33
+msgid "Production effectuée par"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:35
+msgid "Production rangée par"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:42
+msgid "Date"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:43
+msgid "Heure"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:47
+msgid "Fabrique"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:63
+msgid "Quantité produite"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:73
+msgid "Ressources utilisées"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:91
+msgid "Coût d'achat"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:95
+#: ficheApp/templates/rapports/pages/production.html:69
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:261
+msgid "Coût de production"
+msgstr ""
+
+#: ficheApp/templates/fiches/pages/production.html:99
+msgid "Coût de production totale"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:12
+msgid "Du"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:12
+msgid "au"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:19
+msgid ""
+"Tableau comparatif des productions par rapport aux pertes sur la période"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:31
+msgid "Stock au {{veille}}"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:32
+msgid "Production"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:33
+msgid "acheté"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:34
+msgid "Livraison"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:35
+msgid "Perte"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:36
+msgid "Stock au {{fin}}"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:39
+msgid "Livr."
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:40
+msgid "Rang."
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:41
+msgid "Autre"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:42
+#, python-format
+msgid "Prct%%"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:73
+msgid "Coût de rangement"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:77
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:267
+msgid "Coût de livraison"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/production.html:81
+msgid "Paye des tricycles"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:13
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:24
+msgid "Recapitulatif de la journée"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:25
+msgid "du"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:34
+msgid "Commandes du jour"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:64
+msgid "Aucune commande ce jour"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:75
+msgid "Livraisons du jour"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:105
+msgid "Aucune livraison ce jour"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:117
+msgid "Production du jour"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:149
+msgid "Approvisionnements du jour"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:179
+msgid "Aucune approvisionnement ce jour"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:197
+msgid "Entrée"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:198
+msgid "Sortie"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:199
+msgid "Résultats"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:204
+msgid "Report de la caisse"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:235
+msgid "Total des comptes au {{date}}"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:249
+msgid "Employés connectés"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:259
+msgid "Coût de la production"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:264
+msgid "Coût de Rangement"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:274
+msgid "SOLDE DU COMPTE"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:277
+msgid "Solde en Ouverture"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:284
+msgid "Entrées du jour"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:288
+msgid "Dépenses du jour"
+msgstr ""
+
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:293
+msgid "Solde à la fermeture"
+msgstr ""
+
+#: templates/extra/empty.html:5
+msgid "Rien pour le moment !"
+msgstr ""
+
+#: templates/extra/filter_form_day.html:10
+msgid "Filtrer"
+msgstr ""
+
+#: templates/extra/loader.html:4
+msgid "Veuillez patienter"
+msgstr ""
+
+#: templates/extra/select_with_empty.html:2
+msgid "Aucun"
+msgstr ""
+
+#: templates/layout/base_auth.html:15
+msgid "Tous droits reservés"
+msgstr ""
+
+#: templates/layout/base_top.html:35
+#: templates/layout/partials/sidebar_boutique.html:23
+#: templates/layout/partials/sidebar_fabrique.html:23
+#: templates/layout/partials/sidebar_manager.html:23
+msgid "Déconnexion"
+msgstr ""
+
+#: templates/layout/partials/footer.html:6
+msgid "Copyright"
+msgstr ""
+
+#: templates/layout/partials/footer.html:6
+msgid "By"
+msgstr ""
+
+#: templates/layout/partials/footer.html:10
+msgid "Fin de l abonnement"
+msgstr ""
+
+#: templates/layout/partials/header.html:22
+msgid "Home"
+msgstr ""
+
+#: templates/layout/partials/header.html:25
+msgid "La fabrique"
+msgstr ""
+
+#: templates/layout/partials/header.html:29
+msgid "La boutique"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:22
+#: templates/layout/partials/sidebar_fabrique.html:22
+#: templates/layout/partials/sidebar_manager.html:22
+msgid "Vérouiller la session"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:36
+#: templates/layout/partials/sidebar_fabrique.html:35
+#: templates/layout/partials/sidebar_manager.html:35
+msgid "Tableau de bord"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:39
+#: templates/layout/partials/sidebar_manager.html:38
+msgid "Liste des clients"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:45
+#: templates/layout/partials/sidebar_manager.html:44
+msgid "Commandes de clients"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:54
+#: templates/layout/partials/sidebar_manager.html:51
+msgid "Livraisons en cours"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:63
+#: templates/layout/partials/sidebar_manager.html:58
+msgid "Conversions de briques"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:72
+#: templates/layout/partials/sidebar_fabrique.html:42
+#: templates/layout/partials/sidebar_manager.html:76
+msgid "Stock de briques"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:75
+#: templates/layout/partials/sidebar_fabrique.html:66
+#: templates/layout/partials/sidebar_manager.html:99
+#: templates/layout/partials/sidebar_manager.html:106
+msgid "Perte de briques"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:83
+msgid "Proforma par zone"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:86
+#: templates/layout/partials/sidebar_fabrique.html:90
+#: templates/layout/partials/sidebar_manager.html:85
+msgid "Rapport du Jour"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:93
+#: templates/layout/partials/sidebar_manager.html:111
+msgid "Payements tricycles"
+msgstr ""
+
+#: templates/layout/partials/sidebar_boutique.html:102
+#: templates/layout/partials/sidebar_fabrique.html:102
+msgid "La Caisse"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:45
+msgid "Stock de ressources"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:52
+#: templates/layout/partials/sidebar_manager.html:62
+msgid "Les productions"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:64
+msgid "Les pertes</span><span class="
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:67
+#: templates/layout/partials/sidebar_manager.html:100
+#: templates/layout/partials/sidebar_manager.html:107
+msgid "Perte de ressources"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:76
+msgid "Liste des Fournisseurs"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:79
+msgid "Approvisionnements"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:94
+msgid "Rapport de production"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:65
+msgid "Achat de briques"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:88
+msgid "Rapport du production"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:91
+msgid "Coût de producton"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:97
+msgid "Les agences"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:104
+msgid "Les pertes"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:118
+msgid "Trésorerie générale"
+msgstr ""

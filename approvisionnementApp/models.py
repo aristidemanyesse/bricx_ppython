@@ -6,6 +6,7 @@ from django.db.models import Avg, Sum
 from django.db.models.signals import pre_save
 from django.dispatch.dispatcher import receiver
 from coreApp.models import BaseModel, Etat
+from django.utils.translation import ugettext as _
 
 # Create your models here.
 
@@ -76,7 +77,7 @@ class AchatStock(BaseModel):
         return self.montant - (data["mouvement__montant__sum"] or 0)
 
     def __str__(self):
-        return "Achat de stock N°"+str(self.id)
+        return _("Achat de stock N°")+str(self.id)
 
 
 class LigneAchatStock(BaseModel):
@@ -108,7 +109,7 @@ class Approvisionnement(BaseModel):
     detteFournisseur   = models.IntegerField(default = 0)
 
     def __str__(self):
-        return "Approvisionnement N°"+str(self.id)
+        return _("Approvisionnement N°")+str(self.id)
 
     
     def reste_a_payer(self):

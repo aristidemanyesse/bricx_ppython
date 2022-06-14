@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse, JsonResponse
 from django.contrib.humanize.templatetags.humanize import intcomma
 import datetime
+from django.utils.translation import ugettext as _
 
 def new_produit(request):
     if request.method == "POST":
@@ -94,7 +95,7 @@ def valider_achatstock(request):
                 avance = 0
 
             if len(tableau) <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez selectionner des briques et leur quantité pour passer la commande !"})
+                return JsonResponse({"status": False, "message": _("Veuillez selectionner des briques et leur quantité pour passer la commande !")})
 
             total = 0
             for item in tableau:
@@ -104,25 +105,25 @@ def valider_achatstock(request):
                     total += int(qte)
 
             if total <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez selectionner des briques et leur quantité pour passer la commande ! "})
+                return JsonResponse({"status": False, "message": _("Veuillez selectionner des briques et leur quantité pour passer la commande ! ")})
 
             if not (0 <= montant >= avance) :
-                return JsonResponse({"status": False, "message": "Veuillez verifier le montant et l'avance por cet achat de stock ! "})
+                return JsonResponse({"status": False, "message": _("Veuillez verifier le montant et l'avance por cet achat de stock ! ")})
 
             if not ((mode.etiquette == ModePayement.PRELEVEMENT) or (mode.etiquette != ModePayement.PRELEVEMENT and 0 < avance <= montant)):
-                return JsonResponse({"status": False, "message": "L'avance de la commande est incorrect, verifiez-le!"})
+                return JsonResponse({"status": False, "message": _("L'avance de la commande est incorrect, verifiez-le!")})
 
 
             if mode.etiquette == ModePayement.PRELEVEMENT:
                 if not (request.agence_compte.solde_actuel() >= (avance + int(datas["transport"]))):
-                    return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler l'avance et les frais de transport de l'achat de stock !"})
+                    return JsonResponse({"status": False, "message": _("Le solde du compte est insuffisant pour regler l'avance et les frais de transport de l'achat de stock !")})
             else:
                 if not (request.agence_compte.solde_actuel() >=  int(datas["transport"])):
-                    return JsonResponse({"status": False, "message": "Le solde du compte est insuffisant pour regler les frais de transport de l'achat de stock !"})
+                    return JsonResponse({"status": False, "message": _("Le solde du compte est insuffisant pour regler les frais de transport de l'achat de stock !")})
 
             if int(datas["transport"]) > 0:
-                title = "Frais de transport"
-                comment = "Frais de transport pour l'achat de stock"
+                title = _("Frais de transport")
+                comment = _("Frais de transport pour l'achat de stock")
                 datas["montant"] = int(datas["transport"])
                 datas["modepayement"] = ModePayement.objects.get(etiquette = ModePayement.ESPECES).id
                 res = mouvement_pour_sortie(request, datas, title, comment)
@@ -139,16 +140,16 @@ def valider_achatstock(request):
                 acompte = fournisseur.acompte_actuel()
                 lavance = montant if acompte >= montant else acompte
                 if lavance > 0 :
-                    title = "Avance sur achat de stock"
-                    comment = "Avance sur réglement de la facture pour l'achat de stock"
+                    title = _("Avance sur achat de stock")
+                    comment = _("Avance sur réglement de la facture pour l'achat de stock")
                     datas["montant"] = lavance
                     res = mouvement_pour_sortie_fournisseur(request, datas, title, comment)
                     if type(res) is not Mouvement:
                         return JsonResponse(res)
 
             else:
-                title= "Avance sur achat de stock"
-                comment = "Avance sur réglement de la facture pour l'achat de stock"
+                title= _("Avance sur achat de stock")
+                comment = _("Avance sur réglement de la facture pour l'achat de stock")
                 datas["montant"] = avance
                 res = mouvement_pour_sortie(request, datas, title, comment)
                 if type(res) is not Mouvement:
@@ -215,10 +216,10 @@ def terminer_achat(request):
                     ligne = LigneAchatStock.objects.get(pk = id)
                     total += int(qte)
                     if not (ligne.quantite >= int(qte)):
-                        return JsonResponse({"status": False, "message": "La quantité pour "+ligne.brique.name+" est incorrecte ! "})
+                        return JsonResponse({"status": False, "message": _("La quantité est incorrecte pour ")+ligne.brique.name})
 
             if total <= 0 :
-                return JsonResponse({"status": False, "message": "Veuillez renseigner les quantités des briques qui ont été livrées! "})
+                return JsonResponse({"status": False, "message": _("Veuillez renseigner les quantités des briques qui ont été livrées! ")})
 
 
             for item in tableau:
@@ -262,4 +263,4 @@ def regler_achat(request):
 
         except Exception as e:
             print("Erreur valid achat", e)
-            return JsonResponse({"status": False, "message":"Erreur lors de l'opération', veuillez recommencer !"})
+            return JsonResponse({"status": False, "message":_("Erreur lors de l'opération', veuillez recommencer !")})
