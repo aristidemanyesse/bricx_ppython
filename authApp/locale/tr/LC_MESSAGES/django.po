@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,39 +20,39 @@ msgstr ""
 
 #: authApp/ajax.py:29 authApp/ajax.py:49
 msgid "Une erreur s'est produite lors de l'opération, veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında bir hata oluştu, lütfen tekrar deneyin!"
 
 #: authApp/ajax.py:31
 msgid "Login et/ou mot de passe incorrect !"
-msgstr ""
+msgstr "Giriş ve/veya şifre yanlış!"
 
 #: authApp/ajax.py:51
-#, fuzzy
-#| msgid "Mot de passe"
 msgid "Mot de passe incorrect !"
-msgstr "Parola"
+msgstr "Yanlış parola !"
 
 #: authApp/ajax.py:77 authApp/ajax.py:123
 msgid "Les mots de passe ne correspondent pas !"
-msgstr ""
+msgstr "Parolalar uyuşmuyor!"
 
 #: authApp/ajax.py:79
 msgid "Le nouveau mot de passe est trop court, minimum 8 caractères !"
-msgstr ""
+msgstr "Yeni şifre çok kısa, minimum 8 karakter!"
 
 #: authApp/ajax.py:98
 msgid "Désolé, cette adresse email n'est pas connu par le ssytème !"
-msgstr ""
+msgstr "Üzgünüz, bu e-posta adresi sistem tarafından bilinmiyor!"
 
 #: authApp/ajax.py:118
 msgid ""
 "La période pour changer le mot de passe avec ce mail a expiré, veuillez "
 "recommencer la procédure !"
 msgstr ""
+"Bu e-posta ile şifre değiştirme süresi dolmuştur, lütfenprosedürü yeniden "
+"başlatın!"
 
 #: authApp/ajax.py:121
 msgid "Une erreur s'est produite lors del'opération, veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında bir hata oluştu, lütfen tekrar deneyin!"
 
 #: authApp/templates/auth/pages/expiration.html:6
 msgid "Renouvellement de mon abonnement"

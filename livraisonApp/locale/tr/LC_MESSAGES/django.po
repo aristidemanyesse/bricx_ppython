@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,271 +20,273 @@ msgstr ""
 
 #: livraisonApp/ajax.py:19 livraisonApp/ajax.py:203
 msgid "Erreur lors de l'opération', veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında hata, lütfen tekrar deneyin!"
 
 #: livraisonApp/ajax.py:28 livraisonApp/ajax.py:131
 msgid ""
 "Veuillez selectionner des produits et leur quantité pour faire la livraison !"
-msgstr ""
+msgstr "Lütfen teslimat için ürünleri ve miktarlarını seçin!"
 
 #: livraisonApp/ajax.py:30
 msgid "Veuillez entrer des quantités valides pour la loivraison !"
-msgstr ""
+msgstr "Lütfen teslimat için geçerli miktarları girin!"
 
 #: livraisonApp/ajax.py:112
 msgid "Veuillez verifier la quantité de <b>"
-msgstr ""
+msgstr "Lütfen miktarını kontrol edin <b>"
 
 #: livraisonApp/ajax.py:112
 msgid ""
 "</b> et/ou vous assurer qu'il y a suffisement de stock pour cette livraison !"
-msgstr ""
+msgstr "</b> ve/veya bu teslimat için yeterli stok olduğundan emin olun!"
 
 #: livraisonApp/ajax.py:116 livraisonApp/ajax.py:179
 msgid "Une erreur s'est produite lors de l'operation, veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında bir hata oluştu, lütfen tekrar deneyin!"
 
 #: livraisonApp/ajax.py:140
 msgid ""
 "Veuillez à bien vérifier les quantités des différents produits livrés, "
 "certaines sont incorrectes (<b>"
 msgstr ""
+"Lütfen teslim edilen farklı ürünlerin miktarlarını kontrol edin, bazıları "
+"yanlış (<b>"
 
 #: livraisonApp/ajax.py:189
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:7
 msgid "Payement du tricyle"
-msgstr ""
+msgstr "Üç tekerlekli bisikletin ödenmesi"
 
 #: livraisonApp/ajax.py:190
 msgid "Reglement de la paye du  tricycle "
-msgstr ""
+msgstr "Üç tekerlekli bisiklet ücretinin ödenmesi"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:10
 msgid "Nouveau bon de livraison"
-msgstr ""
+msgstr "Yeni teslimat fişi"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:11
 msgid "Renseigner ces champs pour enregistrer la livraison"
-msgstr ""
+msgstr "Teslimatı kaydetmek için alanları doldurun"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:18
 msgid "Les produits de la livraison"
-msgstr ""
+msgstr "teslimat ürünleri"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:35
 msgid "Qté à livrer"
-msgstr ""
+msgstr "Teslim edilecek miktar"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:39
 msgid "Surplus"
-msgstr ""
+msgstr "fazlalık"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:43
 msgid "Perte chargement"
-msgstr ""
+msgstr "Yükleme kaybı"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:59
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:53
 msgid "Finaliser la livraison"
-msgstr ""
+msgstr "Teslimatı sonlandır"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:64
 #: livraisonApp/templates/livraison/pages/livraisons.html:67
 #: livraisonApp/templates/livraison/pages/tricycles.html:36
 msgid "Zone de livraison"
-msgstr ""
+msgstr "Teslimat bölgesi"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:72
 msgid "Lieu de livraison"
-msgstr ""
+msgstr "Teslimat yeri"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:79
 msgid "Moyen de livraison"
-msgstr ""
+msgstr "Teslimat Yöntemi"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:87
 msgid "Véhicule de la livraison"
-msgstr ""
+msgstr "teslimat aracı"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:94
 msgid "Chauffeur de la livraison"
-msgstr ""
+msgstr "Teslimat Sürücüsü"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:101
 msgid "Chargement par nos manoeuvres"
-msgstr ""
+msgstr "Manevralarımızla yükleniyor"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:102
 msgid "Déchargement par nos manoeuvres"
-msgstr ""
+msgstr "Manevralarımızla boşaltma"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:109
 #: livraisonApp/templates/livraison/pages/tricycles.html:35
 msgid "Nom du tricycle"
-msgstr ""
+msgstr "üç tekerlekli bisiklet adı"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:115
 msgid "Contact du tricycle"
-msgstr ""
+msgstr "Üç tekerlekli bisikletin teması"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:121
 msgid "Montant à payer au chauffeur tricycle"
-msgstr ""
+msgstr "Üç tekerlekli bisiklet sürücüsüne ödenecek tutar"
 
 #: livraisonApp/templates/livraison/modals/new_livraison.html:129
 msgid "Valider la livraison"
-msgstr ""
+msgstr "Teslimatı doğrulayın"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:8
 msgid "Saisissez le montant à payer"
-msgstr ""
+msgstr "Ödenecek tutarı girin"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:14
 msgid "Montant à payer"
-msgstr ""
+msgstr "ödenecek tutar"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:20
 msgid "Mode de payement"
-msgstr ""
+msgstr "Ödeme şekli"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:28
 msgid "Structure d'encaissement"
-msgstr ""
+msgstr "Koleksiyon yapısı"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:34
 msgid "N° numero dédié"
-msgstr ""
+msgstr "Adanmış numara"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:43
 msgid "Annuler"
-msgstr ""
+msgstr "iptal etmek"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:44
 msgid "Faire la paye"
-msgstr ""
+msgstr "maaş bordrosunu yap"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:8
 msgid "Validation de la livraison"
-msgstr ""
+msgstr "Teslimat onayı"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:9
 msgid "Renseigner ces champs pour terminer la livraison"
-msgstr ""
+msgstr "Teslimatı tamamlamak için bu alanları doldurun"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:17
 msgid "Les produits effectivement réçus"
-msgstr ""
+msgstr "Aslında alınan ürünler"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:33
 msgid "Perte enregistrée"
-msgstr ""
+msgstr "Kayıtlı kayıp"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:39
 msgid "Qté envoyée + surplus"
-msgstr ""
+msgstr "Gönderilen miktar + fazlalık"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:57
 msgid "date de livraison"
-msgstr ""
+msgstr "teslim tarihi"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:64
 msgid "Nom du receptionniste"
-msgstr ""
+msgstr "resepsiyonist adı"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:71
 msgid "Contact du receptionniste"
-msgstr ""
+msgstr "resepsiyonist irtibat"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:78
 msgid "Commentaire"
-msgstr ""
+msgstr "yorum"
 
 #: livraisonApp/templates/livraison/modals/retour_livraison.html:83
 msgid "Terminer la livraison"
-msgstr ""
+msgstr "Teslimatı tamamlayın"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:11
 msgid "Les livraisons en cours"
-msgstr ""
+msgstr "Teslimatlar devam ediyor"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:31
 #: livraisonApp/templates/livraison/pages/tricycles.html:33
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:32
 #: livraisonApp/templates/livraison/pages/tricycles.html:34
 msgid "Reference"
-msgstr ""
+msgstr "Referans"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:33
 msgid "Livré par"
-msgstr ""
+msgstr "Tarafından teslim"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:35
 msgid "Client"
-msgstr ""
+msgstr "Müşteri"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:36
 msgid "Produits"
-msgstr ""
+msgstr "ürün"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:37
 #: livraisonApp/templates/livraison/pages/tricycles.html:39
 msgid "Action"
-msgstr ""
+msgstr "Seçenekler"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:47
 msgid "Livraison de commande"
-msgstr ""
+msgstr "Sipariş teslim"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:62
 msgid "Par les moyens du client"
-msgstr ""
+msgstr "Müşteri aracılığıyla"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:85
 #: livraisonApp/templates/livraison/pages/tricycles.html:77
 msgid "Chargées"
-msgstr ""
+msgstr "Yüklendi"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:91
 msgid "surplus"
-msgstr ""
+msgstr "fazlalık"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:98
 #: livraisonApp/templates/livraison/pages/tricycles.html:84
 msgid "Livrées"
-msgstr ""
+msgstr "Canlılar"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:104
 #: livraisonApp/templates/livraison/pages/tricycles.html:90
 msgid "Perte"
-msgstr ""
+msgstr "Kayıp"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:117
 msgid "Terminer"
-msgstr ""
+msgstr "Bitirmek için"
 
 #: livraisonApp/templates/livraison/pages/tricycles.html:11
 msgid "Payement des tricycles"
-msgstr ""
+msgstr "Üç tekerlekli bisikletler için ödeme"
 
 #: livraisonApp/templates/livraison/pages/tricycles.html:21
 msgid "Toutes les livraisons"
-msgstr ""
+msgstr "Tüm teslimatlar"
 
 #: livraisonApp/templates/livraison/pages/tricycles.html:37
 msgid "Reste à payer"
-msgstr ""
+msgstr "Ödemek için sol"
 
 #: livraisonApp/templates/livraison/pages/tricycles.html:46
 msgid "livraison"
-msgstr ""
+msgstr "teslimat"
 
 #: livraisonApp/templates/livraison/pages/tricycles.html:49
 msgid "Livraison N°"
-msgstr ""
+msgstr "teslimat N°"
 
 #: livraisonApp/templates/livraison/pages/tricycles.html:101
 msgid "Payer le tricycle"
-msgstr ""
+msgstr "üç tekerlekli bisikleti öde"

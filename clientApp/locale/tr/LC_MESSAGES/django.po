@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,160 +20,160 @@ msgstr ""
 
 #: clientApp/ajax.py:22
 msgid "Dépôt sur acompte"
-msgstr ""
+msgstr "Hesapta para yatırma"
 
 #: clientApp/ajax.py:23
 msgid " a crédité son compte de "
-msgstr ""
+msgstr " hesabına kredi verdi "
 
 #: clientApp/ajax.py:44
 msgid "Remboursement du client"
-msgstr ""
+msgstr "Müşteri iadesi"
 
 #: clientApp/ajax.py:45
 msgid "Remboursement du client "
-msgstr ""
+msgstr "Müşteri iadesi "
 
 #: clientApp/ajax.py:48 clientApp/ajax.py:86
 msgid "Le mot de passe est incorrect !"
-msgstr ""
+msgstr "Şifre yanlış!"
 
 #: clientApp/ajax.py:95
 msgid "Reglement de commande"
-msgstr ""
+msgstr "Sipariş Kuralları"
 
 #: clientApp/ajax.py:96
 msgid "Reglement de la commande N°"
-msgstr ""
+msgstr "N° siparişinin düzenlemeleri"
 
 #: clientApp/ajax.py:110
 msgid "Reglement de dette client"
-msgstr ""
+msgstr "Müşteri Borçlarının Kapatılması"
 
 #: clientApp/ajax.py:111
 msgid "Reglement de la dette de "
-msgstr ""
+msgstr "Borç Ödeme"
 
 #: clientApp/templates/clients/modals/client.html:9
 msgid "Formulaire de la clientèle"
-msgstr ""
+msgstr "Müşteri Formu"
 
 #: clientApp/templates/clients/modals/client.html:10
 msgid "Renseigner ces champs pour enregistrer les informations"
-msgstr ""
+msgstr "Bilgileri kaydetmek için bu alanları doldurun"
 
 #: clientApp/templates/clients/modals/client.html:17
 msgid "Type de client"
-msgstr ""
+msgstr "Müşteri tipi"
 
 #: clientApp/templates/clients/modals/client.html:23
 msgid "Nom complet de client"
-msgstr ""
+msgstr "Müşterinin tam adı"
 
 #: clientApp/templates/clients/modals/client.html:32
 msgid "Contact"
-msgstr ""
+msgstr "İletişim"
 
 #: clientApp/templates/clients/modals/client.html:38
 msgid "Situation géographique"
-msgstr ""
+msgstr "Coğrafi konum"
 
 #: clientApp/templates/clients/modals/client.html:44
 msgid "Email"
-msgstr ""
+msgstr "E-posta"
 
 #: clientApp/templates/clients/modals/client.html:54
-msgid "Acompte intial"
-msgstr ""
+msgid "Acompte initial"
+msgstr "İlk depozito"
 
 #: clientApp/templates/clients/modals/client.html:60
 msgid "Dette initiale"
-msgstr ""
+msgstr "Bu başlangıç"
 
 #: clientApp/templates/clients/modals/client.html:67
 msgid "Seuil de crédit"
-msgstr ""
+msgstr "Kredi Eşiği"
 
 #: clientApp/templates/clients/modals/client.html:78
 #: clientApp/templates/clients/modals/crediter.html:40
 #: clientApp/templates/clients/modals/rembourser.html:38
 msgid "Annuler"
-msgstr ""
+msgstr "İptal etmek"
 
 #: clientApp/templates/clients/modals/client.html:79
 msgid "Valider le formulaire"
-msgstr ""
+msgstr "Formu doğrula"
 
 #: clientApp/templates/clients/modals/crediter.html:6
 msgid "Créditer mon compte"
-msgstr ""
+msgstr "Hesabıma kredi ver"
 
 #: clientApp/templates/clients/modals/crediter.html:12
 msgid "Montant à créditer"
-msgstr ""
+msgstr "Alacaklandırılacak miktar"
 
 #: clientApp/templates/clients/modals/crediter.html:18
 #: clientApp/templates/clients/modals/rembourser.html:17
 msgid "Mode de payement"
-msgstr ""
+msgstr "Ödeme şekli"
 
 #: clientApp/templates/clients/modals/crediter.html:26
 #: clientApp/templates/clients/modals/rembourser.html:24
 msgid "Structure d'encaissement"
-msgstr ""
+msgstr "Koleksiyon yapısı"
 
 #: clientApp/templates/clients/modals/crediter.html:32
 #: clientApp/templates/clients/modals/rembourser.html:30
 msgid "N° numero dédié"
-msgstr ""
+msgstr "Adanmış numara"
 
 #: clientApp/templates/clients/modals/crediter.html:41
 msgid "Créditer le compte"
-msgstr ""
+msgstr "Kredi hesabı"
 
 #: clientApp/templates/clients/modals/rembourser.html:6
 msgid "Rembourser le client"
-msgstr ""
+msgstr "Müşteriye geri ödeme yapın"
 
 #: clientApp/templates/clients/modals/rembourser.html:11
 msgid "Montant pour le reglement"
-msgstr ""
+msgstr "Uzlaşma için miktar"
 
 #: clientApp/templates/clients/modals/rembourser.html:39
 msgid "Valider"
-msgstr ""
+msgstr "Doğrulamak"
 
 #: clientApp/templates/clients/pages/client.html:15
 msgid "Les commandes en cours"
-msgstr ""
+msgstr "Siparişler devam ediyor"
 
 #: clientApp/templates/clients/pages/client.html:16
 msgid "Transactions de caisse"
-msgstr ""
+msgstr "Nakit İşlemler"
 
 #: clientApp/templates/clients/pages/client.html:24
 msgid "Nouvelle commande"
-msgstr ""
+msgstr "Yeni sipariş"
 
 #: clientApp/templates/clients/pages/client.html:35
 msgid "Reference"
-msgstr ""
+msgstr "Referans"
 
 #: clientApp/templates/clients/pages/client.html:36
 msgid "Livraison pour"
-msgstr ""
+msgstr "teslimat için"
 
 #: clientApp/templates/clients/pages/client.html:37
 msgid "Reste"
-msgstr ""
+msgstr "Kalmak"
 
 #: clientApp/templates/clients/pages/client.html:38
 msgid "Action"
-msgstr ""
+msgstr "Stoklamak"
 
 #: clientApp/templates/clients/pages/client.html:48
 msgid "Commande"
-msgstr ""
+msgstr "Sipariş"
 
 #: clientApp/templates/clients/pages/client.html:51
 msgid "livraison{{ item.livraisons_encours|pluralize }}"
@@ -181,43 +181,43 @@ msgstr ""
 
 #: clientApp/templates/clients/pages/client.html:51
 msgid "en cours pour cette commande"
-msgstr ""
+msgstr "bu sipariş için devam ediyor"
 
 #: clientApp/templates/clients/pages/client.html:59
 msgid "Options"
-msgstr ""
+msgstr "Seçenekler"
 
 #: clientApp/templates/clients/pages/client.html:97
 msgid "Opération N°"
-msgstr ""
+msgstr "İşlem No."
 
 #: clientApp/templates/clients/pages/client.html:100
 msgid "Par"
-msgstr ""
+msgstr "İle"
 
 #: clientApp/templates/clients/pages/client.html:101
 msgid "Bon de caisse"
-msgstr ""
+msgstr "Nakit kuponu"
 
 #: clientApp/templates/clients/pages/client.html:146
 msgid "Acompte actuel du client"
-msgstr ""
+msgstr "Mevcut müşteri mevduatı"
 
 #: clientApp/templates/clients/pages/client.html:152
 msgid "Créditer"
-msgstr ""
+msgstr "Kredi"
 
 #: clientApp/templates/clients/pages/client.html:158
 msgid "Rembourser"
-msgstr ""
+msgstr "Tazminat için"
 
 #: clientApp/templates/clients/pages/client.html:166
 msgid "Dette actuelle du client"
-msgstr ""
+msgstr "Müşterinin cari borcu"
 
 #: clientApp/templates/clients/pages/client.html:171
 msgid "Régler toute la dette"
-msgstr ""
+msgstr "Bütün Borçları Kapatmak"
 
 #: clientApp/templates/clients/pages/clients.html:9
 msgid "Liste des clients"
@@ -225,12 +225,15 @@ msgstr ""
 
 #: clientApp/templates/clients/pages/clients.html:10
 msgid "Ajouter un client"
-msgstr ""
+msgstr "Bir müşteri ekle"
 
 #: clientApp/templates/clients/pages/clients.html:18
 msgid "Tous les clients"
-msgstr ""
+msgstr "Tüm müşteriler"
 
 #: clientApp/templates/clients/pages/clients.html:28
 msgid "Ajoutés cette semaine"
-msgstr ""
+msgstr "Bu hafta eklendi"
+
+#~ msgid "livraison"
+#~ msgstr "teslimat"

@@ -6962,12 +6962,12 @@ var Context = /** @class */ (function () {
             dom.attachEvents(this.$note, module.events);
         }
     };
-    Context.prototype.module = function (key, ModuleClass, withoutIntialize) {
+    Context.prototype.module = function (key, ModuleClass, withoutinitialize) {
         if (arguments.length === 1) {
             return this.modules[key];
         }
         this.modules[key] = new ModuleClass(this);
-        if (!withoutIntialize) {
+        if (!withoutinitialize) {
             this.initializeModule(key);
         }
     };

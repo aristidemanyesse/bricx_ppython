@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,58 +23,58 @@ msgstr ""
 #: administrationApp/ajax.py:157 administrationApp/ajax.py:183
 #: administrationApp/ajax.py:206 administrationApp/ajax.py:235
 msgid "Une erreur s'est produite lors de l'opération, veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında bir hata oluştu, lütfen tekrar deneyin!"
 
 #: administrationApp/ajax.py:46
 msgid "Suppression effectuée avec succes !"
-msgstr ""
+msgstr "Başarıyla silindi!"
 
 #: administrationApp/ajax.py:50
 msgid "Erreur lors du processus. Veuillez recommencer : "
-msgstr ""
+msgstr "İşlem sırasında hata oluştu. Lütfen tekrar deneyin: "
 
 #: administrationApp/ajax.py:144
 msgid "L'accès est déjà refusé à cet employé !"
-msgstr ""
+msgstr "Bu çalışana erişim zaten reddedildi!"
 
 #: administrationApp/ajax.py:146
 msgid "Vous ne pouvez pas supprimer cet accès, il est protégé !"
-msgstr ""
+msgstr "Bu erişimi silemezsiniz, korumalıdır!"
 
 #: administrationApp/ajax.py:171 administrationApp/ajax.py:194
 #: administrationApp/ajax.py:218
 msgid "Le mot de passe est incorrect !"
-msgstr ""
+msgstr "Şifre yanlış!"
 
 #: administrationApp/ajax.py:174 administrationApp/ajax.py:197
 #: administrationApp/ajax.py:221
 msgid "Vous ne pouvez pas supprimer cet utilisateur, il est protégé !"
-msgstr ""
+msgstr "Bu kullanıcıyı silemezsiniz, o korunuyor!"
 
 #: administrationApp/ajax.py:223
 msgid "L'accès est déjà refusé à cet employé, veuillez d'abor le débloquer !"
-msgstr ""
+msgstr "Bu çalışana erişim zaten reddedildi, lütfen önce engelini kaldırın!"
 
 #: administrationApp/templates/admin/modals/agence.html:6
 msgid "Formulaire de agences"
-msgstr ""
+msgstr "Ajans formu"
 
 #: administrationApp/templates/admin/modals/agence.html:7
 #: administrationApp/templates/admin/modals/chauffeur.html:7
 #: administrationApp/templates/admin/modals/compte.html:7
 #: administrationApp/templates/admin/modals/produit.html:8
 msgid "Renseigner ces champs pour enregistrer les informations"
-msgstr ""
+msgstr "Bilgileri kaydetmek için bu alanları doldurun"
 
 #: administrationApp/templates/admin/modals/agence.html:13
 msgid "Nom du l'agence"
-msgstr ""
+msgstr "Ajans İsmi"
 
 #: administrationApp/templates/admin/modals/agence.html:19
 #: administrationApp/templates/admin/modals/chauffeur.html:19
 #: administrationApp/templates/admin/modals/infos.html:27
 msgid "Situation géographique"
-msgstr ""
+msgstr "Coğrafi konum"
 
 #: administrationApp/templates/admin/modals/agence.html:28
 #: administrationApp/templates/admin/modals/categorie_operation.html:26
@@ -91,22 +91,22 @@ msgstr ""
 #: administrationApp/templates/admin/modals/vehicule.html:39
 #: administrationApp/templates/admin/modals/zone.html:22
 msgid "Annuler"
-msgstr ""
+msgstr "İptal etmek"
 
 #: administrationApp/templates/admin/modals/agence.html:29
 #: administrationApp/templates/admin/modals/chauffeur.html:45
 #: administrationApp/templates/admin/modals/compte.html:44
 #: administrationApp/templates/admin/modals/employe.html:56
 msgid "Valider le formulaire"
-msgstr ""
+msgstr "Formu doğrula"
 
 #: administrationApp/templates/admin/modals/categorie_operation.html:7
 msgid "Formulaire des type d'operations"
-msgstr ""
+msgstr "İşlem türü formu"
 
 #: administrationApp/templates/admin/modals/categorie_operation.html:13
 msgid "Type d'opération"
-msgstr ""
+msgstr "İşlem türü"
 
 #: administrationApp/templates/admin/modals/categorie_operation.html:17
 #: administrationApp/templates/admin/modals/ressource.html:13
@@ -117,7 +117,7 @@ msgstr ""
 #: administrationApp/templates/admin/pages/production.html:28
 #: administrationApp/templates/admin/pages/production.html:82
 msgid "Libéllé"
-msgstr ""
+msgstr "Sözcük"
 
 #: administrationApp/templates/admin/modals/categorie_operation.html:27
 #: administrationApp/templates/admin/modals/exigence.html:40
@@ -129,25 +129,25 @@ msgstr ""
 #: administrationApp/templates/admin/modals/vehicule.html:40
 #: administrationApp/templates/admin/modals/zone.html:23
 msgid "Enregistrer"
-msgstr ""
+msgstr "Doğrulamak"
 
 #: administrationApp/templates/admin/modals/chauffeur.html:6
 msgid "Formulaire pour le personnel roulant"
-msgstr ""
+msgstr "Personel sürüş formu"
 
 #: administrationApp/templates/admin/modals/chauffeur.html:13
 msgid "Nom & Prenom"
-msgstr ""
+msgstr "Soyad ad"
 
 #: administrationApp/templates/admin/modals/chauffeur.html:25
 #: administrationApp/templates/admin/modals/employe.html:37
 #: administrationApp/templates/admin/pages/agence.html:245
 msgid "Contact"
-msgstr ""
+msgstr "İletişim"
 
 #: administrationApp/templates/admin/modals/chauffeur.html:31
 msgid "Photo du chauffeur"
-msgstr ""
+msgstr "Sürücünün resmi"
 
 #: administrationApp/templates/admin/modals/chauffeur.html:35
 #: administrationApp/templates/admin/modals/employe.html:47
@@ -155,56 +155,56 @@ msgstr ""
 #: administrationApp/templates/admin/modals/produit.html:33
 #: administrationApp/templates/admin/modals/vehicule.html:30
 msgid "Ajouter une image"
-msgstr ""
+msgstr "Resim Ekle"
 
 #: administrationApp/templates/admin/modals/compte.html:6
 msgid "Formulaire des comptes & banques"
-msgstr ""
+msgstr "Hesaplar ve bankalar formu"
 
 #: administrationApp/templates/admin/modals/compte.html:13
 msgid "Nom du compte"
-msgstr ""
+msgstr "Hesap adı"
 
 #: administrationApp/templates/admin/modals/compte.html:19
 msgid "Solde du compte"
-msgstr ""
+msgstr "Hesap bakiyesi"
 
 #: administrationApp/templates/admin/modals/compte.html:27
 msgid "Etablissement si banque"
-msgstr ""
+msgstr "Banka varsa kurum"
 
 #: administrationApp/templates/admin/modals/compte.html:33
 #: administrationApp/templates/admin/pages/caisse.html:150
 msgid "N° de compte"
-msgstr ""
+msgstr "Hesap numarası"
 
 #: administrationApp/templates/admin/modals/employe.html:7
 msgid "Formulaire des employés"
-msgstr ""
+msgstr "Çalışan Formu"
 
 #: administrationApp/templates/admin/modals/employe.html:8
 msgid "Renseigner ces champs pour enregistrer l'employé"
-msgstr ""
+msgstr "Çalışanı kurtarmak için bu alanları doldurun"
 
 #: administrationApp/templates/admin/modals/employe.html:15
 msgid "Nom"
-msgstr ""
+msgstr "Soyadı"
 
 #: administrationApp/templates/admin/modals/employe.html:21
 msgid "Lieu d'habitation"
-msgstr ""
+msgstr "Yaşam alanı"
 
 #: administrationApp/templates/admin/modals/employe.html:27
 msgid "Adresse email"
-msgstr ""
+msgstr "E-posta adresi"
 
 #: administrationApp/templates/admin/modals/employe.html:43
 msgid "Photo de l'employé"
-msgstr ""
+msgstr "Çalışan fotoğrafı"
 
 #: administrationApp/templates/admin/modals/exigence.html:9
 msgid "Formulaire des exigence de production"
-msgstr ""
+msgstr "Üretim Gereksinim Formu"
 
 #: administrationApp/templates/admin/modals/exigence.html:10
 msgid ""
@@ -214,240 +214,240 @@ msgstr ""
 
 #: administrationApp/templates/admin/modals/exigence.html:21
 msgid "utilise"
-msgstr ""
+msgstr "Kullanılmış"
 
 #: administrationApp/templates/admin/modals/infos.html:6
 msgid "Informations générales"
-msgstr ""
+msgstr "Genel Bilgiler"
 
 #: administrationApp/templates/admin/modals/infos.html:12
 msgid "Raison sociale"
-msgstr ""
+msgstr "Sosyal sebep"
 
 #: administrationApp/templates/admin/modals/infos.html:18
 #: administrationApp/templates/admin/pages/general.html:34
 msgid "Email"
-msgstr ""
+msgstr "E-posta"
 
 #: administrationApp/templates/admin/modals/infos.html:33
 #: administrationApp/templates/admin/pages/general.html:29
 msgid "Contacts"
-msgstr ""
+msgstr "Kişiler"
 
 #: administrationApp/templates/admin/modals/infos.html:39
 #: administrationApp/templates/admin/pages/general.html:46
 msgid "Fax"
-msgstr ""
+msgstr "Faks"
 
 #: administrationApp/templates/admin/modals/infos.html:48
 msgid "Boîte postale"
-msgstr ""
+msgstr "Posta kutusu"
 
 #: administrationApp/templates/admin/modals/infos.html:54
 #: administrationApp/templates/admin/pages/general.html:51
 msgid "Devise"
-msgstr ""
+msgstr "Para birimi"
 
 #: administrationApp/templates/admin/modals/infos.html:60
 #: administrationApp/templates/admin/pages/general.html:57
 msgid "Votre logo"
-msgstr ""
+msgstr "Senin logon"
 
 #: administrationApp/templates/admin/modals/infos.html:73
 msgid "Mettre à jour les infos"
-msgstr ""
+msgstr "Güncelleme bilgisi"
 
 #: administrationApp/templates/admin/modals/payes_produits.html:8
 msgid "Prix de paye du produit"
-msgstr ""
+msgstr "Ürün ödeme fiyatı"
 
 #: administrationApp/templates/admin/modals/payes_produits.html:15
 msgid "est payé à"
-msgstr ""
+msgstr "ödendi"
 
 #: administrationApp/templates/admin/modals/payes_produits.html:18
 #: administrationApp/templates/admin/modals/payes_produits.html:62
 #: administrationApp/templates/admin/pages/prices.html:98
 #: administrationApp/templates/admin/pages/prices.html:134
 msgid "Production"
-msgstr ""
+msgstr "Üretme"
 
 #: administrationApp/templates/admin/modals/payes_produits.html:22
 #: administrationApp/templates/admin/modals/payes_produits.html:66
 #: administrationApp/templates/admin/pages/prices.html:99
 #: administrationApp/templates/admin/pages/prices.html:135
 msgid "Rangement"
-msgstr ""
+msgstr "Depolamak"
 
 #: administrationApp/templates/admin/modals/payes_produits.html:26
 #: administrationApp/templates/admin/modals/payes_produits.html:70
 #: administrationApp/templates/admin/pages/prices.html:100
 #: administrationApp/templates/admin/pages/prices.html:136
 msgid "Livraison"
-msgstr ""
+msgstr "Teslimat"
 
 #: administrationApp/templates/admin/modals/payes_produits.html:52
 msgid "Prix de paye du produit les jours fériés"
-msgstr ""
+msgstr "Resmi tatillerde ürün ödeme fiyatı"
 
 #: administrationApp/templates/admin/modals/prix.html:6
 msgid "Formulaire des prix"
-msgstr ""
+msgstr "Fiyat Formu"
 
 #: administrationApp/templates/admin/modals/prix.html:10
 msgid "Pour la zone"
-msgstr ""
+msgstr "Bölge için"
 
 #: administrationApp/templates/admin/modals/produit.html:7
 msgid "Formulaire de produits"
-msgstr ""
+msgstr "Ürün formu"
 
 #: administrationApp/templates/admin/modals/produit.html:14
 msgid "Nom du produit"
-msgstr ""
+msgstr "Ürün adı"
 
 #: administrationApp/templates/admin/modals/produit.html:20
 msgid "Description du produit"
-msgstr ""
+msgstr "Ürün Açıklaması"
 
 #: administrationApp/templates/admin/modals/produit.html:29
 msgid "Image"
-msgstr ""
+msgstr "Resim"
 
 #: administrationApp/templates/admin/modals/ressource.html:6
 msgid "Formulaire de ressource"
-msgstr ""
+msgstr "Kaynak formu"
 
 #: administrationApp/templates/admin/modals/ressource.html:7
 msgid "Veuillez renseigner les champs pour enregistrer la ressource"
-msgstr ""
+msgstr "Kaynağı kaydetmek için lütfen alanları doldurun"
 
 #: administrationApp/templates/admin/modals/ressource.html:19
 msgid "Unité de mesure"
-msgstr ""
+msgstr "Ölçü birimi"
 
 #: administrationApp/templates/admin/modals/vehicule.html:6
 msgid "Formulaire du véhicule"
-msgstr ""
+msgstr "Araç formu"
 
 #: administrationApp/templates/admin/modals/vehicule.html:7
 msgid "Renseigner ces champs pour enregistrer le véhicule"
-msgstr ""
+msgstr "Aracın kaydını yapmak için bu alanları doldurun"
 
 #: administrationApp/templates/admin/modals/vehicule.html:14
 #: administrationApp/templates/admin/pages/agence.html:205
 msgid "Immatriculation"
-msgstr ""
+msgstr "Kayıt"
 
 #: administrationApp/templates/admin/modals/vehicule.html:20
 msgid "Le modèle & marque du vehicule"
-msgstr ""
+msgstr "Aracın modeli ve markası"
 
 #: administrationApp/templates/admin/modals/vehicule.html:26
 msgid "Image du véhicule"
-msgstr ""
+msgstr "Araç resmi"
 
 #: administrationApp/templates/admin/modals/zone.html:8
 msgid "Zone de livraison"
-msgstr ""
+msgstr "Teslim bölgesi"
 
 #: administrationApp/templates/admin/pages/agence.html:16
 msgid "Infos de l'agence"
-msgstr ""
+msgstr "Ajans Bilgileri"
 
 #: administrationApp/templates/admin/pages/agence.html:17
 msgid "Stocks initiaux de briques"
-msgstr ""
+msgstr "İlk Tuğla Stokları"
 
 #: administrationApp/templates/admin/pages/agence.html:18
 msgid "Prix / Zones de livraison"
-msgstr ""
+msgstr "Fiyatlar / Teslimat alanları"
 
 #: administrationApp/templates/admin/pages/agence.html:19
 msgid "Véhicules & Chauffeurs"
-msgstr ""
+msgstr "Araçlar ve Sürücüler"
 
 #: administrationApp/templates/admin/pages/agence.html:20
 msgid "Gestion des employés"
-msgstr ""
+msgstr "Çalışan Yönetimi"
 
 #: administrationApp/templates/admin/pages/agence.html:31
 msgid "Raison sociale de l'agence"
-msgstr ""
+msgstr "Ajans İsmi"
 
 #: administrationApp/templates/admin/pages/agence.html:38
 #: administrationApp/templates/admin/pages/general.html:24
 msgid "Situation Géographique"
-msgstr ""
+msgstr "Coğrafi konum"
 
 #: administrationApp/templates/admin/pages/agence.html:43
 msgid "Compte lié"
-msgstr ""
+msgstr "Bağlı hesap"
 
 #: administrationApp/templates/admin/pages/agence.html:48
 #: administrationApp/templates/admin/pages/caisse.html:151
 msgid "Solde initial"
-msgstr ""
+msgstr "İlk bakiye"
 
 #: administrationApp/templates/admin/pages/agence.html:56
 msgid "Nombre d'employes"
-msgstr ""
+msgstr "Çalışan Sayısı"
 
 #: administrationApp/templates/admin/pages/agence.html:61
 msgid "Nombre de véhicules"
-msgstr ""
+msgstr "Araç sayısı"
 
 #: administrationApp/templates/admin/pages/agence.html:66
 msgid "Nombre de chauffeurs"
-msgstr ""
+msgstr "Sürücü sayısı"
 
 #: administrationApp/templates/admin/pages/agence.html:72
 msgid "Logo de l'entreprise"
-msgstr ""
+msgstr "Şirket logosu"
 
 #: administrationApp/templates/admin/pages/agence.html:77
 msgid "Modifier"
-msgstr ""
+msgstr "Düzenlemek"
 
 #: administrationApp/templates/admin/pages/agence.html:78
 msgid "Supprimer"
-msgstr ""
+msgstr "Silmek"
 
 #: administrationApp/templates/admin/pages/agence.html:91
 msgid "Définir le stock de ressources initial"
-msgstr ""
+msgstr "İlk kaynak stokunu ayarla"
 
 #: administrationApp/templates/admin/pages/agence.html:96
 #: administrationApp/templates/admin/pages/production.html:83
 msgid "Unité"
-msgstr ""
+msgstr "Birlik"
 
 #: administrationApp/templates/admin/pages/agence.html:97
 #: administrationApp/templates/admin/pages/agence.html:107
 #: administrationApp/templates/admin/pages/agence.html:123
 msgid "Stock initial"
-msgstr ""
+msgstr "İlk stok"
 
 #: administrationApp/templates/admin/pages/agence.html:116
 msgid "Définir le stock de briques initial"
-msgstr ""
+msgstr "İlk Tuğla Stokunu Ayarla"
 
 #: administrationApp/templates/admin/pages/agence.html:140
 #: administrationApp/templates/admin/pages/prices.html:24
 msgid "Prix des produits par zone de livraison"
-msgstr ""
+msgstr "Teslimat bölgesine göre ürün fiyatları"
 
 #: administrationApp/templates/admin/pages/agence.html:143
 msgid "Ajouter nouvelle zone"
-msgstr ""
+msgstr "Yeni alan ekle"
 
 #: administrationApp/templates/admin/pages/agence.html:173
 msgid "modifier les prix"
-msgstr ""
+msgstr "fiyatları değiştir"
 
 #: administrationApp/templates/admin/pages/agence.html:193
 msgid "Tous les véhicules"
-msgstr ""
+msgstr "Tüm Araçlar"
 
 #: administrationApp/templates/admin/pages/agence.html:196
 #: administrationApp/templates/admin/pages/agence.html:235
@@ -457,275 +457,275 @@ msgstr ""
 #: administrationApp/templates/admin/pages/production.html:19
 #: administrationApp/templates/admin/pages/production.html:74
 msgid "Ajouter"
-msgstr ""
+msgstr "Eklemek"
 
 #: administrationApp/templates/admin/pages/agence.html:204
 msgid "Marque/modèle"
-msgstr ""
+msgstr "Marka/Model"
 
 #: administrationApp/templates/admin/pages/agence.html:219
 msgid "modifier l élément"
-msgstr ""
+msgstr "ögeyi düzenle"
 
 #: administrationApp/templates/admin/pages/agence.html:220
 msgid "supprimer l élément"
-msgstr ""
+msgstr "öğeyi silmek"
 
 #: administrationApp/templates/admin/pages/agence.html:232
 msgid "Liste des chauffeurs"
-msgstr ""
+msgstr "Sürücü listesi"
 
 #: administrationApp/templates/admin/pages/agence.html:243
 msgid "Nom complet"
-msgstr ""
+msgstr "Ad Soyad"
 
 #: administrationApp/templates/admin/pages/agence.html:244
 msgid "Adresse"
-msgstr ""
+msgstr "Adres"
 
 #: administrationApp/templates/admin/pages/agence.html:281
 msgid "Attribution des accès des agences"
-msgstr ""
+msgstr "Ajans erişim tahsisi"
 
 #: administrationApp/templates/admin/pages/agence.html:284
 msgid "Ajouter un employé"
-msgstr ""
+msgstr "Bir çalışan ekle"
 
 #: administrationApp/templates/admin/pages/agence.html:293
 #: administrationApp/templates/admin/pages/roles.html:24
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: administrationApp/templates/admin/pages/agence.html:294
 #: administrationApp/templates/admin/pages/roles.html:25
 msgid "Utilisateur"
-msgstr ""
+msgstr "Kullanıcı"
 
 #: administrationApp/templates/admin/pages/agence.html:295
 #: administrationApp/templates/admin/pages/roles.html:26
 msgid "Identifiants"
-msgstr ""
+msgstr "Tanımlayıcılar"
 
 #: administrationApp/templates/admin/pages/agence.html:296
 #: administrationApp/templates/admin/pages/roles.html:27
 msgid "Accès et rôles"
-msgstr ""
+msgstr "Erişim ve Roller"
 
 #: administrationApp/templates/admin/pages/agence.html:298
 #: administrationApp/templates/admin/pages/roles.html:29
 msgid "Affiliation"
-msgstr ""
+msgstr "Üyelik"
 
 #: administrationApp/templates/admin/pages/agence.html:308
 #: administrationApp/templates/admin/pages/roles.html:39
 msgid "Actif"
-msgstr ""
+msgstr "Varlık"
 
 #: administrationApp/templates/admin/pages/agence.html:310
 #: administrationApp/templates/admin/pages/roles.html:41
 msgid "Bloqué"
-msgstr ""
+msgstr "Engellendi"
 
 #: administrationApp/templates/admin/pages/agence.html:321
 #: administrationApp/templates/admin/pages/roles.html:52
 msgid "Login:"
-msgstr ""
+msgstr "Giriş yapmak:"
 
 #: administrationApp/templates/admin/pages/agence.html:322
 #: administrationApp/templates/admin/pages/roles.html:53
 msgid "Pass:"
-msgstr ""
+msgstr "Geçmek:"
 
 #: administrationApp/templates/admin/pages/agence.html:325
 #: administrationApp/templates/admin/pages/roles.html:56
 msgid "Definir les accès"
-msgstr ""
+msgstr "Erişim tanımlayın"
 
 #: administrationApp/templates/admin/pages/agence.html:342
 #: administrationApp/templates/admin/pages/roles.html:73
 msgid "Selectionner l'agence"
-msgstr ""
+msgstr "Ajans seçin"
 
 #: administrationApp/templates/admin/pages/agence.html:355
 #: administrationApp/templates/admin/pages/roles.html:78
 msgid "Init. mot de passe"
-msgstr ""
+msgstr "Şifreyi başlat"
 
 #: administrationApp/templates/admin/pages/agence.html:358
 #: administrationApp/templates/admin/pages/roles.html:81
 msgid "Bloquer"
-msgstr ""
+msgstr "Engellemek"
 
 #: administrationApp/templates/admin/pages/agence.html:360
 #: administrationApp/templates/admin/pages/roles.html:83
 msgid "Débloquer"
-msgstr ""
+msgstr "Engeli kaldırmak"
 
 #: administrationApp/templates/admin/pages/caisse.html:15
 msgid "Opérations d'entrée de caisse"
-msgstr ""
+msgstr "Nakit Giriş İşlemleri"
 
 #: administrationApp/templates/admin/pages/caisse.html:28
 #: administrationApp/templates/admin/pages/caisse.html:113
 msgid "Type"
-msgstr ""
+msgstr "Tür"
 
 #: administrationApp/templates/admin/pages/caisse.html:53
 msgid "Autoriser Versements en attente"
-msgstr ""
+msgstr "Bekleyen Ödemelere İzin Ver"
 
 #: administrationApp/templates/admin/pages/caisse.html:70
 #, python-format
 msgid "%% tva sur les ventes"
-msgstr ""
+msgstr "Satışlarda %% KDV"
 
 #: administrationApp/templates/admin/pages/caisse.html:74
 msgid "Seuil de tolérance du crédit client"
-msgstr ""
+msgstr "Müşteri kredi tolerans eşiği"
 
 #: administrationApp/templates/admin/pages/caisse.html:88
 msgid "Mettre à jour"
-msgstr ""
+msgstr "Güncelleme"
 
 #: administrationApp/templates/admin/pages/caisse.html:99
 msgid "Opérations de sortie de caisse"
-msgstr ""
+msgstr "Ödeme işlemleri"
 
 #: administrationApp/templates/admin/pages/caisse.html:137
 msgid "Creation & attribution des caisses"
-msgstr ""
+msgstr "Fonların oluşturulması ve tahsisi"
 
 #: administrationApp/templates/admin/pages/caisse.html:140
 msgid "Nouveau compte"
-msgstr ""
+msgstr "Yeni hesap"
 
 #: administrationApp/templates/admin/pages/caisse.html:148
 msgid "Libéllé du compte"
-msgstr ""
+msgstr "Hesabın adı"
 
 #: administrationApp/templates/admin/pages/caisse.html:149
 msgid "Etablissement"
-msgstr ""
+msgstr "Kuruluş"
 
 #: administrationApp/templates/admin/pages/dashboard.html:18
 msgid "Infos générales"
-msgstr ""
+msgstr "Genel Bilgi"
 
 #: administrationApp/templates/admin/pages/dashboard.html:19
 msgid "Nom, adresse, contact, logo de sté"
-msgstr ""
+msgstr "İsim, adres, iletişim, şirket logosu"
 
 #: administrationApp/templates/admin/pages/dashboard.html:38
 msgid "Roles & accès"
-msgstr ""
+msgstr "Roller ve erişim"
 
 #: administrationApp/templates/admin/pages/dashboard.html:39
 msgid "Définir les droits et les accès"
-msgstr ""
+msgstr "Hakları ve erişimi tanımlayın"
 
 #: administrationApp/templates/admin/pages/dashboard.html:58
 msgid "Mon compte"
-msgstr ""
+msgstr "Hesabım"
 
 #: administrationApp/templates/admin/pages/dashboard.html:59
 msgid "Info compte, Abonnement, formule"
-msgstr ""
+msgstr "Hesap bilgileri, Abonelik, plan"
 
 #: administrationApp/templates/admin/pages/dashboard.html:86
 msgid "Unité d'organisation"
-msgstr ""
+msgstr "Organizasyon Birimi"
 
 #: administrationApp/templates/admin/pages/dashboard.html:87
 msgid "Agences, stocks initiaux"
-msgstr ""
+msgstr "Ajanslar, ilk hisse senetleri"
 
 #: administrationApp/templates/admin/pages/dashboard.html:106
 msgid "Elements de production"
-msgstr ""
+msgstr "Üretim Öğeleri"
 
 #: administrationApp/templates/admin/pages/dashboard.html:107
 msgid "Produits, ressources, Exigence de production"
-msgstr ""
+msgstr "Ürünler, Kaynaklar, Üretim Gereksinimi"
 
 #: administrationApp/templates/admin/pages/dashboard.html:126
 msgid "Barème des prix"
-msgstr ""
+msgstr "Fiyat tarifesi"
 
 #: administrationApp/templates/admin/pages/dashboard.html:127
 msgid "Etablir vos barèmes de prix et de paye"
-msgstr ""
+msgstr "Fiyatınızı ve ödeme skalanızı belirleyin"
 
 #: administrationApp/templates/admin/pages/dashboard.html:143
 msgid "Config de la caisse"
-msgstr ""
+msgstr "Fon yönetimi"
 
 #: administrationApp/templates/admin/pages/dashboard.html:144
 msgid "Compte en banque, caisse, gestion"
-msgstr ""
+msgstr "Banka hesabı, nakit, yönetim"
 
 #: administrationApp/templates/admin/pages/general.html:10
 msgid "Configuration des informations générales de la structure"
-msgstr ""
+msgstr "Genel Yapı Bilgilerini Yapılandırma"
 
 #: administrationApp/templates/admin/pages/general.html:17
 msgid "Raison sociale ou nom de la société"
-msgstr ""
+msgstr "Şirket adı veya şirket adı"
 
 #: administrationApp/templates/admin/pages/general.html:41
 msgid "Boite Postale"
-msgstr ""
+msgstr "Posta kutusu"
 
 #: administrationApp/templates/admin/pages/general.html:63
 msgid "Modifier les informations"
-msgstr ""
+msgstr "Bilgileri Düzenle"
 
 #: administrationApp/templates/admin/pages/mycompte.html:18
 msgid "Licence AMB"
-msgstr ""
+msgstr "AMB Lisansı"
 
 #: administrationApp/templates/admin/pages/mycompte.html:22
 msgid "Licence de l'application"
-msgstr ""
+msgstr "Uygulama Lisansı"
 
 #: administrationApp/templates/admin/pages/mycompte.html:29
 msgid "Identifiant"
-msgstr ""
+msgstr "İD"
 
 #: administrationApp/templates/admin/pages/mycompte.html:33
 msgid "Votre identifiant unique"
-msgstr ""
+msgstr "Benzersiz Kimliğiniz"
 
 #: administrationApp/templates/admin/pages/mycompte.html:40
 msgid "Expiration"
-msgstr ""
+msgstr "Son kullanma tarihi"
 
 #: administrationApp/templates/admin/pages/mycompte.html:45
 msgid "Nombre de jours restants"
-msgstr ""
+msgstr "Gün sayısı kaldı"
 
 #: administrationApp/templates/admin/pages/mycompte.html:52
 msgid "Agences / Utilisateurs"
-msgstr ""
+msgstr "Ajanslar / Kullanıcılar"
 
 #: administrationApp/templates/admin/pages/mycompte.html:55
 msgid "agences"
-msgstr ""
+msgstr "ajanslar"
 
 #: administrationApp/templates/admin/pages/mycompte.html:56
 msgid "utilisateurs"
-msgstr ""
+msgstr "kullanıcılar"
 
 #: administrationApp/templates/admin/pages/mycompte.html:67
 msgid "Nouvel abonnement"
-msgstr ""
+msgstr "Yeni Abonelik"
 
 #: administrationApp/templates/admin/pages/mycompte.html:73
 msgid "Quelques points importants"
-msgstr ""
+msgstr "Bazı önemli noktalar"
 
 #: administrationApp/templates/admin/pages/mycompte.html:76
 msgid "Le code de validation"
-msgstr ""
+msgstr "Doğrulama kodu"
 
 #: administrationApp/templates/admin/pages/mycompte.html:77
 msgid ""
@@ -733,26 +733,30 @@ msgid ""
 "validation composé de 5 blocs de caractères.<br> Pour vous en procurer, "
 "veuillez"
 msgstr ""
+"Aboneliğinizi yenilemek için bir kodunuz olmalıdır5 blok karakterden oluşan "
+"doğrulama.<br> Bazılarını elde etmek için, lütfen"
 
 #: administrationApp/templates/admin/pages/mycompte.html:77
 #: administrationApp/templates/admin/pages/mycompte.html:83
 #: administrationApp/templates/admin/pages/mycompte.html:86
 msgid "nous contacter"
-msgstr ""
+msgstr "Bize Ulaşın"
 
 #: administrationApp/templates/admin/pages/mycompte.html:79
 msgid "Internet est requis"
-msgstr ""
+msgstr "İnternet gerekli"
 
 #: administrationApp/templates/admin/pages/mycompte.html:80
 msgid ""
 "La validation du code requiert une connexion à internet. veuillez vous "
 "assurer d'en avoir avant de commencer."
 msgstr ""
+"Kod doğrulama internet bağlantısı gerektirir. LütfenBaşlamadan önce biraz "
+"olduğundan emin ol."
 
 #: administrationApp/templates/admin/pages/mycompte.html:82
 msgid "3 tentavives"
-msgstr ""
+msgstr "3 deneme"
 
 #: administrationApp/templates/admin/pages/mycompte.html:83
 msgid ""
@@ -760,97 +764,104 @@ msgid ""
 "Si vous échouer 5 fois de suite, l'application se vérouillera "
 "automatiquement. Vous devriez alors "
 msgstr ""
+"Kodunuzu doğrulamak için yalnızca en fazla 3 deneme hakkınız olacak.Arka "
+"arkaya 5 kez başarısız olursanız, uygulama kilitlenirotomatik olarak. O "
+"zaman yapmalısın"
 
 #: administrationApp/templates/admin/pages/mycompte.html:85
 msgid "Besoin d'aide ?"
-msgstr ""
+msgstr "Yardıma ihtiyacın var mı?"
 
 #: administrationApp/templates/admin/pages/mycompte.html:86
 msgid ""
 "Si vous savez pas comment vous y prendre ou si vous avez besoin d'une aide "
 "ou d'une assistance particulière, veuillez "
 msgstr ""
+"Nasıl yapacağınızı bilmiyorsanız veya yardıma ihtiyacınız varsaveya özel "
+"yardım lütfen"
 
 #: administrationApp/templates/admin/pages/mycompte.html:94
 msgid "Fin d'abonnement le"
 msgstr ""
+"Nasıl yapacağınızı bilmiyorsanız veya yardıma ihtiyacınız varsaveya özel "
+"yardım lütfen"
 
 #: administrationApp/templates/admin/pages/mycompte.html:98
 msgid "Entrer les 5 blocs de caractères du code de validation."
-msgstr ""
+msgstr "Doğrulama kodunun 5 karakter bloğunu girin."
 
 #: administrationApp/templates/admin/pages/mycompte.html:122
 msgid "Valider le code !"
-msgstr ""
+msgstr "Kodu doğrula!"
 
 #: administrationApp/templates/admin/pages/organisation.html:15
 msgid "Liste de vos Agences"
-msgstr ""
+msgstr "Ajanslarınızın Listesi"
 
 #: administrationApp/templates/admin/pages/prices.html:14
 msgid "Prix chez"
-msgstr ""
+msgstr "fiyat"
 
 #: administrationApp/templates/admin/pages/prices.html:86
 #: administrationApp/templates/admin/pages/prices.html:122
 msgid "Paye par production"
-msgstr ""
+msgstr "Üretim başına ödeme"
 
 #: administrationApp/templates/admin/pages/prices.html:89
 #: administrationApp/templates/admin/pages/prices.html:125
 msgid "Modifier les prix"
-msgstr ""
+msgstr "Fiyatları değiştir"
 
 #: administrationApp/templates/admin/pages/prices.html:97
 #: administrationApp/templates/admin/pages/prices.html:133
 msgid "Briques"
-msgstr ""
+msgstr "Tuğla"
 
 #: administrationApp/templates/admin/pages/prices.html:122
 msgid "dimanches & jours fériés"
-msgstr ""
+msgstr "Pazar ve Tatiller"
 
 #: administrationApp/templates/admin/pages/production.html:16
 msgid "Les briques"
-msgstr ""
+msgstr "Tuğlalar"
 
 #: administrationApp/templates/admin/pages/production.html:29
 #: administrationApp/templates/admin/pages/production.html:86
 msgid "Seuil d'alerte"
-msgstr ""
+msgstr "Uyarı eşiği"
 
 #: administrationApp/templates/admin/pages/production.html:30
 msgid "Actif ?"
-msgstr ""
+msgstr "Varlık ?"
 
 #: administrationApp/templates/admin/pages/production.html:71
 msgid "Les matières premières"
-msgstr ""
+msgstr "İşlenmemiş içerikler"
 
 #: administrationApp/templates/admin/pages/production.html:84
 msgid "stockable ?"
-msgstr ""
+msgstr "depolanabilir mi?"
 
 #: administrationApp/templates/admin/pages/production.html:85
 msgid "Prix d'achat"
-msgstr ""
+msgstr "Alış fiyatı"
 
 #: administrationApp/templates/admin/pages/production.html:127
 msgid "Exigence de production par ressource"
-msgstr ""
+msgstr "Kaynak başına üretim gereksinimi"
 
 #: administrationApp/templates/admin/pages/production.html:131
 msgid "Production automatique"
-msgstr ""
+msgstr "Otomatik üretim"
 
 #: administrationApp/templates/admin/pages/production.html:171
 msgid "Pour produire"
-msgstr ""
+msgstr "Üretmek için"
 
 #: administrationApp/templates/admin/pages/production.html:171
 msgid "unités"
-msgstr ""
+msgstr "birimler"
 
 #: administrationApp/templates/admin/pages/roles.html:12
 msgid "Personnes ayant accès et leur roles"
-msgstr ""
+msgstr "Erişim sahibi kişiler ve rolleri"

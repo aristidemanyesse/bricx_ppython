@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: coreApp/ajax.py:54
+msgid "Opération effectuée avec succes !"
+msgstr ""
+
+#: coreApp/ajax.py:64 coreApp/ajax.py:124 coreApp/ajax.py:146
+msgid "Erreur lors du processus. Veuillez recommencer : "
+msgstr "İşlem sırasında hata. Lütfen tekrar deneyin:"
+
+#: coreApp/ajax.py:94
+msgid "Une erreur s'est produite lors de l'opération, veuillez recommencer !"
+msgstr "İşlem sırasında bir hata oluştu, lütfen tekrar deneyin!"
+
+#: coreApp/ajax.py:109
+msgid "Le mot de passe est incorrect !"
+msgstr "Şifre yanlış!"
+
+#: coreApp/ajax.py:113
+msgid "Vous ne pouvez pas supprimer cet element, il est protégé !"
+msgstr "Bu öğeyi silemezsiniz, korunmaktadır!"
+
+#: coreApp/ajax.py:120 coreApp/ajax.py:142
+msgid "Suppression effectuée avec succes !"
+msgstr "Silme işlemi başarıyla tamamlandı !"

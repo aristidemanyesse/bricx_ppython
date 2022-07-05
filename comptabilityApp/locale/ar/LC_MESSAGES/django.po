@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,11 +22,11 @@ msgstr ""
 #: comptabilityApp/ajax.py:32 comptabilityApp/ajax.py:80
 #: comptabilityApp/ajax.py:103
 msgid "Erreur lors de l'opération', veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında hata, lütfen tekrar deneyin!"
 
 #: comptabilityApp/ajax.py:43 comptabilityApp/ajax.py:92
 msgid "Le mot de passe est incorrect !"
-msgstr ""
+msgstr "Şifre yanlış!"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:6
 msgid "Nouvelle sortie"
@@ -60,12 +60,12 @@ msgstr ""
 #: comptabilityApp/templates/tresorerie/modals/depense.html:44
 #: comptabilityApp/templates/tresorerie/modals/entree.html:43
 msgid "Structure d'encaissement"
-msgstr ""
+msgstr "Koleksiyon yapısı"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:50
 #: comptabilityApp/templates/tresorerie/modals/entree.html:49
 msgid "N° numero dédié"
-msgstr ""
+msgstr "Adanmış numara"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:57
 #: comptabilityApp/templates/tresorerie/modals/entree.html:57
@@ -103,7 +103,7 @@ msgstr ""
 
 #: comptabilityApp/templates/tresorerie/modals/versement_attente.html:33
 msgid "Valider"
-msgstr ""
+msgstr "Doğrulamak"
 
 #: comptabilityApp/templates/tresorerie/modals/versement_attente.html:34
 msgid "en attente"

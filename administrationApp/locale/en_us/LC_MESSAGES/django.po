@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: administrationApp/ajax.py:171 administrationApp/ajax.py:194
 #: administrationApp/ajax.py:218
 msgid "Le mot de passe est incorrect !"
-msgstr ""
+msgstr "Şifre yanlış!"
 
 #: administrationApp/ajax.py:174 administrationApp/ajax.py:197
 #: administrationApp/ajax.py:221
@@ -226,7 +226,7 @@ msgstr ""
 #: administrationApp/templates/admin/modals/infos.html:18
 #: administrationApp/templates/admin/pages/general.html:34
 msgid "Email"
-msgstr ""
+msgstr "E-posta"
 
 #: administrationApp/templates/admin/modals/infos.html:33
 #: administrationApp/templates/admin/pages/general.html:29
@@ -493,7 +493,7 @@ msgstr ""
 #: administrationApp/templates/admin/pages/agence.html:293
 #: administrationApp/templates/admin/pages/roles.html:24
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: administrationApp/templates/admin/pages/agence.html:294
 #: administrationApp/templates/admin/pages/roles.html:25

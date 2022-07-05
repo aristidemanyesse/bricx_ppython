@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: livraisonApp/ajax.py:19 livraisonApp/ajax.py:203
 msgid "Erreur lors de l'opération', veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında hata, lütfen tekrar deneyin!"
 
 #: livraisonApp/ajax.py:28 livraisonApp/ajax.py:131
 msgid ""
@@ -146,15 +146,15 @@ msgstr ""
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:20
 msgid "Mode de payement"
-msgstr ""
+msgstr "Ödeme şekli"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:28
 msgid "Structure d'encaissement"
-msgstr ""
+msgstr "Koleksiyon yapısı"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:34
 msgid "N° numero dédié"
-msgstr ""
+msgstr "Adanmış numara"
 
 #: livraisonApp/templates/livraison/modals/paye_tricycle.html:43
 msgid "Annuler"
@@ -211,12 +211,12 @@ msgstr ""
 #: livraisonApp/templates/livraison/pages/livraisons.html:31
 #: livraisonApp/templates/livraison/pages/tricycles.html:33
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:32
 #: livraisonApp/templates/livraison/pages/tricycles.html:34
 msgid "Reference"
-msgstr ""
+msgstr "Referans"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:33
 msgid "Livré par"
@@ -233,7 +233,7 @@ msgstr ""
 #: livraisonApp/templates/livraison/pages/livraisons.html:37
 #: livraisonApp/templates/livraison/pages/tricycles.html:39
 msgid "Action"
-msgstr ""
+msgstr "Seçenekler"
 
 #: livraisonApp/templates/livraison/pages/livraisons.html:47
 msgid "Livraison de commande"

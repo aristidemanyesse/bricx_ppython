@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,7 +168,7 @@ msgstr ""
 #: productionApp/templates/production/pages/perte_ressource.html:37
 #: productionApp/templates/production/pages/productions.html:35
 msgid "Action"
-msgstr ""
+msgstr "Seçenekler"
 
 #: productionApp/templates/production/pages/perte_brique.html:50
 #: productionApp/templates/production/pages/perte_ressource.html:50
@@ -193,7 +193,7 @@ msgstr ""
 
 #: productionApp/templates/production/pages/productions.html:30
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: productionApp/templates/production/pages/productions.html:32
 msgid "Date"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,165 +21,165 @@ msgstr ""
 #: comptabilityApp/ajax.py:32 comptabilityApp/ajax.py:80
 #: comptabilityApp/ajax.py:103
 msgid "Erreur lors de l'opération', veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında hata, lütfen tekrar deneyin!"
 
 #: comptabilityApp/ajax.py:43 comptabilityApp/ajax.py:92
 msgid "Le mot de passe est incorrect !"
-msgstr ""
+msgstr "Şifre yanlış!"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:6
 msgid "Nouvelle sortie"
-msgstr ""
+msgstr "Yeni sürüm"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:7
 #: comptabilityApp/templates/tresorerie/modals/entree.html:7
 #: comptabilityApp/templates/tresorerie/modals/transfert-tresorerie.html:7
 msgid "Renseigner ces champs pour enregistrer les informations"
-msgstr ""
+msgstr "Bilgileri kaydetmek için bu alanları doldurun"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:14
 msgid "Type d'opération"
-msgstr ""
+msgstr "İşlem türü"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:20
 #: comptabilityApp/templates/tresorerie/modals/entree.html:19
 msgid "Montant de l'opération"
-msgstr ""
+msgstr "İşlem tutarı"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:29
 #: comptabilityApp/templates/tresorerie/modals/entree.html:28
 msgid "Mode d'encaissement"
-msgstr ""
+msgstr "Koleksiyon modu"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:35
 #: comptabilityApp/templates/tresorerie/modals/entree.html:34
 msgid "Plus de détails sur l'opération"
-msgstr ""
+msgstr "Operasyonla ilgili daha fazla ayrıntı"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:44
 #: comptabilityApp/templates/tresorerie/modals/entree.html:43
 msgid "Structure d'encaissement"
-msgstr ""
+msgstr "Koleksiyon yapısı"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:50
 #: comptabilityApp/templates/tresorerie/modals/entree.html:49
 msgid "N° numero dédié"
-msgstr ""
+msgstr "Adanmış numara"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:57
 #: comptabilityApp/templates/tresorerie/modals/entree.html:57
 msgid "Ajouter une image du reçu"
-msgstr ""
+msgstr "Makbuz resmini ekleyin"
 
 #: comptabilityApp/templates/tresorerie/modals/depense.html:66
 #: comptabilityApp/templates/tresorerie/modals/entree.html:66
 msgid "Valider l'opération"
-msgstr ""
+msgstr "İşlemi doğrula"
 
 #: comptabilityApp/templates/tresorerie/modals/entree.html:6
 msgid "Nouvelle entrée"
-msgstr ""
+msgstr "Yeni giriş"
 
 #: comptabilityApp/templates/tresorerie/modals/entree.html:13
 msgid "Catégorie d'opération"
-msgstr ""
+msgstr "İşlem kategorisi"
 
 #: comptabilityApp/templates/tresorerie/modals/transfert-tresorerie.html:6
 msgid "Transfert de fond"
-msgstr ""
+msgstr "Arka Plan Aktarımı"
 
 #: comptabilityApp/templates/tresorerie/modals/transfert-tresorerie.html:13
 msgid "Du compte"
-msgstr ""
+msgstr "Hesap"
 
 #: comptabilityApp/templates/tresorerie/modals/versement_attente.html:10
 msgid "Liste des versements en attentes"
-msgstr ""
+msgstr "Bekleyen ödemelerin listesi"
 
 #: comptabilityApp/templates/tresorerie/modals/versement_attente.html:12
 msgid "Rechercher un versements"
-msgstr ""
+msgstr "Ödeme bul"
 
 #: comptabilityApp/templates/tresorerie/modals/versement_attente.html:33
 msgid "Valider"
-msgstr ""
+msgstr "Doğrulamak"
 
 #: comptabilityApp/templates/tresorerie/modals/versement_attente.html:34
 msgid "en attente"
-msgstr ""
+msgstr "Bekliyor"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:18
 msgid "Du"
-msgstr ""
+msgstr "İtibaren"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:18
 msgid "au"
-msgstr ""
+msgstr "ile"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:30
 msgid "Entrées du jour"
-msgstr ""
+msgstr "Günün başlangıçları"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:34
 msgid "En caisse actuellement"
-msgstr ""
+msgstr "Şimdi kasada"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:38
 msgid "Dépenses du jour"
-msgstr ""
+msgstr "Günün harcamaları"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:43
 msgid "Faire Nouvelle entrée"
-msgstr ""
+msgstr "Yeni Giriş Yap"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:46
 msgid "Faire Nouvelle dépense"
-msgstr ""
+msgstr "Yeni Harcama Yap"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:49
 msgid "Voir les versemments en attente"
-msgstr ""
+msgstr "Bekleyen taksitleri görüntüle"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:52
 msgid "Transferts de caisse"
-msgstr ""
+msgstr "Nakit Transferleri"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:65
 msgid "Chiffre d'affaire"
-msgstr ""
+msgstr "Devir"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:80
 msgid "Résultat brut"
-msgstr ""
+msgstr "Brüt sonuç"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:95
 msgid "Dette clientèle"
-msgstr ""
+msgstr "Müşteri borcu"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:110
 msgid "Dette Fournisseur"
-msgstr ""
+msgstr "Tedarikçi borcu"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:130
 msgid "Tableau des compte"
-msgstr ""
+msgstr "Hesap Tablosu"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:142
 msgid "Entrée"
-msgstr ""
+msgstr "para çekme"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:143
 msgid "Sortie"
-msgstr ""
+msgstr "harcandı"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:144
 msgid "Résultats"
-msgstr ""
+msgstr "Sonuçlar"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:149
 msgid "Report de la caisse"
-msgstr ""
+msgstr "Nakit Erteleme"
 
 #: comptabilityApp/templates/tresorerie/pages/caisse.html:186
 msgid "Total des comptes au"
-msgstr ""
+msgstr "Hesapların toplamı"

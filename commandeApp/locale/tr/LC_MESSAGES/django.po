@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,221 +21,221 @@ msgstr ""
 #: commandeApp/ajax_new_commande.py:112 commandeApp/ajax_new_commande.py:246
 msgid ""
 "Veuillez selectionner des produits et leur quantité pour passer la commande !"
-msgstr ""
+msgstr "Sipariş vermek için lütfen ürünleri ve miktarlarını seçin!"
 
 #: commandeApp/ajax_new_commande.py:115
 msgid "Veuillez verifier le montant de la commande ! "
-msgstr ""
+msgstr "Lütfen sipariş miktarını kontrol edin!"
 
 #: commandeApp/ajax_new_commande.py:118
 msgid "L'avance de la commande est incorrect, verifiez-le!"
-msgstr ""
+msgstr "Komut ilerlemesi yanlış, kontrol edin!"
 
 #: commandeApp/ajax_new_commande.py:125
 msgid "Le crédit restant pour la commande ne doit pas excéder "
-msgstr ""
+msgstr "Sipariş için kalan kredi tutarı geçmemelidir"
 
 #: commandeApp/ajax_new_commande.py:125
 msgid " pour ce client "
-msgstr ""
+msgstr " bu müşteri için "
 
 #: commandeApp/ajax_new_commande.py:139 commandeApp/ajax_new_commande.py:148
 msgid "Avance sur commande"
-msgstr ""
+msgstr "Sipariş üzerine avans"
 
 #: commandeApp/ajax_new_commande.py:140 commandeApp/ajax_new_commande.py:149
 msgid "Avance sur réglement de la facture pour la commande "
-msgstr ""
+msgstr "Sipariş faturasının ödenmesinde avans"
 
 #: commandeApp/ajax_new_commande.py:226 commandeApp/ajax_new_commande.py:237
 msgid "Erreur lors de l'opération', veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında hata, lütfen tekrar deneyin!"
 
 #: commandeApp/ajax_new_commande.py:248
 msgid "Veuillez entrer des quantités valides pour la conversion !"
-msgstr ""
+msgstr "Lütfen dönüşüm için geçerli miktarları girin!"
 
 #: commandeApp/ajax_new_commande.py:303
 msgid "Erreur lors de l'opération', veuillez recommencer :"
-msgstr ""
+msgstr "İşlem sırasında hata, lütfen tekrar deneyin:"
 
 #: commandeApp/models.py:26
 msgid "Prix de livraison de "
-msgstr ""
+msgstr "Teslim fiyatı "
 
 #: commandeApp/models.py:84
 msgid "Groupe de commande de "
-msgstr ""
+msgstr "Komut grubu için"
 
 #: commandeApp/models.py:127
 #: commandeApp/templates/commande/modals/commande_infos.html:55
 msgid "Commande N°"
-msgstr ""
+msgstr "Sipariş No."
 
 #: commandeApp/models.py:151
 #: commandeApp/templates/commande/pages/conversions.html:43
 msgid "Conversion N°"
-msgstr ""
+msgstr "Dönüşüm No."
 
 #: commandeApp/templates/commande/modals/changer_produit.html:8
 msgid "Nouveau interchangement de produit"
-msgstr ""
+msgstr "Yeni ürün değişimi"
 
 #: commandeApp/templates/commande/modals/changer_produit.html:9
 msgid "Renseigner ces champs pour enregistrer le changement"
-msgstr ""
+msgstr "Değişikliği kaydetmek için bu alanları doldurun"
 
 #: commandeApp/templates/commande/modals/changer_produit.html:16
 msgid "Définissez le changement de briques"
-msgstr ""
+msgstr "Tuğla Değişimini Ayarla"
 
 #: commandeApp/templates/commande/modals/changer_produit.html:25
 msgid "Qté actuelle"
-msgstr ""
+msgstr "Mevcut Miktar"
 
 #: commandeApp/templates/commande/modals/changer_produit.html:27
 msgid "Nouvelle Qté"
-msgstr ""
+msgstr "Yeni miktar"
 
 #: commandeApp/templates/commande/modals/changer_produit.html:54
 msgid "Finaliser le changement"
-msgstr ""
+msgstr "Değişikliği Bitirin"
 
 #: commandeApp/templates/commande/modals/changer_produit.html:59
 msgid "Motif du changement"
-msgstr ""
+msgstr "Değişmek için sebep"
 
 #: commandeApp/templates/commande/modals/changer_produit.html:63
 msgid "Valider le changement"
-msgstr ""
+msgstr "Değişikliği onayla"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:20
 msgid "Tél"
-msgstr ""
+msgstr "Telefon"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:21
 msgid "Email"
-msgstr ""
+msgstr "E-posta"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:26
 msgid "Fiche de commande"
-msgstr ""
+msgstr "Sipariş formu"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:43
 msgid "RESTE A PAYER"
-msgstr ""
+msgstr "ÖDEME YAPILACAK"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:44
 msgid "OPTIONS"
-msgstr ""
+msgstr "SEÇENEKLER"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:51
 msgid "Supprimer la commande"
-msgstr ""
+msgstr "Siparişi Sil"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:58
 msgid "imprimer le bon de commande"
-msgstr ""
+msgstr "sipariş formunu yazdır"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:76
 msgid "Regler le reste"
-msgstr ""
+msgstr "Gerisini ayarla"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:90
 msgid "Livraison N°"
-msgstr ""
+msgstr "Teslimat No."
 
 #: commandeApp/templates/commande/modals/commande_infos.html:93
 msgid "imprimer le bon de livraison"
-msgstr ""
+msgstr "teslimat notunu yazdır"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:120
 msgid "Reste à livrer"
-msgstr ""
+msgstr "Teslim etmek için kalır"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:134
 msgid "Nouvelle commande"
-msgstr ""
+msgstr "Yeni sipariş"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:137
 msgid "Changement de produits"
-msgstr ""
+msgstr "Ürün değişimi"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:140
 msgid "Faire livraison aujourd'hui"
-msgstr ""
+msgstr "Bugün teslim et"
 
 #: commandeApp/templates/commande/modals/liste_versement.html:8
 msgid "Versements pour la commande"
-msgstr ""
+msgstr "Sipariş için ödemeler"
 
 #: commandeApp/templates/commande/modals/liste_versement.html:18
 msgid "Payement par"
-msgstr ""
+msgstr "Ödeme ile"
 
 #: commandeApp/templates/commande/modals/liste_versement.html:22
 msgid "Restait à payer"
-msgstr ""
+msgstr "Hala ödenecek"
 
 #: commandeApp/templates/commande/modals/new_commande.html:8
 msgid "Nouvelle commande de briques"
-msgstr ""
+msgstr "Yeni Tuğla Düzeni"
 
 #: commandeApp/templates/commande/modals/new_commande.html:9
 msgid "Renseigner ces champs pour enregistrer la commande"
-msgstr ""
+msgstr "Siparişi kaydetmek için bu alanları doldurun"
 
 #: commandeApp/templates/commande/modals/new_commande.html:16
 msgid "Les produits de la commande"
-msgstr ""
+msgstr "Siparişin ürünleri"
 
 #: commandeApp/templates/commande/modals/new_commande.html:40
 msgid "Finaliser la commande"
-msgstr ""
+msgstr "Tam sipariş"
 
 #: commandeApp/templates/commande/modals/new_commande.html:45
 msgid "zone de livraison"
-msgstr ""
+msgstr "teslimat bölgesi"
 
 #: commandeApp/templates/commande/modals/new_commande.html:51
 msgid "Date prévue pour livraison"
-msgstr ""
+msgstr "Planlanan teslimat tarihi"
 
 #: commandeApp/templates/commande/modals/new_commande.html:58
 msgid "Lieu exact de livraison"
-msgstr ""
+msgstr "Tam teslimat yeri"
 
 #: commandeApp/templates/commande/modals/new_commande.html:65
 msgid "Mode de payement"
-msgstr ""
+msgstr "Ödeme şekli"
 
 #: commandeApp/templates/commande/modals/new_commande.html:72
 msgid "Montant avancé"
-msgstr ""
+msgstr "Gelişmiş Fiyat"
 
 #: commandeApp/templates/commande/modals/new_commande.html:80
 msgid "Structure d'encaissement"
-msgstr ""
+msgstr "Koleksiyon yapısı"
 
 #: commandeApp/templates/commande/modals/new_commande.html:86
 msgid "N° numero dédié"
-msgstr ""
+msgstr "Adanmış numara"
 
 #: commandeApp/templates/commande/modals/new_commande.html:93
 msgid "Ajouter une note"
-msgstr ""
+msgstr "Not ekle"
 
 #: commandeApp/templates/commande/modals/new_commande.html:98
 msgid "Montant brut"
-msgstr ""
+msgstr "Ham fiyatlar"
 
 #: commandeApp/templates/commande/modals/new_commande.html:99
 msgid "TVA"
-msgstr ""
+msgstr "KDV"
 
 #: commandeApp/templates/commande/modals/new_commande.html:101
 msgid "Avance"
-msgstr ""
+msgstr "İlerlemek"
 
 #: commandeApp/templates/commande/modals/new_commande.html:102
 msgid "Reste"
@@ -243,65 +243,65 @@ msgstr ""
 
 #: commandeApp/templates/commande/modals/new_commande.html:104
 msgid "Valider la commande"
-msgstr ""
+msgstr "Siparişi onayla"
 
 #: commandeApp/templates/commande/pages/commandes.html:10
 msgid "Les commandes en cours"
-msgstr ""
+msgstr "Siparişler devam ediyor"
 
 #: commandeApp/templates/commande/pages/commandes.html:31
 msgid "Livraison prévue pour le"
-msgstr ""
+msgstr "Teslimat için planlandı"
 
 #: commandeApp/templates/commande/pages/commandes.html:33
 msgid ""
 "livraison{{ item.livraisons_encours|pluralize }} en cours pour cette commande"
-msgstr ""
+msgstr "bu sipariş için teslimat %% devam ediyor"
 
 #: commandeApp/templates/commande/pages/conversions.html:10
 msgid "Les conversions de produits"
-msgstr ""
+msgstr "Ürün Dönüşümleri"
 
 #: commandeApp/templates/commande/pages/conversions.html:21
 msgid "Toutes les conversions de produits survenues dans cette agence"
-msgstr ""
+msgstr "Bu ajansta gerçekleşen tüm ürün dönüşümleri"
 
 #: commandeApp/templates/commande/pages/conversions.html:31
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: commandeApp/templates/commande/pages/conversions.html:32
 msgid "Agence"
-msgstr ""
+msgstr "Ajans"
 
 #: commandeApp/templates/commande/pages/conversions.html:33
 msgid "Client"
-msgstr ""
+msgstr "Müşteri"
 
 #: commandeApp/templates/commande/pages/conversions.html:34
 msgid "Produits"
-msgstr ""
+msgstr "Ürün"
 
 #: commandeApp/templates/commande/pages/conversions.html:35
 msgid "Effectué par"
-msgstr ""
+msgstr "Tarafından tamamlandı"
 
 #: commandeApp/templates/commande/pages/conversions.html:36
 msgid "Action"
-msgstr ""
+msgstr "Seçenekler"
 
 #: commandeApp/templates/commande/pages/conversions.html:48
 msgid "effectué"
-msgstr ""
+msgstr "gerçekleştirillen"
 
 #: commandeApp/templates/commande/pages/conversions.html:68
 msgid "Qté avant conversion"
-msgstr ""
+msgstr "dönüşümden önceki toplam"
 
 #: commandeApp/templates/commande/pages/conversions.html:74
 msgid "Qté après conversion"
-msgstr ""
+msgstr "dönüştürme sonrası toplam"
 
 #: commandeApp/templates/commande/pages/prixparzone.html:9
 msgid "Prix par zone de livraison"
-msgstr ""
+msgstr "Teslimat bölgesi başına fiyat"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,30 +20,30 @@ msgstr ""
 
 #: organisationApp/models.py:43
 msgid "Compte de "
-msgstr ""
+msgstr "Saymak"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:21
 msgid "Commandes en cours"
-msgstr ""
+msgstr "Mevcut siparişler"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:24
 msgid "Livraisons en cours"
-msgstr ""
+msgstr "Devam eden teslimatlar"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:37
 #: organisationApp/templates/manager/pages/dashboard.html:39
 msgid "Qté livrable"
-msgstr ""
+msgstr "miktar teslim edilebilir"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:41
 #: organisationApp/templates/manager/pages/dashboard.html:43
 msgid "Qté non rangée"
-msgstr ""
+msgstr "Miktar saklanmadı"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:45
 #: organisationApp/templates/manager/pages/dashboard.html:47
 msgid "Qté commandée"
-msgstr ""
+msgstr "sipariş edilen miktar"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:48
 #: organisationApp/templates/fabrique/pages/dashboard.html:50
@@ -52,134 +52,136 @@ msgid ""
 "Courbe représentative du stock de produits en fonction des commandes "
 "actuelles"
 msgstr ""
+"Siparişlere göre ürün stokunun temsili eğrisi "
+"akım"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:53
 msgid "Entrées du jour"
-msgstr ""
+msgstr "güne başlayanlar"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:57
 msgid "En caisse actuellement"
-msgstr ""
+msgstr "şu anda nakit"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:61
 msgid "Dépenses du jour"
-msgstr ""
+msgstr "Günün giderleri"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:69
 msgid "Dette chez les clients"
-msgstr ""
+msgstr "müşterilerle borç"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:74
 msgid "Briques en rupture de Stock"
-msgstr ""
+msgstr "Stokta Olmayan Tuğlalar"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:89
 #: organisationApp/templates/fabrique/pages/dashboard.html:77
 #: organisationApp/templates/manager/pages/dashboard.html:76
 msgid "Stock de"
-msgstr ""
+msgstr "Envanter"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:92
 #: organisationApp/templates/fabrique/pages/dashboard.html:80
 #: organisationApp/templates/manager/pages/dashboard.html:79
 msgid "Livrable"
-msgstr ""
+msgstr "teslim edilebilir"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:98
 #: organisationApp/templates/fabrique/pages/dashboard.html:86
 #: organisationApp/templates/manager/pages/dashboard.html:85
 msgid "Non rangée"
-msgstr ""
+msgstr "saklanmadı"
 
 #: organisationApp/templates/boutique/pages/dashboard.html:104
 #: organisationApp/templates/fabrique/pages/dashboard.html:92
 msgid "Commandée"
-msgstr ""
+msgstr "sipariş edildi"
 
 #: organisationApp/templates/fabrique/pages/dashboard.html:21
 #: organisationApp/templates/manager/pages/dashboard.html:21
 msgid "Approvisionnements en cours"
-msgstr ""
+msgstr "Mevcut sarf malzemeleri"
 
 #: organisationApp/templates/fabrique/pages/dashboard.html:24
 #: organisationApp/templates/manager/pages/dashboard.html:24
 msgid "Achats de briques en cours"
-msgstr ""
+msgstr "Tuğla alımları devam ediyor"
 
 #: organisationApp/templates/fabrique/pages/dashboard.html:27
 #: organisationApp/templates/manager/pages/dashboard.html:27
 msgid "Tricycles non réglés"
-msgstr ""
+msgstr "Ayarsız üç tekerlekli bisikletler"
 
 #: organisationApp/templates/fabrique/pages/dashboard.html:39
 msgid "Qte livrable"
-msgstr ""
+msgstr "miktar teslim edilebilir"
 
 #: organisationApp/templates/fabrique/pages/dashboard.html:43
 msgid "Qte non rangée"
-msgstr ""
+msgstr "Miktar saklanmadı"
 
 #: organisationApp/templates/fabrique/pages/dashboard.html:47
 msgid "Qte commandée"
-msgstr ""
+msgstr "sipariş edilen miktar"
 
 #: organisationApp/templates/fabrique/pages/dashboard.html:53
 #: organisationApp/templates/manager/pages/dashboard.html:53
 msgid "Stock des ressources"
-msgstr ""
+msgstr "Kaynak envanteri"
 
 #: organisationApp/templates/master/pages/home.html:25
 msgid "Fabrique{{ agences|length |pluralize }}"
-msgstr ""
+msgstr "Yaptı"
 
 #: organisationApp/templates/master/pages/home.html:33
 msgid "Brique{{ briques |pluralize }}"
-msgstr ""
+msgstr "Tuğla"
 
 #: organisationApp/templates/master/pages/home.html:41
 msgid "CLient{{ clients|pluralize }}"
-msgstr ""
+msgstr "Müşteri"
 
 #: organisationApp/templates/master/pages/home.html:49
 msgid "Utilisateur{{ users|pluralize }}"
-msgstr ""
+msgstr "kullanıcı"
 
 #: organisationApp/templates/master/pages/home.html:68
 msgid "A la fabrique"
-msgstr ""
+msgstr "Fabrikada"
 
 #: organisationApp/templates/master/pages/home.html:69
 msgid "Production"
-msgstr ""
+msgstr "Üretme"
 
 #: organisationApp/templates/master/pages/home.html:88
 msgid "A la boutique"
-msgstr ""
+msgstr "Mağazada"
 
 #: organisationApp/templates/master/pages/home.html:89
 msgid "Vente"
-msgstr ""
+msgstr "Satış"
 
 #: organisationApp/templates/master/pages/home.html:130
 msgid "Configuration"
-msgstr ""
+msgstr "Yapılandırma"
 
 #: organisationApp/templates/master/pages/home.html:131
 msgid "paramétrage"
-msgstr ""
+msgstr "ayar"
 
 #: organisationApp/traitement.py:27
 msgid "Une erreur s'est produite lors de l'opération, veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında bir hata oluştu, lütfen tekrar deneyin!"
 
 #: organisationApp/traitement.py:29
 msgid "Login et/ou mot de passe incorrect !"
-msgstr ""
+msgstr "Giriş ve/veya şifre yanlış!"
 
 #: organisationApp/traitement.py:50
 msgid "Les mots de passe ne correspondent pas !"
-msgstr ""
+msgstr "Parolalar uyuşmuyor!"
 
 #: organisationApp/traitement.py:52
 msgid "Le nouveau mot de passe est trop court, minimum 8 caractères !"
-msgstr ""
+msgstr "Yeni şifre çok kısa, minimum 8 karakter!"

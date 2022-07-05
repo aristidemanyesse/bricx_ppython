@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: commandeApp/ajax_new_commande.py:226 commandeApp/ajax_new_commande.py:237
 msgid "Erreur lors de l'opération', veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında hata, lütfen tekrar deneyin!"
 
 #: commandeApp/ajax_new_commande.py:248
 msgid "Veuillez entrer des quantités valides pour la conversion !"
@@ -110,11 +110,11 @@ msgstr ""
 
 #: commandeApp/templates/commande/modals/commande_infos.html:20
 msgid "Tél"
-msgstr ""
+msgstr "Telefon"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:21
 msgid "Email"
-msgstr ""
+msgstr "E-posta"
 
 #: commandeApp/templates/commande/modals/commande_infos.html:26
 msgid "Fiche de commande"
@@ -206,7 +206,7 @@ msgstr ""
 
 #: commandeApp/templates/commande/modals/new_commande.html:65
 msgid "Mode de payement"
-msgstr ""
+msgstr "Ödeme şekli"
 
 #: commandeApp/templates/commande/modals/new_commande.html:72
 msgid "Montant avancé"
@@ -214,11 +214,11 @@ msgstr ""
 
 #: commandeApp/templates/commande/modals/new_commande.html:80
 msgid "Structure d'encaissement"
-msgstr ""
+msgstr "Koleksiyon yapısı"
 
 #: commandeApp/templates/commande/modals/new_commande.html:86
 msgid "N° numero dédié"
-msgstr ""
+msgstr "Adanmış numara"
 
 #: commandeApp/templates/commande/modals/new_commande.html:93
 msgid "Ajouter une note"
@@ -267,7 +267,7 @@ msgstr ""
 
 #: commandeApp/templates/commande/pages/conversions.html:31
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: commandeApp/templates/commande/pages/conversions.html:32
 msgid "Agence"
@@ -287,7 +287,7 @@ msgstr ""
 
 #: commandeApp/templates/commande/pages/conversions.html:36
 msgid "Action"
-msgstr ""
+msgstr "Seçenekler"
 
 #: commandeApp/templates/commande/pages/conversions.html:48
 msgid "effectué"

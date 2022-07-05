@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr ""
 
 #: approvisionnementApp/ajax.py:265 approvisionnementApp/ajax_achatstock.py:266
 msgid "Erreur lors de l'opération', veuillez recommencer !"
-msgstr ""
+msgstr "İşlem sırasında hata, lütfen tekrar deneyin!"
 
 #: approvisionnementApp/ajax_achatstock.py:98
 msgid ""
@@ -159,7 +159,7 @@ msgstr ""
 
 #: approvisionnementApp/ajax_fournisseur.py:77
 msgid "Le mot de passe est incorrect !"
-msgstr ""
+msgstr "Şifre yanlış!"
 
 #: approvisionnementApp/ajax_fournisseur.py:87
 msgid "reglement de l'approvisonnement N°"
@@ -225,7 +225,7 @@ msgstr ""
 #: approvisionnementApp/templates/appros/modals/regler_appro.html:18
 #: approvisionnementApp/templates/appros/modals/rembourser.html:17
 msgid "Mode de payement"
-msgstr ""
+msgstr "Ödeme şekli"
 
 #: approvisionnementApp/templates/appros/modals/achatstock.html:68
 #: approvisionnementApp/templates/appros/modals/approvisionnement.html:62
@@ -239,7 +239,7 @@ msgstr ""
 #: approvisionnementApp/templates/appros/modals/regler_appro.html:25
 #: approvisionnementApp/templates/appros/modals/rembourser.html:24
 msgid "Structure d'encaissement"
-msgstr ""
+msgstr "Koleksiyon yapısı"
 
 #: approvisionnementApp/templates/appros/modals/achatstock.html:82
 #: approvisionnementApp/templates/appros/modals/approvisionnement.html:77
@@ -248,7 +248,7 @@ msgstr ""
 #: approvisionnementApp/templates/appros/modals/regler_appro.html:31
 #: approvisionnementApp/templates/appros/modals/rembourser.html:30
 msgid "N° numero dédié"
-msgstr ""
+msgstr "Adanmış numara"
 
 #: approvisionnementApp/templates/appros/modals/achatstock.html:89
 #: approvisionnementApp/templates/appros/modals/approvisionnement.html:92
@@ -344,7 +344,7 @@ msgid "Ajouter une image"
 msgstr ""
 
 #: approvisionnementApp/templates/appros/modals/fournisseur.html:60
-msgid "Acompte intial"
+msgid "Acompte initial"
 msgstr ""
 
 #: approvisionnementApp/templates/appros/modals/fournisseur.html:66
@@ -390,7 +390,7 @@ msgstr ""
 #: approvisionnementApp/templates/appros/pages/achatstock.html:95
 #: approvisionnementApp/templates/appros/pages/approvisionnements.html:100
 msgid "Valider"
-msgstr ""
+msgstr "Doğrulamak"
 
 #: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:9
 msgid "Validation de l'achat de stock"
@@ -454,13 +454,13 @@ msgstr ""
 #: approvisionnementApp/templates/appros/pages/approvisionnements.html:33
 #: approvisionnementApp/templates/appros/pages/fournisseur.html:31
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: approvisionnementApp/templates/appros/pages/achatstock.html:36
 #: approvisionnementApp/templates/appros/pages/approvisionnements.html:34
 #: approvisionnementApp/templates/appros/pages/fournisseur.html:32
 msgid "Reference"
-msgstr ""
+msgstr "Referans"
 
 #: approvisionnementApp/templates/appros/pages/achatstock.html:37
 #: approvisionnementApp/templates/appros/pages/approvisionnements.html:39
@@ -477,7 +477,7 @@ msgstr ""
 #: approvisionnementApp/templates/appros/pages/approvisionnements.html:41
 #: approvisionnementApp/templates/appros/pages/fournisseur.html:37
 msgid "Action"
-msgstr ""
+msgstr "Seçenekler"
 
 #: approvisionnementApp/templates/appros/pages/achatstock.html:51
 msgid "Achat de Stock"
@@ -549,7 +549,7 @@ msgstr ""
 
 #: approvisionnementApp/templates/appros/pages/fournisseur.html:134
 msgid "Opération N°"
-msgstr ""
+msgstr "İşlem No."
 
 #: approvisionnementApp/templates/appros/pages/fournisseur.html:138
 msgid "Bon de caisse"

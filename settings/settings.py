@@ -159,7 +159,7 @@ USE_TZ = True
 
 LANGUAGES = (
     ('fr', 'Français'),
-    ('en-us', 'English (US)'),
+    ('en_us', 'English (US)'),
     ('tr', 'Turkish'),
     ('ar', 'عربى'),
 )

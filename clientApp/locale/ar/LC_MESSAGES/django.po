@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-14 18:03+0000\n"
+"POT-Creation-Date: 2022-07-05 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: clientApp/ajax.py:48 clientApp/ajax.py:86
 msgid "Le mot de passe est incorrect !"
-msgstr ""
+msgstr "Şifre yanlış!"
 
 #: clientApp/ajax.py:95
 msgid "Reglement de commande"
@@ -81,10 +81,10 @@ msgstr ""
 
 #: clientApp/templates/clients/modals/client.html:44
 msgid "Email"
-msgstr ""
+msgstr "E-posta"
 
 #: clientApp/templates/clients/modals/client.html:54
-msgid "Acompte intial"
+msgid "Acompte initial"
 msgstr ""
 
 #: clientApp/templates/clients/modals/client.html:60
@@ -116,17 +116,17 @@ msgstr ""
 #: clientApp/templates/clients/modals/crediter.html:18
 #: clientApp/templates/clients/modals/rembourser.html:17
 msgid "Mode de payement"
-msgstr ""
+msgstr "Ödeme şekli"
 
 #: clientApp/templates/clients/modals/crediter.html:26
 #: clientApp/templates/clients/modals/rembourser.html:24
 msgid "Structure d'encaissement"
-msgstr ""
+msgstr "Koleksiyon yapısı"
 
 #: clientApp/templates/clients/modals/crediter.html:32
 #: clientApp/templates/clients/modals/rembourser.html:30
 msgid "N° numero dédié"
-msgstr ""
+msgstr "Adanmış numara"
 
 #: clientApp/templates/clients/modals/crediter.html:41
 msgid "Créditer le compte"
@@ -142,7 +142,7 @@ msgstr ""
 
 #: clientApp/templates/clients/modals/rembourser.html:39
 msgid "Valider"
-msgstr ""
+msgstr "Doğrulamak"
 
 #: clientApp/templates/clients/pages/client.html:15
 msgid "Les commandes en cours"
@@ -158,7 +158,7 @@ msgstr ""
 
 #: clientApp/templates/clients/pages/client.html:35
 msgid "Reference"
-msgstr ""
+msgstr "Referans"
 
 #: clientApp/templates/clients/pages/client.html:36
 msgid "Livraison pour"
@@ -170,7 +170,7 @@ msgstr ""
 
 #: clientApp/templates/clients/pages/client.html:38
 msgid "Action"
-msgstr ""
+msgstr "Seçenekler"
 
 #: clientApp/templates/clients/pages/client.html:48
 msgid "Commande"
@@ -190,7 +190,7 @@ msgstr ""
 
 #: clientApp/templates/clients/pages/client.html:97
 msgid "Opération N°"
-msgstr ""
+msgstr "İşlem No."
 
 #: clientApp/templates/clients/pages/client.html:100
 msgid "Par"
