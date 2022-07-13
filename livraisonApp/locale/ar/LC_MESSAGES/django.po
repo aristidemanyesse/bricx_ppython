@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"POT-Creation-Date: 2022-07-13 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgid ""
 msgstr ""
 
 #: livraisonApp/ajax.py:189
-#: livraisonApp/templates/livraison/modals/paye_tricycle.html:7
+#: livraisonApp/templates/livraison/modals/paye_tricycle.html:8
 msgid "Payement du tricyle"
 msgstr ""
 
@@ -60,232 +60,232 @@ msgstr ""
 msgid "Reglement de la paye du  tricycle "
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:10
+#: livraisonApp/templates/livraison/modals/new_livraison.html:11
 msgid "Nouveau bon de livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:11
+#: livraisonApp/templates/livraison/modals/new_livraison.html:12
 msgid "Renseigner ces champs pour enregistrer la livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:18
+#: livraisonApp/templates/livraison/modals/new_livraison.html:19
 msgid "Les produits de la livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:35
+#: livraisonApp/templates/livraison/modals/new_livraison.html:36
 msgid "Qté à livrer"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:39
+#: livraisonApp/templates/livraison/modals/new_livraison.html:40
 msgid "Surplus"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:43
+#: livraisonApp/templates/livraison/modals/new_livraison.html:44
 msgid "Perte chargement"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:59
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:53
+#: livraisonApp/templates/livraison/modals/new_livraison.html:60
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:54
 msgid "Finaliser la livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:64
-#: livraisonApp/templates/livraison/pages/livraisons.html:67
-#: livraisonApp/templates/livraison/pages/tricycles.html:36
+#: livraisonApp/templates/livraison/modals/new_livraison.html:65
+#: livraisonApp/templates/livraison/pages/livraisons.html:68
+#: livraisonApp/templates/livraison/pages/tricycles.html:37
 msgid "Zone de livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:72
+#: livraisonApp/templates/livraison/modals/new_livraison.html:73
 msgid "Lieu de livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:79
+#: livraisonApp/templates/livraison/modals/new_livraison.html:80
 msgid "Moyen de livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:87
+#: livraisonApp/templates/livraison/modals/new_livraison.html:88
 msgid "Véhicule de la livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:94
+#: livraisonApp/templates/livraison/modals/new_livraison.html:95
 msgid "Chauffeur de la livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:101
+#: livraisonApp/templates/livraison/modals/new_livraison.html:102
 msgid "Chargement par nos manoeuvres"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:102
+#: livraisonApp/templates/livraison/modals/new_livraison.html:103
 msgid "Déchargement par nos manoeuvres"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:109
-#: livraisonApp/templates/livraison/pages/tricycles.html:35
+#: livraisonApp/templates/livraison/modals/new_livraison.html:110
+#: livraisonApp/templates/livraison/pages/tricycles.html:36
 msgid "Nom du tricycle"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:115
+#: livraisonApp/templates/livraison/modals/new_livraison.html:116
 msgid "Contact du tricycle"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:121
+#: livraisonApp/templates/livraison/modals/new_livraison.html:122
 msgid "Montant à payer au chauffeur tricycle"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/new_livraison.html:129
+#: livraisonApp/templates/livraison/modals/new_livraison.html:130
 msgid "Valider la livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/paye_tricycle.html:8
+#: livraisonApp/templates/livraison/modals/paye_tricycle.html:9
 msgid "Saisissez le montant à payer"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/paye_tricycle.html:14
+#: livraisonApp/templates/livraison/modals/paye_tricycle.html:15
 msgid "Montant à payer"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/paye_tricycle.html:20
+#: livraisonApp/templates/livraison/modals/paye_tricycle.html:21
 msgid "Mode de payement"
 msgstr "Ödeme şekli"
 
-#: livraisonApp/templates/livraison/modals/paye_tricycle.html:28
+#: livraisonApp/templates/livraison/modals/paye_tricycle.html:29
 msgid "Structure d'encaissement"
 msgstr "Koleksiyon yapısı"
 
-#: livraisonApp/templates/livraison/modals/paye_tricycle.html:34
+#: livraisonApp/templates/livraison/modals/paye_tricycle.html:35
 msgid "N° numero dédié"
 msgstr "Adanmış numara"
 
-#: livraisonApp/templates/livraison/modals/paye_tricycle.html:43
+#: livraisonApp/templates/livraison/modals/paye_tricycle.html:44
 msgid "Annuler"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/paye_tricycle.html:44
+#: livraisonApp/templates/livraison/modals/paye_tricycle.html:45
 msgid "Faire la paye"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:8
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:9
 msgid "Validation de la livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:9
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:10
 msgid "Renseigner ces champs pour terminer la livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:17
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:18
 msgid "Les produits effectivement réçus"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:33
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:34
 msgid "Perte enregistrée"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:39
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:40
 msgid "Qté envoyée + surplus"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:57
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:58
 msgid "date de livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:64
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:65
 msgid "Nom du receptionniste"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:71
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:72
 msgid "Contact du receptionniste"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:78
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:79
 msgid "Commentaire"
 msgstr ""
 
-#: livraisonApp/templates/livraison/modals/retour_livraison.html:83
+#: livraisonApp/templates/livraison/modals/retour_livraison.html:84
 msgid "Terminer la livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:11
+#: livraisonApp/templates/livraison/pages/livraisons.html:12
 msgid "Les livraisons en cours"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:31
-#: livraisonApp/templates/livraison/pages/tricycles.html:33
+#: livraisonApp/templates/livraison/pages/livraisons.html:32
+#: livraisonApp/templates/livraison/pages/tricycles.html:34
 msgid "Status"
 msgstr "Durum"
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:32
-#: livraisonApp/templates/livraison/pages/tricycles.html:34
+#: livraisonApp/templates/livraison/pages/livraisons.html:33
+#: livraisonApp/templates/livraison/pages/tricycles.html:35
 msgid "Reference"
 msgstr "Referans"
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:33
+#: livraisonApp/templates/livraison/pages/livraisons.html:34
 msgid "Livré par"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:35
+#: livraisonApp/templates/livraison/pages/livraisons.html:36
 msgid "Client"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:36
+#: livraisonApp/templates/livraison/pages/livraisons.html:37
 msgid "Produits"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:37
-#: livraisonApp/templates/livraison/pages/tricycles.html:39
+#: livraisonApp/templates/livraison/pages/livraisons.html:38
+#: livraisonApp/templates/livraison/pages/tricycles.html:40
 msgid "Action"
 msgstr "Seçenekler"
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:47
+#: livraisonApp/templates/livraison/pages/livraisons.html:48
 msgid "Livraison de commande"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:62
+#: livraisonApp/templates/livraison/pages/livraisons.html:63
 msgid "Par les moyens du client"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:85
-#: livraisonApp/templates/livraison/pages/tricycles.html:77
+#: livraisonApp/templates/livraison/pages/livraisons.html:86
+#: livraisonApp/templates/livraison/pages/tricycles.html:78
 msgid "Chargées"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:91
+#: livraisonApp/templates/livraison/pages/livraisons.html:92
 msgid "surplus"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:98
-#: livraisonApp/templates/livraison/pages/tricycles.html:84
+#: livraisonApp/templates/livraison/pages/livraisons.html:99
+#: livraisonApp/templates/livraison/pages/tricycles.html:85
 msgid "Livrées"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:104
-#: livraisonApp/templates/livraison/pages/tricycles.html:90
+#: livraisonApp/templates/livraison/pages/livraisons.html:105
+#: livraisonApp/templates/livraison/pages/tricycles.html:91
 msgid "Perte"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/livraisons.html:117
+#: livraisonApp/templates/livraison/pages/livraisons.html:118
 msgid "Terminer"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/tricycles.html:11
+#: livraisonApp/templates/livraison/pages/tricycles.html:12
 msgid "Payement des tricycles"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/tricycles.html:21
+#: livraisonApp/templates/livraison/pages/tricycles.html:22
 msgid "Toutes les livraisons"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/tricycles.html:37
+#: livraisonApp/templates/livraison/pages/tricycles.html:38
 msgid "Reste à payer"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/tricycles.html:46
+#: livraisonApp/templates/livraison/pages/tricycles.html:47
 msgid "livraison"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/tricycles.html:49
+#: livraisonApp/templates/livraison/pages/tricycles.html:50
 msgid "Livraison N°"
 msgstr ""
 
-#: livraisonApp/templates/livraison/pages/tricycles.html:101
+#: livraisonApp/templates/livraison/pages/tricycles.html:102
 msgid "Payer le tricycle"
 msgstr ""

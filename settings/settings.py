@@ -100,28 +100,28 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'bricx',
-    #     'USER': 'root',
-    #     'PASSWORD': '12345678',
-    #     'HOST': '127.0.0.1',
-    #     'PORT': '3306',
-    # },
-    
-        'default': {
-        'ENGINE': 'django_yugabytedb',
-        'HOST': '172.17.0.3',
-        'PORT': 5433,
-        'NAME': 'yuga_db',
-        'USER': 'admin',
-        'PASSWORD': 'yugabyte',
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bricx',
+        'USER': 'root',
+        'PASSWORD': '12345678',
+        'HOST': '172.17.0.4',
+        'PORT': '3306',
     },
+    
+    #     'default': {
+    #     'ENGINE': 'django_yugabytedb',
+    #     'HOST': '172.17.0.3',
+    #     'PORT': 5433,
+    #     'NAME': 'yuga_db',
+    #     'USER': 'admin',
+    #     'PASSWORD': 'yugabyte',
+    # },
 
-    'sqlite': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'dba.sqlite3',
-    }
+    # 'sqlite': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'dba.sqlite3',
+    # }
 }
 
 
@@ -159,7 +159,7 @@ USE_TZ = True
 
 LANGUAGES = (
     ('fr', 'Français'),
-    ('en_us', 'English (US)'),
+    ('en-GB', 'English (US)'),
     ('tr', 'Turkish'),
     ('ar', 'عربى'),
 )

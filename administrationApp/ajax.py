@@ -10,7 +10,7 @@ import coreApp.tools as tools
 from organisationApp.models import Employe
 from paramApp.models import MyApp
 from productionApp.models import ExigenceProduction, LigneExigenceProduction, PayeBrique, PayeBriqueFerie
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 def exigence(request):
     if request.method == "POST":
@@ -39,7 +39,7 @@ def change_production_auto(request):
         datas = request.POST
 
         try:
-            obj = MyApp.objects.filter().first()"message":
+            obj = MyApp.objects.filter().first()
             obj.production_auto = not obj.production_auto
             obj.save()
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"POT-Creation-Date: 2022-07-13 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/extra/empty.html:5
+#: templates/extra/empty.html:6
 msgid "Rien pour le moment !"
 msgstr ""
 
-#: templates/extra/filter_form_day.html:10
+#: templates/extra/filter_form_day.html:11
 msgid "Filtrer"
 msgstr ""
 
-#: templates/extra/loader.html:4
+#: templates/extra/loader.html:6
 msgid "Veuillez patienter"
 msgstr ""
 
@@ -33,158 +33,156 @@ msgstr ""
 msgid "Aucun"
 msgstr ""
 
-#: templates/layout/base_auth.html:15
+#: templates/layout/base_auth.html:17
 msgid "Tous droits reservés"
 msgstr ""
 
-#: templates/layout/base_top.html:35
-#: templates/layout/partials/sidebar_boutique.html:23
-#: templates/layout/partials/sidebar_fabrique.html:23
-#: templates/layout/partials/sidebar_manager.html:23
+#: templates/layout/base_top.html:36
+#: templates/layout/partials/sidebar_boutique.html:24
+#: templates/layout/partials/sidebar_fabrique.html:24
+#: templates/layout/partials/sidebar_manager.html:24
 msgid "Déconnexion"
 msgstr ""
 
-#: templates/layout/partials/footer.html:6
+#: templates/layout/partials/footer.html:8
 msgid "Copyright"
 msgstr ""
 
-#: templates/layout/partials/footer.html:6
+#: templates/layout/partials/footer.html:8
 msgid "By"
 msgstr ""
 
-#: templates/layout/partials/footer.html:10
+#: templates/layout/partials/footer.html:12
 msgid "Fin de l abonnement"
 msgstr ""
 
-#: templates/layout/partials/header.html:22
+#: templates/layout/partials/header.html:23
 msgid "Home"
 msgstr ""
 
-#: templates/layout/partials/header.html:25
+#: templates/layout/partials/header.html:26
 msgid "La fabrique"
 msgstr ""
 
-#: templates/layout/partials/header.html:29
+#: templates/layout/partials/header.html:30
 msgid "La boutique"
 msgstr ""
 
-#: templates/layout/partials/sidebar_boutique.html:22
-#: templates/layout/partials/sidebar_fabrique.html:22
-#: templates/layout/partials/sidebar_manager.html:22
+#: templates/layout/partials/sidebar_boutique.html:23
+#: templates/layout/partials/sidebar_fabrique.html:23
+#: templates/layout/partials/sidebar_manager.html:23
 msgid "Vérouiller la session"
 msgstr ""
 
-#: templates/layout/partials/sidebar_boutique.html:36
-#: templates/layout/partials/sidebar_fabrique.html:35
-#: templates/layout/partials/sidebar_manager.html:35
+#: templates/layout/partials/sidebar_boutique.html:37
+#: templates/layout/partials/sidebar_fabrique.html:36
+#: templates/layout/partials/sidebar_manager.html:36
 msgid "Tableau de bord"
 msgstr ""
 
-#: templates/layout/partials/sidebar_boutique.html:39
-#: templates/layout/partials/sidebar_manager.html:38
+#: templates/layout/partials/sidebar_boutique.html:40
+#: templates/layout/partials/sidebar_manager.html:39
 msgid "Liste des clients"
 msgstr ""
 
-#: templates/layout/partials/sidebar_boutique.html:45
-#: templates/layout/partials/sidebar_manager.html:44
+#: templates/layout/partials/sidebar_boutique.html:46
+#: templates/layout/partials/sidebar_manager.html:45
 msgid "Commandes de clients"
 msgstr ""
 
-#: templates/layout/partials/sidebar_boutique.html:54
-#: templates/layout/partials/sidebar_manager.html:51
+#: templates/layout/partials/sidebar_boutique.html:55
+#: templates/layout/partials/sidebar_manager.html:52
 msgid "Livraisons en cours"
 msgstr ""
 
-#: templates/layout/partials/sidebar_boutique.html:63
-#: templates/layout/partials/sidebar_manager.html:58
+#: templates/layout/partials/sidebar_boutique.html:64
+#: templates/layout/partials/sidebar_manager.html:59
 msgid "Conversions de briques"
 msgstr ""
 
-#: templates/layout/partials/sidebar_boutique.html:72
-#: templates/layout/partials/sidebar_fabrique.html:42
-#: templates/layout/partials/sidebar_manager.html:76
+#: templates/layout/partials/sidebar_boutique.html:73
+#: templates/layout/partials/sidebar_fabrique.html:43
+#: templates/layout/partials/sidebar_manager.html:77
 msgid "Stock de briques"
 msgstr ""
 
-#: templates/layout/partials/sidebar_boutique.html:75
-#: templates/layout/partials/sidebar_fabrique.html:66
-#: templates/layout/partials/sidebar_manager.html:99
-#: templates/layout/partials/sidebar_manager.html:106
-msgid "Perte de briques"
-msgstr ""
-
-#: templates/layout/partials/sidebar_boutique.html:83
-msgid "Proforma par zone"
-msgstr ""
-
-#: templates/layout/partials/sidebar_boutique.html:86
-#: templates/layout/partials/sidebar_fabrique.html:90
-#: templates/layout/partials/sidebar_manager.html:85
-msgid "Rapport du Jour"
-msgstr ""
-
-#: templates/layout/partials/sidebar_boutique.html:93
-#: templates/layout/partials/sidebar_manager.html:111
-msgid "Payements tricycles"
-msgstr ""
-
-#: templates/layout/partials/sidebar_boutique.html:102
-#: templates/layout/partials/sidebar_fabrique.html:102
-msgid "La Caisse"
-msgstr ""
-
-#: templates/layout/partials/sidebar_fabrique.html:45
-msgid "Stock de ressources"
-msgstr ""
-
-#: templates/layout/partials/sidebar_fabrique.html:52
-#: templates/layout/partials/sidebar_manager.html:62
-msgid "Les productions"
-msgstr ""
-
-#: templates/layout/partials/sidebar_fabrique.html:64
-msgid "Les pertes</span><span class="
-msgstr ""
-
+#: templates/layout/partials/sidebar_boutique.html:76
 #: templates/layout/partials/sidebar_fabrique.html:67
 #: templates/layout/partials/sidebar_manager.html:100
 #: templates/layout/partials/sidebar_manager.html:107
-msgid "Perte de ressources"
+msgid "Perte de briques"
 msgstr ""
 
-#: templates/layout/partials/sidebar_fabrique.html:76
-msgid "Liste des Fournisseurs"
+#: templates/layout/partials/sidebar_boutique.html:84
+msgid "Proforma par zone"
 msgstr ""
 
-#: templates/layout/partials/sidebar_fabrique.html:79
-msgid "Approvisionnements"
+#: templates/layout/partials/sidebar_boutique.html:87
+#: templates/layout/partials/sidebar_fabrique.html:91
+#: templates/layout/partials/sidebar_manager.html:86
+msgid "Rapport du Jour"
 msgstr ""
 
-#: templates/layout/partials/sidebar_fabrique.html:94
-msgid "Rapport de production"
+#: templates/layout/partials/sidebar_boutique.html:94
+#: templates/layout/partials/sidebar_manager.html:112
+msgid "Payements tricycles"
 msgstr ""
 
-#: templates/layout/partials/sidebar_manager.html:65
+#: templates/layout/partials/sidebar_boutique.html:103
+#: templates/layout/partials/sidebar_fabrique.html:103
+msgid "La Caisse"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:46
+msgid "Stock de ressources"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:53
+#: templates/layout/partials/sidebar_manager.html:63
+msgid "Les productions"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:56
+#: templates/layout/partials/sidebar_manager.html:66
 msgid "Achat de briques"
 msgstr ""
 
-#: templates/layout/partials/sidebar_manager.html:88
-msgid "Rapport du production"
-msgstr ""
-
-#: templates/layout/partials/sidebar_manager.html:91
-msgid "Coût de producton"
-msgstr ""
-
-#: templates/layout/partials/sidebar_manager.html:97
-msgid "Les agences"
-msgstr ""
-
-#: templates/layout/partials/sidebar_manager.html:104
+#: templates/layout/partials/sidebar_fabrique.html:65
+#: templates/layout/partials/sidebar_manager.html:105
 msgid "Les pertes"
 msgstr ""
 
-#: templates/layout/partials/sidebar_manager.html:118
+#: templates/layout/partials/sidebar_fabrique.html:68
+#: templates/layout/partials/sidebar_manager.html:101
+#: templates/layout/partials/sidebar_manager.html:108
+msgid "Perte de ressources"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:77
+msgid "Liste des Fournisseurs"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:80
+msgid "Approvisionnements"
+msgstr ""
+
+#: templates/layout/partials/sidebar_fabrique.html:95
+msgid "Rapport de production"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:89
+msgid "Rapport du production"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:92
+msgid "Coût de producton"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:98
+msgid "Les agences"
+msgstr ""
+
+#: templates/layout/partials/sidebar_manager.html:119
 msgid "Trésorerie générale"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"POT-Creation-Date: 2022-07-13 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,62 +56,62 @@ msgstr ""
 msgid "L'accès est déjà refusé à cet employé, veuillez d'abor le débloquer !"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/agence.html:6
+#: administrationApp/templates/admin/modals/agence.html:7
 msgid "Formulaire de agences"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/agence.html:7
-#: administrationApp/templates/admin/modals/chauffeur.html:7
-#: administrationApp/templates/admin/modals/compte.html:7
-#: administrationApp/templates/admin/modals/produit.html:8
+#: administrationApp/templates/admin/modals/agence.html:8
+#: administrationApp/templates/admin/modals/chauffeur.html:8
+#: administrationApp/templates/admin/modals/compte.html:8
+#: administrationApp/templates/admin/modals/produit.html:9
 msgid "Renseigner ces champs pour enregistrer les informations"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/agence.html:13
+#: administrationApp/templates/admin/modals/agence.html:14
 msgid "Nom du l'agence"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/agence.html:19
-#: administrationApp/templates/admin/modals/chauffeur.html:19
-#: administrationApp/templates/admin/modals/infos.html:27
+#: administrationApp/templates/admin/modals/agence.html:20
+#: administrationApp/templates/admin/modals/chauffeur.html:20
+#: administrationApp/templates/admin/modals/infos.html:28
 msgid "Situation géographique"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/agence.html:28
-#: administrationApp/templates/admin/modals/categorie_operation.html:26
-#: administrationApp/templates/admin/modals/chauffeur.html:44
-#: administrationApp/templates/admin/modals/compte.html:43
-#: administrationApp/templates/admin/modals/employe.html:55
-#: administrationApp/templates/admin/modals/exigence.html:39
-#: administrationApp/templates/admin/modals/infos.html:72
-#: administrationApp/templates/admin/modals/payes_produits.html:36
-#: administrationApp/templates/admin/modals/payes_produits.html:80
-#: administrationApp/templates/admin/modals/prix.html:25
-#: administrationApp/templates/admin/modals/produit.html:40
-#: administrationApp/templates/admin/modals/ressource.html:28
-#: administrationApp/templates/admin/modals/vehicule.html:39
-#: administrationApp/templates/admin/modals/zone.html:22
-msgid "Annuler"
-msgstr ""
-
 #: administrationApp/templates/admin/modals/agence.html:29
+#: administrationApp/templates/admin/modals/categorie_operation.html:27
 #: administrationApp/templates/admin/modals/chauffeur.html:45
 #: administrationApp/templates/admin/modals/compte.html:44
 #: administrationApp/templates/admin/modals/employe.html:56
+#: administrationApp/templates/admin/modals/exigence.html:40
+#: administrationApp/templates/admin/modals/infos.html:73
+#: administrationApp/templates/admin/modals/payes_produits.html:37
+#: administrationApp/templates/admin/modals/payes_produits.html:82
+#: administrationApp/templates/admin/modals/prix.html:26
+#: administrationApp/templates/admin/modals/produit.html:41
+#: administrationApp/templates/admin/modals/ressource.html:29
+#: administrationApp/templates/admin/modals/vehicule.html:40
+#: administrationApp/templates/admin/modals/zone.html:23
+msgid "Annuler"
+msgstr ""
+
+#: administrationApp/templates/admin/modals/agence.html:30
+#: administrationApp/templates/admin/modals/chauffeur.html:46
+#: administrationApp/templates/admin/modals/compte.html:45
+#: administrationApp/templates/admin/modals/employe.html:57
 msgid "Valider le formulaire"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/categorie_operation.html:7
+#: administrationApp/templates/admin/modals/categorie_operation.html:8
 msgid "Formulaire des type d'operations"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/categorie_operation.html:13
+#: administrationApp/templates/admin/modals/categorie_operation.html:14
 msgid "Type d'opération"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/categorie_operation.html:17
-#: administrationApp/templates/admin/modals/ressource.html:13
-#: administrationApp/templates/admin/modals/zone.html:13
+#: administrationApp/templates/admin/modals/categorie_operation.html:18
+#: administrationApp/templates/admin/modals/ressource.html:14
+#: administrationApp/templates/admin/modals/zone.html:14
 #: administrationApp/templates/admin/pages/agence.html:95
 #: administrationApp/templates/admin/pages/caisse.html:27
 #: administrationApp/templates/admin/pages/caisse.html:112
@@ -120,235 +120,235 @@ msgstr ""
 msgid "Libéllé"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/categorie_operation.html:27
-#: administrationApp/templates/admin/modals/exigence.html:40
-#: administrationApp/templates/admin/modals/payes_produits.html:37
-#: administrationApp/templates/admin/modals/payes_produits.html:81
-#: administrationApp/templates/admin/modals/prix.html:26
-#: administrationApp/templates/admin/modals/produit.html:41
-#: administrationApp/templates/admin/modals/ressource.html:29
-#: administrationApp/templates/admin/modals/vehicule.html:40
-#: administrationApp/templates/admin/modals/zone.html:23
+#: administrationApp/templates/admin/modals/categorie_operation.html:28
+#: administrationApp/templates/admin/modals/exigence.html:41
+#: administrationApp/templates/admin/modals/payes_produits.html:38
+#: administrationApp/templates/admin/modals/payes_produits.html:83
+#: administrationApp/templates/admin/modals/prix.html:27
+#: administrationApp/templates/admin/modals/produit.html:42
+#: administrationApp/templates/admin/modals/ressource.html:30
+#: administrationApp/templates/admin/modals/vehicule.html:41
+#: administrationApp/templates/admin/modals/zone.html:24
 msgid "Enregistrer"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/chauffeur.html:6
+#: administrationApp/templates/admin/modals/chauffeur.html:7
 msgid "Formulaire pour le personnel roulant"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/chauffeur.html:13
+#: administrationApp/templates/admin/modals/chauffeur.html:14
 msgid "Nom & Prenom"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/chauffeur.html:25
-#: administrationApp/templates/admin/modals/employe.html:37
+#: administrationApp/templates/admin/modals/chauffeur.html:26
+#: administrationApp/templates/admin/modals/employe.html:38
 #: administrationApp/templates/admin/pages/agence.html:245
 msgid "Contact"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/chauffeur.html:31
+#: administrationApp/templates/admin/modals/chauffeur.html:32
 msgid "Photo du chauffeur"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/chauffeur.html:35
-#: administrationApp/templates/admin/modals/employe.html:47
-#: administrationApp/templates/admin/modals/infos.html:64
-#: administrationApp/templates/admin/modals/produit.html:33
-#: administrationApp/templates/admin/modals/vehicule.html:30
+#: administrationApp/templates/admin/modals/chauffeur.html:36
+#: administrationApp/templates/admin/modals/employe.html:48
+#: administrationApp/templates/admin/modals/infos.html:65
+#: administrationApp/templates/admin/modals/produit.html:34
+#: administrationApp/templates/admin/modals/vehicule.html:31
 msgid "Ajouter une image"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/compte.html:6
+#: administrationApp/templates/admin/modals/compte.html:7
 msgid "Formulaire des comptes & banques"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/compte.html:13
+#: administrationApp/templates/admin/modals/compte.html:14
 msgid "Nom du compte"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/compte.html:19
+#: administrationApp/templates/admin/modals/compte.html:20
 msgid "Solde du compte"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/compte.html:27
+#: administrationApp/templates/admin/modals/compte.html:28
 msgid "Etablissement si banque"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/compte.html:33
+#: administrationApp/templates/admin/modals/compte.html:34
 #: administrationApp/templates/admin/pages/caisse.html:150
 msgid "N° de compte"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/employe.html:7
+#: administrationApp/templates/admin/modals/employe.html:8
 msgid "Formulaire des employés"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/employe.html:8
+#: administrationApp/templates/admin/modals/employe.html:9
 msgid "Renseigner ces champs pour enregistrer l'employé"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/employe.html:15
+#: administrationApp/templates/admin/modals/employe.html:16
 msgid "Nom"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/employe.html:21
+#: administrationApp/templates/admin/modals/employe.html:22
 msgid "Lieu d'habitation"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/employe.html:27
+#: administrationApp/templates/admin/modals/employe.html:28
 msgid "Adresse email"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/employe.html:43
+#: administrationApp/templates/admin/modals/employe.html:44
 msgid "Photo de l'employé"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/exigence.html:9
+#: administrationApp/templates/admin/modals/exigence.html:10
 msgid "Formulaire des exigence de production"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/exigence.html:10
+#: administrationApp/templates/admin/modals/exigence.html:11
 msgid ""
 "Veuillez saisir les quantités de chaque ressources néccessaire pour la "
 "production"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/exigence.html:21
+#: administrationApp/templates/admin/modals/exigence.html:22
 msgid "utilise"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/infos.html:6
+#: administrationApp/templates/admin/modals/infos.html:7
 msgid "Informations générales"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/infos.html:12
+#: administrationApp/templates/admin/modals/infos.html:13
 msgid "Raison sociale"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/infos.html:18
-#: administrationApp/templates/admin/pages/general.html:34
+#: administrationApp/templates/admin/modals/infos.html:19
+#: administrationApp/templates/admin/pages/general.html:35
 msgid "Email"
 msgstr "E-posta"
 
-#: administrationApp/templates/admin/modals/infos.html:33
-#: administrationApp/templates/admin/pages/general.html:29
+#: administrationApp/templates/admin/modals/infos.html:34
+#: administrationApp/templates/admin/pages/general.html:30
 msgid "Contacts"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/infos.html:39
-#: administrationApp/templates/admin/pages/general.html:46
+#: administrationApp/templates/admin/modals/infos.html:40
+#: administrationApp/templates/admin/pages/general.html:47
 msgid "Fax"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/infos.html:48
+#: administrationApp/templates/admin/modals/infos.html:49
 msgid "Boîte postale"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/infos.html:54
-#: administrationApp/templates/admin/pages/general.html:51
+#: administrationApp/templates/admin/modals/infos.html:55
+#: administrationApp/templates/admin/pages/general.html:52
 msgid "Devise"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/infos.html:60
-#: administrationApp/templates/admin/pages/general.html:57
+#: administrationApp/templates/admin/modals/infos.html:61
+#: administrationApp/templates/admin/pages/general.html:58
 msgid "Votre logo"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/infos.html:73
+#: administrationApp/templates/admin/modals/infos.html:74
 msgid "Mettre à jour les infos"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/payes_produits.html:8
+#: administrationApp/templates/admin/modals/payes_produits.html:9
 msgid "Prix de paye du produit"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/payes_produits.html:15
+#: administrationApp/templates/admin/modals/payes_produits.html:16
 msgid "est payé à"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/payes_produits.html:18
-#: administrationApp/templates/admin/modals/payes_produits.html:62
-#: administrationApp/templates/admin/pages/prices.html:98
-#: administrationApp/templates/admin/pages/prices.html:134
+#: administrationApp/templates/admin/modals/payes_produits.html:19
+#: administrationApp/templates/admin/modals/payes_produits.html:64
+#: administrationApp/templates/admin/pages/prices.html:99
+#: administrationApp/templates/admin/pages/prices.html:135
 msgid "Production"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/payes_produits.html:22
-#: administrationApp/templates/admin/modals/payes_produits.html:66
-#: administrationApp/templates/admin/pages/prices.html:99
-#: administrationApp/templates/admin/pages/prices.html:135
+#: administrationApp/templates/admin/modals/payes_produits.html:23
+#: administrationApp/templates/admin/modals/payes_produits.html:68
+#: administrationApp/templates/admin/pages/prices.html:100
+#: administrationApp/templates/admin/pages/prices.html:136
 msgid "Rangement"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/payes_produits.html:26
-#: administrationApp/templates/admin/modals/payes_produits.html:70
-#: administrationApp/templates/admin/pages/prices.html:100
-#: administrationApp/templates/admin/pages/prices.html:136
+#: administrationApp/templates/admin/modals/payes_produits.html:27
+#: administrationApp/templates/admin/modals/payes_produits.html:72
+#: administrationApp/templates/admin/pages/prices.html:101
+#: administrationApp/templates/admin/pages/prices.html:137
 msgid "Livraison"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/payes_produits.html:52
+#: administrationApp/templates/admin/modals/payes_produits.html:54
 msgid "Prix de paye du produit les jours fériés"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/prix.html:6
+#: administrationApp/templates/admin/modals/prix.html:7
 msgid "Formulaire des prix"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/prix.html:10
+#: administrationApp/templates/admin/modals/prix.html:11
 msgid "Pour la zone"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/produit.html:7
+#: administrationApp/templates/admin/modals/produit.html:8
 msgid "Formulaire de produits"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/produit.html:14
+#: administrationApp/templates/admin/modals/produit.html:15
 msgid "Nom du produit"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/produit.html:20
+#: administrationApp/templates/admin/modals/produit.html:21
 msgid "Description du produit"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/produit.html:29
+#: administrationApp/templates/admin/modals/produit.html:30
 msgid "Image"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/ressource.html:6
+#: administrationApp/templates/admin/modals/ressource.html:7
 msgid "Formulaire de ressource"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/ressource.html:7
+#: administrationApp/templates/admin/modals/ressource.html:8
 msgid "Veuillez renseigner les champs pour enregistrer la ressource"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/ressource.html:19
+#: administrationApp/templates/admin/modals/ressource.html:20
 msgid "Unité de mesure"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/vehicule.html:6
+#: administrationApp/templates/admin/modals/vehicule.html:7
 msgid "Formulaire du véhicule"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/vehicule.html:7
+#: administrationApp/templates/admin/modals/vehicule.html:8
 msgid "Renseigner ces champs pour enregistrer le véhicule"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/vehicule.html:14
+#: administrationApp/templates/admin/modals/vehicule.html:15
 #: administrationApp/templates/admin/pages/agence.html:205
 msgid "Immatriculation"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/vehicule.html:20
+#: administrationApp/templates/admin/modals/vehicule.html:21
 msgid "Le modèle & marque du vehicule"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/vehicule.html:26
+#: administrationApp/templates/admin/modals/vehicule.html:27
 msgid "Image du véhicule"
 msgstr ""
 
-#: administrationApp/templates/admin/modals/zone.html:8
+#: administrationApp/templates/admin/modals/zone.html:9
 msgid "Zone de livraison"
 msgstr ""
 
@@ -377,7 +377,7 @@ msgid "Raison sociale de l'agence"
 msgstr ""
 
 #: administrationApp/templates/admin/pages/agence.html:38
-#: administrationApp/templates/admin/pages/general.html:24
+#: administrationApp/templates/admin/pages/general.html:25
 msgid "Situation Géographique"
 msgstr ""
 
@@ -434,7 +434,7 @@ msgid "Définir le stock de briques initial"
 msgstr ""
 
 #: administrationApp/templates/admin/pages/agence.html:140
-#: administrationApp/templates/admin/pages/prices.html:24
+#: administrationApp/templates/admin/pages/prices.html:25
 msgid "Prix des produits par zone de livraison"
 msgstr ""
 
@@ -608,75 +608,75 @@ msgstr ""
 msgid "Etablissement"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:18
+#: administrationApp/templates/admin/pages/dashboard.html:19
 msgid "Infos générales"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:19
+#: administrationApp/templates/admin/pages/dashboard.html:20
 msgid "Nom, adresse, contact, logo de sté"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:38
+#: administrationApp/templates/admin/pages/dashboard.html:39
 msgid "Roles & accès"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:39
+#: administrationApp/templates/admin/pages/dashboard.html:40
 msgid "Définir les droits et les accès"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:58
+#: administrationApp/templates/admin/pages/dashboard.html:59
 msgid "Mon compte"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:59
+#: administrationApp/templates/admin/pages/dashboard.html:60
 msgid "Info compte, Abonnement, formule"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:86
+#: administrationApp/templates/admin/pages/dashboard.html:87
 msgid "Unité d'organisation"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:87
+#: administrationApp/templates/admin/pages/dashboard.html:88
 msgid "Agences, stocks initiaux"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:106
+#: administrationApp/templates/admin/pages/dashboard.html:107
 msgid "Elements de production"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:107
+#: administrationApp/templates/admin/pages/dashboard.html:108
 msgid "Produits, ressources, Exigence de production"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:126
+#: administrationApp/templates/admin/pages/dashboard.html:127
 msgid "Barème des prix"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:127
+#: administrationApp/templates/admin/pages/dashboard.html:128
 msgid "Etablir vos barèmes de prix et de paye"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:143
+#: administrationApp/templates/admin/pages/dashboard.html:144
 msgid "Config de la caisse"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/dashboard.html:144
+#: administrationApp/templates/admin/pages/dashboard.html:145
 msgid "Compte en banque, caisse, gestion"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/general.html:10
+#: administrationApp/templates/admin/pages/general.html:11
 msgid "Configuration des informations générales de la structure"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/general.html:17
+#: administrationApp/templates/admin/pages/general.html:18
 msgid "Raison sociale ou nom de la société"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/general.html:41
+#: administrationApp/templates/admin/pages/general.html:42
 msgid "Boite Postale"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/general.html:63
+#: administrationApp/templates/admin/pages/general.html:64
 msgid "Modifier les informations"
 msgstr ""
 
@@ -788,26 +788,26 @@ msgstr ""
 msgid "Liste de vos Agences"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/prices.html:14
+#: administrationApp/templates/admin/pages/prices.html:15
 msgid "Prix chez"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/prices.html:86
-#: administrationApp/templates/admin/pages/prices.html:122
+#: administrationApp/templates/admin/pages/prices.html:87
+#: administrationApp/templates/admin/pages/prices.html:123
 msgid "Paye par production"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/prices.html:89
-#: administrationApp/templates/admin/pages/prices.html:125
+#: administrationApp/templates/admin/pages/prices.html:90
+#: administrationApp/templates/admin/pages/prices.html:126
 msgid "Modifier les prix"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/prices.html:97
-#: administrationApp/templates/admin/pages/prices.html:133
+#: administrationApp/templates/admin/pages/prices.html:98
+#: administrationApp/templates/admin/pages/prices.html:134
 msgid "Briques"
 msgstr ""
 
-#: administrationApp/templates/admin/pages/prices.html:122
+#: administrationApp/templates/admin/pages/prices.html:123
 msgid "dimanches & jours fériés"
 msgstr ""
 

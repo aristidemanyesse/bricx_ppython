@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"POT-Creation-Date: 2022-07-13 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,197 +48,197 @@ msgstr ""
 msgid "Quantité de"
 msgstr ""
 
-#: productionApp/templates/production/modals/perte_produit.html:8
-#: productionApp/templates/production/modals/perte_ressource.html:8
-#: productionApp/templates/production/pages/perte_brique.html:16
-#: productionApp/templates/production/pages/perte_ressource.html:16
-#: productionApp/templates/production/pages/stock_brique.html:11
-#: productionApp/templates/production/pages/stock_ressource.html:11
+#: productionApp/templates/production/modals/perte_produit.html:9
+#: productionApp/templates/production/modals/perte_ressource.html:9
+#: productionApp/templates/production/pages/perte_brique.html:17
+#: productionApp/templates/production/pages/perte_ressource.html:17
+#: productionApp/templates/production/pages/stock_brique.html:13
+#: productionApp/templates/production/pages/stock_ressource.html:13
 msgid "Enregistrer une perte"
 msgstr ""
 
-#: productionApp/templates/production/modals/perte_produit.html:9
-#: productionApp/templates/production/modals/perte_ressource.html:9
+#: productionApp/templates/production/modals/perte_produit.html:10
+#: productionApp/templates/production/modals/perte_ressource.html:10
 msgid "Veuillez renseigner les informations pour enregistrer la perte"
 msgstr ""
 
-#: productionApp/templates/production/modals/perte_produit.html:15
+#: productionApp/templates/production/modals/perte_produit.html:16
 msgid "Produit perdu"
 msgstr ""
 
-#: productionApp/templates/production/modals/perte_produit.html:21
-#: productionApp/templates/production/modals/perte_ressource.html:21
+#: productionApp/templates/production/modals/perte_produit.html:22
+#: productionApp/templates/production/modals/perte_ressource.html:22
 msgid "Quantité perdue"
 msgstr ""
 
-#: productionApp/templates/production/modals/perte_produit.html:29
-#: productionApp/templates/production/modals/perte_ressource.html:29
+#: productionApp/templates/production/modals/perte_produit.html:30
+#: productionApp/templates/production/modals/perte_ressource.html:30
 msgid "Cause de la perte"
 msgstr ""
 
-#: productionApp/templates/production/modals/perte_produit.html:35
-#: productionApp/templates/production/modals/perte_ressource.html:35
+#: productionApp/templates/production/modals/perte_produit.html:36
+#: productionApp/templates/production/modals/perte_ressource.html:36
 msgid "Plus de détails"
-msgstr ""
-
-#: productionApp/templates/production/modals/perte_produit.html:45
-#: productionApp/templates/production/modals/perte_ressource.html:45
-#: productionApp/templates/production/modals/rangement.html:31
-msgid "Annuler"
 msgstr ""
 
 #: productionApp/templates/production/modals/perte_produit.html:46
 #: productionApp/templates/production/modals/perte_ressource.html:46
+#: productionApp/templates/production/modals/rangement.html:32
+msgid "Annuler"
+msgstr ""
+
+#: productionApp/templates/production/modals/perte_produit.html:47
+#: productionApp/templates/production/modals/perte_ressource.html:47
 msgid "Enregistrer la perte"
 msgstr ""
 
-#: productionApp/templates/production/modals/perte_ressource.html:15
+#: productionApp/templates/production/modals/perte_ressource.html:16
 msgid "Ressource perdue"
 msgstr ""
 
-#: productionApp/templates/production/modals/production.html:7
+#: productionApp/templates/production/modals/production.html:8
 msgid "La production du jour"
 msgstr ""
 
-#: productionApp/templates/production/modals/production.html:8
+#: productionApp/templates/production/modals/production.html:9
 msgid "Enregistrez les quantités produites de briques"
 msgstr ""
 
-#: productionApp/templates/production/modals/production.html:26
+#: productionApp/templates/production/modals/production.html:27
 msgid "Consommation des matières premières pour toute la production"
 msgstr ""
 
-#: productionApp/templates/production/modals/production.html:45
+#: productionApp/templates/production/modals/production.html:46
 msgid "Finaliser la production"
 msgstr ""
 
-#: productionApp/templates/production/modals/production.html:49
+#: productionApp/templates/production/modals/production.html:50
 msgid "Ajouter une note"
 msgstr ""
 
-#: productionApp/templates/production/modals/production.html:52
+#: productionApp/templates/production/modals/production.html:53
 msgid "Valider la production"
 msgstr ""
 
-#: productionApp/templates/production/modals/rangement.html:9
+#: productionApp/templates/production/modals/rangement.html:10
 msgid "Rangement de la production"
 msgstr ""
 
-#: productionApp/templates/production/modals/rangement.html:10
+#: productionApp/templates/production/modals/rangement.html:11
 msgid "La production du"
 msgstr ""
 
-#: productionApp/templates/production/modals/rangement.html:20
+#: productionApp/templates/production/modals/rangement.html:21
 msgid "rangée"
 msgstr ""
 
-#: productionApp/templates/production/modals/rangement.html:32
+#: productionApp/templates/production/modals/rangement.html:33
 msgid "Valider le rangement"
 msgstr ""
 
-#: productionApp/templates/production/pages/perte_brique.html:11
+#: productionApp/templates/production/pages/perte_brique.html:12
 msgid "Les pertes de briques"
 msgstr ""
 
-#: productionApp/templates/production/pages/perte_brique.html:23
-#: productionApp/templates/production/pages/perte_ressource.html:23
+#: productionApp/templates/production/pages/perte_brique.html:24
+#: productionApp/templates/production/pages/perte_ressource.html:24
 msgid "Toutes les pertes survenues dans cette agence"
-msgstr ""
-
-#: productionApp/templates/production/pages/perte_brique.html:33
-#: productionApp/templates/production/pages/perte_ressource.html:33
-msgid "Brique"
 msgstr ""
 
 #: productionApp/templates/production/pages/perte_brique.html:34
 #: productionApp/templates/production/pages/perte_ressource.html:34
-msgid "Qté"
+msgid "Brique"
 msgstr ""
 
 #: productionApp/templates/production/pages/perte_brique.html:35
 #: productionApp/templates/production/pages/perte_ressource.html:35
-msgid "Agence"
+msgid "Qté"
 msgstr ""
 
 #: productionApp/templates/production/pages/perte_brique.html:36
 #: productionApp/templates/production/pages/perte_ressource.html:36
-#: productionApp/templates/production/pages/productions.html:33
-msgid "Enregistré par"
+msgid "Agence"
 msgstr ""
 
 #: productionApp/templates/production/pages/perte_brique.html:37
 #: productionApp/templates/production/pages/perte_ressource.html:37
-#: productionApp/templates/production/pages/productions.html:35
+#: productionApp/templates/production/pages/productions.html:34
+msgid "Enregistré par"
+msgstr ""
+
+#: productionApp/templates/production/pages/perte_brique.html:38
+#: productionApp/templates/production/pages/perte_ressource.html:38
+#: productionApp/templates/production/pages/productions.html:36
 msgid "Action"
 msgstr "Seçenekler"
 
-#: productionApp/templates/production/pages/perte_brique.html:50
-#: productionApp/templates/production/pages/perte_ressource.html:50
+#: productionApp/templates/production/pages/perte_brique.html:51
+#: productionApp/templates/production/pages/perte_ressource.html:51
 msgid "Emise"
 msgstr ""
 
-#: productionApp/templates/production/pages/perte_ressource.html:11
+#: productionApp/templates/production/pages/perte_ressource.html:12
 msgid "Les pertes de ressources"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:10
+#: productionApp/templates/production/pages/productions.html:11
 msgid "Productions & rangements"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:13
+#: productionApp/templates/production/pages/productions.html:14
 msgid "Production du jour"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:20
+#: productionApp/templates/production/pages/productions.html:21
 msgid "Toutes les productions non rangées"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:30
+#: productionApp/templates/production/pages/productions.html:31
 msgid "Status"
 msgstr "Durum"
 
-#: productionApp/templates/production/pages/productions.html:32
+#: productionApp/templates/production/pages/productions.html:33
 msgid "Date"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:46
+#: productionApp/templates/production/pages/productions.html:47
 msgid "Production non rangé"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:48
+#: productionApp/templates/production/pages/productions.html:49
 msgid "Production déjà rangé"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:69
+#: productionApp/templates/production/pages/productions.html:70
 msgid "Produite"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:76
+#: productionApp/templates/production/pages/productions.html:77
 msgid "Rangées"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:82
+#: productionApp/templates/production/pages/productions.html:83
 msgid "Perte"
 msgstr ""
 
-#: productionApp/templates/production/pages/productions.html:96
+#: productionApp/templates/production/pages/productions.html:97
 msgid "Faire le rangement"
 msgstr ""
 
-#: productionApp/templates/production/pages/stock_brique.html:9
+#: productionApp/templates/production/pages/stock_brique.html:11
 msgid "Stock de briques"
 msgstr ""
 
-#: productionApp/templates/production/pages/stock_brique.html:35
-#: productionApp/templates/production/pages/stock_ressource.html:37
+#: productionApp/templates/production/pages/stock_brique.html:37
+#: productionApp/templates/production/pages/stock_ressource.html:39
 msgid "Historiques du"
 msgstr ""
 
-#: productionApp/templates/production/pages/stock_brique.html:35
-#: productionApp/templates/production/pages/stock_ressource.html:37
+#: productionApp/templates/production/pages/stock_brique.html:37
+#: productionApp/templates/production/pages/stock_ressource.html:39
 msgid "au"
 msgstr ""
 
-#: productionApp/templates/production/pages/stock_ressource.html:9
+#: productionApp/templates/production/pages/stock_ressource.html:11
 msgid "Stock de ressources"
 msgstr ""

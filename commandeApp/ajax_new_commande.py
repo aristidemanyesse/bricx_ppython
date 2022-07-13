@@ -8,7 +8,7 @@ from comptabilityApp.models import CompteClient, ModePayement, Mouvement, Reglem
 from clientApp.models import Client
 from coreApp.models import Etat
 from django.urls import reverse
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 from django.contrib.humanize.templatetags.humanize import intcomma
 # Create your views here.
@@ -234,7 +234,7 @@ def changer_produit(request):
         datas = request.POST
         try :
             if "groupecommande_id" not in request.session:
-                return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer !"))})
+                return JsonResponse({"status": False, "message": _("Erreur lors de l'opération', veuillez recommencer !")})
 
             total = 0
             tableau = datas["tableau"].split(",")

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"POT-Creation-Date: 2022-07-13 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,8 +112,8 @@ msgid ""
 msgstr ""
 
 #: approvisionnementApp/ajax_achatstock.py:125
-#: approvisionnementApp/templates/appros/modals/achatstock.html:55
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:85
+#: approvisionnementApp/templates/appros/modals/achatstock.html:56
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:86
 msgid "Frais de transport"
 msgstr ""
 
@@ -183,260 +183,260 @@ msgstr ""
 msgid "Approvisionnement N°"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:7
+#: approvisionnementApp/templates/appros/modals/achatstock.html:8
 msgid "Nouvel achat de brique"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:8
+#: approvisionnementApp/templates/appros/modals/achatstock.html:9
 msgid "Renseigner ces champs pour enregistrer le nouvel achat"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:15
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:15
+#: approvisionnementApp/templates/appros/modals/achatstock.html:16
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:16
 msgid "Les produits de la commande"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:37
+#: approvisionnementApp/templates/appros/modals/achatstock.html:38
 msgid "Finaliser l'achat"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:42
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:42
+#: approvisionnementApp/templates/appros/modals/achatstock.html:43
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:43
 msgid "Le fournisseur"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:48
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:48
+#: approvisionnementApp/templates/appros/modals/achatstock.html:49
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:49
 msgid "Etat de l'approvisionnement"
-msgstr ""
-
-#: approvisionnementApp/templates/appros/modals/achatstock.html:50
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:50
-msgid "Pas encore livré"
 msgstr ""
 
 #: approvisionnementApp/templates/appros/modals/achatstock.html:51
 #: approvisionnementApp/templates/appros/modals/approvisionnement.html:51
+msgid "Pas encore livré"
+msgstr ""
+
+#: approvisionnementApp/templates/appros/modals/achatstock.html:52
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:52
 msgid "Déjà livré"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:61
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:55
-#: approvisionnementApp/templates/appros/modals/crediter.html:18
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:18
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:18
-#: approvisionnementApp/templates/appros/modals/rembourser.html:17
+#: approvisionnementApp/templates/appros/modals/achatstock.html:62
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:56
+#: approvisionnementApp/templates/appros/modals/crediter.html:19
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:19
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:19
+#: approvisionnementApp/templates/appros/modals/rembourser.html:18
 msgid "Mode de payement"
 msgstr "Ödeme şekli"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:68
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:62
+#: approvisionnementApp/templates/appros/modals/achatstock.html:69
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:63
 msgid "Montant avancé"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:76
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:71
-#: approvisionnementApp/templates/appros/modals/crediter.html:26
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:25
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:25
-#: approvisionnementApp/templates/appros/modals/rembourser.html:24
+#: approvisionnementApp/templates/appros/modals/achatstock.html:77
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:72
+#: approvisionnementApp/templates/appros/modals/crediter.html:27
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:26
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:26
+#: approvisionnementApp/templates/appros/modals/rembourser.html:25
 msgid "Structure d'encaissement"
 msgstr "Koleksiyon yapısı"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:82
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:77
-#: approvisionnementApp/templates/appros/modals/crediter.html:32
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:31
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:31
-#: approvisionnementApp/templates/appros/modals/rembourser.html:30
+#: approvisionnementApp/templates/appros/modals/achatstock.html:83
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:78
+#: approvisionnementApp/templates/appros/modals/crediter.html:33
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:32
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:32
+#: approvisionnementApp/templates/appros/modals/rembourser.html:31
 msgid "N° numero dédié"
 msgstr "Adanmış numara"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:89
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:92
+#: approvisionnementApp/templates/appros/modals/achatstock.html:90
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:93
 msgid "Montant brut"
-msgstr ""
-
-#: approvisionnementApp/templates/appros/modals/achatstock.html:91
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:94
-msgid "Avance"
 msgstr ""
 
 #: approvisionnementApp/templates/appros/modals/achatstock.html:92
 #: approvisionnementApp/templates/appros/modals/approvisionnement.html:95
+msgid "Avance"
+msgstr ""
+
+#: approvisionnementApp/templates/appros/modals/achatstock.html:93
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:96
 #: approvisionnementApp/templates/appros/pages/achatstock.html:39
 msgid "Reste"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:94
+#: approvisionnementApp/templates/appros/modals/achatstock.html:95
 msgid "Valider l'achat de ce stock"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:7
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:8
 msgid "Nouvel approvisionnement de ressource"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:8
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:9
 msgid "Renseigner ces champs pour enregistrer l'approvisonnement"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:37
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:50
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:38
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:51
 msgid "Finaliser l'approvisionnement"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:98
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:99
 msgid "Valider l'approvisionnement"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/crediter.html:6
+#: approvisionnementApp/templates/appros/modals/crediter.html:7
 msgid "Créditer le compte du forunisseur"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/crediter.html:12
+#: approvisionnementApp/templates/appros/modals/crediter.html:13
 msgid "Montant à créditer"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/crediter.html:40
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:79
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:40
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:40
-#: approvisionnementApp/templates/appros/modals/rembourser.html:38
+#: approvisionnementApp/templates/appros/modals/crediter.html:41
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:80
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:41
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:41
+#: approvisionnementApp/templates/appros/modals/rembourser.html:39
 msgid "Annuler"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/crediter.html:41
+#: approvisionnementApp/templates/appros/modals/crediter.html:42
 msgid "Créditer le compte"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:7
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:8
 msgid "Formulaire des fournisseurs de ressource"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:8
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:9
 msgid "Renseigner ces champs pour enregistrer les informations"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:15
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:16
 msgid "Raison sociale (ou Nom)"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:21
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:22
 msgid "Situation géographique"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:27
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:28
 msgid "Adresse email"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:36
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:37
 msgid "Contact"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:42
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:43
 msgid "Description"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:48
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:49
 msgid "Photo ou logo"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:52
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:53
 msgid "Ajouter une image"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:60
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:61
 msgid "Acompte initial"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:66
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:67
 msgid "Dette initiale"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:80
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:81
 msgid "Valider le formulaire"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:6
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:7
 msgid "Reglement de l' achat de stock"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:7
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:7
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:8
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:8
 msgid "Veuillez renseigner le mpontant à regler"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:12
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:12
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:13
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:13
 msgid "Montant à regler"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:41
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:41
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:42
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:42
 msgid "Régler pour ce montant"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:6
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:7
 msgid "Reglement de l' approvisionnement"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/rembourser.html:6
+#: approvisionnementApp/templates/appros/modals/rembourser.html:7
 msgid "Se faire Rembourser par le fournisseur"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/rembourser.html:11
+#: approvisionnementApp/templates/appros/modals/rembourser.html:12
 msgid "Montant pour le reglement"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/rembourser.html:39
+#: approvisionnementApp/templates/appros/modals/rembourser.html:40
 #: approvisionnementApp/templates/appros/pages/achatstock.html:95
 #: approvisionnementApp/templates/appros/pages/approvisionnements.html:100
 msgid "Valider"
 msgstr "Doğrulamak"
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:9
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:10
 msgid "Validation de l'achat de stock"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:10
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:11
 msgid "Renseigner ces champs pour terminer l'achat de stock"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:18
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:19
 msgid "Les produits effectivement reçus"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:34
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:34
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:35
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:35
 msgid "Quantité livrée"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:50
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:51
 msgid "Finaliser l'achat de stock"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:54
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:54
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:55
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:55
 msgid "Commentaire"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:57
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:58
 msgid "Terminer l'achat"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:9
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:10
 msgid "Validation de l'approvisionnement"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:10
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:11
 msgid "Renseigner ces champs pour terminer l'approvisionnement"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:18
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:19
 msgid "Les ressources effectivement reçus"
 msgstr ""
 
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:57
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:58
 msgid "Terminer l'approvisionnement"
 msgstr ""
 

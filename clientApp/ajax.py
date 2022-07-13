@@ -11,7 +11,7 @@ from comptabilityApp.tools import mouvement_pour_entree, mouvement_pour_sortie, 
 from clientApp.models import Client
 from authApp.tools import verify_password
 # Create your views here.
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"POT-Creation-Date: 2022-07-13 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -224,15 +224,15 @@ msgid ""
 "Pour toute autre chose, veuillez contacter votre administrateur système."
 msgstr "Başka bir şey için lütfen sistem yöneticinize başvurun."
 
-#: authApp/templates/auth/pages/login.html:45
+#: authApp/templates/auth/pages/login.html:44
 msgid "Identifiant"
 msgstr "ID"
 
-#: authApp/templates/auth/pages/login.html:48
+#: authApp/templates/auth/pages/login.html:47
 msgid "Mot de passe"
 msgstr "Parola"
 
-#: authApp/templates/auth/pages/login.html:55
+#: authApp/templates/auth/pages/login.html:54
 msgid "Se connecter"
 msgstr "Giriş yapmak"
 

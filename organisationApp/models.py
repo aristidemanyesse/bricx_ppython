@@ -7,6 +7,7 @@ from comptabilityApp.models import Compte
 import uuid
 from coreApp.models import BaseModel
 import productionApp.models 
+from django.utils.translation import gettext as _
 
 
 class Agence(BaseModel):

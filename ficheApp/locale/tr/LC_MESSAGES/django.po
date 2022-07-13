@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"POT-Creation-Date: 2022-07-13 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:25
-#: ficheApp/templates/fiches/pages/approvisionnement.html:25
-#: ficheApp/templates/fiches/pages/boncaisse.html:26
-#: ficheApp/templates/fiches/pages/commande.html:26
-#: ficheApp/templates/fiches/pages/livraison.html:26
-#: ficheApp/templates/fiches/pages/prixparzone.html:26
-#: ficheApp/templates/fiches/pages/prixparzone.html:75
-#: ficheApp/templates/fiches/pages/production.html:24
-msgid "Tél"
-msgstr "telefon"
-
 #: ficheApp/templates/fiches/pages/achatstock.html:26
 #: ficheApp/templates/fiches/pages/approvisionnement.html:26
 #: ficheApp/templates/fiches/pages/boncaisse.html:27
@@ -37,105 +26,116 @@ msgstr "telefon"
 #: ficheApp/templates/fiches/pages/prixparzone.html:27
 #: ficheApp/templates/fiches/pages/prixparzone.html:76
 #: ficheApp/templates/fiches/pages/production.html:25
+msgid "Tél"
+msgstr "telefon"
+
+#: ficheApp/templates/fiches/pages/achatstock.html:27
+#: ficheApp/templates/fiches/pages/approvisionnement.html:27
+#: ficheApp/templates/fiches/pages/boncaisse.html:28
+#: ficheApp/templates/fiches/pages/commande.html:28
+#: ficheApp/templates/fiches/pages/livraison.html:28
+#: ficheApp/templates/fiches/pages/prixparzone.html:28
+#: ficheApp/templates/fiches/pages/prixparzone.html:77
+#: ficheApp/templates/fiches/pages/production.html:26
 msgid "Email"
 msgstr "e-posta"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:31
+#: ficheApp/templates/fiches/pages/achatstock.html:32
 msgid "Reçu d'achat de stock"
 msgstr "Stok Satın Alma Fişi"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:34
-#: ficheApp/templates/fiches/pages/approvisionnement.html:34
-#: ficheApp/templates/fiches/pages/commande.html:35
-#: ficheApp/templates/fiches/pages/livraison.html:35
+#: ficheApp/templates/fiches/pages/achatstock.html:35
+#: ficheApp/templates/fiches/pages/approvisionnement.html:35
+#: ficheApp/templates/fiches/pages/commande.html:36
+#: ficheApp/templates/fiches/pages/livraison.html:36
 msgid "Bon édité par"
 msgstr "İyi tarafından düzenlendi"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:40
-#: ficheApp/templates/fiches/pages/approvisionnement.html:40
+#: ficheApp/templates/fiches/pages/achatstock.html:41
+#: ficheApp/templates/fiches/pages/approvisionnement.html:41
 msgid "Fournisseur"
 msgstr "Satici"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:44
-#: ficheApp/templates/fiches/pages/approvisionnement.html:44
-#: ficheApp/templates/fiches/pages/commande.html:46
+#: ficheApp/templates/fiches/pages/achatstock.html:45
+#: ficheApp/templates/fiches/pages/approvisionnement.html:45
+#: ficheApp/templates/fiches/pages/commande.html:47
 msgid "Livraison prévue pour le"
 msgstr "Teslimat için planlanan "
-
-#: ficheApp/templates/fiches/pages/achatstock.html:52
-#: ficheApp/templates/fiches/pages/approvisionnement.html:52
-#: ficheApp/templates/fiches/pages/commande.html:54
-#: ficheApp/templates/fiches/pages/prixparzone.html:47
-msgid "Prix unitaire"
-msgstr "Birim fiyat"
 
 #: ficheApp/templates/fiches/pages/achatstock.html:53
 #: ficheApp/templates/fiches/pages/approvisionnement.html:53
 #: ficheApp/templates/fiches/pages/commande.html:55
+#: ficheApp/templates/fiches/pages/prixparzone.html:48
+msgid "Prix unitaire"
+msgstr "Birim fiyat"
+
+#: ficheApp/templates/fiches/pages/achatstock.html:54
+#: ficheApp/templates/fiches/pages/approvisionnement.html:54
+#: ficheApp/templates/fiches/pages/commande.html:56
 msgid "Quantité"
 msgstr "Tutar"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:54
-#: ficheApp/templates/fiches/pages/achatstock.html:77
-#: ficheApp/templates/fiches/pages/approvisionnement.html:54
-#: ficheApp/templates/fiches/pages/approvisionnement.html:77
-#: ficheApp/templates/fiches/pages/commande.html:56
+#: ficheApp/templates/fiches/pages/achatstock.html:55
+#: ficheApp/templates/fiches/pages/achatstock.html:78
+#: ficheApp/templates/fiches/pages/approvisionnement.html:55
+#: ficheApp/templates/fiches/pages/approvisionnement.html:78
+#: ficheApp/templates/fiches/pages/commande.html:57
 msgid "Total"
 msgstr "Toplam"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:82
-#: ficheApp/templates/fiches/pages/approvisionnement.html:82
-#: ficheApp/templates/fiches/pages/commande.html:85
+#: ficheApp/templates/fiches/pages/achatstock.html:83
+#: ficheApp/templates/fiches/pages/approvisionnement.html:83
+#: ficheApp/templates/fiches/pages/commande.html:86
 msgid "TVA"
 msgstr "KDV"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:90
-#: ficheApp/templates/fiches/pages/approvisionnement.html:90
+#: ficheApp/templates/fiches/pages/achatstock.html:91
+#: ficheApp/templates/fiches/pages/approvisionnement.html:91
 msgid "Montant total à payer"
 msgstr "Ödenecek toplam tutar"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:97
-#: ficheApp/templates/fiches/pages/approvisionnement.html:97
-#: ficheApp/templates/fiches/pages/commande.html:100
+#: ficheApp/templates/fiches/pages/achatstock.html:98
+#: ficheApp/templates/fiches/pages/approvisionnement.html:98
+#: ficheApp/templates/fiches/pages/commande.html:101
 msgid "Avance sur montant"
 msgstr "miktar avansı"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:99
-#: ficheApp/templates/fiches/pages/approvisionnement.html:99
-#: ficheApp/templates/fiches/pages/commande.html:102
+#: ficheApp/templates/fiches/pages/achatstock.html:100
+#: ficheApp/templates/fiches/pages/approvisionnement.html:100
+#: ficheApp/templates/fiches/pages/commande.html:103
 msgid "Réglement par prélèvement sur acompte"
 msgstr "Otomatik ödeme ile ödeme"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:101
-#: ficheApp/templates/fiches/pages/approvisionnement.html:101
+#: ficheApp/templates/fiches/pages/achatstock.html:102
+#: ficheApp/templates/fiches/pages/approvisionnement.html:102
 msgid "Réglement par"
 msgstr "tarafından yerleşim"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:109
-#: ficheApp/templates/fiches/pages/approvisionnement.html:109
-#: ficheApp/templates/fiches/pages/commande.html:111
+#: ficheApp/templates/fiches/pages/achatstock.html:110
+#: ficheApp/templates/fiches/pages/approvisionnement.html:110
+#: ficheApp/templates/fiches/pages/commande.html:112
 msgid "Reste à payer pour cette commande"
 msgstr "Hala bu sipariş için ödeme yapmak"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:118
-#: ficheApp/templates/fiches/pages/approvisionnement.html:118
+#: ficheApp/templates/fiches/pages/achatstock.html:119
+#: ficheApp/templates/fiches/pages/approvisionnement.html:119
 msgid "Solde de l'acompte du fournisseur"
 msgstr "Satıcı mevduat bakiyesi"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:126
-#: ficheApp/templates/fiches/pages/approvisionnement.html:124
+#: ficheApp/templates/fiches/pages/achatstock.html:127
+#: ficheApp/templates/fiches/pages/approvisionnement.html:125
 msgid "Dette totale envers le fournisseur"
 msgstr "Tedarikçiye toplam borç"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:136
-#: ficheApp/templates/fiches/pages/boncaisse.html:67
-#: ficheApp/templates/fiches/pages/commande.html:136
-#: ficheApp/templates/fiches/pages/livraison.html:131
+#: ficheApp/templates/fiches/pages/achatstock.html:137
+#: ficheApp/templates/fiches/pages/boncaisse.html:68
+#: ficheApp/templates/fiches/pages/commande.html:137
+#: ficheApp/templates/fiches/pages/livraison.html:132
 msgid "Signature & Cachet"
 msgstr "İmza ve Damga"
 
-#: ficheApp/templates/fiches/pages/achatstock.html:143
-#: ficheApp/templates/fiches/pages/commande.html:143
+#: ficheApp/templates/fiches/pages/achatstock.html:144
+#: ficheApp/templates/fiches/pages/commande.html:144
 msgid ""
 "Nous vous prions de vérifier l'exactitude de toutes les informations qui ont "
 "été mentionnées sur cette facture avant de quitter nos locaux !"
@@ -143,328 +143,327 @@ msgstr ""
 "Sahip olduğunuz tüm bilgilerin doğruluğunu doğrulamanızı istiyoruz "
 "Tesisimizden ayrılmadan önce bu faturada bahsedildi!"
 
-#: ficheApp/templates/fiches/pages/approvisionnement.html:31
+#: ficheApp/templates/fiches/pages/approvisionnement.html:32
 msgid "Bon d'approvisionnement"
 msgstr "Tedarik fişi"
 
-#: ficheApp/templates/fiches/pages/boncaisse.html:35
+#: ficheApp/templates/fiches/pages/boncaisse.html:36
 msgid "Bon délivré par"
 msgstr "tarafından verilen kupon"
 
-#: ficheApp/templates/fiches/pages/boncaisse.html:44
+#: ficheApp/templates/fiches/pages/boncaisse.html:45
 msgid "Opération par"
 msgstr "tarafından operasyon"
 
-#: ficheApp/templates/fiches/pages/boncaisse.html:47
+#: ficheApp/templates/fiches/pages/boncaisse.html:48
 msgid "Montant"
 msgstr "Yükselen"
 
-#: ficheApp/templates/fiches/pages/boncaisse.html:62
+#: ficheApp/templates/fiches/pages/boncaisse.html:63
 msgid "Signature du bénéficiaire"
 msgstr "yararlanıcının imzası"
 
-#: ficheApp/templates/fiches/pages/boncaisse.html:73
+#: ficheApp/templates/fiches/pages/boncaisse.html:74
 msgid "Aucun remboursement n'est admis après réglement !"
 msgstr "Ödeme yapıldıktan sonra geri ödeme yapılmaz!"
 
-#: ficheApp/templates/fiches/pages/commande.html:32
+#: ficheApp/templates/fiches/pages/commande.html:33
 msgid "Réçu de commande"
 msgstr "sipariş makbuzu"
 
-#: ficheApp/templates/fiches/pages/commande.html:41
-#: ficheApp/templates/fiches/pages/livraison.html:41
+#: ficheApp/templates/fiches/pages/commande.html:42
+#: ficheApp/templates/fiches/pages/livraison.html:42
 msgid "Zone de livraison"
 msgstr "Teslimat bölgesi"
 
-#: ficheApp/templates/fiches/pages/commande.html:42
-#: ficheApp/templates/fiches/pages/livraison.html:42
+#: ficheApp/templates/fiches/pages/commande.html:43
+#: ficheApp/templates/fiches/pages/livraison.html:43
 msgid "Lieu de livraison"
 msgstr "Teslimat yeri"
 
-#: ficheApp/templates/fiches/pages/commande.html:45
+#: ficheApp/templates/fiches/pages/commande.html:46
 msgid "Client"
 msgstr "Müşteri"
 
-#: ficheApp/templates/fiches/pages/commande.html:80
+#: ficheApp/templates/fiches/pages/commande.html:81
 msgid "Montant Total"
 msgstr "Toplam tutar"
 
-#: ficheApp/templates/fiches/pages/commande.html:93
+#: ficheApp/templates/fiches/pages/commande.html:94
 msgid "Net à payer"
 msgstr "net borç"
 
-#: ficheApp/templates/fiches/pages/commande.html:104
+#: ficheApp/templates/fiches/pages/commande.html:105
 msgid "Réglement"
 msgstr "Tüzük"
 
-#: ficheApp/templates/fiches/pages/commande.html:120
+#: ficheApp/templates/fiches/pages/commande.html:121
 msgid "Solde de l'acompte du client"
 msgstr "Müşteri mevduat bakiyesi"
 
-#: ficheApp/templates/fiches/pages/commande.html:126
+#: ficheApp/templates/fiches/pages/commande.html:127
 msgid "Dette totale du client"
 msgstr "Toplam müşteri borcu"
 
-#: ficheApp/templates/fiches/pages/livraison.html:32
+#: ficheApp/templates/fiches/pages/livraison.html:33
 msgid "Bon de livraison"
 msgstr "Teslimat formu"
 
-#: ficheApp/templates/fiches/pages/livraison.html:44
+#: ficheApp/templates/fiches/pages/livraison.html:45
 msgid "Mode de livraison"
 msgstr "Teslimat Yöntemi"
 
-#: ficheApp/templates/fiches/pages/livraison.html:52
+#: ficheApp/templates/fiches/pages/livraison.html:53
 msgid "Par les moyens du client"
 msgstr "Müşteri aracılığıyla"
 
-#: ficheApp/templates/fiches/pages/livraison.html:67
+#: ficheApp/templates/fiches/pages/livraison.html:68
 msgid "Quantité à livrer"
 msgstr "Teslim edilecek miktar"
 
-#: ficheApp/templates/fiches/pages/livraison.html:68
+#: ficheApp/templates/fiches/pages/livraison.html:69
 msgid "Surplus"
 msgstr "fazlalık"
 
-#: ficheApp/templates/fiches/pages/livraison.html:69
+#: ficheApp/templates/fiches/pages/livraison.html:70
 msgid "Quantité livrées"
 msgstr "Teslim edilen miktarlar"
 
-#: ficheApp/templates/fiches/pages/livraison.html:70
+#: ficheApp/templates/fiches/pages/livraison.html:71
 msgid "perte"
 msgstr "kayıp"
 
-#: ficheApp/templates/fiches/pages/livraison.html:107
+#: ficheApp/templates/fiches/pages/livraison.html:108
 msgid "Observation du client"
 msgstr "Müşteri gözlemi"
 
-#: ficheApp/templates/fiches/pages/livraison.html:112
+#: ficheApp/templates/fiches/pages/livraison.html:113
 msgid "Livraison reçue le"
 msgstr "Teslim alınan tarih"
 
-#: ficheApp/templates/fiches/pages/livraison.html:116
-#: ficheApp/templates/fiches/pages/production.html:120
+#: ficheApp/templates/fiches/pages/livraison.html:117
+#: ficheApp/templates/fiches/pages/production.html:121
 msgid "Observation"
 msgstr "Gözlem"
 
-#: ficheApp/templates/fiches/pages/livraison.html:120
+#: ficheApp/templates/fiches/pages/livraison.html:121
 msgid "Noms, contacts & signature"
 msgstr "İsimler, kişiler ve imza"
 
-#: ficheApp/templates/fiches/pages/livraison.html:139
+#: ficheApp/templates/fiches/pages/livraison.html:140
 msgid ""
 "Nous vous prions de vérifier l'exactitude de toutes les informations qui ont "
 "été mentionnées sur cette facture avant de quitter la boutique !"
 msgstr ""
-"Sahip olduğunuz tüm bilgilerin doğruluğunu doğrulamanızı istiyoruz "
-"dükkandan çıkmadan önce bu faturada bahsedildi!"
+"Sahip olduğunuz tüm bilgilerin doğruluğunu doğrulamanızı istiyoruz dükkandan "
+"çıkmadan önce bu faturada bahsedildi!"
 
-#: ficheApp/templates/fiches/pages/prixparzone.html:32
+#: ficheApp/templates/fiches/pages/prixparzone.html:33
 msgid "Proforma de prix"
 msgstr "Proforma fiyat"
 
-#: ficheApp/templates/fiches/pages/prixparzone.html:39
+#: ficheApp/templates/fiches/pages/prixparzone.html:40
 msgid "Pour la zone de livraison de"
 msgstr "Teslimat alanı için"
 
-#: ficheApp/templates/fiches/pages/prixparzone.html:46
+#: ficheApp/templates/fiches/pages/prixparzone.html:47
 msgid "Brique"
 msgstr "Tuğla"
 
-#: ficheApp/templates/fiches/pages/production.html:33
+#: ficheApp/templates/fiches/pages/production.html:34
 msgid "Production effectuée par"
 msgstr "tarafından gerçekleştirilen üretim"
 
-#: ficheApp/templates/fiches/pages/production.html:35
+#: ficheApp/templates/fiches/pages/production.html:36
 msgid "Production rangée par"
 msgstr "Üretim sıralaması"
 
-#: ficheApp/templates/fiches/pages/production.html:42
+#: ficheApp/templates/fiches/pages/production.html:43
 msgid "Date"
 msgstr "Tarih"
 
-#: ficheApp/templates/fiches/pages/production.html:43
+#: ficheApp/templates/fiches/pages/production.html:44
 msgid "Heure"
 msgstr "Saat"
 
-#: ficheApp/templates/fiches/pages/production.html:47
+#: ficheApp/templates/fiches/pages/production.html:48
 msgid "Fabrique"
 msgstr "Yaptı"
 
-#: ficheApp/templates/fiches/pages/production.html:63
+#: ficheApp/templates/fiches/pages/production.html:64
 msgid "Quantité produite"
 msgstr "Üretilen miktar"
 
-#: ficheApp/templates/fiches/pages/production.html:73
+#: ficheApp/templates/fiches/pages/production.html:74
 msgid "Ressources utilisées"
 msgstr "Kullanılan kaynaklar"
 
-#: ficheApp/templates/fiches/pages/production.html:91
+#: ficheApp/templates/fiches/pages/production.html:92
 msgid "Coût d'achat"
 msgstr "satın alma maliyeti"
 
-#: ficheApp/templates/fiches/pages/production.html:95
-#: ficheApp/templates/rapports/pages/production.html:69
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:261
+#: ficheApp/templates/fiches/pages/production.html:96
+#: ficheApp/templates/rapports/pages/production.html:70
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:262
 msgid "Coût de production"
 msgstr "Üretim maliyeti"
 
-#: ficheApp/templates/fiches/pages/production.html:99
+#: ficheApp/templates/fiches/pages/production.html:100
 msgid "Coût de production totale"
 msgstr "Toplam üretim maliyeti"
 
-#: ficheApp/templates/rapports/pages/production.html:12
+#: ficheApp/templates/rapports/pages/production.html:13
 msgid "Du"
 msgstr ""
 
-#: ficheApp/templates/rapports/pages/production.html:12
+#: ficheApp/templates/rapports/pages/production.html:13
 msgid "au"
 msgstr ""
 
-#: ficheApp/templates/rapports/pages/production.html:19
+#: ficheApp/templates/rapports/pages/production.html:20
 msgid ""
 "Tableau comparatif des productions par rapport aux pertes sur la période"
-msgstr ""
-"Dönemdeki kayıplara kıyasla karşılaştırmalı üretim tablosu"
+msgstr "Dönemdeki kayıplara kıyasla karşılaştırmalı üretim tablosu"
 
-#: ficheApp/templates/rapports/pages/production.html:31
+#: ficheApp/templates/rapports/pages/production.html:32
 msgid "Stock au {{veille}}"
 msgstr "Envanter %%"
 
-#: ficheApp/templates/rapports/pages/production.html:32
+#: ficheApp/templates/rapports/pages/production.html:33
 msgid "Production"
 msgstr "Üretme"
 
-#: ficheApp/templates/rapports/pages/production.html:33
+#: ficheApp/templates/rapports/pages/production.html:34
 msgid "acheté"
 msgstr "satın alınmış"
 
-#: ficheApp/templates/rapports/pages/production.html:34
+#: ficheApp/templates/rapports/pages/production.html:35
 msgid "Livraison"
 msgstr "Teslimat"
 
-#: ficheApp/templates/rapports/pages/production.html:35
+#: ficheApp/templates/rapports/pages/production.html:36
 msgid "Perte"
 msgstr "Kayıp"
 
-#: ficheApp/templates/rapports/pages/production.html:36
+#: ficheApp/templates/rapports/pages/production.html:37
 msgid "Stock au {{fin}}"
 msgstr "Envanter %%"
 
-#: ficheApp/templates/rapports/pages/production.html:39
+#: ficheApp/templates/rapports/pages/production.html:40
 msgid "Livr."
 msgstr "Teslimat"
 
-#: ficheApp/templates/rapports/pages/production.html:40
+#: ficheApp/templates/rapports/pages/production.html:41
 msgid "Rang."
 msgstr "depolama"
 
-#: ficheApp/templates/rapports/pages/production.html:41
+#: ficheApp/templates/rapports/pages/production.html:42
 msgid "Autre"
 msgstr "Başka"
 
-#: ficheApp/templates/rapports/pages/production.html:42
+#: ficheApp/templates/rapports/pages/production.html:43
 #, python-format
 msgid "Prct%%"
 msgstr "Prct%%"
 
-#: ficheApp/templates/rapports/pages/production.html:73
+#: ficheApp/templates/rapports/pages/production.html:74
 msgid "Coût de rangement"
 msgstr "depolama maliyeti"
 
-#: ficheApp/templates/rapports/pages/production.html:77
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:267
+#: ficheApp/templates/rapports/pages/production.html:78
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:268
 msgid "Coût de livraison"
 msgstr "Teslimat maliyeti"
 
-#: ficheApp/templates/rapports/pages/production.html:81
+#: ficheApp/templates/rapports/pages/production.html:82
 msgid "Paye des tricycles"
 msgstr "Üç tekerlekli bisikletler için ödeme yapın"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:13
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:24
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:14
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:25
 msgid "Recapitulatif de la journée"
 msgstr "günün özeti"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:25
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:26
 msgid "du"
 msgstr ""
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:34
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:35
 msgid "Commandes du jour"
 msgstr "günün siparişleri"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:64
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:65
 msgid "Aucune commande ce jour"
 msgstr "Bugün sipariş yok"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:75
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:76
 msgid "Livraisons du jour"
 msgstr "Günlük teslimatlar"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:105
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:106
 msgid "Aucune livraison ce jour"
 msgstr "Bugün teslimat yok"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:117
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:118
 msgid "Production du jour"
 msgstr "Günün üretimi"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:149
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:150
 msgid "Approvisionnements du jour"
 msgstr "Günlük sarf malzemeleri"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:179
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:180
 msgid "Aucune approvisionnement ce jour"
 msgstr "Bugün tedarik yok"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:197
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:198
 msgid "Entrée"
 msgstr "Toplamak"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:198
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:199
 msgid "Sortie"
 msgstr "harcanan"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:199
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:200
 msgid "Résultats"
 msgstr "Sonuçlar"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:204
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:205
 msgid "Report de la caisse"
 msgstr "Nakit erteleme"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:235
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:236
 msgid "Total des comptes au {{date}}"
 msgstr "Toplam hesaplar %%"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:249
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:250
 msgid "Employés connectés"
 msgstr "Bağlı çalışanlar"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:259
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:260
 msgid "Coût de la production"
 msgstr "Üretim maliyeti"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:264
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:265
 msgid "Coût de Rangement"
 msgstr "Depolama Maliyeti"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:274
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:275
 msgid "SOLDE DU COMPTE"
 msgstr "HESAP BAKİYESİ"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:277
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:278
 msgid "Solde en Ouverture"
 msgstr "Açılış Satışı"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:284
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:285
 msgid "Entrées du jour"
 msgstr "günün makbuzlarıgünün makbuzları"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:288
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:289
 msgid "Dépenses du jour"
 msgstr "Günün giderleri"
 
-#: ficheApp/templates/rapports/pages/rapport_du_jour.html:293
+#: ficheApp/templates/rapports/pages/rapport_du_jour.html:294
 msgid "Solde à la fermeture"
 msgstr "Kapanış bakiyesi"

@@ -8,7 +8,7 @@ from django.http import  JsonResponse
 import uuid, datetime
 from django.contrib.sessions.backends.db import SessionStore
 # Create your views here.
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 
 

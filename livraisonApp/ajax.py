@@ -9,7 +9,7 @@ from commandeApp.models import GroupeCommande, ZoneLivraison
 from coreApp.models import Etat
 from django.urls import reverse
 from comptabilityApp.tools import mouvement_pour_sortie
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 def livraison(request):
     if request.method == "POST":

@@ -1,4 +1,5 @@
-{% load static %}
+{% load static %} 
+{% load i18n %}
 {% load myfilters %}
 {% load humanize %}
 
@@ -52,7 +53,7 @@
                     <a href="{% url 'fabrique:production:productions' %}"><i class="fa fa-building-o"></i> <span class="nav-label">{% translate "Les productions" %}</span></a>
                 </li>
                 <li class="" id="achatstock">
-                    <a href="{% url 'fabrique:appros:achatstock' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">{% translate "Achat de briques </span> 
+                    <a href="{% url 'fabrique:appros:achatstock' %}"><i class="fa fa-handshake-o"></i> <span class="nav-label">{% translate "Achat de briques" %} </span> 
                         {% if request.achats|length > 0 %}
                         <span class="label label-warning float-right">{{request.achats|length|start0}}</span>
                         {% endif %}
@@ -61,7 +62,7 @@
                 {% endif %}
                 {% if perms.paramApp.stock %}
                 <li >
-                    <a href="#"><i class="fa fa-trash"></i> <span class="nav-label">{% translate "Les pertes</span><span class="fa arrow">" %}</span></a>
+                    <a href="#"><i class="fa fa-trash"></i> <span class="nav-label">{% translate "Les pertes" %}</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li id="perte_brique"><a href="{% url 'fabrique:production:perte_brique' %}">{% translate "Perte de briques" %}</a></li>
                         <li id="perte_ressource"><a href="{% url 'fabrique:production:perte_ressource' %}">{% translate "Perte de ressources" %}</a></li>

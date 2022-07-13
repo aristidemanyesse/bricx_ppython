@@ -6,7 +6,7 @@ from django.db.models import Avg, Sum
 from django.db.models.signals import pre_save
 from django.dispatch.dispatcher import receiver
 from coreApp.models import BaseModel, Etat
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 # Create your models here.
 

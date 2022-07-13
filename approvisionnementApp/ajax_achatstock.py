@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse, JsonResponse
 from django.contrib.humanize.templatetags.humanize import intcomma
 import datetime
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 def new_produit(request):
     if request.method == "POST":

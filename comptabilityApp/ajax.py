@@ -5,7 +5,7 @@ from comptabilityApp.tools import mouvement_pour_entree, mouvement_pour_sortie, 
 from django.urls import reverse
 from authApp.tools import verify_password
 from coreApp.models import Etat
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 def operation(request):
     if request.method == "POST":

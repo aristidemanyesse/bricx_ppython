@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"POT-Creation-Date: 2022-07-13 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,8 +116,8 @@ msgstr ""
 "taşınması!"
 
 #: approvisionnementApp/ajax_achatstock.py:125
-#: approvisionnementApp/templates/appros/modals/achatstock.html:55
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:85
+#: approvisionnementApp/templates/appros/modals/achatstock.html:56
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:86
 msgid "Frais de transport"
 msgstr "Navlun maliyetleri"
 
@@ -187,260 +187,260 @@ msgstr "N° hisse senedinin satın alınması"
 msgid "Approvisionnement N°"
 msgstr "Tedarik Yok"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:7
+#: approvisionnementApp/templates/appros/modals/achatstock.html:8
 msgid "Nouvel achat de brique"
 msgstr "Yeni Tuğla Satın Alma"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:8
+#: approvisionnementApp/templates/appros/modals/achatstock.html:9
 msgid "Renseigner ces champs pour enregistrer le nouvel achat"
 msgstr "Yeni satın alma işlemini kaydetmek için bu alanları doldurun"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:15
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:15
+#: approvisionnementApp/templates/appros/modals/achatstock.html:16
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:16
 msgid "Les produits de la commande"
 msgstr "Siparişin ürünleri"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:37
+#: approvisionnementApp/templates/appros/modals/achatstock.html:38
 msgid "Finaliser l'achat"
 msgstr "Alışverişi tamamla"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:42
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:42
+#: approvisionnementApp/templates/appros/modals/achatstock.html:43
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:43
 msgid "Le fournisseur"
 msgstr "Tedarikçi"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:48
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:48
+#: approvisionnementApp/templates/appros/modals/achatstock.html:49
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:49
 msgid "Etat de l'approvisionnement"
 msgstr "Tedarik Durumu"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:50
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:50
+#: approvisionnementApp/templates/appros/modals/achatstock.html:51
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:51
 msgid "Pas encore livré"
 msgstr "Henüz teslim edilmedi"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:51
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:51
+#: approvisionnementApp/templates/appros/modals/achatstock.html:52
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:52
 msgid "Déjà livré"
 msgstr "Zaten teslim edildi"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:61
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:55
-#: approvisionnementApp/templates/appros/modals/crediter.html:18
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:18
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:18
-#: approvisionnementApp/templates/appros/modals/rembourser.html:17
+#: approvisionnementApp/templates/appros/modals/achatstock.html:62
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:56
+#: approvisionnementApp/templates/appros/modals/crediter.html:19
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:19
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:19
+#: approvisionnementApp/templates/appros/modals/rembourser.html:18
 msgid "Mode de payement"
 msgstr "Ödeme şekli"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:68
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:62
+#: approvisionnementApp/templates/appros/modals/achatstock.html:69
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:63
 msgid "Montant avancé"
 msgstr "Gelişmiş miktar"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:76
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:71
-#: approvisionnementApp/templates/appros/modals/crediter.html:26
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:25
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:25
-#: approvisionnementApp/templates/appros/modals/rembourser.html:24
+#: approvisionnementApp/templates/appros/modals/achatstock.html:77
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:72
+#: approvisionnementApp/templates/appros/modals/crediter.html:27
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:26
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:26
+#: approvisionnementApp/templates/appros/modals/rembourser.html:25
 msgid "Structure d'encaissement"
 msgstr "Koleksiyon yapısıKoleksiyon yapısı"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:82
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:77
-#: approvisionnementApp/templates/appros/modals/crediter.html:32
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:31
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:31
-#: approvisionnementApp/templates/appros/modals/rembourser.html:30
+#: approvisionnementApp/templates/appros/modals/achatstock.html:83
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:78
+#: approvisionnementApp/templates/appros/modals/crediter.html:33
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:32
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:32
+#: approvisionnementApp/templates/appros/modals/rembourser.html:31
 msgid "N° numero dédié"
 msgstr "Adanmış numara"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:89
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:92
+#: approvisionnementApp/templates/appros/modals/achatstock.html:90
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:93
 msgid "Montant brut"
 msgstr "Ham fiyatlar"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:91
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:94
+#: approvisionnementApp/templates/appros/modals/achatstock.html:92
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:95
 msgid "Avance"
 msgstr "İlerlemek"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:92
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:95
+#: approvisionnementApp/templates/appros/modals/achatstock.html:93
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:96
 #: approvisionnementApp/templates/appros/pages/achatstock.html:39
 msgid "Reste"
 msgstr "Kalmak"
 
-#: approvisionnementApp/templates/appros/modals/achatstock.html:94
+#: approvisionnementApp/templates/appros/modals/achatstock.html:95
 msgid "Valider l'achat de ce stock"
 msgstr "Bu hissenin satın alımını onayla"
 
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:7
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:8
 msgid "Nouvel approvisionnement de ressource"
 msgstr "Yeni Kaynak Temini"
 
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:8
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:9
 msgid "Renseigner ces champs pour enregistrer l'approvisonnement"
 msgstr "Tedarikten tasarruf etmek için bu alanları doldurun"
 
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:37
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:50
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:38
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:51
 msgid "Finaliser l'approvisionnement"
 msgstr "Satın Alma İşlemini Tamamlayın"
 
-#: approvisionnementApp/templates/appros/modals/approvisionnement.html:98
+#: approvisionnementApp/templates/appros/modals/approvisionnement.html:99
 msgid "Valider l'approvisionnement"
 msgstr "Tedarik doğrula"
 
-#: approvisionnementApp/templates/appros/modals/crediter.html:6
+#: approvisionnementApp/templates/appros/modals/crediter.html:7
 msgid "Créditer le compte du forunisseur"
 msgstr "Kredi tedarikçisinin hesabı"
 
-#: approvisionnementApp/templates/appros/modals/crediter.html:12
+#: approvisionnementApp/templates/appros/modals/crediter.html:13
 msgid "Montant à créditer"
 msgstr "Alacaklandırılacak miktar"
 
-#: approvisionnementApp/templates/appros/modals/crediter.html:40
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:79
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:40
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:40
-#: approvisionnementApp/templates/appros/modals/rembourser.html:38
+#: approvisionnementApp/templates/appros/modals/crediter.html:41
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:80
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:41
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:41
+#: approvisionnementApp/templates/appros/modals/rembourser.html:39
 msgid "Annuler"
 msgstr "İptal etmek"
 
-#: approvisionnementApp/templates/appros/modals/crediter.html:41
+#: approvisionnementApp/templates/appros/modals/crediter.html:42
 msgid "Créditer le compte"
 msgstr "Kredi hesabı"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:7
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:8
 msgid "Formulaire des fournisseurs de ressource"
 msgstr "Kaynak Sağlayıcı Formu"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:8
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:9
 msgid "Renseigner ces champs pour enregistrer les informations"
 msgstr "Bilgileri kaydetmek için bu alanları doldurun"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:15
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:16
 msgid "Raison sociale (ou Nom)"
 msgstr "Şirket adı (veya Adı)"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:21
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:22
 msgid "Situation géographique"
 msgstr "Coğrafi konum"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:27
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:28
 msgid "Adresse email"
 msgstr "E-posta adresi"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:36
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:37
 msgid "Contact"
 msgstr "İletişim"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:42
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:43
 msgid "Description"
 msgstr "Tanım"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:48
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:49
 msgid "Photo ou logo"
 msgstr "Resim veya logo"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:52
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:53
 msgid "Ajouter une image"
 msgstr "Resim Ekle"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:60
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:61
 msgid "Acompte initial"
 msgstr "İlk depozito"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:66
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:67
 msgid "Dette initiale"
 msgstr "İlk Borç"
 
-#: approvisionnementApp/templates/appros/modals/fournisseur.html:80
+#: approvisionnementApp/templates/appros/modals/fournisseur.html:81
 msgid "Valider le formulaire"
 msgstr "Formu doğrula"
 
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:6
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:7
 msgid "Reglement de l' achat de stock"
 msgstr "Hisse alımına ilişkin düzenlemeler"
 
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:7
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:7
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:8
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:8
 msgid "Veuillez renseigner le mpontant à regler"
 msgstr "Lütfen ödenecek tutarı giriniz"
 
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:12
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:12
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:13
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:13
 msgid "Montant à regler"
 msgstr "Ödenecek tutar"
 
-#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:41
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:41
+#: approvisionnementApp/templates/appros/modals/regler_achatstock.html:42
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:42
 msgid "Régler pour ce montant"
 msgstr "Bu miktarı öde"
 
-#: approvisionnementApp/templates/appros/modals/regler_appro.html:6
+#: approvisionnementApp/templates/appros/modals/regler_appro.html:7
 msgid "Reglement de l' approvisionnement"
 msgstr "Tedarik Düzenlemeleri"
 
-#: approvisionnementApp/templates/appros/modals/rembourser.html:6
+#: approvisionnementApp/templates/appros/modals/rembourser.html:7
 msgid "Se faire Rembourser par le fournisseur"
 msgstr "Tedarikçi Tarafından Geri Ödeme Alın"
 
-#: approvisionnementApp/templates/appros/modals/rembourser.html:11
+#: approvisionnementApp/templates/appros/modals/rembourser.html:12
 msgid "Montant pour le reglement"
 msgstr "Uzlaşma için miktar"
 
-#: approvisionnementApp/templates/appros/modals/rembourser.html:39
+#: approvisionnementApp/templates/appros/modals/rembourser.html:40
 #: approvisionnementApp/templates/appros/pages/achatstock.html:95
 #: approvisionnementApp/templates/appros/pages/approvisionnements.html:100
 msgid "Valider"
 msgstr "DoğrulamakDoğrulamak"
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:9
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:10
 msgid "Validation de l'achat de stock"
 msgstr "Hisse alımının doğrulanması"
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:10
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:11
 msgid "Renseigner ces champs pour terminer l'achat de stock"
 msgstr "Stok alımını tamamlamak için bu alanları doldurun"
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:18
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:19
 msgid "Les produits effectivement reçus"
 msgstr "Ürünler gerçekten alındı"
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:34
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:34
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:35
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:35
 msgid "Quantité livrée"
 msgstr "Teslim edilen miktar"
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:50
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:51
 msgid "Finaliser l'achat de stock"
 msgstr "Envanter Satın Alma İşlemini Tamamlayın"
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:54
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:54
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:55
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:55
 msgid "Commentaire"
 msgstr "Yorum"
 
-#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:57
+#: approvisionnementApp/templates/appros/modals/terminer_achatstock.html:58
 msgid "Terminer l'achat"
 msgstr "Alışverişi tamamla"
 
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:9
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:10
 msgid "Validation de l'approvisionnement"
 msgstr "Tedarik Doğrulaması"
 
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:10
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:11
 msgid "Renseigner ces champs pour terminer l'approvisionnement"
 msgstr "Tedarik işlemini tamamlamak için bu alanları doldurun"
 
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:18
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:19
 msgid "Les ressources effectivement reçus"
 msgstr "Kaynaklar gerçekten alındı"
 
-#: approvisionnementApp/templates/appros/modals/terminer_appro.html:57
+#: approvisionnementApp/templates/appros/modals/terminer_appro.html:58
 msgid "Terminer l'approvisionnement"
 msgstr "Provizyonu Bitir"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 18:25+0000\n"
+"POT-Creation-Date: 2022-07-13 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,240 +68,240 @@ msgid "Groupe de commande de "
 msgstr "Komut grubu için"
 
 #: commandeApp/models.py:127
-#: commandeApp/templates/commande/modals/commande_infos.html:55
+#: commandeApp/templates/commande/modals/commande_infos.html:56
 msgid "Commande N°"
 msgstr "Sipariş No."
 
 #: commandeApp/models.py:151
-#: commandeApp/templates/commande/pages/conversions.html:43
+#: commandeApp/templates/commande/pages/conversions.html:44
 msgid "Conversion N°"
 msgstr "Dönüşüm No."
 
-#: commandeApp/templates/commande/modals/changer_produit.html:8
+#: commandeApp/templates/commande/modals/changer_produit.html:9
 msgid "Nouveau interchangement de produit"
 msgstr "Yeni ürün değişimi"
 
-#: commandeApp/templates/commande/modals/changer_produit.html:9
+#: commandeApp/templates/commande/modals/changer_produit.html:10
 msgid "Renseigner ces champs pour enregistrer le changement"
 msgstr "Değişikliği kaydetmek için bu alanları doldurun"
 
-#: commandeApp/templates/commande/modals/changer_produit.html:16
+#: commandeApp/templates/commande/modals/changer_produit.html:17
 msgid "Définissez le changement de briques"
 msgstr "Tuğla Değişimini Ayarla"
 
-#: commandeApp/templates/commande/modals/changer_produit.html:25
+#: commandeApp/templates/commande/modals/changer_produit.html:26
 msgid "Qté actuelle"
 msgstr "Mevcut Miktar"
 
-#: commandeApp/templates/commande/modals/changer_produit.html:27
+#: commandeApp/templates/commande/modals/changer_produit.html:28
 msgid "Nouvelle Qté"
 msgstr "Yeni miktar"
 
-#: commandeApp/templates/commande/modals/changer_produit.html:54
+#: commandeApp/templates/commande/modals/changer_produit.html:55
 msgid "Finaliser le changement"
 msgstr "Değişikliği Bitirin"
 
-#: commandeApp/templates/commande/modals/changer_produit.html:59
+#: commandeApp/templates/commande/modals/changer_produit.html:60
 msgid "Motif du changement"
 msgstr "Değişmek için sebep"
 
-#: commandeApp/templates/commande/modals/changer_produit.html:63
+#: commandeApp/templates/commande/modals/changer_produit.html:64
 msgid "Valider le changement"
 msgstr "Değişikliği onayla"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:20
+#: commandeApp/templates/commande/modals/commande_infos.html:21
 msgid "Tél"
 msgstr "Telefon"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:21
+#: commandeApp/templates/commande/modals/commande_infos.html:22
 msgid "Email"
 msgstr "E-posta"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:26
+#: commandeApp/templates/commande/modals/commande_infos.html:27
 msgid "Fiche de commande"
 msgstr "Sipariş formu"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:43
+#: commandeApp/templates/commande/modals/commande_infos.html:44
 msgid "RESTE A PAYER"
 msgstr "ÖDEME YAPILACAK"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:44
+#: commandeApp/templates/commande/modals/commande_infos.html:45
 msgid "OPTIONS"
 msgstr "SEÇENEKLER"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:51
+#: commandeApp/templates/commande/modals/commande_infos.html:52
 msgid "Supprimer la commande"
 msgstr "Siparişi Sil"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:58
+#: commandeApp/templates/commande/modals/commande_infos.html:59
 msgid "imprimer le bon de commande"
 msgstr "sipariş formunu yazdır"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:76
+#: commandeApp/templates/commande/modals/commande_infos.html:77
 msgid "Regler le reste"
 msgstr "Gerisini ayarla"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:90
+#: commandeApp/templates/commande/modals/commande_infos.html:91
 msgid "Livraison N°"
 msgstr "Teslimat No."
 
-#: commandeApp/templates/commande/modals/commande_infos.html:93
+#: commandeApp/templates/commande/modals/commande_infos.html:94
 msgid "imprimer le bon de livraison"
 msgstr "teslimat notunu yazdır"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:120
+#: commandeApp/templates/commande/modals/commande_infos.html:121
 msgid "Reste à livrer"
 msgstr "Teslim etmek için kalır"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:134
+#: commandeApp/templates/commande/modals/commande_infos.html:135
 msgid "Nouvelle commande"
 msgstr "Yeni sipariş"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:137
+#: commandeApp/templates/commande/modals/commande_infos.html:138
 msgid "Changement de produits"
 msgstr "Ürün değişimi"
 
-#: commandeApp/templates/commande/modals/commande_infos.html:140
+#: commandeApp/templates/commande/modals/commande_infos.html:141
 msgid "Faire livraison aujourd'hui"
 msgstr "Bugün teslim et"
 
-#: commandeApp/templates/commande/modals/liste_versement.html:8
+#: commandeApp/templates/commande/modals/liste_versement.html:9
 msgid "Versements pour la commande"
 msgstr "Sipariş için ödemeler"
 
-#: commandeApp/templates/commande/modals/liste_versement.html:18
+#: commandeApp/templates/commande/modals/liste_versement.html:19
 msgid "Payement par"
 msgstr "Ödeme ile"
 
-#: commandeApp/templates/commande/modals/liste_versement.html:22
+#: commandeApp/templates/commande/modals/liste_versement.html:23
 msgid "Restait à payer"
 msgstr "Hala ödenecek"
 
-#: commandeApp/templates/commande/modals/new_commande.html:8
+#: commandeApp/templates/commande/modals/new_commande.html:9
 msgid "Nouvelle commande de briques"
 msgstr "Yeni Tuğla Düzeni"
 
-#: commandeApp/templates/commande/modals/new_commande.html:9
+#: commandeApp/templates/commande/modals/new_commande.html:10
 msgid "Renseigner ces champs pour enregistrer la commande"
 msgstr "Siparişi kaydetmek için bu alanları doldurun"
 
-#: commandeApp/templates/commande/modals/new_commande.html:16
+#: commandeApp/templates/commande/modals/new_commande.html:17
 msgid "Les produits de la commande"
 msgstr "Siparişin ürünleri"
 
-#: commandeApp/templates/commande/modals/new_commande.html:40
+#: commandeApp/templates/commande/modals/new_commande.html:41
 msgid "Finaliser la commande"
 msgstr "Tam sipariş"
 
-#: commandeApp/templates/commande/modals/new_commande.html:45
+#: commandeApp/templates/commande/modals/new_commande.html:46
 msgid "zone de livraison"
 msgstr "teslimat bölgesi"
 
-#: commandeApp/templates/commande/modals/new_commande.html:51
+#: commandeApp/templates/commande/modals/new_commande.html:52
 msgid "Date prévue pour livraison"
 msgstr "Planlanan teslimat tarihi"
 
-#: commandeApp/templates/commande/modals/new_commande.html:58
+#: commandeApp/templates/commande/modals/new_commande.html:59
 msgid "Lieu exact de livraison"
 msgstr "Tam teslimat yeri"
 
-#: commandeApp/templates/commande/modals/new_commande.html:65
+#: commandeApp/templates/commande/modals/new_commande.html:66
 msgid "Mode de payement"
 msgstr "Ödeme şekli"
 
-#: commandeApp/templates/commande/modals/new_commande.html:72
+#: commandeApp/templates/commande/modals/new_commande.html:73
 msgid "Montant avancé"
 msgstr "Gelişmiş Fiyat"
 
-#: commandeApp/templates/commande/modals/new_commande.html:80
+#: commandeApp/templates/commande/modals/new_commande.html:81
 msgid "Structure d'encaissement"
 msgstr "Koleksiyon yapısı"
 
-#: commandeApp/templates/commande/modals/new_commande.html:86
+#: commandeApp/templates/commande/modals/new_commande.html:87
 msgid "N° numero dédié"
 msgstr "Adanmış numara"
 
-#: commandeApp/templates/commande/modals/new_commande.html:93
+#: commandeApp/templates/commande/modals/new_commande.html:94
 msgid "Ajouter une note"
 msgstr "Not ekle"
 
-#: commandeApp/templates/commande/modals/new_commande.html:98
+#: commandeApp/templates/commande/modals/new_commande.html:99
 msgid "Montant brut"
 msgstr "Ham fiyatlar"
 
-#: commandeApp/templates/commande/modals/new_commande.html:99
+#: commandeApp/templates/commande/modals/new_commande.html:100
 msgid "TVA"
 msgstr "KDV"
 
-#: commandeApp/templates/commande/modals/new_commande.html:101
+#: commandeApp/templates/commande/modals/new_commande.html:102
 msgid "Avance"
 msgstr "İlerlemek"
 
-#: commandeApp/templates/commande/modals/new_commande.html:102
+#: commandeApp/templates/commande/modals/new_commande.html:103
 msgid "Reste"
 msgstr ""
 
-#: commandeApp/templates/commande/modals/new_commande.html:104
+#: commandeApp/templates/commande/modals/new_commande.html:105
 msgid "Valider la commande"
 msgstr "Siparişi onayla"
 
-#: commandeApp/templates/commande/pages/commandes.html:10
+#: commandeApp/templates/commande/pages/commandes.html:11
 msgid "Les commandes en cours"
 msgstr "Siparişler devam ediyor"
 
-#: commandeApp/templates/commande/pages/commandes.html:31
+#: commandeApp/templates/commande/pages/commandes.html:32
 msgid "Livraison prévue pour le"
 msgstr "Teslimat için planlandı"
 
-#: commandeApp/templates/commande/pages/commandes.html:33
+#: commandeApp/templates/commande/pages/commandes.html:34
 msgid ""
 "livraison{{ item.livraisons_encours|pluralize }} en cours pour cette commande"
 msgstr "bu sipariş için teslimat %% devam ediyor"
 
-#: commandeApp/templates/commande/pages/conversions.html:10
+#: commandeApp/templates/commande/pages/conversions.html:11
 msgid "Les conversions de produits"
 msgstr "Ürün Dönüşümleri"
 
-#: commandeApp/templates/commande/pages/conversions.html:21
+#: commandeApp/templates/commande/pages/conversions.html:22
 msgid "Toutes les conversions de produits survenues dans cette agence"
 msgstr "Bu ajansta gerçekleşen tüm ürün dönüşümleri"
 
-#: commandeApp/templates/commande/pages/conversions.html:31
+#: commandeApp/templates/commande/pages/conversions.html:32
 msgid "Status"
 msgstr "Durum"
 
-#: commandeApp/templates/commande/pages/conversions.html:32
+#: commandeApp/templates/commande/pages/conversions.html:33
 msgid "Agence"
 msgstr "Ajans"
 
-#: commandeApp/templates/commande/pages/conversions.html:33
+#: commandeApp/templates/commande/pages/conversions.html:34
 msgid "Client"
 msgstr "Müşteri"
 
-#: commandeApp/templates/commande/pages/conversions.html:34
+#: commandeApp/templates/commande/pages/conversions.html:35
 msgid "Produits"
 msgstr "Ürün"
 
-#: commandeApp/templates/commande/pages/conversions.html:35
+#: commandeApp/templates/commande/pages/conversions.html:36
 msgid "Effectué par"
 msgstr "Tarafından tamamlandı"
 
-#: commandeApp/templates/commande/pages/conversions.html:36
+#: commandeApp/templates/commande/pages/conversions.html:37
 msgid "Action"
 msgstr "Seçenekler"
 
-#: commandeApp/templates/commande/pages/conversions.html:48
+#: commandeApp/templates/commande/pages/conversions.html:49
 msgid "effectué"
 msgstr "gerçekleştirillen"
 
-#: commandeApp/templates/commande/pages/conversions.html:68
+#: commandeApp/templates/commande/pages/conversions.html:69
 msgid "Qté avant conversion"
 msgstr "dönüşümden önceki toplam"
 
-#: commandeApp/templates/commande/pages/conversions.html:74
+#: commandeApp/templates/commande/pages/conversions.html:75
 msgid "Qté après conversion"
 msgstr "dönüştürme sonrası toplam"
 
-#: commandeApp/templates/commande/pages/prixparzone.html:9
+#: commandeApp/templates/commande/pages/prixparzone.html:10
 msgid "Prix par zone de livraison"
 msgstr "Teslimat bölgesi başına fiyat"
