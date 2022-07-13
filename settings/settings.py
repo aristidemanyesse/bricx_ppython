@@ -159,15 +159,15 @@ USE_TZ = True
 
 LANGUAGES = (
     ('fr', 'Français'),
-    ('en-GB', 'English (US)'),
+    # ('en_GB', 'English (US)'),
     ('tr', 'Turkish'),
     ('ar', 'عربى'),
 )
 
 print(BASE_DIR)
-LOCALE_PATHS = [
-   os.path.join(BASE_DIR, 'locales'),
-]
+LOCALE_PATHS = (
+   os.path.join(BASE_DIR, 'locale'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
