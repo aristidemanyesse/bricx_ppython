@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-13 17:32+0000\n"
+"POT-Creation-Date: 2022-07-13 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -314,11 +314,11 @@ msgstr "Toplam üretim maliyeti"
 
 #: ficheApp/templates/rapports/pages/production.html:13
 msgid "Du"
-msgstr ""
+msgstr "itibaren"
 
 #: ficheApp/templates/rapports/pages/production.html:13
 msgid "au"
-msgstr ""
+msgstr "ile"
 
 #: ficheApp/templates/rapports/pages/production.html:20
 msgid ""
@@ -386,7 +386,7 @@ msgstr "günün özeti"
 
 #: ficheApp/templates/rapports/pages/rapport_du_jour.html:26
 msgid "du"
-msgstr ""
+msgstr "itibaren"
 
 #: ficheApp/templates/rapports/pages/rapport_du_jour.html:35
 msgid "Commandes du jour"

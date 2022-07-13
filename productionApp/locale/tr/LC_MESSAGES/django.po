@@ -2,13 +2,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-13 17:32+0000\n"
+"POT-Creation-Date: 2022-07-13 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +27,8 @@ msgstr "Daha fazla miktarda tüketemezsiniz <b>"
 #: productionApp/ajax.py:99
 msgid ""
 "Vous ne pouvez pas rangé plus de quantité que ce que vous en avez produit !"
-msgstr "Ürettiğinizden daha fazlasını bir kenara koyamazsınız!"
+msgstr ""
+"Ürettiğinizden daha fazlasını bir kenara koyamazsınız!"
 
 #: productionApp/models.py:223 productionApp/models.py:232
 msgid "production du "
@@ -73,7 +72,7 @@ msgstr "kayıp miktar"
 #: productionApp/templates/production/modals/perte_produit.html:30
 #: productionApp/templates/production/modals/perte_ressource.html:30
 msgid "Cause de la perte"
-msgstr ""
+msgstr "kaybın nedeni"
 
 #: productionApp/templates/production/modals/perte_produit.html:36
 #: productionApp/templates/production/modals/perte_ressource.html:36
@@ -241,6 +240,3 @@ msgstr "ile"
 #: productionApp/templates/production/pages/stock_ressource.html:11
 msgid "Stock de ressources"
 msgstr "Kaynak Stoku"
-
-#~ msgid "kaybın nedeni"
-#~ msgstr "kaybın nedeni"

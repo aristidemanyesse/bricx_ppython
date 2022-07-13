@@ -2,13 +2,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-13 17:32+0000\n"
+"POT-Creation-Date: 2022-07-13 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,7 +208,7 @@ msgstr "Üretim Gereksinim Formu"
 msgid ""
 "Veuillez saisir les quantités de chaque ressources néccessaire pour la "
 "production"
-msgstr ""
+msgstr "Lütfen için gereken her kaynağın miktarını girin üretme"
 
 #: administrationApp/templates/admin/modals/exigence.html:22
 msgid "utilise"
@@ -782,9 +780,7 @@ msgstr ""
 
 #: administrationApp/templates/admin/pages/mycompte.html:94
 msgid "Fin d'abonnement le"
-msgstr ""
-"Nasıl yapacağınızı bilmiyorsanız veya yardıma ihtiyacınız varsaveya özel "
-"yardım lütfen"
+msgstr "Aboneliğin bitiş tarihi"
 
 #: administrationApp/templates/admin/pages/mycompte.html:98
 msgid "Entrer les 5 blocs de caractères du code de validation."

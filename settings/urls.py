@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path
@@ -27,7 +28,7 @@ def home(request):
         return redirect("home/")
     return redirect("auth/login")
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('', home),
     path('auth/', include('authApp.urls')),
     path('core/', include('coreApp.urls')),
@@ -43,7 +44,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('administration/', include('administrationApp.urls')),
     
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 handler404 = 'authApp.views.handler404'

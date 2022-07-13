@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-13 17:32+0000\n"
+"POT-Creation-Date: 2022-07-13 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,7 +177,7 @@ msgstr "Sipariş"
 
 #: clientApp/templates/clients/pages/client.html:52
 msgid "livraison{{ item.livraisons_encours|pluralize }}"
-msgstr ""
+msgstr "teslimat"
 
 #: clientApp/templates/clients/pages/client.html:52
 msgid "en cours pour cette commande"
@@ -221,7 +221,7 @@ msgstr "Bütün Borçları Kapatmak"
 
 #: clientApp/templates/clients/pages/clients.html:10
 msgid "Liste des clients"
-msgstr ""
+msgstr "Müşteri listesi"
 
 #: clientApp/templates/clients/pages/clients.html:11
 msgid "Ajouter un client"
@@ -234,6 +234,3 @@ msgstr "Tüm müşteriler"
 #: clientApp/templates/clients/pages/clients.html:29
 msgid "Ajoutés cette semaine"
 msgstr "Bu hafta eklendi"
-
-#~ msgid "livraison"
-#~ msgstr "teslimat"

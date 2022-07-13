@@ -19,7 +19,7 @@ class LockoutMiddleware:
         return response     
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        if not request.path_info.startswith('/admin/') and not request.path_info.startswith('/auth/'):
+        if '/admin/' not in request.path_info and '/auth/' not in request.path_info:
             if 'locked' in request.session:
                 if request.session['locked'] :
                     return redirect("auth:locked")
@@ -38,18 +38,18 @@ class  AccessCheckMiddleware:
         return response    
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        request.module_name = request.path_info.split("/")[1]
+        request.module_name = request.path_info.split("/")[2]
         request.base_template = "layout/base_sidebar_"+request.module_name+".html"
         
-        if len(request.path_info.split("/")) >= 3:
+        if len(request.path_info.split("/")) >= 4:
             try:
-                test = uuid.UUID(request.path_info.split("/")[3], version=4)
+                test = uuid.UUID(request.path_info.split("/")[4], version=4)
             except:
                 test = False
-            if len(request.path_info.split("/")) >= 4 and request.path_info.split("/")[3] != "" and not test:
-                request.page_name = request.path_info.split("/")[3]
+            if len(request.path_info.split("/")) >= 5 and request.path_info.split("/")[4] != "" and not test:
+                request.page_name = request.path_info.split("/")[4]
             else:
-                request.page_name = request.path_info.split("/")[2] if request.path_info.split("/")[2] != "" else "dashboard_"+request.module_name
+                request.page_name = request.path_info.split("/")[3] if request.path_info.split("/")[3] != "" else "dashboard_"+request.module_name
 
         request.societe = MyApp.objects.all().first()
         request.mycompte = MyCompte.objects.all().first()

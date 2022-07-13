@@ -2,13 +2,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-13 17:32+0000\n"
+"POT-Creation-Date: 2022-07-13 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,12 +184,3 @@ msgstr "ajanslar"
 #: templates/layout/partials/sidebar_manager.html:119
 msgid "Trésorerie générale"
 msgstr "Genel Hazine"
-
-#~ msgid "Les pertes</span><span class="
-#~ msgstr "Kayıp</span><span class="
-
-#~ msgid "Tél"
-#~ msgstr "Telefon"
-
-#~ msgid "Email"
-#~ msgstr "E-posta"
